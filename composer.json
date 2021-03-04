@@ -33,11 +33,11 @@
 		"php": "^7.0",
 		"vlucas/phpdotenv": "^5.2",
 		"roots/wp-config": "1.0.0",
-        "oscarotero/env": "^2.1"
+        "oscarotero/env": "^2.1",
+		"symfony/var-dumper": "^5.1.4",
+		"symfony/error-handler": "^5.1"
     },
 	"require-dev": {
-		"symfony/var-dumper": "^5.1.4",
-		"symfony/error-handler": "^5.1",
 		"phpunit/phpunit": "^8.0|^9.0"
 	},
     "autoload": {
