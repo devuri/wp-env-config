@@ -17,6 +17,11 @@ class Setup
 {
 
 	/**
+	 *  Dotenv $env
+	 */
+	public $env;
+
+	/**
 	 * Private $instance
 	 *
 	 * @var $instance
@@ -26,17 +31,17 @@ class Setup
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.0.4';
+	const VERSION = '0.1.0';
 
 	/**
 	 * Singleton
 	 *
 	 * @return object
 	 */
-	public static function init( $setup ) {
+	public static function init( $setup, $env ) {
 
 		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self( $setup );
+			self::$instance = new self( $setup, $env );
 		}
 		return self::$instance;
 	}
@@ -47,7 +52,9 @@ class Setup
 	 * @param bool $default use default config setup.
 	 * @param array  $args  additional args.
 	 */
-	private function __construct( $setup = null ) {
+	private function __construct( $setup = null, Dotenv $env ) {
+
+		$this->env = $env;
 
 		// Setup::init( 'production' )
 		if ( ! is_array( $setup ) ) {
@@ -66,29 +73,27 @@ class Setup
 		    'environment' => null,
 		    'debug'       => true,
 		    'symfony'     => false,
-		    'content'     => null,
+		    'uploads'     => null,
+		    'content'     => false,
 		    'site_url'    => SITEURL,
 		);
 
-		$setup = array_merge( $setup, $defaults );
-
-		// initialize.
-		$dotenv = Dotenv::createImmutable(__DIR__);
-		$dotenv->load();
+		$setup = array_merge( $setup, $default );
 
 		// Get the values from $_ENV, instead getenv().
 		Env::$options = Env::USE_ENV_ARRAY;
 
-		$this->required();
+		$this->is_required();
 
 		// run default setup using env vars.
 		if ( $setup['default'] ) {
 			$this->environment( $setup['environment'] )
 				->debug( $setup['debug'] )
 				->symfony_debug( $setup['symfony'] )
-				->content_directory( $setup['content'] )
 				->database()
 				->site_url( $setup['site_url'] )
+				->uploads( $setup['uploads'] )
+				->content_directory( $setup['content'] )
 				->memory()
 				->salts();
 			self::apply();
@@ -107,31 +112,35 @@ class Setup
 		Config::define( $name, $value);
 	}
 
+	public static function get( $name ): void {
+		Config::get($name);
+	}
+
 	public static function apply(): void {
 		Config::apply();
 	}
 
-	private function required() {
+	private function is_required() {
 		// required vars.
 		try {
 
 			// db vars.
-			$dotenv->required( 'DB_HOST' )->notEmpty();
-			$dotenv->required( 'DB_NAME' )->notEmpty();
-			$dotenv->required( 'DB_USER' )->notEmpty();
-			$dotenv->required( 'DB_PASSWORD' )->notEmpty();
-			$dotenv->required( 'DB_HOST' )->notEmpty();
-			$dotenv->required( 'DB_PREFIX' )->notEmpty();
+			$this->env->required( 'DB_HOST' )->notEmpty();
+			$this->env->required( 'DB_NAME' )->notEmpty();
+			$this->env->required( 'DB_USER' )->notEmpty();
+			$this->env->required( 'DB_PASSWORD' )->notEmpty();
+			$this->env->required( 'DB_HOST' )->notEmpty();
+			$this->env->required( 'DB_PREFIX' )->notEmpty();
 
 			// salts.
-			$dotenv->required( 'AUTH_KEY' )->notEmpty();
-			$dotenv->required( 'SECURE_AUTH_KEY' )->notEmpty();
-			$dotenv->required( 'LOGGED_IN_KEY' )->notEmpty();
-			$dotenv->required( 'NONCE_KEY' )->notEmpty();
-			$dotenv->required( 'AUTH_SALT' )->notEmpty();
-			$dotenv->required( 'SECURE_AUTH_SALT' )->notEmpty();
-			$dotenv->required( 'LOGGED_IN_SALT' )->notEmpty();
-			$dotenv->required( 'NONCE_SALT' )->notEmpty();
+			$this->env->required( 'AUTH_KEY' )->notEmpty();
+			$this->env->required( 'SECURE_AUTH_KEY' )->notEmpty();
+			$this->env->required( 'LOGGED_IN_KEY' )->notEmpty();
+			$this->env->required( 'NONCE_KEY' )->notEmpty();
+			$this->env->required( 'AUTH_SALT' )->notEmpty();
+			$this->env->required( 'SECURE_AUTH_SALT' )->notEmpty();
+			$this->env->required( 'LOGGED_IN_SALT' )->notEmpty();
+			$this->env->required( 'NONCE_SALT' )->notEmpty();
 
 		} catch (\Exception $e) {
 			dump( $e->getMessage() );
@@ -146,12 +155,7 @@ class Setup
 	 */
 	public function environment( $defined = null ): self {
 
-		if ( is_null( $defined ) ) {
-			Setup::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: 'production' );
-			return $this;
-		}
-
-		Setup::define('WP_ENVIRONMENT_TYPE', $defined );
+		Setup::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: $defined );
 		return $this;
 	}
 
@@ -205,7 +209,7 @@ class Setup
 	 */
 	public function symfony_debug( $enable = false ): self {
 
-		if ( false === $debug ) {
+		if ( false === $enable ) {
 			return $this;
 		}
 
@@ -215,6 +219,19 @@ class Setup
 
 		return $this;
 
+	}
+
+	/**
+	 * Site Url Settings
+	 *
+	 * @return self
+	 */
+	public function site_url( $url ): self {
+
+		Setup::define('WP_HOME', env('WP_HOME') ?: $url );
+		Setup::define('WP_SITEURL', env('WP_SITEURL')  ?: $url );
+
+		return $this;
 	}
 
 	/**
@@ -228,7 +245,7 @@ class Setup
 			return $this;
 		}
 
-		Setup::define('UPLOADS', env('UPLOAD_DIR') );
+		Setup::define( 'UPLOADS', env('UPLOAD_DIR') ?: $uploads );
 		return $this;
 	}
 
@@ -261,7 +278,6 @@ class Setup
  	   Setup::define('DB_HOST', env('DB_HOST') ?: 'localhost');
  	   Setup::define('DB_CHARSET', 'utf8mb4');
  	   Setup::define('DB_COLLATE', '');
- 	   $table_prefix = env('DB_PREFIX');
 	   return $this;
 	}
 
@@ -271,21 +287,8 @@ class Setup
 	 * @return self
 	 */
 	public function optimize(): self {
-	   Setup::define('CONCATENATE_SCRIPTS', env('CONCATENATE_SCRIPTS') );
+	   Setup::define('CONCATENATE_SCRIPTS', env('CONCATENATE_SCRIPTS') ?: true );
 	   return $this;
-	}
-
-	/**
-	 * Site Url Settings
-	 *
-	 * @return self
-	 */
-	public function site_url(): self {
-
-		Setup::define('WP_HOME', env('WP_HOME') );
-		Setup::define('WP_SITEURL', env('WP_SITEURL') );
-
-		return $this;
 	}
 
 	/**
@@ -295,10 +298,10 @@ class Setup
 	 */
 	public function memory(): self {
 		/* Change WP_MEMORY_LIMIT to increase the memory limit for public pages. */
-		Setup::define('WP_MEMORY_LIMIT', env('MEMORY_LIMIT') );
+		Setup::define('WP_MEMORY_LIMIT', env('MEMORY_LIMIT')  ?: '256M' );
 
 		/* Uncomment and change WP_MAX_MEMORY_LIMIT to increase the memory limit for admin pages. */
-		Setup::define('WP_MAX_MEMORY_LIMIT', env('MAX_MEMORY_LIMIT') );
+		Setup::define('WP_MAX_MEMORY_LIMIT', env('MAX_MEMORY_LIMIT') ?: '256M' );
 
 		return $this;
 	}
@@ -318,7 +321,6 @@ class Setup
 		Setup::define('LOGGED_IN_SALT', env('LOGGED_IN_SALT') );
 		Setup::define('NONCE_SALT', env('NONCE_SALT') );
 		Setup::define('DEVELOPERADMIN', env('DEVELOPERADMIN') );
-
 		return $this;
 	}
 }
