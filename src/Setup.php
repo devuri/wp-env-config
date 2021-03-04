@@ -26,17 +26,17 @@ class Setup
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.0.3';
+	const VERSION = '0.0.4';
 
 	/**
 	 * Singleton
 	 *
 	 * @return object
 	 */
-	public static function init( $dir, $args ) {
+	public static function init( $setup ) {
 
 		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self( $dir, $args );
+			self::$instance = new self( $setup );
 		}
 		return self::$instance;
 	}
@@ -47,42 +47,52 @@ class Setup
 	 * @param bool $default use default config setup.
 	 * @param array  $args  additional args.
 	 */
-	private function __construct( $default = true, $args = array() ) {
+	private function __construct( $setup = null ) {
+
+		// Setup::init( 'production' )
+		if ( ! is_array( $setup ) ) {
+			$setup = array( 'environment' => $setup );
+		}
+
+		// defines the website url.
+		define( 'SITEURL', ( $_SERVER['HTTPS'] ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] );
+
+		/**
+		 *
+		 * @var array
+		 */
+		$default = array(
+		    'default'     => true,
+		    'environment' => null,
+		    'debug'       => true,
+		    'symfony'     => false,
+		    'content'     => null,
+		    'site_url'    => SITEURL,
+		);
+
+		$setup = array_merge( $setup, $defaults );
 
 		// initialize.
 		$dotenv = Dotenv::createImmutable(__DIR__);
 		$dotenv->load();
+
+		// Get the values from $_ENV, instead getenv().
 		Env::$options = Env::USE_ENV_ARRAY;
 
 		$this->required();
 
 		// run default setup using env vars.
-		if ( $default ) {
-			$this->environment()
-				->debug()
-				->content_directory()
+		if ( $setup['default'] ) {
+			$this->environment( $setup['environment'] )
+				->debug( $setup['debug'] )
+				->symfony_debug( $setup['symfony'] )
+				->content_directory( $setup['content'] )
 				->database()
-				->site_url()
+				->site_url( $setup['site_url'] )
 				->memory()
 				->salts();
 			self::apply();
 		}
-
-		/**
-		 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
-		 *
-		 * To enable just define WP_ENV in .env file as 'staging' or 'development' etc
-		 */
-		if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
-			define( 'WP_DEBUG', false );
-		} else {
-			define( 'WP_DEBUG', true );
-		}
-
-		// Symfony Debug.
-		if ( defined('WP_DEBUG') &&  true === WP_DEBUG ) :
-			//Debug::enable();
-		endif;
 
 	}
 
@@ -156,6 +166,17 @@ class Setup
 			return $this;
 		}
 
+		/**
+		 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
+		 *
+		 * To enable just define WP_ENV in .env file as 'staging' or 'development' etc
+		 */
+		if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
+			define( 'WP_DEBUG', false );
+		} else {
+			define( 'WP_DEBUG', true );
+		}
+
 		if ( defined('WP_DEBUG') && false === WP_DEBUG ) :
 
 			Setup::define('WP_DEBUG_DISPLAY', false);
@@ -178,9 +199,43 @@ class Setup
 	}
 
 	/**
+	 * Symfony Debug.
+	 *
+	 * @return self
+	 */
+	public function symfony_debug( $enable = false ): self {
+
+		if ( false === $debug ) {
+			return $this;
+		}
+
+		if ( defined('WP_DEBUG') &&  true === WP_DEBUG ) :
+			Debug::enable();
+		endif;
+
+		return $this;
+
+	}
+
+	/**
+	 * Uploads Directory Setting
+	 *
+	 * @return self
+	 */
+	public function uploads( $uploads = null ): self {
+
+		if ( is_null( $uploads ) ) {
+			return $this;
+		}
+
+		Setup::define('UPLOADS', env('UPLOAD_DIR') );
+		return $this;
+	}
+
+	/**
 	 * Content Directory Setting
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function content_directory( $dir = false ): self {
 
@@ -188,9 +243,8 @@ class Setup
 			return $this;
 		}
 
-		Setup::define('UPLOADS', env('UPLOAD_DIR') );
 		Setup::define('CONTENT_DIR', '/app');
-		Setup::define('WP_CONTENT_DIR', $dir . '/public/app/' );
+		Setup::define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/public/app/' );
 		Setup::define('WP_CONTENT_URL', Setup::get('WP_HOME') . Setup::get('CONTENT_DIR') );
 		return $this;
 	}
@@ -198,7 +252,7 @@ class Setup
 	/**
 	 *  DB settings
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function database(): self {
  	   Setup::define('DB_NAME', env('DB_NAME') );
@@ -214,7 +268,7 @@ class Setup
 	/**
 	 * Optimize
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function optimize(): self {
 	   Setup::define('CONCATENATE_SCRIPTS', env('CONCATENATE_SCRIPTS') );
@@ -224,7 +278,7 @@ class Setup
 	/**
 	 * Site Url Settings
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function site_url(): self {
 
@@ -237,7 +291,7 @@ class Setup
 	/**
 	 * Memory Settings
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function memory(): self {
 		/* Change WP_MEMORY_LIMIT to increase the memory limit for public pages. */
@@ -252,7 +306,7 @@ class Setup
 	/**
 	 * Authentication Unique Keys and Salts
 	 *
-	 * @return void
+	 * @return self
 	 */
 	public function salts(): self {
 		Setup::define('AUTH_KEY', env('AUTH_KEY') );
