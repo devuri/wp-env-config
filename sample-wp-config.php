@@ -21,6 +21,9 @@ $table_prefix = "wp_";
 // setup config.
 Setup::init(__DIR__, 'production' );
 
+// Can also do, this will setup in development mode.
+// Setup::init(__DIR__);
+
 /* That's all, stop editing! Happy publishing. */
 
  /** Absolute path to the WordPress directory. */
