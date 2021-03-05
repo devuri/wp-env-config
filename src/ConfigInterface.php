@@ -4,6 +4,15 @@ namespace DevUri\Config;
 
 interface ConfigInterface
 {
+
+	/**
+	 * Runs config setup.
+	 *
+	 * @param  array $setup
+	 * @return
+	 */
+	public function config( $setup ): void;
+
 	/**
    	 * Debug Settings
    	 *

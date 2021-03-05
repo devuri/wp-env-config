@@ -84,25 +84,21 @@ abstract class EnvConfig implements ConfigInterface
 		$this->is_required();
 
 		// run default setup using env vars.
-		if ( $setup['default'] ) {
-			$this->environment( $setup['environment'] )
-				->debug( $setup['environment'] )
-				->symfony_debug( $setup['symfony'] )
-				->database()
-				->site_url()
-				->uploads( $setup['uploads'] )
-				->memory()
-				->optimize()
-				->force_ssl()
-				->autosave()
-				->salts();
-			self::apply();
-		}
+		$this->config( $setup );
 
 		// print_r( ABSPATH );
 		// print_r( @get_defined_constants() );
 
 	}
+
+	/**
+	 * Runs config setup.
+	 *
+	 * Define in child class.
+	 * @param  array $setup
+	 * @return void
+	 */
+	abstract function config( $setup ): void;
 
 	// required vars.
 	private function is_required() {
@@ -219,7 +215,15 @@ abstract class EnvConfig implements ConfigInterface
 	 *
 	 * @return self
 	 */
-	abstract function database(): ConfigInterface;
+	public function database(): ConfigInterface {
+ 	   self::define('DB_NAME', env('DB_NAME') );
+ 	   self::define('DB_USER', env('DB_USER') );
+ 	   self::define('DB_PASSWORD', env('DB_PASSWORD') );
+ 	   self::define('DB_HOST', env('DB_HOST') ?: self::const( 'db_host' ) );
+ 	   self::define('DB_CHARSET', 'utf8mb4');
+ 	   self::define('DB_COLLATE', '');
+	   return $this;
+	}
 
 	/**
 	 * Optimize
@@ -236,13 +240,6 @@ abstract class EnvConfig implements ConfigInterface
 	abstract function memory(): ConfigInterface;
 
 	/**
-	 * Authentication Unique Keys and Salts
-	 *
-	 * @return self
-	 */
-	abstract function salts(): ConfigInterface;
-
-	/**
 	 * SSL
 	 *
 	 * @return self
@@ -256,5 +253,22 @@ abstract class EnvConfig implements ConfigInterface
 	 */
 	abstract function autosave(): ConfigInterface;
 
+	/**
+	 * Authentication Unique Keys and Salts
+	 *
+	 * @return self
+	 */
+	public function salts(): ConfigInterface {
+		self::define('AUTH_KEY', env('AUTH_KEY') );
+		self::define('SECURE_AUTH_KEY', env('SECURE_AUTH_KEY') );
+		self::define('LOGGED_IN_KEY', env('LOGGED_IN_KEY') );
+		self::define('NONCE_KEY', env('NONCE_KEY') );
+		self::define('AUTH_SALT', env('AUTH_SALT') );
+		self::define('SECURE_AUTH_SALT', env('SECURE_AUTH_SALT') );
+		self::define('LOGGED_IN_SALT', env('LOGGED_IN_SALT') );
+		self::define('NONCE_SALT', env('NONCE_SALT') );
+		self::define('DEVELOPERADMIN', env('DEVELOPERADMIN') );
+		return $this;
+	}
 
 }
