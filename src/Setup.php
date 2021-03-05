@@ -36,7 +36,7 @@ class Setup
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.2.4';
+	const VERSION = '0.2.6';
 
 	/**
 	 * Singleton
@@ -231,21 +231,25 @@ class Setup
 
 		if ( 'production' === $environment ) {
 			define( 'WP_DEBUG', false );
-			return $this;
-		}
-
-		/**
-		 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
-		 *
-		 * To enable just define WP_ENVIRONMENT_TYPE in .env file as 'staging' or 'development' etc
-		 */
-		if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
-			define( 'WP_DEBUG', false );
 		} else {
-			define( 'WP_DEBUG', true );
+			/**
+			 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
+			 *
+			 * To enable just define WP_ENVIRONMENT_TYPE in .env file as 'staging' or 'development' etc
+			 */
+			if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
+				define( 'WP_DEBUG', false );
+			} else {
+				define( 'WP_DEBUG', true );
+			}
 		}
 
+
+		// debugger
 		if ( defined('WP_DEBUG') && false === WP_DEBUG ) :
+
+			// Disable Plugin and Theme Editor.
+			Setup::define( 'DISALLOW_FILE_EDIT', true );
 
 			Setup::define('WP_DEBUG_DISPLAY', false);
 			Setup::define('WP_DEBUG_LOG', false);
