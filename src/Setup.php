@@ -36,7 +36,7 @@ class Setup
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.2.3';
+	const VERSION = '0.2.4';
 
 	/**
 	 * Singleton
@@ -166,7 +166,7 @@ class Setup
 
 		try {
 
-			// site url
+			// site url, can overridden in wp-config.php
 			$this->required( 'WP_HOME' );
 			$this->required( 'WP_SITEURL' );
 
