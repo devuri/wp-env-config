@@ -63,8 +63,18 @@ class Setup
 		// define directory path.
 		$this->path = $path;
 
+		// check whether a .env file exists.
+		if ( ! file_exists( $this->path . '/.env') ) {
+			exit(" env file was not found" );
+		}
+
 		$dotenv = Dotenv::createImmutable($this->path);
-		$dotenv->load();
+
+			try {
+				$dotenv->load();
+			} catch ( \Exception $e ) {
+				exit( $e->getMessage() );
+			}
 
 		$this->env = $dotenv;
 
