@@ -37,7 +37,7 @@ abstract class EnvConfig implements ConfigInterface
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.2.6';
+	const VERSION = '0.3.1';
 
 	/**
 	 * Constructer.

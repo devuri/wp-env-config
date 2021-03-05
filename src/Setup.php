@@ -55,7 +55,7 @@ class Setup extends EnvConfig
 	 *
 	 * @return object
 	 */
-	public static function init( $path, $setup = null ) {
+	public static function init( $path, $setup = null ): self {
 
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $path, $setup );
