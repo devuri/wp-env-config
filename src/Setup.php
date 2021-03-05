@@ -36,7 +36,7 @@ class Setup
 	/**
 	 * Defines Version
 	 */
-	const VERSION = '0.2.1';
+	const VERSION = '0.2.3';
 
 	/**
 	 * Singleton
