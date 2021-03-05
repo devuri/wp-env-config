@@ -10,6 +10,29 @@ use function Env\env;
 class Setup extends EnvConfig
 {
 
+	/**
+	 * Runs config setup with default setting.
+	 *
+	 * @param  array $setup
+	 * @return
+	 */
+	public function config( $setup ): void {
+		if ( $setup['default'] ) {
+			$this->environment( $setup['environment'] )
+				->debug( $setup['environment'] )
+				->symfony_debug( $setup['symfony'] )
+				->database()
+				->site_url()
+				->uploads( $setup['uploads'] )
+				->memory()
+				->optimize()
+				->force_ssl()
+				->autosave()
+				->salts();
+			self::apply();
+		}
+	}
+
 	protected static function const( $key ){
 
 		$constant = [];
@@ -32,7 +55,7 @@ class Setup extends EnvConfig
 	 *
 	 * @return object
 	 */
-	public static function init( $path, $setup = null ) {
+	public static function init( $path, $setup = null ): self {
 
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $path, $setup );
@@ -108,21 +131,6 @@ class Setup extends EnvConfig
 	}
 
 	/**
-	 *  DB settings
-	 *
-	 * @return self
-	 */
-	public function database(): self {
- 	   self::define('DB_NAME', env('DB_NAME') );
- 	   self::define('DB_USER', env('DB_USER') );
- 	   self::define('DB_PASSWORD', env('DB_PASSWORD') );
- 	   self::define('DB_HOST', env('DB_HOST') ?: self::const( 'db_host' ) );
- 	   self::define('DB_CHARSET', 'utf8mb4');
- 	   self::define('DB_COLLATE', '');
-	   return $this;
-	}
-
-	/**
 	 * Optimize
 	 *
 	 * @return self
@@ -140,24 +148,6 @@ class Setup extends EnvConfig
 	public function memory(): self {
 		self::define('WP_MEMORY_LIMIT', env('MEMORY_LIMIT')  ?: self::const( 'memory' ) );
 		self::define('WP_MAX_MEMORY_LIMIT', env('MAX_MEMORY_LIMIT') ?: self::const( 'memory' ) );
-		return $this;
-	}
-
-	/**
-	 * Authentication Unique Keys and Salts
-	 *
-	 * @return self
-	 */
-	public function salts(): self {
-		self::define('AUTH_KEY', env('AUTH_KEY') );
-		self::define('SECURE_AUTH_KEY', env('SECURE_AUTH_KEY') );
-		self::define('LOGGED_IN_KEY', env('LOGGED_IN_KEY') );
-		self::define('NONCE_KEY', env('NONCE_KEY') );
-		self::define('AUTH_SALT', env('AUTH_SALT') );
-		self::define('SECURE_AUTH_SALT', env('SECURE_AUTH_SALT') );
-		self::define('LOGGED_IN_SALT', env('LOGGED_IN_SALT') );
-		self::define('NONCE_SALT', env('NONCE_SALT') );
-		self::define('DEVELOPERADMIN', env('DEVELOPERADMIN') );
 		return $this;
 	}
 
