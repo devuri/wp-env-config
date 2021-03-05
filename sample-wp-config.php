@@ -1,10 +1,4 @@
 <?php
-
-require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
-
-use Dotenv\Dotenv;
-use DevUri\Config\Setup;
-
 /**
  * The base configuration for WordPress
  *
@@ -12,14 +6,9 @@ use DevUri\Config\Setup;
  *
  * @package WordPress
  */
+require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
 
-// initialize.
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-
-// setup config.
-Setup::init( 'development', $dotenv );
+use DevUri\Config\Setup;
 
 /**
  * WordPress Database Table prefix.
@@ -28,6 +17,9 @@ Setup::init( 'development', $dotenv );
  * a unique prefix. Only numbers, letters, and underscores please!
 */
 $table_prefix = "wp_";
+
+// setup config.
+Setup::init(__DIR__, 'production' );
 
 /* That's all, stop editing! Happy publishing. */
 
