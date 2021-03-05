@@ -17,6 +17,11 @@ class Setup
 {
 
 	/**
+	 *  Directory $path
+	 */
+	public $path;
+
+	/**
 	 *  Dotenv $env
 	 */
 	public $env;
@@ -38,10 +43,10 @@ class Setup
 	 *
 	 * @return object
 	 */
-	public static function init( $setup, $env ) {
+	public static function init( $path, $setup = null ) {
 
 		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self( $setup, $env );
+			self::$instance = new self( $path, $setup );
 		}
 		return self::$instance;
 	}
@@ -51,34 +56,30 @@ class Setup
 	 *
 	 * @param bool $default use default config setup.
 	 * @param array  $args  additional args.
+	 * @link https://github.com/WordPress/WordPress/blob/master/wp-includes/default-constants.php
 	 */
-	private function __construct( $setup = null, Dotenv $env ) {
+	private function __construct( $path, $setup = null ) {
 
-		$this->env = $env;
+		// define directory path.
+		$this->path = $path;
+
+		$dotenv = Dotenv::createImmutable($this->path);
+		$dotenv->load();
+
+		$this->env = $dotenv;
 
 		// Setup::init( 'production' )
 		if ( ! is_array( $setup ) ) {
 			$setup = array( 'environment' => $setup );
 		}
 
-		// defines the website url.
-		define( 'SITEURL', ( $_SERVER['HTTPS'] ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] );
-
-		/**
-		 *
-		 * @var array
-		 */
+		// defualt setup.
 		$default = array(
 		    'default'     => true,
 		    'environment' => null,
-		    'debug'       => true,
 		    'symfony'     => false,
-		    'uploads'     => null,
-		    'content'     => false,
-		    'site_url'    => SITEURL,
 		);
-
-		$setup = array_merge( $setup, $default );
+		$setup = array_merge( $default, $setup );
 
 		// Get the values from $_ENV, instead getenv().
 		Env::$options = Env::USE_ENV_ARRAY;
@@ -88,28 +89,58 @@ class Setup
 		// run default setup using env vars.
 		if ( $setup['default'] ) {
 			$this->environment( $setup['environment'] )
-				->debug( $setup['debug'] )
+				->debug( $setup['environment'] )
 				->symfony_debug( $setup['symfony'] )
 				->database()
-				->site_url( $setup['site_url'] )
+				->site_url()
 				->uploads( $setup['uploads'] )
-				->content_directory( $setup['content'] )
 				->memory()
+				->optimize()
+				->force_ssl()
+				->autosave()
 				->salts();
 			self::apply();
 		}
 
 	}
 
+	private static function const( $key ){
+
+		$constant = [];
+		$constant['environment']    = 'development';
+		$constant['debug']          = true;
+		$constant['db_host']        = 'localhost';
+		$constant['uploads']        = 'wp-content/uploads';
+		$constant['optimize']       = true;
+		$constant['memory']         = '256M';
+		$constant['ssl_admin']      = true;
+		$constant['ssl_login']      = true;
+		$constant['autosave']       = 180;
+		$constant['revisions']      = 10;
+
+		return $constant[$key];
+	}
+
 	/**
-	 * Wrapper to define config constants items.
+	 * Wrapper to define config constant items.
+	 *
+	 * This will check if the constant is defined before attempting to define.
+	 * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
 	 *
 	 * @param  string $name  constant name.
 	 * @param  string|bool $value constant value
 	 * @return void
 	 */
 	public static function define( $name, $value ): void {
-		Config::define( $name, $value);
+		if ( ! defined( $name ) ) {
+			Config::define( $name, $value);
+		}
+	}
+
+	public function required( $name ): void {
+		if ( ! defined( $name ) ) {
+			$this->env->required( $name )->notEmpty();
+		}
 	}
 
 	public static function get( $name ): void {
@@ -120,11 +151,16 @@ class Setup
 		Config::apply();
 	}
 
+	// required vars.
 	private function is_required() {
-		// required vars.
+
 		try {
 
-			// db vars.
+			// site url
+			$this->required( 'WP_HOME' );
+			$this->required( 'WP_SITEURL' );
+
+			// db vars must be defined in .env.
 			$this->env->required( 'DB_HOST' )->notEmpty();
 			$this->env->required( 'DB_NAME' )->notEmpty();
 			$this->env->required( 'DB_USER' )->notEmpty();
@@ -132,7 +168,7 @@ class Setup
 			$this->env->required( 'DB_HOST' )->notEmpty();
 			$this->env->required( 'DB_PREFIX' )->notEmpty();
 
-			// salts.
+			// salts must be defined in .env.
 			$this->env->required( 'AUTH_KEY' )->notEmpty();
 			$this->env->required( 'SECURE_AUTH_KEY' )->notEmpty();
 			$this->env->required( 'LOGGED_IN_KEY' )->notEmpty();
@@ -155,7 +191,11 @@ class Setup
 	 */
 	public function environment( $defined = null ): self {
 
-		Setup::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: $defined );
+		if ( is_null( $defined ) ) {
+			Setup::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: self::const( 'environment' ) );
+		}
+
+		Setup::define('WP_ENVIRONMENT_TYPE', $defined );
 		return $this;
 	}
 
@@ -164,16 +204,30 @@ class Setup
 	 *
 	 * @return void
 	 */
-	public function debug( $debug = true ): self {
+	private function is_debug( $environment ): bool {
 
-		if ( false === $debug ) {
+		if ( 'production' === $environment ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Debug Settings
+	 *
+	 * @return void
+	 */
+	public function debug( $environment ): self {
+
+		if ( 'production' === $environment ) {
+			define( 'WP_DEBUG', false );
 			return $this;
 		}
 
 		/**
 		 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
 		 *
-		 * To enable just define WP_ENV in .env file as 'staging' or 'development' etc
+		 * To enable just define WP_ENVIRONMENT_TYPE in .env file as 'staging' or 'development' etc
 		 */
 		if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
 			define( 'WP_DEBUG', false );
@@ -194,7 +248,7 @@ class Setup
 		   Setup::define('WP_DEBUG_DISPLAY', true);
 		   Setup::define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
 		   Setup::define('SCRIPT_DEBUG', true);
-		   Setup::define('WP_DEBUG_LOG', dirname( __FILE__ ) . '/tmp/wp-errors.log' );
+		   Setup::define('WP_DEBUG_LOG', $this->path . '/tmp/wp-errors.log' );
 		   ini_set('display_errors', '1');
 
 		endif;
@@ -226,10 +280,10 @@ class Setup
 	 *
 	 * @return self
 	 */
-	public function site_url( $url ): self {
+	public function site_url(): self {
 
-		Setup::define('WP_HOME', env('WP_HOME') ?: $url );
-		Setup::define('WP_SITEURL', env('WP_SITEURL')  ?: $url );
+		Setup::define('WP_HOME', env('WP_HOME')  );
+		Setup::define('WP_SITEURL', env('WP_SITEURL') );
 
 		return $this;
 	}
@@ -239,32 +293,12 @@ class Setup
 	 *
 	 * @return self
 	 */
-	public function uploads( $uploads = null ): self {
+	public function uploads(): self {
 
-		if ( is_null( $uploads ) ) {
-			return $this;
-		}
-
-		Setup::define( 'UPLOADS', env('UPLOAD_DIR') ?: $uploads );
+		Setup::define( 'UPLOADS', env('UPLOAD_DIR') ?: self::const( 'uploads' ) );
 		return $this;
 	}
 
-	/**
-	 * Content Directory Setting
-	 *
-	 * @return self
-	 */
-	public function content_directory( $dir = false ): self {
-
-		if ( false === $dir ) {
-			return $this;
-		}
-
-		Setup::define('CONTENT_DIR', '/app');
-		Setup::define('WP_CONTENT_DIR', dirname( __FILE__ ) . '/public/app/' );
-		Setup::define('WP_CONTENT_URL', Setup::get('WP_HOME') . Setup::get('CONTENT_DIR') );
-		return $this;
-	}
 
 	/**
 	 *  DB settings
@@ -275,7 +309,7 @@ class Setup
  	   Setup::define('DB_NAME', env('DB_NAME') );
  	   Setup::define('DB_USER', env('DB_USER') );
  	   Setup::define('DB_PASSWORD', env('DB_PASSWORD') );
- 	   Setup::define('DB_HOST', env('DB_HOST') ?: 'localhost');
+ 	   Setup::define('DB_HOST', env('DB_HOST') ?: self::const( 'db_host' ) );
  	   Setup::define('DB_CHARSET', 'utf8mb4');
  	   Setup::define('DB_COLLATE', '');
 	   return $this;
@@ -287,7 +321,7 @@ class Setup
 	 * @return self
 	 */
 	public function optimize(): self {
-	   Setup::define('CONCATENATE_SCRIPTS', env('CONCATENATE_SCRIPTS') ?: true );
+	   Setup::define('CONCATENATE_SCRIPTS', env('CONCATENATE_SCRIPTS') ?: self::const( 'optimize' ) );
 	   return $this;
 	}
 
@@ -297,12 +331,8 @@ class Setup
 	 * @return self
 	 */
 	public function memory(): self {
-		/* Change WP_MEMORY_LIMIT to increase the memory limit for public pages. */
-		Setup::define('WP_MEMORY_LIMIT', env('MEMORY_LIMIT')  ?: '256M' );
-
-		/* Uncomment and change WP_MAX_MEMORY_LIMIT to increase the memory limit for admin pages. */
-		Setup::define('WP_MAX_MEMORY_LIMIT', env('MAX_MEMORY_LIMIT') ?: '256M' );
-
+		Setup::define('WP_MEMORY_LIMIT', env('MEMORY_LIMIT')  ?: self::const( 'memory' ) );
+		Setup::define('WP_MAX_MEMORY_LIMIT', env('MAX_MEMORY_LIMIT') ?: self::const( 'memory' ) );
 		return $this;
 	}
 
@@ -323,4 +353,27 @@ class Setup
 		Setup::define('DEVELOPERADMIN', env('DEVELOPERADMIN') );
 		return $this;
 	}
+
+	/**
+	 * SSL
+	 *
+	 * @return self
+	 */
+	public function force_ssl(): self {
+		Setup::define('FORCE_SSL_ADMIN', env('FORCE_SSL_ADMIN') ?: self::const( 'ssl_admin' ) );
+		Setup::define('FORCE_SSL_LOGIN', env('FORCE_SSL_LOGIN') ?: self::const( 'ssl_login' ) );
+		return $this;
+	}
+
+	/**
+	 * AUTOSAVE and REVISIONS
+	 *
+	 * @return self
+	 */
+	public function autosave(): self {
+		Setup::define('AUTOSAVE_INTERVAL', env('AUTOSAVE_INTERVAL') ?: self::const( 'autosave' ) );
+		Setup::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?: self::const( 'revisions' ) );
+		return $this;
+	}
+
 }
