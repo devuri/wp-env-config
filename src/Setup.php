@@ -11,12 +11,42 @@ class Setup extends EnvConfig
 {
 
 	/**
+	 * Singleton
+	 *
+	 * @return object
+	 */
+	public static function init( $path ): self {
+
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self( $path );
+		}
+		return self::$instance;
+	}
+
+	/**
 	 * Runs config setup with default setting.
 	 *
 	 * @param  array $setup
 	 * @return
 	 */
-	public function config( $setup ): void {
+	public function config( $setup = null ): void {
+
+		// check required vars.
+		$this->is_required();
+
+		// self::init( __DIR__ )->config('production')
+		if ( ! is_array( $setup ) ) {
+			$setup = array( 'environment' => $setup );
+		}
+
+		// defualt setup.
+		$default = array(
+			'default'     => true,
+			'environment' => null,
+			'symfony'     => false,
+		);
+		$setup = array_merge( $default, $setup );
+
 		if ( $setup['default'] ) {
 			$this->environment( $setup['environment'] )
 				->debug( $setup['environment'] )
@@ -51,29 +81,17 @@ class Setup extends EnvConfig
 	}
 
 	/**
-	 * Singleton
-	 *
-	 * @return object
-	 */
-	public static function init( $path, $setup = null ): self {
-
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self( $path, $setup );
-		}
-		return self::$instance;
-	}
-
-	/**
 	 * Debug Settings
 	 *
 	 * @return void
 	 */
 	public function debug( $environment ): self {
 
-		// check debug settings.
 		$this->is_debug( $environment );
 
-		// debugger
+		/**
+		 * Debugger setup based on environment.
+		 */
 		if ( defined('WP_DEBUG') && false === WP_DEBUG ) :
 
 			// Disable Plugin and Theme Editor.
