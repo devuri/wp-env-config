@@ -50,10 +50,6 @@ abstract class EnvConfig implements ConfigInterface
 
 		$this->path = $path;
 
-		if ( ! file_exists( $this->path . '/.env') ) {
-			exit(" env file was not found" );
-		}
-
 		$dotenv = Dotenv::createImmutable($this->path);
 		$this->env = $dotenv;
 
