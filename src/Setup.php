@@ -87,10 +87,11 @@ class Setup extends EnvConfig
 	 */
 	public function debug( $environment ): self {
 
-		// check debug settings.
 		$this->is_debug( $environment );
 
-		// debugger
+		/**
+		 * Debugger setup based on environment.
+		 */
 		if ( defined('WP_DEBUG') && false === WP_DEBUG ) :
 
 			// Disable Plugin and Theme Editor.

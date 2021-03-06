@@ -48,10 +48,8 @@ abstract class EnvConfig implements ConfigInterface
 	 */
 	public function __construct( $path ) {
 
-		// define directory path.
 		$this->path = $path;
 
-		// check whether a .env file exists.
 		if ( ! file_exists( $this->path . '/.env') ) {
 			exit(" env file was not found" );
 		}
@@ -65,7 +63,6 @@ abstract class EnvConfig implements ConfigInterface
 				exit( $e->getMessage() );
 			}
 
-		// Get the values from $_ENV, instead getenv().
 		Env::$options = Env::USE_ENV_ARRAY;
 
 	}
