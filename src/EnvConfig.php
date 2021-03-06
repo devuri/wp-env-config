@@ -46,7 +46,7 @@ abstract class EnvConfig implements ConfigInterface
 	 * @param array  $args  additional args.
 	 * @link https://github.com/WordPress/WordPress/blob/master/wp-includes/default-constants.php
 	 */
-	public function __construct( $path, $setup = null ) {
+	public function __construct( $path ) {
 
 		// define directory path.
 		$this->path = $path;
@@ -65,29 +65,8 @@ abstract class EnvConfig implements ConfigInterface
 				exit( $e->getMessage() );
 			}
 
-		// self::init( __DIR__, 'production' )
-		if ( ! is_array( $setup ) ) {
-			$setup = array( 'environment' => $setup );
-		}
-
-		// defualt setup.
-		$default = array(
-		    'default'     => true,
-		    'environment' => null,
-		    'symfony'     => false,
-		);
-		$setup = array_merge( $default, $setup );
-
 		// Get the values from $_ENV, instead getenv().
 		Env::$options = Env::USE_ENV_ARRAY;
-
-		$this->is_required();
-
-		// run default setup using env vars.
-		$this->config( $setup );
-
-		// print_r( ABSPATH );
-		// print_r( @get_defined_constants() );
 
 	}
 
@@ -101,7 +80,7 @@ abstract class EnvConfig implements ConfigInterface
 	abstract function config( $setup ): void;
 
 	// required vars.
-	private function is_required() {
+	protected function is_required() {
 
 		try {
 
