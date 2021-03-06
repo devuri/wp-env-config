@@ -45,8 +45,12 @@ trait ConfigTrait {
 		}
 	}
 
-	public static function get( $name ): void {
-		Config::get($name);
+	public static function get( $name ){
+		try {
+			Config::get($name);
+		} catch ( \Exception $e ) {
+			return $e->getMessage();
+		}
 	}
 
 	public static function apply(): void {
