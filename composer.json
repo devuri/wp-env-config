@@ -30,7 +30,7 @@
         "issues": "https://github.com/devuri/wp-env-config/issues"
     },
     "require": {
-		"php": "^7.0",
+		"php": "^7.1",
 		"vlucas/phpdotenv": "^5.2",
 		"roots/wp-config": "1.0.0",
         "oscarotero/env": "^2.1",
