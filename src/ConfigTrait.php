@@ -6,7 +6,16 @@ use Roots\WPConfig\Config;
 
 trait ConfigTrait {
 
-	protected static function const( $key ){
+    /**
+     * Env defaults,
+     *
+     * These are some defaults that will apply
+     * if they do not exist in .env
+     *
+     * @param string $key val to retrieve
+     * @return mixed
+     */
+	protected static function const(string $key){
 
 		$constant = [];
 		$constant['environment'] = 'development';
@@ -23,29 +32,26 @@ trait ConfigTrait {
 		return $constant[$key];
 	}
 
-	/**
-	 * Wrapper to define config constant items.
-	 *
-	 * This will check if the constant is defined before attempting to define.
-	 * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
-	 *
-	 * @param  string $name  constant name.
-	 * @param  string|bool $value constant value
-	 * @return void
-	 */
-	public static function define( $name, $value ): void {
-		if ( ! defined( $name ) ) {
-			Config::define( $name, $value);
-		}
+    /**
+     * Wrapper to define config constant items.
+     *
+     * This will check if the constant is defined before attempting to define.
+     * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
+     *
+     * @param string $name constant name.
+     * @param string|bool $value constant value
+     * @return void
+     */
+	public static function define(string $name, $value): void {
+		if ( ! defined( $name ) ) Config::define( $name, $value);
 	}
 
-	public function required( $name ): void {
-		if ( ! defined( $name ) ) {
-			$this->env->required( $name )->notEmpty();
-		}
+    public function required(string $name ): void {
+		if ( ! defined( $name ) ) $this->env->required( $name )->notEmpty();
 	}
 
-	public static function get( $name ){
+    public static function get(string $name): string
+    {
 		try {
 			Config::get($name);
 		} catch ( \Exception $e ) {
@@ -53,7 +59,7 @@ trait ConfigTrait {
 		}
 	}
 
-	public static function apply(): void {
+    public static function apply(): void {
 		Config::apply();
 	}
 }

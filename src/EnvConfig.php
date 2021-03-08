@@ -42,7 +42,7 @@ abstract class EnvConfig implements ConfigInterface
 	/**
 	 * Constructer.
 	 *
-	 * @param array  $path  current Directory.
+	 * @param array|string $path  current Directory.
 	 */
 	public function __construct( $path ) {
 
@@ -61,15 +61,15 @@ abstract class EnvConfig implements ConfigInterface
 
 	}
 
-	/**
-	 * Runs config setup.
-	 *
-	 * Define in child class.
-	 *
-	 * @param  array $setup
-	 * @return void
-	 */
-	abstract function config( $setup ): void;
+    /**
+     * Runs config setup.
+     *
+     * Define in child class.
+     *
+     * @param array|string $setup
+     * @return void
+     */
+	abstract function config($setup): void;
 
 	// required vars.
 	protected function is_required() {
@@ -102,11 +102,12 @@ abstract class EnvConfig implements ConfigInterface
 		}
 	}
 
-	/**
-	 * Setting the environment type
-	 *
-	 * @return void
-	 */
+    /**
+     * Setting the environment type
+     *
+     * @param null $defined
+     * @return ConfigInterface
+     */
 	public function environment( $defined = null ): ConfigInterface {
 
 		if ( is_null( $defined ) ) {
@@ -117,11 +118,12 @@ abstract class EnvConfig implements ConfigInterface
 		return $this;
 	}
 
-	/**
-	 * Debug Settings
-	 *
-	 * @return void
-	 */
+    /**
+     * Debug Settings
+     *
+     * @param $environment
+     * @return ConfigInterface
+     */
 	protected function is_debug( $environment ): ConfigInterface {
 
 		if ( 'production' === $environment ) {
@@ -141,18 +143,20 @@ abstract class EnvConfig implements ConfigInterface
 		return $this;
 	}
 
-	/**
-	 * Symfony Debug.
-	 *
-	 * @return self
-	 */
-	public function symfony_debug( $enable = false ): ConfigInterface {
+    /**
+     * Symfony Debug.
+     *
+     * @param bool $enable
+     * @return self
+     */
+	public function symfony_debug( bool $enable = false ): ConfigInterface
+    {
 
 		if ( false === $enable ) {
 			return $this;
 		}
 
-		if ( defined('WP_DEBUG') &&  true === WP_DEBUG ) :
+		if ( defined('WP_DEBUG') && (true === WP_DEBUG)) :
 			Debug::enable();
 		endif;
 
@@ -160,12 +164,13 @@ abstract class EnvConfig implements ConfigInterface
 
 	}
 
-	/**
-	 * Debug Settings
-	 *
-	 * @return void
-	 */
-	abstract function debug( $environment ): ConfigInterface ;
+    /**
+     * Debug Settings
+     *
+     * @param $environment
+     * @return EnvConfig
+     */
+	abstract function debug( $environment ): ConfigInterface;
 
 	/**
 	 * Site Url Settings
@@ -174,12 +179,13 @@ abstract class EnvConfig implements ConfigInterface
 	 */
 	abstract function site_url(): ConfigInterface;
 
-	/**
-	 * Uploads Directory Setting
-	 *
-	 * @return self
-	 */
-	abstract function uploads(): ConfigInterface;
+    /**
+     * Uploads Directory Setting
+     *
+     * @param $upload_dir
+     * @return self
+     */
+	abstract function uploads( string $upload_dir ): ConfigInterface;
 
 	/**
 	 *  DB settings
