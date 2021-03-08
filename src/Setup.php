@@ -63,6 +63,15 @@ class Setup extends EnvConfig
 		}
 	}
 
+	/**
+	 * Env defaults,
+	 *
+	 * These are some defaults that will apply
+	 * if they do not exist in .env
+	 *
+	 * @param  string $key val to retrieve
+	 * @return mixed
+	 */
 	protected static function const( $key ){
 
 		$constant = [];
