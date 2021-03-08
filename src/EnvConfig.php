@@ -185,7 +185,7 @@ abstract class EnvConfig implements ConfigInterface
      * @param $upload_dir
      * @return self
      */
-	abstract function uploads( string $upload_dir ): ConfigInterface;
+	abstract function uploads( $upload_dir ): ConfigInterface;
 
 	/**
 	 *  DB settings

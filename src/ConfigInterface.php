@@ -42,7 +42,7 @@ interface ConfigInterface
      * @param $upload_dir
      * @return self
      */
-	public function uploads( string $upload_dir ): ConfigInterface;
+	public function uploads( $upload_dir ): ConfigInterface;
 
 	/**
 	 *  DB settings
