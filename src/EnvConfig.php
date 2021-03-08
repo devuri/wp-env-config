@@ -42,9 +42,7 @@ abstract class EnvConfig implements ConfigInterface
 	/**
 	 * Constructer.
 	 *
-	 * @param bool $default use default config setup.
-	 * @param array  $args  additional args.
-	 * @link https://github.com/WordPress/WordPress/blob/master/wp-includes/default-constants.php
+	 * @param array  $path  current Directory.
 	 */
 	public function __construct( $path ) {
 
@@ -67,6 +65,7 @@ abstract class EnvConfig implements ConfigInterface
 	 * Runs config setup.
 	 *
 	 * Define in child class.
+	 *
 	 * @param  array $setup
 	 * @return void
 	 */
@@ -77,7 +76,7 @@ abstract class EnvConfig implements ConfigInterface
 
 		try {
 
-			// site url, can overridden in wp-config.php
+			// site url, can be overridden in wp-config.php
 			$this->required( 'WP_HOME' );
 			$this->required( 'WP_SITEURL' );
 
@@ -108,7 +107,7 @@ abstract class EnvConfig implements ConfigInterface
 	 *
 	 * @return void
 	 */
-	public function environment( $defined = null ): self {
+	public function environment( $defined = null ): ConfigInterface {
 
 		if ( is_null( $defined ) ) {
 			self::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: self::const( 'environment' ) );
@@ -123,7 +122,7 @@ abstract class EnvConfig implements ConfigInterface
 	 *
 	 * @return void
 	 */
-	protected function is_debug( $environment ): self {
+	protected function is_debug( $environment ): ConfigInterface {
 
 		if ( 'production' === $environment ) {
 			define( 'WP_DEBUG', false );
@@ -147,7 +146,7 @@ abstract class EnvConfig implements ConfigInterface
 	 *
 	 * @return self
 	 */
-	public function symfony_debug( $enable = false ): self {
+	public function symfony_debug( $enable = false ): ConfigInterface {
 
 		if ( false === $enable ) {
 			return $this;
