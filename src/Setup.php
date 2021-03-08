@@ -127,7 +127,7 @@ class Setup extends EnvConfig
      * @param $upload_dir
      * @return self
      */
-	public function uploads( string $upload_dir ): ConfigInterface {
+	public function uploads( $upload_dir ): ConfigInterface {
 
 		self::define( 'UPLOADS', env('UPLOAD_DIR') ?: self::const( 'uploads' ) );
 		return $this;
