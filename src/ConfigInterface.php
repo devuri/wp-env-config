@@ -5,26 +5,28 @@ namespace DevUri\Config;
 interface ConfigInterface
 {
 
-	/**
-	 * Runs config setup.
-	 *
-	 * @param  array $setup
-	 * @return
-	 */
-	public function config( $setup ): void;
+    /**
+     * Runs config setup.
+     *
+     * @param array|string $setup
+     * @return void
+     */
+	public function config($setup): void;
 
-	/**
-   	 * Debug Settings
-   	 *
-   	 * @return void
-   	 */
+    /**
+     * Debug Settings
+     *
+     * @param $environment
+     * @return self
+     */
    	public function debug( $environment ): ConfigInterface;
 
-	/**
-	 * Symfony Debug.
-	 *
-	 * @return self
-	 */
+    /**
+     * Symfony Debug.
+     *
+     * @param $enable
+     * @return self
+     */
 	public function symfony_debug( $enable ): ConfigInterface;
 
 	/**
@@ -34,12 +36,13 @@ interface ConfigInterface
 	 */
 	public function site_url(): ConfigInterface;
 
-	/**
-	 * Uploads Directory Setting
-	 *
-	 * @return self
-	 */
-	public function uploads(): ConfigInterface;
+    /**
+     * Uploads Directory Setting
+     *
+     * @param $upload_dir
+     * @return self
+     */
+	public function uploads( string $upload_dir ): ConfigInterface;
 
 	/**
 	 *  DB settings

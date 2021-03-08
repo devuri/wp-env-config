@@ -27,7 +27,6 @@ use DevUri\Config\Setup;
  *
  * @package WordPress
  */
-
 // To override setup constant defined in config() method define them before.
 Setup::init(__DIR__)->config('development');
 // after setup we can define other constant in the normal way or using env function
@@ -40,7 +39,7 @@ Setup::init(__DIR__)->config('development');
 // remember to include with use "use function Env\env;" when using the env function.
 
 // Both "Setup::get( 'UPLOAD_DIR' )" and "env( 'UPLOAD_DIR' )"
-// will grab the val from .env file.
+// will grab the value from .env file.
 
 // Can also do.
 // Setup::init(__DIR__)->config();

@@ -42,17 +42,11 @@ abstract class EnvConfig implements ConfigInterface
 	/**
 	 * Constructer.
 	 *
-	 * @param bool $default use default config setup.
-	 * @param array  $args  additional args.
-	 * @link https://github.com/WordPress/WordPress/blob/master/wp-includes/default-constants.php
+	 * @param array|string $path  current Directory.
 	 */
 	public function __construct( $path ) {
 
 		$this->path = $path;
-
-		if ( ! file_exists( $this->path . '/.env') ) {
-			exit(" env file was not found" );
-		}
 
 		$dotenv = Dotenv::createImmutable($this->path);
 		$this->env = $dotenv;
@@ -67,21 +61,22 @@ abstract class EnvConfig implements ConfigInterface
 
 	}
 
-	/**
-	 * Runs config setup.
-	 *
-	 * Define in child class.
-	 * @param  array $setup
-	 * @return void
-	 */
-	abstract function config( $setup ): void;
+    /**
+     * Runs config setup.
+     *
+     * Define in child class.
+     *
+     * @param array|string $setup
+     * @return void
+     */
+	abstract function config($setup): void;
 
 	// required vars.
 	protected function is_required() {
 
 		try {
 
-			// site url, can overridden in wp-config.php
+			// site url, can be overridden in wp-config.php
 			$this->required( 'WP_HOME' );
 			$this->required( 'WP_SITEURL' );
 
@@ -107,12 +102,13 @@ abstract class EnvConfig implements ConfigInterface
 		}
 	}
 
-	/**
-	 * Setting the environment type
-	 *
-	 * @return void
-	 */
-	public function environment( $defined = null ): self {
+    /**
+     * Setting the environment type
+     *
+     * @param null $defined
+     * @return ConfigInterface
+     */
+	public function environment( $defined = null ): ConfigInterface {
 
 		if ( is_null( $defined ) ) {
 			self::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: self::const( 'environment' ) );
@@ -122,12 +118,13 @@ abstract class EnvConfig implements ConfigInterface
 		return $this;
 	}
 
-	/**
-	 * Debug Settings
-	 *
-	 * @return void
-	 */
-	protected function is_debug( $environment ): self {
+    /**
+     * Debug Settings
+     *
+     * @param $environment
+     * @return ConfigInterface
+     */
+	protected function is_debug( $environment ): ConfigInterface {
 
 		if ( 'production' === $environment ) {
 			define( 'WP_DEBUG', false );
@@ -146,18 +143,20 @@ abstract class EnvConfig implements ConfigInterface
 		return $this;
 	}
 
-	/**
-	 * Symfony Debug.
-	 *
-	 * @return self
-	 */
-	public function symfony_debug( $enable = false ): self {
+    /**
+     * Symfony Debug.
+     *
+     * @param bool $enable
+     * @return self
+     */
+	public function symfony_debug( bool $enable = false ): ConfigInterface
+    {
 
 		if ( false === $enable ) {
 			return $this;
 		}
 
-		if ( defined('WP_DEBUG') &&  true === WP_DEBUG ) :
+		if ( defined('WP_DEBUG') && (true === WP_DEBUG)) :
 			Debug::enable();
 		endif;
 
@@ -165,12 +164,13 @@ abstract class EnvConfig implements ConfigInterface
 
 	}
 
-	/**
-	 * Debug Settings
-	 *
-	 * @return void
-	 */
-	abstract function debug( $environment ): ConfigInterface ;
+    /**
+     * Debug Settings
+     *
+     * @param $environment
+     * @return EnvConfig
+     */
+	abstract function debug( $environment ): ConfigInterface;
 
 	/**
 	 * Site Url Settings
@@ -179,12 +179,13 @@ abstract class EnvConfig implements ConfigInterface
 	 */
 	abstract function site_url(): ConfigInterface;
 
-	/**
-	 * Uploads Directory Setting
-	 *
-	 * @return self
-	 */
-	abstract function uploads(): ConfigInterface;
+    /**
+     * Uploads Directory Setting
+     *
+     * @param $upload_dir
+     * @return self
+     */
+	abstract function uploads( string $upload_dir ): ConfigInterface;
 
 	/**
 	 *  DB settings
