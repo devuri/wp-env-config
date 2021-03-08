@@ -27,7 +27,7 @@ interface ConfigInterface
      * @param $enable
      * @return self
      */
-	public function symfony_debug( $enable ): ConfigInterface;
+	public function symfony_debug( bool $enable ): ConfigInterface;
 
 	/**
 	 * Site Url Settings
