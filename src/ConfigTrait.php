@@ -50,7 +50,7 @@ trait ConfigTrait {
 		if ( ! defined( $name ) ) $this->env->required( $name )->notEmpty();
 	}
 
-    public static function get(string $name): string
+    public static function get(string $name)
     {
 		try {
 			Config::get($name);
@@ -59,7 +59,7 @@ trait ConfigTrait {
 		}
 	}
 
-    public static function apply(): void {
+    public function apply(): void {
 		Config::apply();
 	}
 }

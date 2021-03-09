@@ -2,6 +2,7 @@
 
 namespace DevUri\Config;
 
+use Exception;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\ErrorHandler\ErrorHandler;
 use Symfony\Component\ErrorHandler\DebugClassLoader;
@@ -35,12 +36,14 @@ abstract class EnvConfig implements ConfigInterface
 	protected static $instance;
 
 	/**
-	 * Defines Version
+	 * The $environment
+	 *
+	 * @var $environment
 	 */
-	const VERSION = '0.4.1';
+	protected $environment;
 
 	/**
-	 * Constructer.
+	 * Constructor.
 	 *
 	 * @param array|string $path  current Directory.
 	 */
@@ -53,7 +56,7 @@ abstract class EnvConfig implements ConfigInterface
 
 			try {
 				$dotenv->load();
-			} catch ( \Exception $e ) {
+			} catch ( Exception $e ) {
 				exit( $e->getMessage() );
 			}
 
@@ -66,10 +69,10 @@ abstract class EnvConfig implements ConfigInterface
      *
      * Define in child class.
      *
-     * @param array|string $setup
-     * @return void
+	 * @param array|null $environment .
+ 	 * @param boolean $setup .
      */
-	abstract function config($setup): void;
+	abstract function config($environment = null, $setup = true );
 
 	// required vars.
 	protected function is_required() {
@@ -96,52 +99,19 @@ abstract class EnvConfig implements ConfigInterface
 			$this->env->required( 'LOGGED_IN_SALT' )->notEmpty();
 			$this->env->required( 'NONCE_SALT' )->notEmpty();
 
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			dump( $e->getMessage() );
 			exit();
 		}
 	}
 
-    /**
+
+	/**
      * Setting the environment type
      *
-     * @param null $defined
      * @return ConfigInterface
      */
-	public function environment( $defined = null ): ConfigInterface {
-
-		if ( is_null( $defined ) ) {
-			self::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: self::const( 'environment' ) );
-		}
-
-		self::define('WP_ENVIRONMENT_TYPE', $defined );
-		return $this;
-	}
-
-    /**
-     * Debug Settings
-     *
-     * @param $environment
-     * @return ConfigInterface
-     */
-	protected function is_debug( $environment ): ConfigInterface {
-
-		if ( 'production' === $environment ) {
-			define( 'WP_DEBUG', false );
-		} else {
-			/**
-			 * Turns on WP_DEBUG mode based on on environment, off for 'production'.
-			 *
-			 * To enable just define WP_ENVIRONMENT_TYPE in .env file as 'staging' or 'development' etc
-			 */
-			if ( 'production' === env('WP_ENVIRONMENT_TYPE') ) {
-				define( 'WP_DEBUG', false );
-			} else {
-				define( 'WP_DEBUG', true );
-			}
-		}
-		return $this;
-	}
+	abstract public function environment(): ConfigInterface ;
 
     /**
      * Symfony Debug.
@@ -149,7 +119,7 @@ abstract class EnvConfig implements ConfigInterface
      * @param bool $enable
      * @return self
      */
-	public function symfony_debug( bool $enable = false ): ConfigInterface
+    public function symfony_debug(bool $enable = false ): ConfigInterface
     {
 
 		if ( false === $enable ) {
@@ -167,10 +137,9 @@ abstract class EnvConfig implements ConfigInterface
     /**
      * Debug Settings
      *
-     * @param $environment
      * @return EnvConfig
      */
-	abstract function debug( $environment ): ConfigInterface;
+	abstract public function debug(): ConfigInterface;
 
 	/**
 	 * Site Url Settings
@@ -182,17 +151,16 @@ abstract class EnvConfig implements ConfigInterface
     /**
      * Uploads Directory Setting
      *
-     * @param $upload_dir
      * @return self
      */
-	abstract function uploads( $upload_dir ): ConfigInterface;
+	abstract function uploads(): ConfigInterface;
 
 	/**
 	 *  DB settings
 	 *
 	 * @return self
 	 */
-	public function database(): ConfigInterface {
+    public function database(): ConfigInterface {
  	   self::define('DB_NAME', env('DB_NAME') );
  	   self::define('DB_USER', env('DB_USER') );
  	   self::define('DB_PASSWORD', env('DB_PASSWORD') );
@@ -235,7 +203,7 @@ abstract class EnvConfig implements ConfigInterface
 	 *
 	 * @return self
 	 */
-	public function salts(): ConfigInterface {
+    public function salts(): ConfigInterface {
 		self::define('AUTH_KEY', env('AUTH_KEY') );
 		self::define('SECURE_AUTH_KEY', env('SECURE_AUTH_KEY') );
 		self::define('LOGGED_IN_KEY', env('LOGGED_IN_KEY') );

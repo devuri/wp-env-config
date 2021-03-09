@@ -23,88 +23,98 @@ class Setup extends EnvConfig
 	}
 
     /**
-     * Runs config setup with default setting.
+     *  Runs config setup with default setting.
      *
-     * @param array|null $setup
-     * @return void
+     * @param array|null $environment .
+     * @param boolean $setup .
      */
-	public function config($setup = null): void {
+	public function config($environment = null, $setup = true ) {
 
 		// check required vars.
 		$this->is_required();
 
+		// allows for bypass of default setup.
+		// Setup::init(__DIR__)->config( 'development', false )->environment()>database()->salts()->apply();
+		if ( false === $setup ) {
+			$this->environment = $environment;
+			return $this;
+		}
+
 		// self::init( __DIR__ )->config('production')
-		if ( ! is_array( $setup ) ) {
-			$setup = array( 'environment' => $setup );
+		if ( ! is_array( $environment ) ) {
+			$environment = array( 'environment' => $environment );
 		}
 
 		// default setup.
 		$default = [
-			'default'     => true,
 			'environment' => null,
+			'debug'       => false,
 			'symfony'     => false,
         ];
+        $environment = array_merge( $default, $environment );
 
-        $setup = array_merge( $default, $setup );
+		// environment.
+		$this->environment = $environment['environment'];
 
-		if ( $setup['default'] ) {
-			$this->environment( $setup['environment'] )
-				->debug( $setup['environment'] )
-				->symfony_debug( $setup['symfony'] )
+		// do default setup.
+		if ( $setup ) {
+			$this->environment()
+				->debug()
+				->symfony_debug( $environment['symfony'] )
 				->database()
 				->site_url()
-				->uploads( $setup['uploads'] )
+				->uploads()
 				->memory()
 				->optimize()
 				->force_ssl()
 				->autosave()
-				->salts();
-			self::apply();
+				->salts()
+				->apply();
 		}
+	}
+
+	/**
+     * Setting the environment type
+     *
+     * @return ConfigInterface
+     */
+    public function environment(): ConfigInterface {
+
+		if ( is_null( $this->environment ) ) {
+			self::define('WP_ENVIRONMENT_TYPE', env('WP_ENVIRONMENT_TYPE') ?: self::const( 'environment' ) );
+			return $this;
+		}
+
+		self::define('WP_ENVIRONMENT_TYPE', $this->environment );
+		return $this;
 	}
 
     /**
      * Debug Settings
      *
-     * @param $environment
      * @return Setup
      */
-	public function debug( $environment ): ConfigInterface
-    {
-
-		$this->is_debug( $environment );
+	public function debug(): ConfigInterface {
 
 		/**
 		 * Debugger setup based on environment.
 		 */
-		if ( defined('WP_DEBUG') && (false === WP_DEBUG) ) :
-
-			// Disable Plugin and Theme Editor.
-			self::define( 'DISALLOW_FILE_EDIT', true );
-
-			self::define('WP_DEBUG_DISPLAY', false);
-			self::define('WP_DEBUG_LOG', true );
-			self::define('SCRIPT_DEBUG', false);
-			self::define('WP_CRON_LOCK_TIMEOUT', 60);
-			self::define('EMPTY_TRASH_DAYS', 15);
-			ini_set('display_errors', '0');
-
-			// Block External URL Requests.
-			// @link https://wordpress.org/support/article/editing-wp-config-php/#block-external-url-requests
-			// self::define( 'WP_HTTP_BLOCK_EXTERNAL', true );
-			// self::define( 'WP_ACCESSIBLE_HOSTS', 'api.wordpress.org,*.github.com' );
-
-		elseif ( defined('WP_DEBUG') && (true === WP_DEBUG)) :
-
-		   self::define('SAVEQUERIES', true);
-		   self::define('WP_DEBUG_DISPLAY', true);
-		   self::define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
-		   self::define('SCRIPT_DEBUG', true);
-		   self::define('WP_DEBUG_LOG', $this->path . '/tmp/wp-errors.log' );
-		   ini_set('display_errors', '1');
-
-		endif;
-
+		switch ( $this->environment ) {
+			case 'production':
+				Environment::production();
+				break;
+			case 'staging':
+				Environment::staging();
+				break;
+			case 'debug':
+				Environment::debug();
+				break;
+			case 'development':
+				Environment::development();
+				break;
+			default:
+				Environment::production();
+		}
 		return $this;
 	}
 
@@ -124,10 +134,9 @@ class Setup extends EnvConfig
     /**
      * Uploads Directory Setting
      *
-     * @param $upload_dir
      * @return self
      */
-	public function uploads( $upload_dir ): ConfigInterface {
+	public function uploads(): ConfigInterface {
 
 		self::define( 'UPLOADS', env('UPLOAD_DIR') ?: self::const( 'uploads' ) );
 		return $this;
