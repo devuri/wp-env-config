@@ -45,6 +45,9 @@ Setup::init(__DIR__)->config('development');
 // Setup::init(__DIR__)->config();
 // this will setup in development mode.
 
+// use false to disable and bypass the default setup process and roll your own.
+// Setup::init(__DIR__)->config( 'development', false )->environment()->database()->salts()->apply();
+
 /**
  * WordPress Database Table prefix.
  *
