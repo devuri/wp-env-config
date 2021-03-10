@@ -112,6 +112,9 @@ class Setup extends EnvConfig
 			case 'development':
 				Environment::development();
 				break;
+			case 'secure':
+				Environment::secure();
+				break;
 			default:
 				Environment::production();
 		}

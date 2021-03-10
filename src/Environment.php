@@ -61,4 +61,23 @@ class Environment
 		ini_set('display_errors', '0');
 	}
 
+	public static function secure(): void {
+
+		// Disable Plugin and Theme Editor.
+		self::define('DISALLOW_FILE_EDIT', true );
+		self::define('DISALLOW_FILE_MODS', true );
+
+		self::define('WP_DEBUG_DISPLAY', false);
+		self::define('SCRIPT_DEBUG', false);
+
+		self::define('WP_CRON_LOCK_TIMEOUT', 120);
+		self::define('EMPTY_TRASH_DAYS', 10);
+
+		self::define( 'WP_DEBUG', false );
+		self::define('WP_DEBUG_LOG', false );
+		ini_set('display_errors', '0');
+
+	}
+
+
 }
