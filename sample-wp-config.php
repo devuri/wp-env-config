@@ -43,6 +43,8 @@ use DevUri\Config\Setup;
 //
 // Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
 
+// dump( Setup::init(__DIR__)->getEnvironment() ); //  Get the current Environment setup.
+
 
 // after setup we can define other constant in the normal way or using env function
 // or simply use "Setup::get( 'UPLOAD_DIR' )"
