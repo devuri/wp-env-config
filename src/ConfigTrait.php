@@ -69,13 +69,15 @@ trait ConfigTrait {
 	 *
 	 * Debug must be on and 'development' set in the .env file.
 	 *
-	 * @return array list of constants defined.
+	 * @return bool|array list of constants defined.
 	 */
 	public function configMap(){
 
 		if ( ! defined('WP_DEBUG') ) return false;
 
-		if ( false === WP_DEBUG ) return false;
+		if ( false === WP_DEBUG ) {
+            return false;
+        }
 
 		if ( 'development' === env('WP_ENVIRONMENT_TYPE') ) {
 			$reflectWPConfig = new \ReflectionClass(new Config);
