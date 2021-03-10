@@ -43,7 +43,9 @@ use DevUri\Config\Setup;
 //
 // Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
 
-// dump( Setup::init(__DIR__)->getEnvironment() ); //  Get the current Environment setup.
+// dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+
+// dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
 
 
 // after setup we can define other constant in the normal way or using env function

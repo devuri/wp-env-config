@@ -3,6 +3,7 @@
 namespace DevUri\Config;
 
 use Roots\WPConfig\Config;
+use function Env\env;
 
 trait ConfigTrait {
 
@@ -62,4 +63,24 @@ trait ConfigTrait {
     public function apply(): void {
 		Config::apply();
 	}
+
+	/**
+	 * Display a list of constants defined by Setup.
+	 *
+	 * Debug must be on and 'development' set in the .env file.
+	 *
+	 * @return array list of constants defined.
+	 */
+	public function configMap(){
+
+		if ( ! defined('WP_DEBUG') ) return false;
+
+		if ( false === WP_DEBUG ) return false;
+
+		if ( 'development' === env('WP_ENVIRONMENT_TYPE') ) {
+			$reflectWPConfig = new \ReflectionClass(new Config);
+			return $reflectWPConfig->getStaticPropertyValue('configMap');
+		}
+	}
+
 }
