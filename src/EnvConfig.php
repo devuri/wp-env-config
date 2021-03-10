@@ -113,6 +113,14 @@ abstract class EnvConfig implements ConfigInterface
      */
 	abstract public function environment(): ConfigInterface ;
 
+	/**
+	 * Get the current Environment setup.
+	 * @return string.
+	 */
+	public function getEnvironment() {
+		return $this->environment;
+	}
+
     /**
      * Symfony Debug.
      *

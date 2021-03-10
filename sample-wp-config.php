@@ -31,7 +31,7 @@ use DevUri\Config\Setup;
 
 // list of setup options
 
-// Setup::init(__DIR__)->config(); // development
+// Setup::init(__DIR__)->config(); // production
 //
 // Setup::init(__DIR__)->config('development'); // development
 //
@@ -42,6 +42,10 @@ use DevUri\Config\Setup;
 // Setup::init(__DIR__)->config('secure'); // secure
 //
 // Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+
+// dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+
+// dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
 
 
 // after setup we can define other constant in the normal way or using env function
