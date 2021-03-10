@@ -31,7 +31,7 @@ use DevUri\Config\Setup;
 
 // list of setup options
 
-// Setup::init(__DIR__)->config(); // development
+// Setup::init(__DIR__)->config(); // production
 //
 // Setup::init(__DIR__)->config('development'); // development
 //
