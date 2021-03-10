@@ -28,7 +28,22 @@ use DevUri\Config\Setup;
  * @package WordPress
  */
 // To override setup constant defined in config() method define them before.
-Setup::init(__DIR__)->config('development');
+
+// list of setup options
+
+// Setup::init(__DIR__)->config(); // development
+//
+// Setup::init(__DIR__)->config('development'); // development
+//
+// Setup::init(__DIR__)->config('staging'); // staging
+//
+// Setup::init(__DIR__)->config('production'); // production
+//
+// Setup::init(__DIR__)->config('secure'); // secure
+//
+// Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+
+
 // after setup we can define other constant in the normal way or using env function
 // or simply use "Setup::get( 'UPLOAD_DIR' )"
 // // Custom Uploads Directory.
@@ -44,6 +59,13 @@ Setup::init(__DIR__)->config('development');
 // Can also do.
 // Setup::init(__DIR__)->config();
 // this will setup in development mode.
+
+// hardening and secure setup mode.
+// secure setup mode:
+// Setup::init(__DIR__)->config('secure');
+// this helps to reduce the attack surface by
+// disabling both file editor and installer for themes and plugins.
+
 
 // use false to disable and bypass the default setup process and roll your own.
 // Setup::init(__DIR__)->config( 'development', false )->environment()->database()->salts()->apply();
