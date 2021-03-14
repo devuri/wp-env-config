@@ -4,8 +4,6 @@ namespace DevUri\Config;
 
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
-use Symfony\Component\ErrorHandler\ErrorHandler;
-use Symfony\Component\ErrorHandler\DebugClassLoader;
 use Dotenv\Dotenv;
 use function Env\env;
 use Env\Env;
