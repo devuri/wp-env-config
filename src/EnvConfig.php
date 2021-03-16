@@ -103,7 +103,6 @@ abstract class EnvConfig implements ConfigInterface
 		}
 	}
 
-
 	/**
      * Setting the environment type
      *
@@ -115,7 +114,7 @@ abstract class EnvConfig implements ConfigInterface
 	 * Get the current Environment setup.
 	 * @return string.
 	 */
-	public function getEnvironment() {
+	public function getEnvironment(): string {
 		return $this->environment;
 	}
 
