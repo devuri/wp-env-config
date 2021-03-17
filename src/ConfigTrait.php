@@ -69,7 +69,7 @@ trait ConfigTrait {
 	/**
 	 * Display a list of constants defined by Setup.
 	 *
-	 * Debug must be on and 'development' set in the .env file.
+	 * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
 	 *
 	 * @return bool|array list of constants defined.
 	 */
