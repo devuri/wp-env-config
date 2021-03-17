@@ -33,7 +33,7 @@ class Setup extends EnvConfig
 		// check required vars.
 		$this->is_required();
 
-		// allows for bypass of default setup.
+		// $setup = false allows for bypass of default setup.
 		// Setup::init(__DIR__)->config( 'development', false )->environment()>database()->salts()->apply();
 		if ( false === $setup ) {
 			$this->environment = $environment;

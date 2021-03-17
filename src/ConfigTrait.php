@@ -2,6 +2,8 @@
 
 namespace DevUri\Config;
 
+use Exception;
+use ReflectionClass;
 use Roots\WPConfig\Config;
 use function Env\env;
 
@@ -55,7 +57,7 @@ trait ConfigTrait {
     {
 		try {
 			Config::get($name);
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 			return $e->getMessage();
 		}
 	}
@@ -69,16 +71,18 @@ trait ConfigTrait {
 	 *
 	 * Debug must be on and 'development' set in the .env file.
 	 *
-	 * @return array list of constants defined.
+	 * @return bool|array list of constants defined.
 	 */
 	public function configMap(){
 
 		if ( ! defined('WP_DEBUG') ) return false;
 
-		if ( false === WP_DEBUG ) return false;
+		if ( false === WP_DEBUG ) {
+            return false;
+        }
 
 		if ( 'development' === env('WP_ENVIRONMENT_TYPE') ) {
-			$reflectWPConfig = new \ReflectionClass(new Config);
+			$reflectWPConfig = new ReflectionClass(new Config);
 			return $reflectWPConfig->getStaticPropertyValue('configMap');
 		}
 	}
