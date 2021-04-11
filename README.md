@@ -53,6 +53,8 @@ SECURE_AUTH_SALT=
 LOGGED_IN_SALT=
 NONCE_SALT=
 ```
+Take a look at this sample `env` file [.env.example](https://github.com/devuri/wp-env-config/blob/master/.env-example)
+
 You can get **Env Format WordPress Salts** from Roots.io Generator https://roots.io/salts.html
 
 
