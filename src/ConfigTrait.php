@@ -20,7 +20,6 @@ trait ConfigTrait {
      */
 	protected static function const(string $key){
 
-		$constant = [];
 		$constant['environment'] = 'development';
 		$constant['debug']       = true;
 		$constant['db_host']     = 'localhost';
@@ -75,15 +74,14 @@ trait ConfigTrait {
 	 */
 	public function configMap(){
 
+		$configClass = 'Config';
+
 		if ( ! defined('WP_DEBUG') ) return false;
 
-		if ( false === WP_DEBUG ) {
-            return false;
-        }
+		if ( false === WP_DEBUG ) return false;
 
 		if ( 'development' === env('WP_ENVIRONMENT_TYPE') ) {
-			$reflectWPConfig = new ReflectionClass(new Config);
-			return $reflectWPConfig->getStaticPropertyValue('configMap');
+			return ( new ReflectionClass($configClass) )->getStaticPropertyValue('configMap');
 		}
 	}
 
