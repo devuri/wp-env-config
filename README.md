@@ -116,3 +116,8 @@ define('UPLOADS', env( 'UPLOAD_DIR' ) );
 
 ```
 Both `Setup::get( 'UPLOAD_DIR' )` and `env( 'UPLOAD_DIR' )` will grab the value from .env file.
+
+
+## Setup Options and Environment
+
+list of setup options
