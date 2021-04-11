@@ -83,3 +83,36 @@ $table_prefix = "wp_";
 
 ```
 This should be above the comment `/* That's all, stop editing! Happy publishing. */`
+Thats it, you're done!
+
+## Advanced Usage
+
+This package will ignore values that are declared before the `Setup::init(__DIR__)->config()` is initialized.
+To override setup constant defined in `config` method define them before  `Setup::init(__DIR__)->config()`.
+
+In this example  `config` will ignore `UPLOADS` constant since its already defined:
+```php
+
+// Custom Uploads Directory.
+define('UPLOADS', 'app/uploads' );
+
+Setup::init(__DIR__)->config();
+
+```
+or simply use `Setup::get( 'UPLOAD_DIR' )`:
+
+```php
+
+// Custom Uploads Directory.
+define('UPLOADS', Setup::get( 'UPLOAD_DIR' ) );
+
+```
+After setup we can define other constant in the normal way or using `env` function, remember to include with use `use function Env\env;` when using the `env` function:
+
+```php
+use function Env\env;
+
+define('UPLOADS', env( 'UPLOAD_DIR' ) );
+
+```
+Both `Setup::get( 'UPLOAD_DIR' )` and `env( 'UPLOAD_DIR' )` will grab the value from .env file.
