@@ -118,6 +118,32 @@ define('UPLOADS', env( 'UPLOAD_DIR' ) );
 Both `Setup::get( 'UPLOAD_DIR' )` and `env( 'UPLOAD_DIR' )` will grab the value from .env file.
 
 
+
+**Hardening and secure setup mode.**
+
+
+```php
+// secure setup mode:
+Setup::init(__DIR__)->config('secure');
+
+```
+This will disable both file editor and installer for themes and plugins.
+
+**note** you will need to update plugins and theme manually or manage updates with composer.
+
+
+## Only use env for Salts and Database config.
+
+
+You can tell setup to only use env file for **database** and **salts** by setting the second param as false:
+
+```php
+// setup for database and salts only.
+Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+
+```
+
+
 ## Setup Options and Environment
 
 list of setup options
