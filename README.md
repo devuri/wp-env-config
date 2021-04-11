@@ -186,7 +186,48 @@ dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment s
 
 ```
 
+
+## List of Environment Constants.
+
+Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
+
 ```php
 dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
+```
 
+this will output the following:
+
+```shell
+"WP_ENVIRONMENT_TYPE" => "development"
+"WP_DEBUG" => true
+"SAVEQUERIES" => true
+"WP_DEBUG_DISPLAY" => true
+"WP_DISABLE_FATAL_ERROR_HANDLER" => true
+"SCRIPT_DEBUG" => true
+"WP_DEBUG_LOG" => true
+"DB_NAME" => ""
+"DB_USER" => ""
+"DB_PASSWORD" => ""
+"DB_HOST" => "localhost"
+"DB_CHARSET" => "utf8mb4"
+"DB_COLLATE" => ""
+"WP_HOME" => ""
+"WP_SITEURL" => ""
+"UPLOADS" => "wp-content/uploads"
+"WP_MEMORY_LIMIT" => "256M"
+"WP_MAX_MEMORY_LIMIT" => "256M"
+"CONCATENATE_SCRIPTS" => true
+"FORCE_SSL_ADMIN" => true
+"FORCE_SSL_LOGIN" => true
+"AUTOSAVE_INTERVAL" => 180
+"WP_POST_REVISIONS" => 10
+"AUTH_KEY" => ""
+"SECURE_AUTH_KEY" => ""
+"LOGGED_IN_KEY" => ""
+"NONCE_KEY" => ""
+"AUTH_SALT" => ""
+"SECURE_AUTH_SALT" => ""
+"LOGGED_IN_SALT" => ""
+"NONCE_SALT" => ""
+"DEVELOPERADMIN" => null
 ```
