@@ -195,7 +195,7 @@ Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
 dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
 ```
 
-this will output the following:
+This will output the following:
 
 ```shell
 "WP_ENVIRONMENT_TYPE" => "development"
