@@ -28,7 +28,7 @@ class Setup extends EnvConfig
      * @param array|null $environment .
      * @param boolean $setup .
      */
-	public function config($environment = null, $setup = true ) {
+	public function config( $environment = null, $setup = true ) {
 
 		// check required vars.
 		$this->is_required();
