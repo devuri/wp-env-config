@@ -121,3 +121,46 @@ Both `Setup::get( 'UPLOAD_DIR' )` and `env( 'UPLOAD_DIR' )` will grab the value 
 ## Setup Options and Environment
 
 list of setup options
+
+```php
+
+Setup::init(__DIR__)->config(); // production
+
+```
+
+```php
+Setup::init(__DIR__)->config('development'); // development
+
+```
+
+```php
+Setup::init(__DIR__)->config('staging'); // staging
+
+```
+
+```php
+Setup::init(__DIR__)->config('production'); // production
+
+```
+
+```php
+Setup::init(__DIR__)->config('secure'); // secure
+
+```
+
+```php
+Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+
+```
+
+
+
+```php
+dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+
+```
+
+```php
+dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
+
+```
