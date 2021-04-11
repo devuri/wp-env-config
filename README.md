@@ -231,3 +231,5 @@ This will output the following:
 "NONCE_SALT" => ""
 "DEVELOPERADMIN" => null
 ```
+## License
+wp env config is licensed under The [MIT License](https://github.com/devuri/wp-env-config/blob/master/LICENSE).
