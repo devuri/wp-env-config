@@ -131,7 +131,7 @@ Setup::init(__DIR__)->config('secure');
 ```
 This will disable both file editor and installer for themes and plugins.
 
-**note** you will need to update plugins and theme manually or manage updates with composer.
+> **note** you will need to update plugins and theme manually or manage updates with composer.
 
 
 ## Only use env for Salts and Database config.
