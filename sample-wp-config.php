@@ -115,8 +115,7 @@ use DevUri\Config\Setup;
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
 */
-$table_prefix = "wp_";
-// we can move this to .env as well like so.
+$table_prefix = "wp_"; // we can move this to .env as well.
 // $table_prefix = env('DB_PREFIX');
 
 /* That's all, stop editing! Happy publishing. */

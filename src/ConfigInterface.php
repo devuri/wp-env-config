@@ -4,7 +4,6 @@ namespace DevUri\Config;
 
 interface ConfigInterface
 {
-
 	/**
      * Runs config setup.
      *
