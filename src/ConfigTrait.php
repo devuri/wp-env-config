@@ -2,13 +2,13 @@
 
 namespace DevUri\Config;
 
+use function Env\env;
 use Exception;
 use ReflectionClass;
 use Roots\WPConfig\Config;
-use function Env\env;
 
-trait ConfigTrait {
-
+trait ConfigTrait
+{
     /**
      * Env defaults,
      *
@@ -18,21 +18,21 @@ trait ConfigTrait {
      * @param string $key val to retrieve
      * @return mixed
      */
-	protected static function const(string $key){
+    protected static function const(string $key)
+    {
+        $constant['environment'] = 'development';
+        $constant['debug'] = true;
+        $constant['db_host'] = 'localhost';
+        $constant['uploads'] = 'wp-content/uploads';
+        $constant['optimize'] = true;
+        $constant['memory'] = '256M';
+        $constant['ssl_admin'] = true;
+        $constant['ssl_login'] = true;
+        $constant['autosave'] = 180;
+        $constant['revisions'] = 10;
 
-		$constant['environment'] = 'development';
-		$constant['debug']       = true;
-		$constant['db_host']     = 'localhost';
-		$constant['uploads']     = 'wp-content/uploads';
-		$constant['optimize']    = true;
-		$constant['memory']      = '256M';
-		$constant['ssl_admin']   = true;
-		$constant['ssl_login']   = true;
-		$constant['autosave']    = 180;
-		$constant['revisions']   = 10;
-
-		return $constant[$key];
-	}
+        return $constant[$key];
+    }
 
     /**
      * Wrapper to define config constant items.
@@ -44,45 +44,55 @@ trait ConfigTrait {
      * @param string|bool $value constant value
      * @return void
      */
-	public static function define(string $name, $value): void {
-		if ( ! defined( $name ) ) Config::define( $name, $value);
-	}
+    public static function define(string $name, $value): void
+    {
+        if (! defined($name)) {
+            Config::define($name, $value);
+        }
+    }
 
-    public function required(string $name ): void {
-		if ( ! defined( $name ) ) $this->env->required( $name )->notEmpty();
-	}
+    public function required(string $name): void
+    {
+        if (! defined($name)) {
+            $this->env->required($name)->notEmpty();
+        }
+    }
 
     public static function get(string $name)
     {
-		try {
-			Config::get($name);
-		} catch ( Exception $e ) {
-			return $e->getMessage();
-		}
-	}
+        try {
+            Config::get($name);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 
-    public function apply(): void {
-		Config::apply();
-	}
+    public function apply(): void
+    {
+        Config::apply();
+    }
 
-	/**
-	 * Display a list of constants defined by Setup.
-	 *
-	 * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
-	 *
-	 * @return bool|array list of constants defined.
-	 */
-	public function configMap(){
+    /**
+     * Display a list of constants defined by Setup.
+     *
+     * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
+     *
+     * @return bool|array list of constants defined.
+     */
+    public function configMap()
+    {
+        $configClass = 'Config';
 
-		$configClass = 'Config';
+        if (! defined('WP_DEBUG')) {
+            return false;
+        }
 
-		if ( ! defined('WP_DEBUG') ) return false;
+        if (false === WP_DEBUG) {
+            return false;
+        }
 
-		if ( false === WP_DEBUG ) return false;
-
-		if ( 'development' === env('WP_ENVIRONMENT_TYPE') ) {
-			return ( new ReflectionClass($configClass) )->getStaticPropertyValue('configMap');
-		}
-	}
-
+        if ('development' === env('WP_ENVIRONMENT_TYPE')) {
+            return ( new ReflectionClass($configClass) )->getStaticPropertyValue('configMap');
+        }
+    }
 }
