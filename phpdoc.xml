@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://docs.phpdoc.org/latest/phpdoc.xsd"
+>
+<title>wp env config</title>
+	<paths>
+		<output>docs</output>
+	</paths>
+    <version number="0.9.3">
+        <api>
+            <source dsn=".">
+                <path>src</path>
+            </source>
+        </api>
+    </version>
+</phpdocumentor>

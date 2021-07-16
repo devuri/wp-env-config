@@ -77,7 +77,7 @@ abstract class EnvConfig implements ConfigInterface
 
 		try {
 
-			// site url, can be overridden in wp-config.php
+			// site url is required but can be overridden in wp-config.php
 			$this->required( 'WP_HOME' );
 			$this->required( 'WP_SITEURL' );
 
@@ -98,7 +98,7 @@ abstract class EnvConfig implements ConfigInterface
 			$this->env->required( 'NONCE_SALT' )->notEmpty();
 
 		} catch (Exception $e) {
-			dump( $e->getMessage() );
+			var_dump( $e->getMessage() );
 			exit();
 		}
 	}

@@ -1,0 +1,10 @@
+{
+    "require": {
+        "devuri/wp-env-config": "^0.8.0"
+    },
+    "config": {
+        "platform":{
+            "php":"7.4"
+        }
+    }
+}
