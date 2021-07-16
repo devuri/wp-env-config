@@ -7,77 +7,73 @@ namespace DevUri\Config;
  */
 class Environment
 {
-
     use ConfigTrait;
 
-	public static function production(): void {
+    public static function production(): void
+    {
+        // Disable Plugin and Theme Editor.
+        self::define('DISALLOW_FILE_EDIT', true);
 
-		// Disable Plugin and Theme Editor.
-		self::define('DISALLOW_FILE_EDIT', true );
+        self::define('WP_DEBUG_DISPLAY', false);
+        self::define('SCRIPT_DEBUG', false);
 
-		self::define('WP_DEBUG_DISPLAY', false);
-		self::define('SCRIPT_DEBUG', false);
+        self::define('WP_CRON_LOCK_TIMEOUT', 60);
+        self::define('EMPTY_TRASH_DAYS', 15);
 
-		self::define('WP_CRON_LOCK_TIMEOUT', 60);
-		self::define('EMPTY_TRASH_DAYS', 15);
+        self::define('WP_DEBUG', false);
+        self::define('WP_DEBUG_LOG', false);
+        ini_set('display_errors', '0');
+    }
 
-		self::define( 'WP_DEBUG', false );
-		self::define('WP_DEBUG_LOG', false );
-		ini_set('display_errors', '0');
+    public static function staging(): void
+    {
+        self::define('DISALLOW_FILE_EDIT', false);
 
-	}
+        self::define('WP_DEBUG_DISPLAY', true);
+        self::define('SCRIPT_DEBUG', false);
 
-	public static function staging(): void {
+        self::define('WP_DEBUG', true);
+        self::define('WP_DEBUG_LOG', true);
+        ini_set('display_errors', '0');
+    }
 
-		self::define( 'DISALLOW_FILE_EDIT', false );
+    public static function development(): void
+    {
+        self::define('WP_DEBUG', true);
+        self::define('SAVEQUERIES', true);
 
-		self::define('WP_DEBUG_DISPLAY', true);
-		self::define('SCRIPT_DEBUG', false);
+        self::define('WP_DEBUG_DISPLAY', true);
+        self::define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
 
-		self::define( 'WP_DEBUG', true );
-		self::define('WP_DEBUG_LOG', true );
-		ini_set('display_errors', '0');
-	}
+        self::define('SCRIPT_DEBUG', true);
+        self::define('WP_DEBUG_LOG', true);
+        ini_set('display_errors', '1');
+    }
 
-	public static function development(): void {
+    public static function debug(): void
+    {
+        self::define('WP_DEBUG', true);
+        self::define('WP_DEBUG_DISPLAY', true);
 
-		self::define('WP_DEBUG', true );
-		self::define('SAVEQUERIES', true);
+        self::define('WP_DEBUG_LOG', true);
+        ini_set('display_errors', '0');
+    }
 
-		self::define('WP_DEBUG_DISPLAY', true);
-		self::define('WP_DISABLE_FATAL_ERROR_HANDLER', true);
+    public static function secure(): void
+    {
 
-		self::define('SCRIPT_DEBUG', true);
-		self::define('WP_DEBUG_LOG', true );
-		ini_set('display_errors', '1');
-	}
+        // Disable Plugin and Theme Editor.
+        self::define('DISALLOW_FILE_EDIT', true);
+        self::define('DISALLOW_FILE_MODS', true);
 
-	public static function debug(): void {
+        self::define('WP_DEBUG_DISPLAY', false);
+        self::define('SCRIPT_DEBUG', false);
 
-		self::define('WP_DEBUG', true );
-		self::define('WP_DEBUG_DISPLAY', true);
+        self::define('WP_CRON_LOCK_TIMEOUT', 120);
+        self::define('EMPTY_TRASH_DAYS', 10);
 
-		self::define('WP_DEBUG_LOG', true );
-		ini_set('display_errors', '0');
-	}
-
-	public static function secure(): void {
-
-		// Disable Plugin and Theme Editor.
-		self::define('DISALLOW_FILE_EDIT', true );
-		self::define('DISALLOW_FILE_MODS', true );
-
-		self::define('WP_DEBUG_DISPLAY', false);
-		self::define('SCRIPT_DEBUG', false);
-
-		self::define('WP_CRON_LOCK_TIMEOUT', 120);
-		self::define('EMPTY_TRASH_DAYS', 10);
-
-		self::define( 'WP_DEBUG', false );
-		self::define('WP_DEBUG_LOG', false );
-		ini_set('display_errors', '0');
-
-	}
-
-
+        self::define('WP_DEBUG', false);
+        self::define('WP_DEBUG_LOG', false);
+        ini_set('display_errors', '0');
+    }
 }

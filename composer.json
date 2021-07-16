@@ -48,6 +48,14 @@
             "DevUri\\Config\\": "src"
         }
     },
+	"scripts": {
+		"nodev": "composer install --no-dev",
+		"phploc": "php ./bin/phploc.phar src > phploc-result.txt",
+		"phpdoc": "php ./bin/phpdoc.phar",
+		"phpcs": "vendor/bin/php-cs-fixer fix src",
+		"psalm": "vendor/bin/psalm > psalm-result.txt",
+		"test": "vendor/bin/phpunit"
+	},
     "config": {
 		"preferred-install": "dist",
         "sort-packages": true,

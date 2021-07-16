@@ -4,22 +4,22 @@ namespace DevUri\Config;
 
 interface ConfigInterface
 {
-	/**
+    /**
      * Runs config setup.
      *
      * Define in child class.
      *
-	 * @param array|null $environment .
- 	 * @param boolean $setup .
+     * @param array|null $environment .
+     * @param bool $setup .
      */
-	public function config($environment = null, $setup = true );
+    public function config($environment = null, $setup = true);
 
     /**
      * Debug Settings
      *
      * @return self
      */
-   	public function debug(): ConfigInterface;
+    public function debug(): ConfigInterface;
 
     /**
      * Symfony Debug.
@@ -27,63 +27,63 @@ interface ConfigInterface
      * @param $enable
      * @return self
      */
-	public function symfony_debug( bool $enable ): ConfigInterface;
+    public function symfony_debug(bool $enable): ConfigInterface;
 
-	/**
-	 * Site Url Settings
-	 *
-	 * @return self
-	 */
-	public function site_url(): ConfigInterface;
+    /**
+     * Site Url Settings
+     *
+     * @return self
+     */
+    public function site_url(): ConfigInterface;
 
     /**
      * Uploads Directory Setting
      *
      * @return self
      */
-	public function uploads(): ConfigInterface;
+    public function uploads(): ConfigInterface;
 
-	/**
-	 *  DB settings
-	 *
-	 * @return self
-	 */
-	public function database(): ConfigInterface;
+    /**
+     *  DB settings
+     *
+     * @return self
+     */
+    public function database(): ConfigInterface;
 
-	/**
-	 * Optimize
-	 *
-	 * @return self
-	 */
-	public function optimize(): ConfigInterface;
+    /**
+     * Optimize
+     *
+     * @return self
+     */
+    public function optimize(): ConfigInterface;
 
-	/**
-	 * Memory Settings
-	 *
-	 * @return self
-	 */
-	public function memory(): ConfigInterface;
+    /**
+     * Memory Settings
+     *
+     * @return self
+     */
+    public function memory(): ConfigInterface;
 
-	/**
-	 * Authentication Unique Keys and Salts
-	 *
-	 * @return self
-	 */
-	public function salts(): ConfigInterface;
+    /**
+     * Authentication Unique Keys and Salts
+     *
+     * @return self
+     */
+    public function salts(): ConfigInterface;
 
-	/**
-	 * SSL
-	 *
-	 * @return self
-	 */
-	public function force_ssl(): ConfigInterface;
+    /**
+     * SSL
+     *
+     * @return self
+     */
+    public function force_ssl(): ConfigInterface;
 
-	/**
-	 * AUTOSAVE and REVISIONS
-	 *
-	 * @return self
-	 */
-	public function autosave(): ConfigInterface;
+    /**
+     * AUTOSAVE and REVISIONS
+     *
+     * @return self
+     */
+    public function autosave(): ConfigInterface;
 
     /**
      * Apply the setup.

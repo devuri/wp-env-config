@@ -4,6 +4,11 @@
 /.travis.yml        export-ignore
 /.phpunit.xml       export-ignore
 /phpunit.xml.dist   export-ignore
+/.php-cs-fixer.php  export-ignore
 /tests              export-ignore
-/docs              export-ignore
+/docs               export-ignore
+/bin                export-ignore
+/example            export-ignore
 phpunit.xml         export-ignore
+phpdoc.xml          export-ignore
+psalm.xml           export-ignore
