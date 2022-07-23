@@ -61,7 +61,13 @@ You can get **Env Format WordPress Salts** from Roots.io Generator https://roots
 You can then load `.env` in your `wp-config.php` with:
 
 ```php
-require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
+//  Safely load /vendor/autoload.php
+
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
+} else {
+	exit("Cant find the autoload file.");
+}
 
 use DevUri\Config\Setup;
 
