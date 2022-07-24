@@ -3,6 +3,7 @@
 require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
 
 use DevUri\Config\Setup;
+use function Env\env;
 
 /**
  * The base configuration for WordPress
@@ -30,7 +31,7 @@ Setup::init(__DIR__)->config('secure'); // development | staging | production | 
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
+$table_prefix = env('DB_PREFIX');
 
 /* That's all, stop editing! Happy publishing. */
 
