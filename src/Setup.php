@@ -64,7 +64,6 @@ class Setup extends EnvConfig
                 ->symfony_debug($environment['symfony'])
                 ->database()
                 ->site_url()
-                ->uploads()
                 ->memory()
                 ->optimize()
                 ->force_ssl()
@@ -132,17 +131,6 @@ class Setup extends EnvConfig
         self::define('WP_HOME', env('WP_HOME'));
         self::define('WP_SITEURL', env('WP_SITEURL'));
 
-        return $this;
-    }
-
-    /**
-     * Uploads Directory Setting
-     *
-     * @return self
-     */
-    public function uploads(): ConfigInterface
-    {
-        self::define('UPLOADS', env('UPLOAD_DIR') ?: self::const('uploads'));
         return $this;
     }
 

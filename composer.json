@@ -53,7 +53,8 @@
         "phploc": "php ./bin/phploc.phar src > phploc-result.txt",
         "phpdoc": "php ./bin/phpdoc.phar",
         "phpcs": "vendor/bin/php-cs-fixer fix src",
-        "psalm": "vendor/bin/psalm > psalm-result.txt",
+        "psalm": "vendor/bin/psalm",
+        "psalm-info": "vendor/bin/psalm --show-info=true",
         "test": "vendor/bin/phpunit"
     },
     "config": {

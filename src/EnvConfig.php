@@ -150,13 +150,6 @@ abstract class EnvConfig implements ConfigInterface
     abstract public function site_url(): ConfigInterface;
 
     /**
-     * Uploads Directory Setting
-     *
-     * @return self
-     */
-    abstract public function uploads(): ConfigInterface;
-
-    /**
      *  DB settings
      *
      * @return self

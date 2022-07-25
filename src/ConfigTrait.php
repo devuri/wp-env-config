@@ -23,7 +23,6 @@ trait ConfigTrait
         $constant['environment'] = 'development';
         $constant['debug'] = true;
         $constant['db_host'] = 'localhost';
-        $constant['uploads'] = 'wp-content/uploads';
         $constant['optimize'] = true;
         $constant['memory'] = '256M';
         $constant['ssl_admin'] = true;
@@ -31,7 +30,7 @@ trait ConfigTrait
         $constant['autosave'] = 180;
         $constant['revisions'] = 10;
 
-        return $constant[$key];
+        return $constant[$key] ?? null;
     }
 
     /**

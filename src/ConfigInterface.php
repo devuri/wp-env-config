@@ -37,13 +37,6 @@ interface ConfigInterface
     public function site_url(): ConfigInterface;
 
     /**
-     * Uploads Directory Setting
-     *
-     * @return self
-     */
-    public function uploads(): ConfigInterface;
-
-    /**
      *  DB settings
      *
      * @return self
