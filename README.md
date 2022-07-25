@@ -98,21 +98,21 @@ Thats it, you're done!
 This package will ignore values that are declared before the `Setup::init(__DIR__)->config()` is initialized.
 To override setup constant defined in `config` method define them before  `Setup::init(__DIR__)->config()`.
 
-In this example  `config` will ignore `UPLOADS` constant since its already defined:
+In this example  `config` will ignore `FORCE_SSL_LOGIN` constant since its already defined:
 ```php
 
 // Custom Uploads Directory.
-define('UPLOADS', 'app/uploads' );
+define('FORCE_SSL_LOGIN', true );
 
 Setup::init(__DIR__)->config();
 
 ```
-or simply use `Setup::get( 'UPLOAD_DIR' )`:
+or simply use `Setup::get( 'FORCE_SSL_LOGIN' )`:
 
 ```php
 
 // Custom Uploads Directory.
-define('UPLOADS', Setup::get( 'UPLOAD_DIR' ) );
+define('UPLOADS', Setup::get( 'FORCE_SSL_LOGIN' ) );
 
 ```
 After setup we can define other constant in the normal way or using `env` function, remember to include with use `use function Env\env;` when using the `env` function:
@@ -120,10 +120,10 @@ After setup we can define other constant in the normal way or using `env` functi
 ```php
 use function Env\env;
 
-define('UPLOADS', env( 'UPLOAD_DIR' ) );
+define('FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) );
 
 ```
-Both `Setup::get( 'UPLOAD_DIR' )` and `env( 'UPLOAD_DIR' )` will grab the value from .env file.
+Both `Setup::get( 'FORCE_SSL_LOGIN' )` and `env( 'FORCE_SSL_LOGIN' )` will grab the value from .env file.
 
 
 
