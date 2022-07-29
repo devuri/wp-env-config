@@ -1,16 +1,17 @@
 <?php
 
 use DevUri\Config\Kernel;
+
 use function Env\env;
 
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-    require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
+if ( file_exists( \dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+    require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 } else {
     exit("Cant find the vendor autoload file.");
 }
 
 /**
- * The base configuration for WordPress
+ * The base configuration for WordPress.
  *
  * The wp-config.php creation script uses this file during the
  * installation. You don't have to use the web site, you can
@@ -23,9 +24,7 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
  * * Database table prefix
  * * ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
- *
- * @package WordPress
+ * @see https://codex.wordpress.org/Editing_wp-config.php
  */
 
 // run setup.
@@ -45,11 +44,11 @@ $http_app->init('development', false); // development | staging | production | s
  */
 $table_prefix = env('DB_PREFIX');
 
-/* That's all, stop editing! Happy publishing. */
+// That's all, stop editing! Happy publishing.
 
-/** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+// Absolute path to the WordPress directory.
+if ( ! \defined( 'ABSPATH' ) ) {
+    \define( 'ABSPATH', \dirname( __FILE__ ) . '/' );
 }
 
 /** Sets up WordPress vars and included files. */

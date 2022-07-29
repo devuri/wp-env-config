@@ -1,6 +1,6 @@
 <?php
 
-require_once  dirname( __FILE__, 2 ) . '/vendor/autoload.php';
+require_once \dirname( __FILE__, 2 ) . '/vendor/autoload.php';
 
 // true to run unit tests.
 \define('WP_ENV_TEST_MODE', true);

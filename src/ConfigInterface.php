@@ -9,74 +9,75 @@ interface ConfigInterface
      *
      * Define in child class.
      *
-     * @param array|null $environment .
-     * @param bool $setup .
+     * @param null|array $environment .
+     * @param bool       $setup       .
      */
-    public function config($environment = null, $setup = true);
+    public function config( $environment = null, $setup = true);
 
     /**
-     * Debug Settings
+     * Debug Settings.
      *
      * @return self
      */
-    public function debug(): ConfigInterface;
+    public function debug(): self;
 
     /**
      * Symfony Debug.
      *
      * @param $enable
-     * @return self
-     */
-    public function symfony_debug(bool $enable): ConfigInterface;
-
-    /**
-     * Site Url Settings
      *
      * @return self
      */
-    public function site_url(): ConfigInterface;
+    public function symfony_debug( bool $enable): self;
 
     /**
-     *  DB settings
+     * Site Url Settings.
      *
      * @return self
      */
-    public function database(): ConfigInterface;
+    public function site_url(): self;
 
     /**
-     * Optimize
+     *  DB settings.
      *
      * @return self
      */
-    public function optimize(): ConfigInterface;
+    public function database(): self;
 
     /**
-     * Memory Settings
+     * Optimize.
      *
      * @return self
      */
-    public function memory(): ConfigInterface;
+    public function optimize(): self;
 
     /**
-     * Authentication Unique Keys and Salts
+     * Memory Settings.
      *
      * @return self
      */
-    public function salts(): ConfigInterface;
+    public function memory(): self;
 
     /**
-     * SSL
+     * Authentication Unique Keys and Salts.
      *
      * @return self
      */
-    public function force_ssl(): ConfigInterface;
+    public function salts(): self;
 
     /**
-     * AUTOSAVE and REVISIONS
+     * SSL.
      *
      * @return self
      */
-    public function autosave(): ConfigInterface;
+    public function force_ssl(): self;
+
+    /**
+     * AUTOSAVE and REVISIONS.
+     *
+     * @return self
+     */
+    public function autosave(): self;
 
     /**
      * Apply the setup.

@@ -1,11 +1,12 @@
 <?php
 
-require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
+require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 
 use DevUri\Config\Setup;
+
 use function Env\env;
 
-/**
+/*
  * The base configuration for WordPress
  *
  * The wp-config.php creation script uses this file during the
@@ -33,11 +34,11 @@ Setup::init(__DIR__)->config('secure'); // development | staging | production | 
  */
 $table_prefix = env('DB_PREFIX');
 
-/* That's all, stop editing! Happy publishing. */
+// That's all, stop editing! Happy publishing.
 
-/** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
+// Absolute path to the WordPress directory.
+if ( ! \defined( 'ABSPATH' ) ) {
+    \define( 'ABSPATH', \dirname( __FILE__ ) . '/' );
 }
 
 /** Sets up WordPress vars and included files. */

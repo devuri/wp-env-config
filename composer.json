@@ -38,7 +38,8 @@
         "symfony/error-handler": "^5.1"
     },
     "require-dev": {
-		"brain/monkey": "^2.6",
+		"10up/phpcs-composer": "dev-master",
+        "brain/monkey": "^2.6",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-strict-rules": "^1.3",
         "phpunit/phpunit": "^9.5",
@@ -51,7 +52,25 @@
             "DevUri\\Config\\": "src"
         }
     },
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
+		}
+	},
     "scripts": {
+		"wpcs":"composer wpcs-lint",
+        "wpcs-lint":[
+            "composer install -q",
+            "phpcs -ns src"
+        ],
+        "wpcs-lint-all":[
+            "composer install -q",
+            "phpcs -s src"
+        ],
+        "wpcs-fix":[
+            "composer install -q",
+            "phpcbf src"
+        ],
 		"test":[
             "composer install -q",
             "vendor/bin/phpunit",
