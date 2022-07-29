@@ -133,7 +133,7 @@ abstract class EnvConfig implements ConfigInterface
         self::define( 'DB_NAME', env( 'DB_NAME' ) );
         self::define( 'DB_USER', env( 'DB_USER' ) );
         self::define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
-        self::define( 'DB_HOST', env( 'DB_HOST' ) ?: self::const( 'db_host' ) );
+        self::define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
         self::define( 'DB_CHARSET', 'utf8mb4' );
         self::define( 'DB_COLLATE', '' );
 

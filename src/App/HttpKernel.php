@@ -14,10 +14,12 @@ use function Env\env;
 class HttpKernel
 {
     protected $app_path = null;
+    protected $args;
 
     public function __construct( string $app_path, $args = [] )
     {
         $this->app_path = $app_path;
+        $this->args     = $args;
     }
 
     /**
@@ -39,6 +41,8 @@ class HttpKernel
      * Defines constants.
      *
      * @param mixed $dir_path
+     *
+     * @psalm-suppress UndefinedConstant
      *
      * @return void
      */

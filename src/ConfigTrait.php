@@ -31,6 +31,7 @@ trait ConfigTrait
     public function required( string $name ): void
     {
         if ( ! \defined( $name ) ) {
+			// @phpstan-ignore-next-line.
             $this->env->required( $name )->notEmpty();
         }
     }
@@ -54,23 +55,25 @@ trait ConfigTrait
      *
      * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
      *
-     * @return array|bool list of constants defined.
+     * @return array|null list of constants defined.
      */
-    public function configMap()
+    public function configMap(): ?array
     {
         $configClass = 'Config';
 
         if ( ! \defined( 'WP_DEBUG' ) ) {
-            return false;
+            return null;
         }
 
         if ( false === WP_DEBUG ) {
-            return false;
+            return null;
         }
 
         if ( 'development' === env( 'WP_ENVIRONMENT_TYPE' ) ) {
             return ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
         }
+
+		return null;
     }
     /**
      * Env defaults,.

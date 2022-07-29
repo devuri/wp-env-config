@@ -9,8 +9,6 @@ use function Env\env;
  */
 class Setup extends EnvConfig
 {
-    protected $path;
-
     /**
      * Constructor.
      *
@@ -18,7 +16,7 @@ class Setup extends EnvConfig
      */
     public function __construct( string $path )
     {
-        $this->path = $path;
+		parent::__construct( $path );
     }
 
     /**
@@ -96,7 +94,7 @@ class Setup extends EnvConfig
     public function environment(): ConfigInterface
     {
         if ( \is_null( $this->environment ) ) {
-            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?: self::const( 'environment' ) );
+            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
 
             return $this;
         }
@@ -162,7 +160,7 @@ class Setup extends EnvConfig
      */
     public function optimize(): ConfigInterface
     {
-        self::define( 'CONCATENATE_SCRIPTS', env( 'CONCATENATE_SCRIPTS' ) ?: self::const( 'optimize' ) );
+        self::define( 'CONCATENATE_SCRIPTS', env( 'CONCATENATE_SCRIPTS' ) ?? self::const( 'optimize' ) );
 
         return $this;
     }
@@ -174,8 +172,8 @@ class Setup extends EnvConfig
      */
     public function memory(): ConfigInterface
     {
-        self::define( 'WP_MEMORY_LIMIT', env( 'MEMORY_LIMIT' ) ?: self::const( 'memory' ) );
-        self::define( 'WP_MAX_MEMORY_LIMIT', env( 'MAX_MEMORY_LIMIT' ) ?: self::const( 'memory' ) );
+        self::define( 'WP_MEMORY_LIMIT', env( 'MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
+        self::define( 'WP_MAX_MEMORY_LIMIT', env( 'MAX_MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
 
         return $this;
     }
@@ -187,8 +185,8 @@ class Setup extends EnvConfig
      */
     public function force_ssl(): ConfigInterface
     {
-        self::define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?: self::const( 'ssl_admin' ) );
-        self::define( 'FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) ?: self::const( 'ssl_login' ) );
+        self::define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?? self::const( 'ssl_admin' ) );
+        self::define( 'FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) ?? self::const( 'ssl_login' ) );
 
         return $this;
     }
@@ -200,8 +198,8 @@ class Setup extends EnvConfig
      */
     public function autosave(): ConfigInterface
     {
-        self::define( 'AUTOSAVE_INTERVAL', env( 'AUTOSAVE_INTERVAL' ) ?: self::const( 'autosave' ) );
-        self::define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?: self::const( 'revisions' ) );
+        self::define( 'AUTOSAVE_INTERVAL', env( 'AUTOSAVE_INTERVAL' ) ?? self::const( 'autosave' ) );
+        self::define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?? self::const( 'revisions' ) );
 
         return $this;
     }

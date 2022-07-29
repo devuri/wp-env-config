@@ -19,7 +19,6 @@
 		<severity>warning</severity>
 	</rule>
 
-
 	<!-- Ignore mixed line-endings warnings -->
 	<rule ref="Internal.LineEndings.Mixed">
 		<severity>0</severity>
@@ -49,6 +48,9 @@
 		<exclude name="Squiz.PHP.CommentedOutCode.Found"/>
 		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
 		<exclude name="Squiz.Commenting.LongConditionClosingComment.Invalid"/>
+
+		<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
 	</rule>
 
 	<rule ref="WordPress-Docs">
