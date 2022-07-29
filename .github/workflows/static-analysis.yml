@@ -1,5 +1,7 @@
 name: Static Analysis
-on: [pull_request]
+on:
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   static-analysis:
