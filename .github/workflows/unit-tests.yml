@@ -1,0 +1,32 @@
+name: Unit Tests
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  unit-tests:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0', '8.1' ]
+
+    steps:
+      - name: Checkout the git repository
+        uses: actions/checkout@v2
+
+      - name: PHP setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
+          ini-values: display_errors = on, error_reporting = E_ALL
+          tools: composer
+
+      - name: Install composer packages
+        run: composer update -W
+
+      - name: PHP Unit Tests
+        run: composer test
