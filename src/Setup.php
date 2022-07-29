@@ -9,6 +9,8 @@ use function Env\env;
  */
 class Setup extends EnvConfig
 {
+	protected $path;
+
     /**
      * Singleton
      *
@@ -21,6 +23,15 @@ class Setup extends EnvConfig
             self::$instance = new self($path);
         }
         return self::$instance;
+    }
+
+	/**
+	 * Constructor
+	 * @param string $path  use required __DIR__
+	 */
+    public function __construct(string $path)
+    {
+        $this->path = $path;
     }
 
     /**

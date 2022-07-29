@@ -10,7 +10,7 @@
     processIsolation            = "false"
     stopOnFailure               = "false">
     <testsuites>
-        <testsuite name="oEmbed Data Tests">
+        <testsuite name="Tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
