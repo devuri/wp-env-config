@@ -1,0 +1,35 @@
+name: Code Quality Compliance
+on:
+  pull_request:
+    types: [ assigned, opened ]
+  workflow_dispatch:
+
+jobs:
+  code-quality:
+
+    name: Code Quality Compliance
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.4', '8.0']
+
+    steps:
+      - name: "📥 Fetching Repository Contents"
+        uses: actions/checkout@v2
+
+      - name: "💽  Installing PHP, Composer"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
+          ini-values: display_errors = on, error_reporting = E_ALL
+          tools: composer
+
+      - name: "💽  Installing Composer Packages"
+        run: composer install
+
+      - name: "🧪 Code Quality Checks"
+        run: composer wpcs-lint
