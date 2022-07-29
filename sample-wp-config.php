@@ -1,16 +1,16 @@
 <?php
 
 // Safely load /vendor/autoload.php or exit.
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
- 	require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
+if ( file_exists( \dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+    require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 } else {
- 	exit("Cant find the autoload file (/vendor/autoload.php)");
+    exit("Cant find the autoload file (/vendor/autoload.php)");
 }
 
 use DevUri\Config\Setup;
 
 /**
- * The base configuration for WordPress
+ * The base configuration for WordPress.
  *
  * The wp-config.php creation script uses this file during the
  * installation. You don't have to use the web site, you can
@@ -23,9 +23,7 @@ use DevUri\Config\Setup;
  * * Database table prefix
  * * ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
- *
- * @package WordPress
+ * @see https://codex.wordpress.org/Editing_wp-config.php
  */
 // To override setup constant defined in config() method define them before.
 
@@ -114,16 +112,16 @@ use DevUri\Config\Setup;
  *
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
-*/
+ */
 $table_prefix = "wp_"; // we can move this to .env as well.
 // $table_prefix = env('DB_PREFIX');
 
-/* That's all, stop editing! Happy publishing. */
+// That's all, stop editing! Happy publishing.
 
- /** Absolute path to the WordPress directory. */
- if ( ! defined( 'ABSPATH' ) ) {
- 	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
- }
+// Absolute path to the WordPress directory.
+if ( ! \defined( 'ABSPATH' ) ) {
+    \define( 'ABSPATH', \dirname( __FILE__ ) . '/' );
+}
 
- /** Sets up WordPress vars and included files. */
+/** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';

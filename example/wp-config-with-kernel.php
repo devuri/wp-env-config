@@ -1,13 +1,17 @@
 <?php
 
-require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
-
-use DevUri\Config\Setup;
+use DevUri\Config\Kernel;
 
 use function Env\env;
 
-/*
- * The base configuration for WordPress
+if ( file_exists( \dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+    require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
+} else {
+    exit("Cant find the vendor autoload file.");
+}
+
+/**
+ * The base configuration for WordPress.
  *
  * The wp-config.php creation script uses this file during the
  * installation. You don't have to use the web site, you can
@@ -20,11 +24,17 @@ use function Env\env;
  * * Database table prefix
  * * ABSPATH
  *
- * @link https://codex.wordpress.org/Editing_wp-config.php
- *
- * @package WordPress
+ * @see https://codex.wordpress.org/Editing_wp-config.php
  */
-Setup::init(__DIR__)->config('secure'); // development | staging | production | secure
+
+// run setup.
+$http_app = new Kernel(__DIR__);
+
+// start enviroment with defined constants and directory structure.
+$http_app->init('development'); // development | staging | production | secure
+
+// start enviroment with BUT disable defined constants and directory structure.
+$http_app->init('development', false); // development | staging | production | secure
 
 /**
  * WordPress Database Table prefix.

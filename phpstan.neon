@@ -1,0 +1,20 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - rules.neon
+parameters:
+    bootstrapFiles:
+        - tests/stubs.php
+    tmpDir: tmp
+    level: 1
+    inferPrivatePropertyTypeFromConstructor: true
+    treatPhpDocTypesAsCertain: false
+    checkMissingIterableValueType: false
+    excludePaths:
+        - tests/*
+        - tmp/*
+        - node_modules/*
+        - bin/*
+        - vendor/*
+    paths:
+        - src
+        - tests
