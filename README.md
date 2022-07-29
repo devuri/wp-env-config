@@ -2,8 +2,8 @@
 
 A small package to define WordPress configuration constants using environment variables with a .env file.
 
-This package will allow define WordPress configuration constants using [PHP dotenv](https://github.com/vlucas/phpdotenv). 
-We will be securing WordPress using environment variables from .env as an added layer of security. 
+This package will allow define WordPress configuration constants using [PHP dotenv](https://github.com/vlucas/phpdotenv).
+We will be securing WordPress using environment variables from .env as an added layer of security.
 It’s good practice to never store sensitive credentials in your code.
 
 This follows the twelve-factor app methodology for building and deploying software.
@@ -20,7 +20,7 @@ $ composer require devuri/wp-env-config
 ## Usage
 
 The `.env` file is generally kept out of version control since it can contain
-sensitive API keys and passwords. The `.env` file should be added to the project's `.gitignore` file 
+sensitive API keys and passwords. The `.env` file should be added to the project's `.gitignore` file
 so that it will never be committed.
 This ensures that no sensitive data will ever be in the version control history so there is less risk
 of a security breach.
@@ -29,7 +29,7 @@ of a security breach.
 Add your wp-config settings to a `.env` file in the root of your
 project. **Make sure the `.env` file is added to your `.gitignore` so it is not
 checked-in the code**, the `wp-config` file should be in the same dir.
-WordPress will automatically look one directory above your WordPress installation for the `wp-config.php` file, 
+WordPress will automatically look one directory above your WordPress installation for the `wp-config.php` file,
 You can safely move it one directory above your WordPress installation.
 
 Database credentials:
@@ -101,7 +101,7 @@ To override setup constant defined in `config` method define them before  `Setup
 In this example  `config` will ignore `FORCE_SSL_LOGIN` constant since its already defined:
 ```php
 
-// Custom Uploads Directory.
+// FORCE_SSL_LOGIN.
 define('FORCE_SSL_LOGIN', true );
 
 Setup::init(__DIR__)->config();
@@ -111,8 +111,8 @@ or simply use `Setup::get( 'FORCE_SSL_LOGIN' )`:
 
 ```php
 
-// Custom Uploads Directory.
-define('UPLOADS', Setup::get( 'FORCE_SSL_LOGIN' ) );
+// FORCE_SSL_LOGIN.
+define('FORCE_SSL_LOGIN', Setup::get( 'FORCE_SSL_LOGIN' ) );
 
 ```
 After setup we can define other constant in the normal way or using `env` function, remember to include with use `use function Env\env;` when using the `env` function:
