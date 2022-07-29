@@ -1,0 +1,30 @@
+name: Static Analysis
+on: [pull_request]
+
+jobs:
+  static-analysis:
+
+    name: Static Analysis
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "📥 Fetching Repository Contents"
+        uses: actions/checkout@v2
+
+      - name: "💽  Installing PHP, Composer"
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          ini-values: display_errors = on, error_reporting = E_ALL
+          tools: composer
+
+      - name: "💽  Installing Composer Packages"
+        run: composer install
+
+      - name: "🧪 Psalm Code Analysis Checks"
+        run: composer psalm
+
+      - name: "🧪 PHPStan Code Analysis"
+        run: composer phpstan
