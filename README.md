@@ -152,6 +152,61 @@ Setup::init(__DIR__)->config('development', false )->environment()->database()->
 ```
 
 
+## ^0.12 use Kernel
+
+As of version 0.12 we can use the `Kernel` to setup environment like so:
+```php
+// run setup.
+$http_app = new Kernel(__DIR__);
+
+// start enviroment with defined constants and directory structure.
+$http_app->init('development'); // development | staging | production | secure
+
+```
+
+The Kernel setup follows a more project based WordPress Skeleton structure, with the following top-level files and directories:
+
+```shell
+
+├── .env
+├── config.php
+├── composer.json
+├── composer.lock
+├── package.json
+├── package-lock.json
+├── wp-cli.yml
+├── README.md
+├── LICENSE
+├── public
+    ├── assets
+    ├── content
+       ├── themes
+       └── uploads
+    ├── mu-plugins
+    ├── plugins
+    ├── .htaccess
+    ├── .user.ini
+    ├── robots.txt
+    ├── index.php
+    ├── wp-config.php
+    └── wp
+├── src
+├── storage
+    ├── cache
+    └── logs
+├── vendor
+```
+
+We can also opt not to use the Kernel WordPress Skeleton, assuming we are working on a full site build structure, and define our own by setting second param of **init** `$http_app->init('development', false)` to false.
+
+```php
+// run setup.
+$http_app = new Kernel(__DIR__);
+
+// start enviroment with BUT disable defined constants and directory structure.
+$http_app->init('development', false); // development | staging | production | secure
+```
+
 ## Setup Options and Environment
 
 list of setup options
