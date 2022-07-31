@@ -16,7 +16,7 @@ class Setup extends EnvConfig
      */
     public function __construct( string $path )
     {
-		parent::__construct( $path );
+        parent::__construct( $path );
     }
 
     /**
@@ -135,7 +135,7 @@ class Setup extends EnvConfig
                 break;
             default:
                 Environment::production();
-        }//end switch
+        }// end switch
 
         return $this;
     }

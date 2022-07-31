@@ -215,6 +215,6 @@ abstract class EnvConfig implements ConfigInterface
         } catch ( Exception $e ) {
             var_dump( $e->getMessage() );
             exit();
-        }//end try
+        }// end try
     }
 }

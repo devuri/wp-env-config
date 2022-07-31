@@ -13,7 +13,7 @@ use function Env\env;
  */
 class HttpKernel
 {
-    protected $app_path = null;
+    protected $app_path    = null;
     protected static $list = [];
     protected $args;
 
@@ -23,15 +23,15 @@ class HttpKernel
         $this->args     = $args;
     }
 
-	public function get_app_path(): string
-	{
-		return $this->app_path;
-	}
+    public function get_app_path(): string
+    {
+        return $this->app_path;
+    }
 
-	public function get_args(): array
-	{
-		return $this->args;
-	}
+    public function get_args(): array
+    {
+        return $this->args;
+    }
 
     /**
      * Start the app.
@@ -65,8 +65,8 @@ class HttpKernel
         // define public web root dir.
         $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/public' );
 
-		// wp dir path
-		$this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/wp' );
+        // wp dir path
+        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/wp' );
 
         // define assets dir.
         $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/assets' );
@@ -92,26 +92,28 @@ class HttpKernel
         $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/mu-plugins' );
     }
 
-	/**
-	 * Create constants
-	 *
-	 * @return void
-	 */
-	public function define( string $const, $value = null ): void
-	{
-		if ( ! defined( $const ) ) {
-			define( $const, $value );
-			static::$list[ $const ] = $value;
-		}
-	}
+    /**
+     * Create constants.
+     *
+     * @param null|mixed $value
+     *
+     * @return void
+     */
+    public function define( string $const, $value = null ): void
+    {
+        if ( ! \defined( $const ) ) {
+            \define( $const, $value );
+            static::$list[ $const ] = $value;
+        }
+    }
 
-	/**
-	 * Get list of defined constants.
-	 *
-	 * @return array constants in constants().
-	 */
-	public function get_defined(): array
-	{
-		return static::$list;
-	}
+    /**
+     * Get list of defined constants.
+     *
+     * @return array constants in constants().
+     */
+    public function get_defined(): array
+    {
+        return static::$list;
+    }
 }
