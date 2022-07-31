@@ -12,3 +12,6 @@
 phpunit.xml         export-ignore
 phpdoc.xml          export-ignore
 psalm.xml           export-ignore
+phpcs.xml           export-ignore
+rules.neon          export-ignore
+phpstan.neon        export-ignore
