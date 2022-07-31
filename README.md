@@ -202,6 +202,7 @@ The Kernel setup follows a more project based WordPress Skeleton structure, with
     └── wp
 ├── src
 ├── storage
+    ├── backup
     ├── cache
     └── logs
 ├── vendor
