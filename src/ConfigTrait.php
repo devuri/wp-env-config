@@ -31,11 +31,14 @@ trait ConfigTrait
     public function required( string $name ): void
     {
         if ( ! \defined( $name ) ) {
-			// @phpstan-ignore-next-line.
+            // @phpstan-ignore-next-line.
             $this->env->required( $name )->notEmpty();
         }
     }
 
+    /**
+     * @return null|string
+     */
     public static function get( string $name )
     {
         try {
@@ -55,7 +58,7 @@ trait ConfigTrait
      *
      * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
      *
-     * @return array|null list of constants defined.
+     * @return null|array list of constants defined.
      */
     public function configMap(): ?array
     {
@@ -73,7 +76,7 @@ trait ConfigTrait
             return ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
         }
 
-		return null;
+        return null;
     }
     /**
      * Env defaults,.

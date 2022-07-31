@@ -16,17 +16,15 @@ class Setup extends EnvConfig
      */
     public function __construct( string $path )
     {
-		parent::__construct( $path );
+        parent::__construct( $path );
     }
 
     /**
      * Singleton.
      *
      * @param $path
-     *
-     * @return object
      */
-    public static function init( $path ): ConfigInterface
+    public static function init( string $path ): ConfigInterface
     {
         if ( ! isset( self::$instance ) ) {
             self::$instance = new self( $path );
@@ -36,10 +34,12 @@ class Setup extends EnvConfig
     }
 
     /**
-     *  Runs config setup with default setting.
+     * Runs config setup with default setting.
      *
      * @param null|array $environment .
      * @param bool       $setup       .
+     *
+     * @return null|static
      */
     public function config( $environment = null, $setup = true )
     {
@@ -89,7 +89,7 @@ class Setup extends EnvConfig
     /**
      * Setting the environment type.
      *
-     * @return ConfigInterface
+     * @return static
      */
     public function environment(): ConfigInterface
     {
@@ -107,7 +107,7 @@ class Setup extends EnvConfig
     /**
      * Debug Settings.
      *
-     * @return Setup
+     * @return static
      */
     public function debug(): ConfigInterface
     {
@@ -135,7 +135,7 @@ class Setup extends EnvConfig
                 break;
             default:
                 Environment::production();
-        }//end switch
+        }// end switch
 
         return $this;
     }
@@ -143,7 +143,7 @@ class Setup extends EnvConfig
     /**
      * Site Url Settings.
      *
-     * @return self
+     * @return static
      */
     public function site_url(): ConfigInterface
     {
@@ -156,7 +156,7 @@ class Setup extends EnvConfig
     /**
      * Optimize.
      *
-     * @return self
+     * @return static
      */
     public function optimize(): ConfigInterface
     {
@@ -168,7 +168,7 @@ class Setup extends EnvConfig
     /**
      * Memory Settings.
      *
-     * @return self
+     * @return static
      */
     public function memory(): ConfigInterface
     {
@@ -181,7 +181,7 @@ class Setup extends EnvConfig
     /**
      * SSL.
      *
-     * @return self
+     * @return static
      */
     public function force_ssl(): ConfigInterface
     {
@@ -194,7 +194,7 @@ class Setup extends EnvConfig
     /**
      * AUTOSAVE and REVISIONS.
      *
-     * @return self
+     * @return static
      */
     public function autosave(): ConfigInterface
     {
