@@ -94,7 +94,7 @@ abstract class EnvConfig implements ConfigInterface
      *
      * @param bool $enable
      *
-     * @return self
+     * @return static
      */
     public function symfony_debug( bool $enable = false ): ConfigInterface
     {
@@ -124,9 +124,9 @@ abstract class EnvConfig implements ConfigInterface
     abstract public function site_url(): ConfigInterface;
 
     /**
-     *  DB settings.
+     * DB settings.
      *
-     * @return self
+     * @return static
      */
     public function database(): ConfigInterface
     {
@@ -171,7 +171,7 @@ abstract class EnvConfig implements ConfigInterface
     /**
      * Authentication Unique Keys and Salts.
      *
-     * @return self
+     * @return static
      */
     public function salts(): ConfigInterface
     {

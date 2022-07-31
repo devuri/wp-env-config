@@ -36,6 +36,9 @@ trait ConfigTrait
         }
     }
 
+    /**
+     * @return null|string
+     */
     public static function get( string $name )
     {
         try {

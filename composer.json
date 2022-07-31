@@ -87,6 +87,7 @@
         "psalm": "vendor/bin/psalm",
         "psalm-secure": "vendor/bin/psalm --taint-analysis",
         "psalm-info": "vendor/bin/psalm --show-info=true",
+        "psalm-fix-return": "vendor/bin/psalm --alter --issues=MissingReturnType",
         "psalm-autofix": [
                     "composer install -q",
                     "vendor/bin/psalm --alter --issues=InvalidNullableReturnType,MismatchingDocblockReturnType,InvalidReturnType,InvalidFalsableReturnType,LessSpecificReturnType,MissingParamType"
