@@ -15,6 +15,16 @@
         </testsuite>
     </testsuites>
     <php>
-        <env name="APP_ENV" value="testing"/>
+        <env name="ENVIRONMENT" value="test"/>
+		<!-- WordPress env constants -->
+		<env name="FAKE_APP_DIR_PATH" value="/srv/users/dev/apps/example"/>
+		<env name="WP_HOME" value="https://example.com"/>
+		<env name="WP_SITEURL" value="https://example.com/wp"/>
+		<env name="DB_NAME" value="wordpress_testdb"/>
+		<env name="DB_USER" value="root"/>
+		<env name="DB_PASSWORD" value="password"/>
+		<env name="DB_HOST" value="127.0.0.1"/>
+		<env name="DB_PREFIX" value="wp_test_" />
+		<env name="WP_ENVIRONMENT_TYPE" value="development"/>
     </php>
 </phpunit>

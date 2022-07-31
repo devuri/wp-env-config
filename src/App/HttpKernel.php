@@ -14,6 +14,7 @@ use function Env\env;
 class HttpKernel
 {
     protected $app_path = null;
+    protected static $list = [];
     protected $args;
 
     public function __construct( string $app_path, $args = [] )
@@ -21,6 +22,16 @@ class HttpKernel
         $this->app_path = $app_path;
         $this->args     = $args;
     }
+
+	public function get_app_path(): string
+	{
+		return $this->app_path;
+	}
+
+	public function get_args(): array
+	{
+		return $this->args;
+	}
 
     /**
      * Start the app.
@@ -30,7 +41,7 @@ class HttpKernel
      */
     public function init( string $env_type = 'production', $constants = true ): void
     {
-        Setup::init( $this->app_path )->config( $env_type );
+        Setup::init( $this->get_app_path() )->config( $env_type );
 
         if ( true === $constants ) {
             $this->constants();
@@ -49,32 +60,58 @@ class HttpKernel
     public function constants(): void
     {
         // define app_path.
-        \define( 'APP_PATH', $this->app_path );
+        $this->define( 'APP_PATH', $this->get_app_path() );
 
         // define public web root dir.
-        \define( 'PUBLIC_WEB_DIR', APP_PATH . '/public' );
+        $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/public' );
+
+		// wp dir path
+		$this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/wp' );
 
         // define assets dir.
-        \define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/assets' );
+        $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/assets' );
 
         // Disable any kind of automatic upgrade.
         // this will be handled via composer.
-        \define( 'AUTOMATIC_UPDATER_DISABLED', true );
+        $this->define( 'AUTOMATIC_UPDATER_DISABLED', true );
 
         // Directory PATH.
-        \define( 'APP_CONTENT_DIR', '/content' );
-        \define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
+        $this->define( 'APP_CONTENT_DIR', '/content' );
+        $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
 
         // Content Directory.
-        \define( 'CONTENT_DIR', APP_CONTENT_DIR );
-        \define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . CONTENT_DIR );
+        $this->define( 'CONTENT_DIR', APP_CONTENT_DIR );
+        $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . CONTENT_DIR );
 
         // Plugins.
-        \define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/plugins' );
-        \define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/plugins' );
+        $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/plugins' );
+        $this->define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/plugins' );
 
         // Must-Use Plugins.
-        \define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/mu-plugins' );
-        \define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/mu-plugins' );
+        $this->define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/mu-plugins' );
+        $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/mu-plugins' );
     }
+
+	/**
+	 * Create constants
+	 *
+	 * @return void
+	 */
+	public function define( string $const, $value = null ): void
+	{
+		if ( ! defined( $const ) ) {
+			define( $const, $value );
+			static::$list[ $const ] = $value;
+		}
+	}
+
+	/**
+	 * Get list of defined constants.
+	 *
+	 * @return array constants in constants().
+	 */
+	public function get_defined(): array
+	{
+		return static::$list;
+	}
 }
