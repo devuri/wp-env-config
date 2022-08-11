@@ -226,6 +226,14 @@ $http_app = new Kernel(__DIR__);
 
 // start enviroment with BUT disable defined constants and directory structure.
 $http_app->init('development', false); // development | staging | production | secure
+
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = Kernel::env('DB_PREFIX');
 ```
 
 ## Setup Options and Environment
