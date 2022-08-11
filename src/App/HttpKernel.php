@@ -2,9 +2,12 @@
 
 namespace DevUri\Config\App;
 
+use DevUri\Config\App\Traits\KernelTrait;
 use DevUri\Config\Setup;
 
 use function Env\env;
+
+use Exception;
 
 /**
  * Setup common elemnts.
@@ -13,6 +16,8 @@ use function Env\env;
  */
 class HttpKernel
 {
+    use KernelTrait;
+
     protected $app_path    = null;
     protected static $list = [];
     protected $args;
@@ -21,6 +26,12 @@ class HttpKernel
     {
         $this->app_path = $app_path;
         $this->args     = $args;
+
+        $app_error = static::detect_error();
+
+        if ( \is_array( $app_error ) ) {
+            throw new Exception( 'Error: ' . $app_error['message'], 1 );
+        }
     }
 
     public function get_app_path(): string
@@ -115,5 +126,27 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
+    }
+
+    /**
+     * Detects the error causing the crash if it should be handled.
+     *
+     * @since WordPress 5.2.0
+     *
+     * @return null|array Error information returned by `error_get_last()`, or null
+     *                    if none was recorded or the error should not be handled.
+     *
+     * @see https://github.com/WordPress/wordpress-develop/blob/6.0/src/wp-includes/class-wp-fatal-error-handler.php
+     * @see https://www.php.net/manual/en/function.error-get-last.php
+     */
+    protected static function detect_error(): ?array
+    {
+        $error = error_get_last();
+
+        if ( null === $error ) {
+            return null;
+        }
+
+        return $error;
     }
 }

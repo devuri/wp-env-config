@@ -83,6 +83,15 @@
             "composer psalm",
             "composer no-dev -q"
         ],
+        "build": [
+            "composer install -q",
+            "composer wpcs-lint",
+            "composer lint",
+            "composer install -q",
+            "composer lint",
+            "composer test",
+            "composer no-dev -q"
+        ],
         "phpstan":"@php ./vendor/bin/phpstan analyse",
         "psalm": "vendor/bin/psalm",
         "psalm-secure": "vendor/bin/psalm --taint-analysis",
