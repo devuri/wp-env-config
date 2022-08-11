@@ -172,6 +172,13 @@ $http_app = new Kernel(__DIR__);
 // start enviroment with defined constants and directory structure.
 $http_app->init('development'); // development | staging | production | secure
 
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = Kernel::env('DB_PREFIX');
 ```
 
 The Kernel setup follows a more project based WordPress Skeleton structure, with the following top-level files and directories:
