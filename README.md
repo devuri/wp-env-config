@@ -158,7 +158,6 @@ As of version 0.12 we can use the `Kernel` to setup environment like so:
 ```php
 
 use DevUri\Config\Kernel;
-use function Env\env;
 
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
     require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
@@ -215,12 +214,11 @@ The Kernel setup follows a more project based WordPress Skeleton structure, with
 ├── vendor
 ```
 
-We can also opt not to use the Kernel WordPress Skeleton, assuming we are working on a full site build structure, and define our own by setting second param of **init** `$http_app->init('development', false)` to false.
+We can also opt not to use the Kernel WordPress Skeleton, assuming we are working on a full site build structure, and define our own by setting second **init** param to **false** `$http_app->init('development', false)` .
 
 ```php
 
 use DevUri\Config\Kernel;
-use function Env\env;
 
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
     require_once  dirname( __FILE__ ) . '/vendor/autoload.php';
