@@ -309,6 +309,7 @@ This will output the following:
 "DB_CHARSET" => "utf8mb4"
 "DB_COLLATE" => ""
 "WP_HOME" => ""
+"ASSET_URL" => ""
 "WP_SITEURL" => ""
 "UPLOADS" => "wp-content/uploads"
 "WP_MEMORY_LIMIT" => "256M"
@@ -328,5 +329,25 @@ This will output the following:
 "NONCE_SALT" => ""
 "DEVELOPERADMIN" => null
 ```
+
+## Global helper functions.
+
+> `asset()`
+
+The ***asset()*** function will generate a URL for an asset.
+
+* You can configure the asset URL by setting the `ASSET_URL` in your .env
+* Or optionally in the main config file.
+
+```php
+
+asset( "/bootstrap/css/bootstrap-grid.css" ); // https://example.com/assets/dist/bootstrap/css/bootstrap-grid.css
+
+asset( "/images/thing.png" ); // https://example.com/assets/dist/images/thing.png
+
+asset( "/images/thing.png", "/static" ); // https://example.com/static/images/thing.png
+
+```
+
 ## License
 wp env config is licensed under The [MIT License](https://github.com/devuri/wp-env-config/blob/master/LICENSE).
