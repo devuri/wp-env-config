@@ -48,6 +48,9 @@
         "yoast/phpunit-polyfills": "^1.0"
     },
     "autoload": {
+	"files": [
+        "src/inc/helpers.php"
+    ],
         "psr-4": {
             "DevUri\\Config\\": "src"
         }
