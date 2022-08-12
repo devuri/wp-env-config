@@ -336,7 +336,7 @@ This will output the following:
 
 The ***asset()*** function will generate a URL for an asset.
 
-* You can configure the asset URL by setting the `ASSET_URL` in your .env
+* You can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
 * Or optionally in the main config file.
 
 ```php
