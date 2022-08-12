@@ -77,6 +77,7 @@ class Setup extends EnvConfig
                 ->symfony_debug( $environment['symfony'] )
                 ->database()
                 ->site_url()
+                ->asset_url()
                 ->memory()
                 ->optimize()
                 ->force_ssl()
@@ -149,6 +150,18 @@ class Setup extends EnvConfig
     {
         self::define( 'WP_HOME', env( 'WP_HOME' ) );
         self::define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
+
+        return $this;
+    }
+
+    /**
+     * The Site Asset Url Settings.
+     *
+     * @return static
+     */
+    public function asset_url(): ConfigInterface
+    {
+        self::define( 'ASSET_URL', env( 'ASSET_URL' ) );
 
         return $this;
     }
