@@ -23,9 +23,19 @@ class HttpKernelTest extends BaseTest
         $this->assertEquals( '/srv/users/dev/apps/example', self::http_app()->get_app_path() );
     }
 
-    public function test_empty_args(): void
+    public function test_default_args(): void
     {
-        $this->assertEquals( [], self::http_app()->get_args());
+        $default_args = [
+			'web_root'        => 'public',
+	        'wp_dir_path'     => 'wp',
+	        'asset_dir'       => 'assets',
+	        'content_dir'     => 'content',
+	        'plugin_dir'      => 'plugins',
+	        'mu_plugin_dir'   => 'mu-plugins',
+	        'disable_updates' => true,
+        ];
+
+        $this->assertEquals( $default_args, self::http_app()->get_args());
     }
 
     public function test_constants_defined(): void
