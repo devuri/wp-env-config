@@ -336,7 +336,7 @@ This will output the following:
 
 The ***asset()*** function will generate a URL for an asset.
 
-* You can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
 * Or optionally in the main config file.
 
 ```php
@@ -346,6 +346,32 @@ asset( "/bootstrap/css/bootstrap-grid.css" ); // https://example.com/assets/dist
 asset( "/images/thing.png" ); // https://example.com/assets/dist/images/thing.png
 
 asset( "/images/thing.png", "/static" ); // https://example.com/static/images/thing.png
+
+```
+
+## Kernel.
+
+> `Kernel` ***$args***
+
+We can use the **Kernel** `$args` to setup a custom directory structure.
+
+```php
+
+$args = [
+        'web_root'        => 'public',
+        'wp_dir_path'     => 'wp',
+        'asset_dir'       => 'assets',
+        'content_dir'     => 'content',
+        'plugin_dir'      => 'plugins',
+        'mu_plugin_dir'   => 'mu-plugins',
+        'disable_updates' => true,
+    ];
+
+$http_app = new Kernel(__DIR__, $args);
+
+// or
+
+$http_app = new Kernel(__DIR__, ['content_dir' => 'content']);
 
 ```
 
