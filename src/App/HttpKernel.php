@@ -20,17 +20,29 @@ class HttpKernel
 
     protected $app_path    = null;
     protected static $list = [];
-    protected $args;
+    protected static $args = [
+        'web_root'        => 'public',
+        'wp_dir_path'     => 'wp',
+        'asset_dir'       => 'assets',
+        'content_dir'     => 'content',
+        'plugin_dir'      => 'plugins',
+        'mu_plugin_dir'   => 'mu-plugins',
+        'disable_updates' => true,
+    ];
 
-    public function __construct( string $app_path, $args = [] )
+    public function __construct( string $app_path, array $args = [] )
     {
         $this->app_path = $app_path;
-        $this->args     = $args;
 
-        $app_error = static::detect_error();
+        if ( ! \is_array( $args ) ) {
+            throw new Exception( 'Error: args must be of type array ', 1 );
+        }
+
+        self::$args = array_merge( self::$args, $args );
+        $app_error  = static::detect_error();
 
         if ( \is_array( $app_error ) ) {
-            throw new Exception( 'Error: ' . $app_error['message'], 1 );
+            throw new Exception( 'Error: ' . $app_error['message'], 2 );
         }
     }
 
@@ -41,7 +53,7 @@ class HttpKernel
 
     public function get_args(): array
     {
-        return $this->args;
+        return self::$args;
     }
 
     /**
@@ -74,20 +86,16 @@ class HttpKernel
         $this->define( 'APP_PATH', $this->get_app_path() );
 
         // define public web root dir.
-        $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/public' );
+        $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . self::$args['web_root'] );
 
         // wp dir path
-        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/wp' );
+        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/' . self::$args['wp_dir_path'] );
 
         // define assets dir.
-        $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/assets' );
-
-        // Disable any kind of automatic upgrade.
-        // this will be handled via composer.
-        $this->define( 'AUTOMATIC_UPDATER_DISABLED', true );
+        $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/' . self::$args['asset_dir'] );
 
         // Directory PATH.
-        $this->define( 'APP_CONTENT_DIR', '/content' );
+        $this->define( 'APP_CONTENT_DIR', '/' . self::$args['content_dir'] );
         $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
 
         // Content Directory.
@@ -95,12 +103,16 @@ class HttpKernel
         $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . CONTENT_DIR );
 
         // Plugins.
-        $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/plugins' );
-        $this->define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/plugins' );
+        $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . self::$args['plugin_dir'] );
+        $this->define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/' . self::$args['plugin_dir'] );
 
         // Must-Use Plugins.
-        $this->define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/mu-plugins' );
-        $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/mu-plugins' );
+        $this->define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . self::$args['mu_plugin_dir'] );
+        $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/' . self::$args['mu_plugin_dir'] );
+
+        // Disable any kind of automatic upgrade.
+        // this will be handled via composer.
+        $this->define( 'AUTOMATIC_UPDATER_DISABLED', self::$args['disable_updates'] );
     }
 
     /**
