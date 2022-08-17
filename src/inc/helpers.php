@@ -18,4 +18,16 @@ if ( ! \function_exists( 'asset' ) ) {
     {
         return Asset::url( $asset, $path );
     }
+
+    /**
+     * The Asset url only.
+     *
+     * @param null|string $path
+     *
+     * @return string
+     */
+    function asset_url( ?string $path = null ): string
+    {
+        return Asset::url( '/', $path );
+    }
 }

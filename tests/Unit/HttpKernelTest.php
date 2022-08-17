@@ -26,13 +26,13 @@ class HttpKernelTest extends BaseTest
     public function test_default_args(): void
     {
         $default_args = [
-			'web_root'        => 'public',
-	        'wp_dir_path'     => 'wp',
-	        'asset_dir'       => 'assets',
-	        'content_dir'     => 'content',
-	        'plugin_dir'      => 'plugins',
-	        'mu_plugin_dir'   => 'mu-plugins',
-	        'disable_updates' => true,
+            'web_root'        => 'public',
+            'wp_dir_path'     => 'wp',
+            'asset_dir'       => 'assets',
+            'content_dir'     => 'content',
+            'plugin_dir'      => 'plugins',
+            'mu_plugin_dir'   => 'mu-plugins',
+            'disable_updates' => true,
         ];
 
         $this->assertEquals( $default_args, self::http_app()->get_args());
