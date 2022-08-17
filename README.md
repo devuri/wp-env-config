@@ -349,6 +349,24 @@ asset( "/images/thing.png", "/static" ); // https://example.com/static/images/th
 
 ```
 
+> `asset_url()`
+
+The ***asset_url()*** URL for the asset directory.
+
+* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* Or optionally in the main config file.
+
+```php
+
+asset_url(); // https://example.com/assets/dist/
+
+asset_url() . "images/thing.png" // https://example.com/assets/dist/images/thing.png
+
+asset_url( "/static" ); // https://example.com/static
+
+```
+
+
 ## Kernel.
 
 > `Kernel` ***$args***
