@@ -38,12 +38,29 @@ class HelpersTest extends BaseTest
 
     public function test_asset_url_return_url_only(): void
     {
-        $asset_url = asset_url() . "images/thing.png";
+        $assets = asset_url();
+
+        $asset_url = $assets . "images/thing.png";
+
+        $this->assertIsString($assets);
+
+        $this->assertSame($assets, "https://example.com/assets/dist/");
 
         $this->assertIsString($asset_url);
 
         $url = "https://example.com/assets/dist/images/thing.png";
 
         $this->assertSame($url, $asset_url);
+    }
+
+    public function test_static_asset_url_return(): void
+    {
+        $static_url = asset_url('/static');
+
+        $this->assertIsString($static_url);
+
+        $url = "https://example.com/static/";
+
+        $this->assertSame($url, $static_url);
     }
 }
