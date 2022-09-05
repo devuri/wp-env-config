@@ -192,7 +192,6 @@ abstract class EnvConfig implements ConfigInterface
     protected function is_required(): void
     {
         try {
-
             // site url is required but can be overridden in wp-config.php
             $this->required( 'WP_HOME' );
             $this->required( 'WP_SITEURL' );
