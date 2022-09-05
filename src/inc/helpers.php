@@ -18,7 +18,9 @@ if ( ! \function_exists( 'asset' ) ) {
     {
         return Asset::url( $asset, $path );
     }
+}
 
+if ( ! \function_exists( 'asset_url' ) ) {
     /**
      * The Asset url only.
      *

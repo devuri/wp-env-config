@@ -9,6 +9,7 @@ use Tests\BaseTest;
  * Test the Kernel.
  *
  * @internal
+ *
  * @coversNothing
  */
 class HttpKernelTest extends BaseTest

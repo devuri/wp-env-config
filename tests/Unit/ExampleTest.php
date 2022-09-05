@@ -6,6 +6,7 @@ use Tests\BaseTest;
 
 /**
  * @internal
+ *
  * @coversNothing
  */
 class ExampleTest extends BaseTest

@@ -6,6 +6,7 @@ use Tests\BaseTest;
 
 /**
  * @internal
+ *
  * @coversNothing
  */
 class HelpersTest extends BaseTest
@@ -13,8 +14,6 @@ class HelpersTest extends BaseTest
     public function test_asset_function(): void
     {
         \define( 'WP_HOME', 'https://example.com');
-
-        \define( 'ASSET_URL', 'https://example.com/assets');
 
         $asset_url = asset( "/images/thing.png" );
 

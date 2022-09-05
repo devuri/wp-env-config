@@ -61,7 +61,6 @@ class Environment
 
     public static function secure(): void
     {
-
         // Disable Plugin and Theme Editor.
         self::define( 'DISALLOW_FILE_EDIT', true );
         self::define( 'DISALLOW_FILE_MODS', true );
