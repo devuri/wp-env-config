@@ -95,7 +95,7 @@ class HttpKernel
         $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . self::$args['web_root'] );
 
         // wp dir path
-        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/' . $this->wordpress_path() );
+        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/' . self::$args['wp_dir_path'] );
 
         // define assets dir.
         $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/' . self::$args['asset_dir'] );
@@ -145,17 +145,6 @@ class HttpKernel
     {
         return static::$list;
     }
-
-    /**
-     * Get the WordPress defined path.
-     *
-     * @return string.
-     */
-    protected function wordpress_path(): string
-    {
-        return self::$args['wp_dir_path'];
-    }
-
 
     /**
      * Detects the error causing the crash if it should be handled.
