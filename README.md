@@ -368,6 +368,16 @@ asset_url( "/static" ); // https://example.com/static
 
 ```
 
+> `env()`
+
+The ***env()*** function can be used to get the value of an environment variable.
+
+```php
+
+env('FOO');
+
+```
+
 
 ## Kernel.
 
