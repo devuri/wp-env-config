@@ -1,6 +1,7 @@
 <?php
 
 use DevUri\Config\App\Asset;
+use Env\Env;
 
 if ( ! \function_exists( 'asset' ) ) {
     /**
@@ -31,5 +32,20 @@ if ( ! \function_exists( 'asset_url' ) ) {
     function asset_url( ?string $path = null ): string
     {
         return Asset::url( '/', $path );
+    }
+}
+
+if ( ! \function_exists( 'env' ) ) {
+    /**
+     * Get the value of an environment variable.
+     *
+     * @param string $name the environment variable name.
+     *
+     * @return mixed
+     * @see https://github.com/oscarotero/env
+     */
+    function env( string $name ): string
+    {
+        return Env::get( $name );
     }
 }
