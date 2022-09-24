@@ -23,6 +23,7 @@ class HttpKernel
     protected static $args = [
         'web_root'        => 'public',
         'wp_dir_path'     => 'wp',
+        'wordpress'       => 'wp',
         'asset_dir'       => 'assets',
         'content_dir'     => 'content',
         'plugin_dir'      => 'plugins',
@@ -36,6 +37,11 @@ class HttpKernel
 
         if ( ! \is_array( $args ) ) {
             throw new Exception( 'Error: args must be of type array ', 1 );
+        }
+
+        // @codingStandardsIgnoreLine
+        if ( \array_key_exists( 'wordpress', $args ) ) {
+            self::$args['wp_dir_path'] = $args['wordpress'];
         }
 
         self::$args = array_merge( self::$args, $args );

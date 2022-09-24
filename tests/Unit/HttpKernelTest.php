@@ -14,14 +14,14 @@ use Tests\BaseTest;
  */
 class HttpKernelTest extends BaseTest
 {
-    public static function http_app(): HttpKernel
+    public function http_app(): HttpKernel
     {
         return new HttpKernel( getenv('FAKE_APP_DIR_PATH') );
     }
 
     public function test_get_app_path(): void
     {
-        $this->assertEquals( '/srv/users/dev/apps/example', self::http_app()->get_app_path() );
+        $this->assertEquals( '/srv/users/dev/apps/example', $this->http_app()->get_app_path() );
     }
 
     public function test_default_args(): void
@@ -29,6 +29,7 @@ class HttpKernelTest extends BaseTest
         $default_args = [
             'web_root'        => 'public',
             'wp_dir_path'     => 'wp',
+            'wordpress'       => 'wp',
             'asset_dir'       => 'assets',
             'content_dir'     => 'content',
             'plugin_dir'      => 'plugins',
@@ -36,12 +37,12 @@ class HttpKernelTest extends BaseTest
             'disable_updates' => true,
         ];
 
-        $this->assertEquals( $default_args, self::http_app()->get_args());
+        $this->assertEquals( $default_args, $this->http_app()->get_args());
     }
 
     public function test_constants_defined(): void
     {
-        self::http_app()->constants();
+        $this->http_app()->constants();
 
         $const_defaults = [
             'APP_PATH' => '/srv/users/dev/apps/example',
@@ -59,12 +60,12 @@ class HttpKernelTest extends BaseTest
             'WPMU_PLUGIN_URL' => 'https://example.com/mu-plugins',
         ];
 
-        $this->assertIsArray( self::http_app()->get_defined() );
+        $this->assertIsArray( $this->http_app()->get_defined() );
 
-        $count = \count( self::http_app()->get_defined() );
+        $count = \count( $this->http_app()->get_defined() );
 
         $this->assertEquals( 13, $count );
 
-        $this->assertEquals( $const_defaults, self::http_app()->get_defined());
+        $this->assertEquals( $const_defaults, $this->http_app()->get_defined());
     }
 }
