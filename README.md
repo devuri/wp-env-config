@@ -370,7 +370,15 @@ asset_url( "/static" ); // https://example.com/static
 
 > `env()`
 
-The ***env()*** function can be used to get the value of an environment variable.
+The ***env()*** function can be used to get the value of an environment variable converted to simple types.
+
+### Conversions
+
+* `"false"` is converted to boolean `false`
+* `"true"` is converted to boolean `true`
+* `"null"` is converted to `null`
+* If the string contains only numbers is converted to an integer
+* If the string has quotes, remove them
 
 ```php
 
