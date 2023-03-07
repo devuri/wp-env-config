@@ -1,0 +1,19 @@
+{
+  "packages": {
+    ".": {}
+  },
+  "plugins": [],
+  "release-type": "php",
+  "draft": false,
+  "prerelease": true,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "labels": {
+    "feat": "minor",
+    "bug": "patch",
+    "fix": "patch",
+    "test": "patch",
+    "build": "patch",
+    "refactor": "minor"
+  }
+}
