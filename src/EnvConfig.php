@@ -134,8 +134,8 @@ abstract class EnvConfig implements ConfigInterface
         self::define( 'DB_USER', env( 'DB_USER' ) );
         self::define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
         self::define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
-        self::define( 'DB_CHARSET', 'utf8mb4' );
-        self::define( 'DB_COLLATE', '' );
+        self::define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?? 'utf8mb4' );
+        self::define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?? '' );
 
         return $this;
     }
@@ -183,7 +183,9 @@ abstract class EnvConfig implements ConfigInterface
         self::define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
         self::define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
         self::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
-        self::define( 'DEVELOPERADMIN', env( 'DEVELOPERADMIN' ) );
+
+        // Provides an easy way to differentiate a user from other admin users.
+        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
 
         return $this;
     }
