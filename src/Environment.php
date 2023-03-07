@@ -53,10 +53,16 @@ class Environment
     public static function debug(): void
     {
         self::define( 'WP_DEBUG', true );
-        self::define( 'WP_DEBUG_DISPLAY', true );
-
         self::define( 'WP_DEBUG_LOG', true );
-        ini_set( 'display_errors', '0' );
+        self::define( 'WP_DEBUG_DISPLAY', true );
+        self::define( 'CONCATENATE_SCRIPTS', false );
+        self::define( 'SAVEQUERIES', true );
+
+        @error_reporting( E_ALL );
+        @ini_set( 'log_errors', true );
+        @ini_set( 'log_errors_max_len', '0' );
+        @ini_set( 'display_errors', 1 );
+        @ini_set( 'display_startup_errors', 1 );
     }
 
     public static function secure(): void
