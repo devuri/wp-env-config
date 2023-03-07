@@ -183,7 +183,9 @@ abstract class EnvConfig implements ConfigInterface
         self::define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
         self::define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
         self::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
-        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) );
+
+        // Provides an easy way to differentiate a user from other admin users.
+        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
 
         return $this;
     }
