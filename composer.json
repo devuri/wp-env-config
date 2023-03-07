@@ -48,9 +48,9 @@
         "yoast/phpunit-polyfills": "^1.0"
     },
     "autoload": {
-	"files": [
-        "src/inc/helpers.php"
-    ],
+        "files": [
+            "src/inc/helpers.php"
+        ],
         "psr-4": {
             "DevUri\\Config\\": "src"
         }
@@ -61,25 +61,25 @@
         }
     },
     "scripts": {
-        "wpcs":"composer wpcs-lint",
-        "wpcs-lint":[
+        "wpcs": "composer wpcs-lint",
+        "wpcs-lint": [
             "composer install -q",
             "phpcs -ns src"
         ],
-        "wpcs-lint-all":[
+        "wpcs-lint-all": [
             "composer install -q",
             "phpcs -s src"
         ],
-        "wpcs-fix":[
+        "wpcs-fix": [
             "composer install -q",
             "phpcbf src"
         ],
-        "test":[
+        "test": [
             "composer install -q",
             "vendor/bin/phpunit",
             "composer no-dev -q"
         ],
-        "lint":[
+        "lint": [
             "composer install -q",
             "composer phpstan",
             "composer psalm-secure",
@@ -95,16 +95,16 @@
             "composer test",
             "composer no-dev -q"
         ],
-        "phpstan":"@php ./vendor/bin/phpstan analyse",
+        "phpstan": "@php ./vendor/bin/phpstan analyse",
         "psalm": "vendor/bin/psalm",
         "psalm-secure": "vendor/bin/psalm --taint-analysis",
         "psalm-info": "vendor/bin/psalm --show-info=true",
         "psalm-fix-return": "vendor/bin/psalm --alter --issues=MissingReturnType",
         "psalm-autofix": [
-                    "composer install -q",
-                    "vendor/bin/psalm --alter --issues=InvalidNullableReturnType,MismatchingDocblockReturnType,InvalidReturnType,InvalidFalsableReturnType,LessSpecificReturnType,MissingParamType"
+            "composer install -q",
+            "vendor/bin/psalm --alter --issues=InvalidNullableReturnType,MismatchingDocblockReturnType,InvalidReturnType,InvalidFalsableReturnType,LessSpecificReturnType,MissingParamType"
         ],
-        "codefix":[
+        "codefix": [
             "composer php-cs-fixer",
             "composer no-dev -q"
         ],
