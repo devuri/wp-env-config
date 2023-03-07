@@ -4,8 +4,6 @@ require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 
 use DevUri\Config\Setup;
 
-use function Env\env;
-
 /*
  * The base configuration for WordPress
  *
