@@ -1,3 +1,5 @@
+# Set update schedule for each package manager
+
 version: 2
 updates:
 
