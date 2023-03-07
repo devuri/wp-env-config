@@ -93,6 +93,12 @@ $table_prefix = "wp_";
 This should be above the comment `/* That's all, stop editing! Happy publishing. */`
 Thats it, you're done!
 
+#### Developer Admin Account.
+
+The `DEVELOPER_ADMIN` constant is a user ID that uniquely identifies a developer as a **special administrative user** within the environment. This constant can be defined in the env configuration file which can then be used to grant the developer specific privileges and access rights in the web application. 
+
+> It's **important** to note that the use of **this is optional and that this library itself does not grant any special privileges**. The DEVELOPER_ADMIN constant simply provides an easy way to differentiate this user from other administrative users.
+
 ## Advanced Usage
 
 This package will ignore values that are declared before the `Setup::init(__DIR__)->config()` is initialized.
