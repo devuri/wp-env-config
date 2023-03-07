@@ -333,7 +333,7 @@ This will output the following:
 "SECURE_AUTH_SALT" => ""
 "LOGGED_IN_SALT" => ""
 "NONCE_SALT" => ""
-"DEVELOPERADMIN" => null
+"DEVELOPER_ADMIN" => 0
 ```
 
 ## Global helper functions.
