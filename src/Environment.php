@@ -81,4 +81,17 @@ class Environment
         self::define( 'WP_DEBUG_LOG', false );
         ini_set( 'display_errors', '0' );
     }
+
+    public static function env( string $env_type ): void
+    {
+		$types = [
+            'production'  => Environment::production(),
+            'staging'     => Environment::staging(),
+            'debug'       => Environment::debug(),
+            'development' => Environment::development(),
+            'secure'      => Environment::secure(),
+		];
+
+		$types[$env_type];
+    }
 }
