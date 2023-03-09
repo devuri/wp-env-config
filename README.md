@@ -95,7 +95,7 @@ Thats it, you're done!
 
 #### Developer Admin Account.
 
-The `DEVELOPER_ADMIN` constant is a user ID that uniquely identifies a developer as a **special administrative user** within the environment. This constant can be defined in the env configuration file which can then be used to grant the developer specific privileges and access rights in the web application. 
+The `DEVELOPER_ADMIN` constant is a user ID that uniquely identifies a developer as a **special administrative user** within the environment. This constant can be defined in the env configuration file which can then be used to grant the developer specific privileges and access rights in the web application.
 
 > It's **important** to note that the use of **this is optional and that this library itself does not grant any special privileges**. The DEVELOPER_ADMIN constant simply provides an easy way to differentiate this user from other administrative users.
 
@@ -153,7 +153,7 @@ You can tell setup to only use env file for **database** and **salts** by settin
 
 ```php
 // setup for database and salts only.
-Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+Setup::init(__DIR__)->config( 'development', false )->set_environment()->database()->salts()->apply();
 
 ```
 
@@ -253,7 +253,7 @@ list of setup options
 
 ```php
 
-Setup::init(__DIR__)->config(); // production
+Setup::init(__DIR__)->config(); // WP_ENVIRONMENT_TYPE or production  
 
 ```
 
@@ -278,14 +278,19 @@ Setup::init(__DIR__)->config('secure'); // secure
 ```
 
 ```php
-Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+Setup::init(__DIR__)->config(false); // use WP_ENVIRONMENT_TYPE
+
+```
+
+```php
+Setup::init(__DIR__)->config('development', false)->set_environment()->database()->salts()->apply();
 
 ```
 
 
 
 ```php
-dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+dump( Setup::init(__DIR__)->get_environment() ); // Get the current Environment setup.
 
 ```
 

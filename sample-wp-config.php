@@ -39,9 +39,9 @@ use DevUri\Config\Setup;
 //
 // Setup::init(__DIR__)->config('secure'); // secure
 //
-// Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+// Setup::init(__DIR__)->config('development', false )->set_environment()->database()->salts()->apply();
 
-// dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+// dump( Setup::init(__DIR__)->get_environment() ); // Get the current Environment setup.
 
 // Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
 // dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
@@ -105,7 +105,7 @@ use DevUri\Config\Setup;
 
 
 // use false to disable and bypass the default setup process and roll your own.
-// Setup::init(__DIR__)->config( 'development', false )->environment()->database()->salts()->apply();
+// Setup::init(__DIR__)->config( 'development', false )->set_environment()->database()->salts()->apply();
 
 /**
  * WordPress Database Table prefix.

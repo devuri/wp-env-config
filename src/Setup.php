@@ -47,7 +47,7 @@ class Setup extends EnvConfig
         $this->is_required();
 
         // $setup = false allows for bypass of default setup.
-        // Setup::init(__DIR__)->config( 'development', false )->environment()>database()->salts()->apply();
+        // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
         if ( false === $setup ) {
             $this->environment = $environment;
 
@@ -60,19 +60,27 @@ class Setup extends EnvConfig
         }
 
         // default setup.
-        $default     = [
-            'environment' => null,
-            'debug'       => false,
-            'symfony'     => false,
-        ];
-        $environment = array_merge( $default, $environment );
+        $environment = array_merge(
+            [
+                'environment' => null,
+                'debug'       => false,
+                 'symfony'     => false,
+            ],
+            $environment
+        );
 
         // environment.
-        $this->environment = $environment['environment'];
+        if ( is_bool( $environment['environment'] ) ) {
+            $this->environment = $environment['environment'];
+        } elseif ( is_string( $environment['environment'] ) ) {
+            $this->environment = trim( $environment['environment'] );
+        } else {
+            $this->environment = $environment['environment'];
+        }
 
         // do default setup.
         if ( $setup ) {
-            $this->environment()
+            $this->set_environment()
                 ->debug()
                 ->symfony_debug( $environment['symfony'] )
                 ->database()
@@ -92,8 +100,14 @@ class Setup extends EnvConfig
      *
      * @return static
      */
-    public function environment(): ConfigInterface
+    public function set_environment(): ConfigInterface
     {
+        if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
+
+            return $this;
+        }
+
         if ( \is_null( $this->environment ) ) {
             self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
 
@@ -105,6 +119,11 @@ class Setup extends EnvConfig
         return $this;
     }
 
+    private function reset_environment( $reset )
+    {
+        $this->environment = $reset;
+    }
+
     /**
      * Debug Settings.
      *
@@ -112,7 +131,23 @@ class Setup extends EnvConfig
      */
     public function debug(): ConfigInterface
     {
-        // Debugger setup based on environment.
+        if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+
+            $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
+
+        }
+
+        if ( \is_null( $this->environment ) && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+
+            $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
+
+        }
+
+        if ( ! in_array( $this->environment, self::init_settings(), true ) ) {
+            Environment::production();
+            return $this;
+        }
+
         switch ( $this->environment ) {
             case 'production':
                 Environment::production();
@@ -139,6 +174,16 @@ class Setup extends EnvConfig
         }// end switch
 
         return $this;
+    }
+
+    /**
+     * Available Settings.
+     *
+     * @return array
+     */
+    protected static function init_settings(): array
+    {
+        return array( 'production', 'staging', 'debug', 'development', 'secure' );
     }
 
     /**

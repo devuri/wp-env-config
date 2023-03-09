@@ -65,10 +65,10 @@ class HttpKernel
     /**
      * Start the app.
      *
-     * @param string $env_type  the enviroment type
-     * @param bool   $constants load up default constants
+     * @param string|null|false $env_type  the enviroment type
+     * @param bool              $constants load up default constants
      */
-    public function init( string $env_type = 'production', $constants = true ): void
+    public function init( $env_type = null, $constants = true ): void
     {
         Setup::init( $this->get_app_path() )->config( $env_type );
 
