@@ -9,7 +9,7 @@ class Environment
 {
     use ConfigTrait;
 
-    public static function production(): void
+    public static function production()
     {
         // Disable Plugin and Theme Editor.
         self::define( 'DISALLOW_FILE_EDIT', true );
@@ -25,7 +25,7 @@ class Environment
         ini_set( 'display_errors', '0' );
     }
 
-    public static function staging(): void
+    public static function staging()
     {
         self::define( 'DISALLOW_FILE_EDIT', false );
 
@@ -37,7 +37,7 @@ class Environment
         ini_set( 'display_errors', '0' );
     }
 
-    public static function development(): void
+    public static function development()
     {
         self::define( 'WP_DEBUG', true );
         self::define( 'SAVEQUERIES', true );
@@ -50,7 +50,7 @@ class Environment
         ini_set( 'display_errors', '1' );
     }
 
-    public static function debug(): void
+    public static function debug()
     {
         self::define( 'WP_DEBUG', true );
         self::define( 'WP_DEBUG_LOG', true );
@@ -65,7 +65,7 @@ class Environment
         @ini_set( 'display_startup_errors', 1 );
     }
 
-    public static function secure(): void
+    public static function secure()
     {
         // Disable Plugin and Theme Editor.
         self::define( 'DISALLOW_FILE_EDIT', true );
@@ -82,16 +82,16 @@ class Environment
         ini_set( 'display_errors', '0' );
     }
 
-    public static function env( string $env_type ): void
+    public static function env( string $env_type )
     {
 		$types = [
-            'production'  => Environment::production(),
-            'staging'     => Environment::staging(),
-            'debug'       => Environment::debug(),
-            'development' => Environment::development(),
-            'secure'      => Environment::secure(),
+            'production'  => self::production(),
+            'staging'     => self::staging(),
+            'debug'       => self::debug(),
+            'development' => self::development(),
+            'secure'      => self::secure(),
 		];
 
-		$types[$env_type];
+		$types[ $env_type ];
     }
 }

@@ -90,7 +90,7 @@ trait ConfigTrait
      */
     protected static function const( string $key )
     {
-        $constant['environment'] = 'development';
+        $constant['environment'] = 'production';
         $constant['debug']       = true;
         $constant['db_host']     = 'localhost';
         $constant['optimize']    = true;

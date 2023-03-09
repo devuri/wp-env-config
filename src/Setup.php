@@ -60,11 +60,14 @@ class Setup extends EnvConfig
         }
 
         // default setup.
-        $environment = array_merge( [
-            'environment' => null,
-            'debug'       => false,
-            'symfony'     => false,
-        ], $environment );
+        $environment = array_merge(
+            [
+				'environment' => null,
+				'debug'       => false,
+				'symfony'     => false,
+			],
+            $environment
+        );
 
         // environment.
         $this->environment = trim( $environment['environment'] );
@@ -119,7 +122,7 @@ class Setup extends EnvConfig
     {
 		if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
 
-			Environment::env( env( 'WP_ENVIRONMENT_TYPE' ) ); 
+			Environment::env( env( 'WP_ENVIRONMENT_TYPE' ) );
 
             return $this;
         }

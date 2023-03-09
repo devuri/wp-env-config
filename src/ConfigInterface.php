@@ -12,7 +12,7 @@ interface ConfigInterface
      * @param null|array $environment .
      * @param bool       $setup       .
      */
-    public function config( $environment = null, $setup = true);
+    public function config( $environment = null, $setup = true );
 
     /**
      * Debug Settings.
@@ -28,7 +28,7 @@ interface ConfigInterface
      *
      * @return self
      */
-    public function symfony_debug( bool $enable): self;
+    public function symfony_debug( bool $enable ): self;
 
     /**
      * Site Url Settings.
