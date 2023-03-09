@@ -10,6 +10,8 @@ $finder = Symfony\Component\Finder\Finder::create()
 	->notPath('tmp')
 	->notPath('vendor')
 	->notPath('tests/stubs.php')
+	->notPath('wordpress')
+	->notPath('wp')
 	->in([
         __DIR__,
     ])

@@ -19,6 +19,8 @@ class HttpKernel
     use KernelTrait;
 
     protected $app_path    = null;
+    protected $log_file    = null;
+    protected $dir_name    = null;
     protected static $list = [];
     protected static $args = [
         'web_root'        => 'public',
@@ -34,6 +36,13 @@ class HttpKernel
     public function __construct( string $app_path, array $args = [] )
     {
         $this->app_path = $app_path;
+
+        $this->log_file = mb_strtolower( gmdate( 'd-m-Y' ) ) . '.log';
+
+        $this->dir_name = [
+            'month' => mb_strtolower( gmdate( 'm' ) ),
+            'year'  => gmdate( 'Y' ),
+        ];
 
         if ( ! \is_array( $args ) ) {
             throw new Exception( 'Error: args must be of type array ', 1 );
@@ -62,31 +71,39 @@ class HttpKernel
         return self::$args;
     }
 
-	public function overrides( string $file = null )
-	{
-		if ($file) {
-			$config_override_file = $this->app_path . "/$file.php";
-		} else {
-			$config_override_file = $this->app_path . "/config.php";
-		}
+    public function overrides( ?string $file = null )
+    {
+        if ( $file ) {
+            $config_override_file = $this->app_path . "/$file.php";
+        } else {
+            $config_override_file = $this->app_path . '/config.php';
+        }
 
-		if ( file_exists( $config_override_file ) ) {
-		    require_once $config_override_file;
-			return;
-		}
+        if ( file_exists( $config_override_file ) ) {
+            require_once $config_override_file;
 
-		return null;
-	}
+            return;
+        }
+
+        return null;
+    }
 
     /**
      * Start the app.
      *
-     * @param string|null|false $env_type  the enviroment type
+     * @param null|false|string $env_type  the enviroment type
      * @param bool              $constants load up default constants
      */
     public function init( $env_type = null, $constants = true ): void
     {
-        Setup::init( $this->get_app_path() )->config( $env_type );
+        Setup::init( $this->app_path )->config(
+            [
+				'environment' => $env_type,
+				'error_log'   => $this->app_path . '/storage/logs/wp/' . $this->get_log_file(),
+				'debug'       => false,
+				'symfony'     => false,
+			]
+        );
 
         if ( true === $constants ) {
             $this->constants();
@@ -160,6 +177,11 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
+    }
+
+    protected function get_log_file(): string
+    {
+        return $this->dir_name['year'] . '-' . $this->dir_name['month'] . "-debug-$this->log_file.log";
     }
 
     /**

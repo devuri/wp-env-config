@@ -9,6 +9,8 @@ use function Env\env;
  */
 class Setup extends EnvConfig
 {
+    protected $error_log_dir;
+
     /**
      * Constructor.
      *
@@ -46,14 +48,6 @@ class Setup extends EnvConfig
         // check required vars.
         $this->is_required();
 
-        // $setup = false allows for bypass of default setup.
-        // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
-        if ( false === $setup ) {
-            $this->environment = $environment;
-
-            return $this;
-        }
-
         // self::init( __DIR__ )->config('production')
         if ( ! \is_array( $environment ) ) {
             $environment = [ 'environment' => $environment ];
@@ -63,25 +57,37 @@ class Setup extends EnvConfig
         $environment = array_merge(
             [
                 'environment' => null,
+                'error_log'   => null,
                 'debug'       => false,
-                 'symfony'     => false,
+                'symfony'     => false,
             ],
             $environment
         );
 
+        // set error logs dir.
+        $this->error_log_dir = $environment['error_log'];
+
         // environment.
-        if ( is_bool( $environment['environment'] ) ) {
+        if ( \is_bool( $environment['environment'] ) ) {
             $this->environment = $environment['environment'];
-        } elseif ( is_string( $environment['environment'] ) ) {
+        } elseif ( \is_string( $environment['environment'] ) ) {
             $this->environment = trim( $environment['environment'] );
         } else {
             $this->environment = $environment['environment'];
         }
 
+        // $setup = false allows for bypass of default setup.
+        // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
+        if ( false === $setup ) {
+            $this->environment = $environment;
+
+            return $this;
+        }
+
         // do default setup.
         if ( $setup ) {
             $this->set_environment()
-                ->debug()
+                ->debug( $this->error_log_dir )
                 ->symfony_debug( $environment['symfony'] )
                 ->database()
                 ->site_url()
@@ -119,32 +125,24 @@ class Setup extends EnvConfig
         return $this;
     }
 
-    private function reset_environment( $reset )
-    {
-        $this->environment = $reset;
-    }
-
     /**
      * Debug Settings.
      *
      * @return static
      */
-    public function debug(): ConfigInterface
+    public function debug( ?string $error_log_dir = null ): ConfigInterface
     {
         if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
-
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
-
         }
 
         if ( \is_null( $this->environment ) && env( 'WP_ENVIRONMENT_TYPE' ) ) {
-
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
-
         }
 
-        if ( ! in_array( $this->environment, self::init_settings(), true ) ) {
+        if ( ! \in_array( $this->environment, self::init_settings(), true ) ) {
             Environment::production();
+
             return $this;
         }
 
@@ -154,15 +152,15 @@ class Setup extends EnvConfig
 
                 break;
             case 'staging':
-                Environment::staging();
+                Environment::staging( $error_log_dir );
 
                 break;
             case 'debug':
-                Environment::debug();
+                Environment::debug( $error_log_dir );
 
                 break;
             case 'development':
-                Environment::development();
+                Environment::development( $error_log_dir );
 
                 break;
             case 'secure':
@@ -174,16 +172,6 @@ class Setup extends EnvConfig
         }// end switch
 
         return $this;
-    }
-
-    /**
-     * Available Settings.
-     *
-     * @return array
-     */
-    protected static function init_settings(): array
-    {
-        return array( 'production', 'staging', 'debug', 'development', 'secure' );
     }
 
     /**
@@ -260,5 +248,20 @@ class Setup extends EnvConfig
         self::define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?? self::const( 'revisions' ) );
 
         return $this;
+    }
+
+    /**
+     * Available Settings.
+     *
+     * @return array
+     */
+    protected static function init_settings(): array
+    {
+        return [ 'production', 'staging', 'debug', 'development', 'secure' ];
+    }
+
+    private function reset_environment( $reset ): void
+    {
+        $this->environment = $reset;
     }
 }
