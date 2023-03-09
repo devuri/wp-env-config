@@ -31,11 +31,15 @@
     },
     "require": {
         "php": "^7.3 || ^7.4 || ^8.0",
-        "vlucas/phpdotenv": "^5.2",
-        "roots/wp-config": "1.0.0",
+        "johnpbloch/wordpress": "*",
         "oscarotero/env": "^2.1",
+        "roots/wp-config": "1.0.0",
+        "symfony/console": "^5.4",
+        "symfony/error-handler": "^5.1",
+        "symfony/filesystem": "^5.4",
+        "symfony/process": "^5.4",
         "symfony/var-dumper": "^5.1.4",
-        "symfony/error-handler": "^5.1"
+        "vlucas/phpdotenv": "^5.2"
     },
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
@@ -109,7 +113,7 @@
             "composer no-dev -q"
         ],
         "php-cs-fixer": [
-            "composer require --dev friendsofphp/php-cs-fixer -q",
+            "composer require --dev friendsofphp/php-cs-fixer ^3.13 -q",
             "vendor/bin/php-cs-fixer fix",
             "composer remove --dev friendsofphp/php-cs-fixer -q",
             "composer install --no-dev -q"
