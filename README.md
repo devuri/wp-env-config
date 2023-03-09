@@ -174,7 +174,7 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 // run setup.
 $http_app = new Kernel(__DIR__);
 
-// start enviroment with defined constants and directory structure.
+// start environment with defined constants and directory structure.
 $http_app->init('development'); // development | staging | production | secure
 
 /**
