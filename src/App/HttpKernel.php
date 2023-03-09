@@ -62,6 +62,22 @@ class HttpKernel
         return self::$args;
     }
 
+	public function overrides( string $file = null )
+	{
+		if ($file) {
+			$config_override_file = $this->app_path . "/$file.php";
+		} else {
+			$config_override_file = $this->app_path . "/config.php";
+		}
+
+		if ( file_exists( $config_override_file ) ) {
+		    require_once $config_override_file;
+			return;
+		}
+
+		return null;
+	}
+
     /**
      * Start the app.
      *
