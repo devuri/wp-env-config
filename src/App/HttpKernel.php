@@ -73,10 +73,10 @@ class HttpKernel
 
     public function overrides( ?string $file = null )
     {
-        if ($file) {
+        if ( $file ) {
             $config_override_file = $this->app_path . "/$file.php";
         } else {
-            $config_override_file = $this->app_path . "/config.php";
+            $config_override_file = $this->app_path . '/config.php';
         }
 
         if ( file_exists( $config_override_file ) ) {
@@ -96,12 +96,14 @@ class HttpKernel
      */
     public function init( $env_type = null, $constants = true ): void
     {
-        Setup::init( $this->app_path )->config( [
-            'environment' => $env_type,
-            'error_log'   => $this->app_path . "/storage/logs/wp/" . $this->get_log_file(),
-            'debug'       => false,
-            'symfony'     => false,
-        ] );
+        Setup::init( $this->app_path )->config(
+            [
+				'environment' => $env_type,
+				'error_log'   => $this->app_path . '/storage/logs/wp/' . $this->get_log_file(),
+				'debug'       => false,
+				'symfony'     => false,
+			]
+        );
 
         if ( true === $constants ) {
             $this->constants();
