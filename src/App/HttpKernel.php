@@ -99,7 +99,7 @@ class HttpKernel
         Setup::init( $this->app_path )->config(
             [
 				'environment' => $env_type,
-				'error_log'   => $this->app_path . '/storage/logs/wp/' . $this->get_log_file(),
+				'error_log'   => $this->app_path . '/storage/logs/wp-errors/' . $this->get_log_file(),
 				'debug'       => false,
 				'symfony'     => false,
 			]
