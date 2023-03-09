@@ -253,7 +253,7 @@ list of setup options
 
 ```php
 
-Setup::init(__DIR__)->config(); // production
+Setup::init(__DIR__)->config(); // WP_ENVIRONMENT_TYPE or production  
 
 ```
 

@@ -62,15 +62,21 @@ class Setup extends EnvConfig
         // default setup.
         $environment = array_merge(
             [
-				'environment' => null,
-				'debug'       => false,
-				'symfony'     => false,
-			],
+                'environment' => null,
+                'debug'       => false,
+                 'symfony'     => false,
+            ],
             $environment
         );
 
         // environment.
-        $this->environment = trim( $environment['environment'] );
+        if ( is_bool( $environment['environment'] ) ) {
+            $this->environment = $environment['environment'];
+        } elseif ( is_string( $environment['environment'] ) ) {
+            $this->environment = trim( $environment['environment'] );
+        } else {
+            $this->environment = $environment['environment'];
+        }
 
         // do default setup.
         if ( $setup ) {
@@ -96,7 +102,7 @@ class Setup extends EnvConfig
      */
     public function set_environment(): ConfigInterface
     {
-		if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+        if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
             self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
 
             return $this;
@@ -113,6 +119,11 @@ class Setup extends EnvConfig
         return $this;
     }
 
+    private function reset_environment( $reset )
+    {
+        $this->environment = $reset;
+    }
+
     /**
      * Debug Settings.
      *
@@ -120,17 +131,22 @@ class Setup extends EnvConfig
      */
     public function debug(): ConfigInterface
     {
-		if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+        if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
 
-			Environment::env( env( 'WP_ENVIRONMENT_TYPE' ) );
+            $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
 
-            return $this;
         }
 
-		if ( ! in_array( $this->environment, self::init_settings(), true ) ) {
-		    Environment::production();
-			return $this;
-		}
+        if ( \is_null( $this->environment ) && env( 'WP_ENVIRONMENT_TYPE' ) ) {
+
+            $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
+
+        }
+
+        if ( ! in_array( $this->environment, self::init_settings(), true ) ) {
+            Environment::production();
+            return $this;
+        }
 
         switch ( $this->environment ) {
             case 'production':
@@ -160,15 +176,15 @@ class Setup extends EnvConfig
         return $this;
     }
 
-	/**
-	 * Available Settings.
-	 *
-	 * @return array
-	 */
-	protected static function init_settings(): array
-	{
-		return array( 'production', 'staging', 'debug', 'development', 'secure' );
-	}
+    /**
+     * Available Settings.
+     *
+     * @return array
+     */
+    protected static function init_settings(): array
+    {
+        return array( 'production', 'staging', 'debug', 'development', 'secure' );
+    }
 
     /**
      * Site Url Settings.
