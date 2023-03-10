@@ -9,8 +9,6 @@ use function Env\env;
  */
 class Setup extends EnvConfig
 {
-    protected $error_log_dir;
-
     /**
      * Constructor.
      *
@@ -67,6 +65,9 @@ class Setup extends EnvConfig
         // set error logs dir.
         $this->error_log_dir = $environment['error_log'];
 
+        // symfony error handler.
+        $this->error_handler = (bool) $environment['symfony'];
+
         // environment.
         if ( \is_bool( $environment['environment'] ) ) {
             $this->environment = $environment['environment'];
@@ -88,7 +89,7 @@ class Setup extends EnvConfig
         if ( $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
-                ->symfony_debug( $environment['symfony'] )
+                ->symfony_error_handler()
                 ->database()
                 ->site_url()
                 ->asset_url()

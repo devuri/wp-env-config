@@ -37,9 +37,23 @@ abstract class EnvConfig implements ConfigInterface
     /**
      * The $environment.
      *
-     * @var
+     * @var array|string
      */
     protected $environment;
+
+    /**
+     * Symfony error handler.
+     *
+     * @var bool
+     */
+    protected $error_handler;
+
+    /**
+     * Error log dir.
+     *
+     * @var array
+     */
+    protected $error_log_dir;
 
     /**
      * Constructor.
@@ -96,9 +110,9 @@ abstract class EnvConfig implements ConfigInterface
      *
      * @return static
      */
-    public function symfony_debug( bool $enable = false ): ConfigInterface
+    public function symfony_error_handler(): ConfigInterface
     {
-        if ( false === $enable ) {
+        if ( ! $this->enable_error_handler() ) {
             return $this;
         }
 
@@ -188,6 +202,15 @@ abstract class EnvConfig implements ConfigInterface
         self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
 
         return $this;
+    }
+
+    protected function enable_error_handler(): bool
+    {
+        if ( $this->error_handler ) {
+            return true;
+        }
+
+        return false;
     }
 
     // required vars.

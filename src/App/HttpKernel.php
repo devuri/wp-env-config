@@ -98,11 +98,11 @@ class HttpKernel
     {
         Setup::init( $this->app_path )->config(
             [
-				'environment' => $env_type,
-				'error_log'   => $this->app_path . '/storage/logs/wp-errors/' . $this->get_log_file(),
-				'debug'       => false,
-				'symfony'     => false,
-			]
+                'environment' => $env_type,
+                'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
+                'debug'       => false,
+                'symfony'     => false,
+            ]
         );
 
         if ( true === $constants ) {
@@ -177,11 +177,6 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
-    }
-
-    protected function get_log_file(): string
-    {
-        return $this->dir_name['year'] . '-' . $this->dir_name['month'] . "-debug-$this->log_file.log";
     }
 
     /**
