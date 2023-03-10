@@ -98,10 +98,12 @@ trait ConfigTrait
 
         if ( ! \defined( 'WP_DEBUG' ) ) {
             $this->config_map = [ 'disabled' ];
+			return;
         }
 
-        if ( false === WP_DEBUG ) {
+        if ( defined( 'WP_DEBUG') && false === WP_DEBUG ) {
             $this->config_map = [ 'disabled' ];
+			return;
         }
 
         if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
