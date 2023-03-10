@@ -92,7 +92,7 @@ trait ConfigTrait
         return $constant[ $key ] ?? null;
     }
 
-    private function set_config_map(): ?array
+    private function set_config_map(): void
     {
         $configClass = 'Roots\WPConfig\Config';
 
