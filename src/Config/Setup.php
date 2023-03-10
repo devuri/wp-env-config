@@ -10,7 +10,7 @@ use Symfony\Component\ErrorHandler\Debug;
 /**
  * Setup WP Config.
  */
-class Setup
+class Setup implements ConfigInterface
 {
     use ConfigTrait;
 
