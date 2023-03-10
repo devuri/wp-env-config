@@ -77,10 +77,22 @@ class Setup extends EnvConfig
             $this->environment = $environment['environment'];
         }
 
-        // $setup = false allows for bypass of default setup.
+        // set $setup to null allows us to short-circuit and bypass setup for more granular control.
         // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
-        if ( false === $setup ) {
+        if ( \is_null( $setup ) ) {
             $this->environment = $environment;
+
+            return $this;
+        }
+
+        // $setup = false allows for bypass of default setup.
+        if ( false === $setup ) {
+            $this->set_environment()
+                ->debug( $this->error_log_dir )
+                ->symfony_error_handler()
+                ->database()
+                ->salts()
+                ->apply();
 
             return $this;
         }

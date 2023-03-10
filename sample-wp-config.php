@@ -39,7 +39,7 @@ use DevUri\Config\Setup;
 //
 // Setup::init(__DIR__)->config('secure'); // secure
 //
-// Setup::init(__DIR__)->config('development', false )->set_environment()->database()->salts()->apply();
+// Setup::init(__DIR__)->config('development', false );
 
 // dump( Setup::init(__DIR__)->get_environment() ); // Get the current Environment setup.
 
