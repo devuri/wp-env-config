@@ -56,28 +56,35 @@ trait ConfigTrait
     /**
      * Display a list of constants defined by Setup.
      *
-     * Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
+     * Retrieves a list of constants defined by the Setup class,
+     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
+     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
      *
-     * @return null|array list of constants defined.
+     * @return null|array Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
      */
-    public function configMap(): ?array
+    private function set_config_map(): ?array
     {
-        $configClass = 'Config';
+        $configClass = 'Roots\WPConfig\Config';
 
         if ( ! \defined( 'WP_DEBUG' ) ) {
-            return null;
+            $this->config_map = [ 'disabled' ];
         }
 
         if ( false === WP_DEBUG ) {
-            return null;
+            $this->config_map = [ 'disabled' ];
         }
 
-        if ( 'development' === env( 'WP_ENVIRONMENT_TYPE' ) ) {
-            return ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+        if ( in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
+            $this->config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
         }
 
-        return null;
     }
+
+	public function get_config_map(): ?array
+	{
+		return $this->config_map;
+	}
+
     /**
      * Env defaults,.
      *
