@@ -28,7 +28,7 @@ interface ConfigInterface
      *
      * @return self
      */
-    public function symfony_error_handler( bool $enable ): self;
+    public function symfony_error_handler(): self;
 
     /**
      * Site Url Settings.
