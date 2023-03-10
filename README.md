@@ -121,17 +121,27 @@ or simply use `Setup::get( 'FORCE_SSL_LOGIN' )`:
 define('FORCE_SSL_LOGIN', Setup::get( 'FORCE_SSL_LOGIN' ) );
 
 ```
-After setup we can define other constant in the normal way or using `env` function, remember to include with use `use function Env\env;` when using the `env` function:
+After setup we can define other constant in the normal way or using `env` function.
 
 ```php
-use function Env\env;
-
 define('FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) );
 
 ```
 Both `Setup::get( 'FORCE_SSL_LOGIN' )` and `env( 'FORCE_SSL_LOGIN' )` will grab the value from .env file.
 
+**Additional setup options.**
 
+Here are some additional options for the `Setup`, the `config()` options can accept an array of values.
+
+```php
+Setup::init( __DIR__ )->config(
+	[
+		'environment' => 'staging',
+		'error_log'   => "/tmp/logs/wp-errors/debug.log", // set log file location.
+		'symfony'     => false, // use symfony ErrorHandler (only works if WP_DEBUG is true)
+	]
+);
+```
 
 **Hardening and secure setup mode.**
 
