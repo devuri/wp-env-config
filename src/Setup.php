@@ -79,7 +79,7 @@ class Setup extends EnvConfig
 
         // set $setup to null allows us to short-circuit and bypass setup for more granular control.
         // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
-        if ( is_null( $setup ) ) {
+        if ( \is_null( $setup ) ) {
             $this->environment = $environment;
 
             return $this;
