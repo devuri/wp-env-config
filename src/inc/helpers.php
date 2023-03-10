@@ -45,7 +45,7 @@ if ( ! \function_exists( 'env' ) ) {
      *
      * @see https://github.com/oscarotero/env
      */
-    function env( string $name ): string
+    function env( string $name )
     {
         return Env::get( $name );
     }

@@ -2,21 +2,84 @@
 
 namespace DevUri\Config;
 
-use function Env\env;
+use Dotenv\Dotenv;
+use Env\Env;
+use Exception;
+use Symfony\Component\ErrorHandler\Debug;
 
 /**
  * Setup WP Config.
  */
-class Setup extends EnvConfig
+class Setup implements ConfigInterface
 {
+    use ConfigTrait;
+
+    /**
+     * list of constants defined by Setup.
+     *
+     * @var array
+     */
+    protected $config_map = [ 'disabled' ];
+
+    /**
+     *  Directory $path.
+     */
+    protected $path;
+
+    /**
+     *  Dotenv $env.
+     */
+    protected $env;
+
+    /**
+     * Private $instance.
+     *
+     * @var
+     */
+    protected static $instance;
+
+    /**
+     * The $environment.
+     *
+     * @var array|string
+     */
+    protected $environment;
+
+    /**
+     * Symfony error handler.
+     *
+     * @var bool
+     */
+    protected $error_handler;
+
+    /**
+     * Error log dir.
+     *
+     * @var array
+     */
+    protected $error_log_dir;
+
     /**
      * Constructor.
      *
-     * @param string $path use required __DIR__
+     * @param array|string $path current Directory.
      */
-    public function __construct( string $path )
+    public function __construct( $path )
     {
-        parent::__construct( $path );
+        $this->path = $path;
+
+        $dotenv    = Dotenv::createImmutable( $this->path );
+        $this->env = $dotenv;
+
+        try {
+            $dotenv->load();
+        } catch ( Exception $e ) {
+            exit( $e->getMessage() );
+        }
+
+        Env::$options = Env::USE_ENV_ARRAY;
+
+        $this->set_config_map();
     }
 
     /**
@@ -134,6 +197,36 @@ class Setup extends EnvConfig
         }
 
         self::define( 'WP_ENVIRONMENT_TYPE', $this->environment );
+
+        return $this;
+    }
+
+    /**
+     * Get the current Environment setup.
+     *
+     * @return string.
+     */
+    public function get_environment(): string
+    {
+        return $this->environment;
+    }
+
+    /**
+     * Symfony Debug.
+     *
+     * @param bool $enable
+     *
+     * @return static
+     */
+    public function symfony_error_handler(): ConfigInterface
+    {
+        if ( ! $this->enable_error_handler() ) {
+            return $this;
+        }
+
+        if ( \defined( 'WP_DEBUG' ) && ( true === WP_DEBUG ) ) {
+            Debug::enable();
+        }
 
         return $this;
     }
@@ -264,6 +357,46 @@ class Setup extends EnvConfig
     }
 
     /**
+     * DB settings.
+     *
+     * @return static
+     */
+    public function database(): ConfigInterface
+    {
+        self::define( 'DB_NAME', env( 'DB_NAME' ) );
+        self::define( 'DB_USER', env( 'DB_USER' ) );
+        self::define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
+        self::define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
+        self::define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?? 'utf8mb4' );
+        self::define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?? '' );
+
+        return $this;
+    }
+
+
+    /**
+     * Authentication Unique Keys and Salts.
+     *
+     * @return static
+     */
+    public function salts(): ConfigInterface
+    {
+        self::define( 'AUTH_KEY', env( 'AUTH_KEY' ) );
+        self::define( 'SECURE_AUTH_KEY', env( 'SECURE_AUTH_KEY' ) );
+        self::define( 'LOGGED_IN_KEY', env( 'LOGGED_IN_KEY' ) );
+        self::define( 'NONCE_KEY', env( 'NONCE_KEY' ) );
+        self::define( 'AUTH_SALT', env( 'AUTH_SALT' ) );
+        self::define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
+        self::define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
+        self::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
+
+        // Provides an easy way to differentiate a user from other admin users.
+        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
+
+        return $this;
+    }
+
+    /**
      * Available Settings.
      *
      * @return array
@@ -271,6 +404,44 @@ class Setup extends EnvConfig
     protected static function init_settings(): array
     {
         return [ 'production', 'staging', 'debug', 'development', 'secure' ];
+    }
+
+    protected function enable_error_handler(): bool
+    {
+        if ( $this->error_handler ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    // required vars.
+    protected function is_required(): void
+    {
+        try {
+            // site url is required but can be overridden in wp-config.php
+            $this->required( 'WP_HOME' );
+            $this->required( 'WP_SITEURL' );
+
+            // db vars must be defined in .env.
+            $this->env->required( 'DB_HOST' )->notEmpty();
+            $this->env->required( 'DB_NAME' )->notEmpty();
+            $this->env->required( 'DB_USER' )->notEmpty();
+            $this->env->required( 'DB_PASSWORD' )->notEmpty();
+
+            // salts must be defined in .env.
+            $this->env->required( 'AUTH_KEY' )->notEmpty();
+            $this->env->required( 'SECURE_AUTH_KEY' )->notEmpty();
+            $this->env->required( 'LOGGED_IN_KEY' )->notEmpty();
+            $this->env->required( 'NONCE_KEY' )->notEmpty();
+            $this->env->required( 'AUTH_SALT' )->notEmpty();
+            $this->env->required( 'SECURE_AUTH_SALT' )->notEmpty();
+            $this->env->required( 'LOGGED_IN_SALT' )->notEmpty();
+            $this->env->required( 'NONCE_SALT' )->notEmpty();
+        } catch ( Exception $e ) {
+            var_dump( $e->getMessage() );
+            exit();
+        }// end try
     }
 
     private function reset_environment( $reset ): void

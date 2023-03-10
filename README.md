@@ -307,10 +307,12 @@ dump( Setup::init(__DIR__)->get_environment() ); // Get the current Environment 
 
 ## List of Environment Constants.
 
-Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
+Retrieves a list of constants defined by the Setup class,
+but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
+If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
 
 ```php
-dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
+dump( Setup::init(__DIR__)->get_config_map() ); // Display a list of constants defined by Setup.
 ```
 
 This will output the following:
