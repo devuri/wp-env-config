@@ -162,8 +162,8 @@ This will disable both file editor and installer for themes and plugins.
 You can tell setup to only use env file for **database** and **salts** by setting the second param as false:
 
 ```php
-// setup for database and salts only.
-Setup::init(__DIR__)->config( 'development', false )->set_environment()->database()->salts()->apply();
+// setup for database and salts and debug only.
+Setup::init(__DIR__)->config( 'development', false );
 
 ```
 
@@ -293,7 +293,7 @@ Setup::init(__DIR__)->config(false); // use WP_ENVIRONMENT_TYPE
 ```
 
 ```php
-Setup::init(__DIR__)->config('development', false)->set_environment()->database()->salts()->apply();
+Setup::init(__DIR__)->config('development', false); // bypass of default setup.
 
 ```
 
