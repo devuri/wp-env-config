@@ -14,12 +14,12 @@ class Setup
 {
     use ConfigTrait;
 
-	/**
-	 * list of constants defined by Setup.
-	 *
-	 * @var array
-	 */
-	protected $config_map = [ 'disabled' ];
+    /**
+     * list of constants defined by Setup.
+     *
+     * @var array
+     */
+    protected $config_map = [ 'disabled' ];
 
     /**
      *  Directory $path.
@@ -79,7 +79,7 @@ class Setup
 
         Env::$options = Env::USE_ENV_ARRAY;
 
-		$this->set_config_map();
+        $this->set_config_map();
     }
 
     /**
@@ -357,21 +357,6 @@ class Setup
     }
 
     /**
-     * Available Settings.
-     *
-     * @return array
-     */
-    protected static function init_settings(): array
-    {
-        return [ 'production', 'staging', 'debug', 'development', 'secure' ];
-    }
-
-    private function reset_environment( $reset ): void
-    {
-        $this->environment = $reset;
-    }
-
-    /**
      * DB settings.
      *
      * @return static
@@ -411,6 +396,16 @@ class Setup
         return $this;
     }
 
+    /**
+     * Available Settings.
+     *
+     * @return array
+     */
+    protected static function init_settings(): array
+    {
+        return [ 'production', 'staging', 'debug', 'development', 'secure' ];
+    }
+
     protected function enable_error_handler(): bool
     {
         if ( $this->error_handler ) {
@@ -447,5 +442,10 @@ class Setup
             var_dump( $e->getMessage() );
             exit();
         }// end try
+    }
+
+    private function reset_environment( $reset ): void
+    {
+        $this->environment = $reset;
     }
 }

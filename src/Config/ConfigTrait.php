@@ -62,28 +62,10 @@ trait ConfigTrait
      *
      * @return null|array Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
      */
-    private function set_config_map(): ?array
+    public function get_config_map(): ?array
     {
-        $configClass = 'Roots\WPConfig\Config';
-
-        if ( ! \defined( 'WP_DEBUG' ) ) {
-            $this->config_map = [ 'disabled' ];
-        }
-
-        if ( false === WP_DEBUG ) {
-            $this->config_map = [ 'disabled' ];
-        }
-
-        if ( in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
-            $this->config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
-        }
-
+        return $this->config_map;
     }
-
-	public function get_config_map(): ?array
-	{
-		return $this->config_map;
-	}
 
     /**
      * Env defaults,.
@@ -108,5 +90,22 @@ trait ConfigTrait
         $constant['revisions']   = 10;
 
         return $constant[ $key ] ?? null;
+    }
+
+    private function set_config_map(): ?array
+    {
+        $configClass = 'Roots\WPConfig\Config';
+
+        if ( ! \defined( 'WP_DEBUG' ) ) {
+            $this->config_map = [ 'disabled' ];
+        }
+
+        if ( false === WP_DEBUG ) {
+            $this->config_map = [ 'disabled' ];
+        }
+
+        if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
+            $this->config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+        }
     }
 }
