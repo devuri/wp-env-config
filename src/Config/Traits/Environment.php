@@ -7,9 +7,9 @@ namespace DevUri\Config\Traits;
  */
 trait Environment
 {
-	/**
-	 * Secure.
-	 */
+    /**
+     * Secure.
+     */
     public function env_secure(): void
     {
         // Disable Plugin and Theme Editor.
@@ -22,13 +22,13 @@ trait Environment
         self::define( 'WP_CRON_LOCK_TIMEOUT', 120 );
         self::define( 'EMPTY_TRASH_DAYS', 10 );
 
-		if ( $this->error_log_dir ) {
-			self::define( 'WP_DEBUG', true );
-	        self::define( 'WP_DEBUG_LOG', $this->error_log_dir );
-		} else {
-			self::define( 'WP_DEBUG', false );
-			self::define( 'WP_DEBUG_LOG', false );
-		}
+        if ( $this->error_log_dir ) {
+            self::define( 'WP_DEBUG', true );
+            self::define( 'WP_DEBUG_LOG', $this->error_log_dir );
+        } else {
+            self::define( 'WP_DEBUG', false );
+            self::define( 'WP_DEBUG_LOG', false );
+        }
 
         ini_set( 'display_errors', '0' );
     }
@@ -44,13 +44,13 @@ trait Environment
         self::define( 'WP_CRON_LOCK_TIMEOUT', 60 );
         self::define( 'EMPTY_TRASH_DAYS', 15 );
 
-		if ( $this->error_log_dir ) {
-			self::define( 'WP_DEBUG', true );
-	        self::define( 'WP_DEBUG_LOG', $this->error_log_dir );
-		} else {
-			self::define( 'WP_DEBUG', false );
-			self::define( 'WP_DEBUG_LOG', false );
-		}
+        if ( $this->error_log_dir ) {
+            self::define( 'WP_DEBUG', true );
+            self::define( 'WP_DEBUG_LOG', $this->error_log_dir );
+        } else {
+            self::define( 'WP_DEBUG', false );
+            self::define( 'WP_DEBUG_LOG', false );
+        }
 
         ini_set( 'display_errors', '0' );
     }
@@ -82,9 +82,9 @@ trait Environment
         self::set_debug_log( $this->error_log_dir );
     }
 
-	/**
-	 * Debug.
-	 */
+    /**
+     * Debug.
+     */
     public function env_debug(): void
     {
         self::define( 'WP_DEBUG', true );
@@ -101,9 +101,9 @@ trait Environment
         @ini_set( 'display_startup_errors', 1 );
     }
 
-	/**
-	 * Set debug environment.
-	 */
+    /**
+     * Set debug environment.
+     */
     protected function set_debug_log(): void
     {
         if ( $this->error_log_dir ) {

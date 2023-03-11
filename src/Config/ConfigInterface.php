@@ -17,6 +17,8 @@ interface ConfigInterface
     /**
      * Debug Settings.
      *
+     * @param mixed $error_log_dir
+     *
      * @return self
      */
     public function debug( $error_log_dir ): self;
@@ -28,7 +30,7 @@ interface ConfigInterface
      *
      * @return self
      */
-    public function symfony_error_handler(): self;
+    public function set_error_handler( ?string $handler = null ): self;
 
     /**
      * Site Url Settings.

@@ -15,6 +15,7 @@ class HttpKernel
     protected $app_path    = null;
     protected $log_file    = null;
     protected $dir_name    = null;
+    protected $app_setup   = null;
     protected static $list = [];
     protected static $args = [
         'web_root'        => 'public',
@@ -53,6 +54,8 @@ class HttpKernel
         if ( \is_array( $app_error ) ) {
             throw new Exception( 'Error: ' . $app_error['message'], 2 );
         }
+
+        $this->app_setup = Setup::init( $this->app_path );
     }
 
     public function get_app_path(): string
@@ -65,7 +68,14 @@ class HttpKernel
         return self::$args;
     }
 
-    public function overrides( ?string $file = null )
+    /**
+     * Setup overrides.
+     *
+     * @param string $file custom file example overrisdes.php
+     *
+     * @return void
+     */
+    public function overrides( ?string $file = null ): void
     {
         if ( $file ) {
             $config_override_file = $this->app_path . "/$file.php";
@@ -75,29 +85,24 @@ class HttpKernel
 
         if ( file_exists( $config_override_file ) ) {
             require_once $config_override_file;
-
-            return;
         }
-
-        return null;
     }
 
     /**
      * Start the app.
      *
-     * @param null|false|string $env_type  the enviroment type
-     * @param bool              $constants load up default constants
+     * @param null|array|false|string $env_type  the enviroment type
+     * @param bool                    $constants load up default constants
      */
     public function init( $env_type = null, $constants = true ): void
     {
-        Setup::init( $this->app_path )->config(
-            [
-                'environment' => $env_type,
-                'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
-                'debug'       => false,
-                'symfony'     => false,
-            ]
-        );
+        if ( \is_array( $env_type ) ) {
+            $this->app_setup->config(
+                array_merge( $this->get_default_environment(), $env_type )
+            );
+        } else {
+            $this->app_setup->config( $this->get_default_environment() );
+        }
 
         if ( true === $constants ) {
             $this->constants();
@@ -171,6 +176,21 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
+    }
+
+    /**
+     * Set App defaults.
+     *
+     * @return array
+     */
+    protected function get_default_environment(): array
+    {
+        return [
+            'environment' => $env_type,
+            'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
+            'debug'       => false,
+            'errors'      => 'symfony',
+        ];
     }
 
     /**

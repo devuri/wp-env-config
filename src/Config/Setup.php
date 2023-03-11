@@ -2,11 +2,11 @@
 
 namespace DevUri\Config;
 
+use DevUri\Config\Traits\ConfigTrait;
+use DevUri\Config\Traits\Environment;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
-use DevUri\Config\Traits\ConfigTrait;
-use DevUri\Config\Traits\Environment;
 
 /**
  * Setup WP Config.
@@ -120,7 +120,8 @@ class Setup implements ConfigInterface
                 'environment' => null,
                 'error_log'   => null,
                 'debug'       => false,
-                'symfony'     => false,
+                // set error handler framework 'symfony' or 'oops'
+                'errors'      => 'symfony',
             ],
             $environment
         );
@@ -129,7 +130,7 @@ class Setup implements ConfigInterface
         $this->error_log_dir = $environment['error_log'] ?? false;
 
         // symfony error handler.
-        $this->error_handler = (bool) $environment['symfony'];
+        $this->error_handler = $environment['errors'];
 
         // environment.
         if ( \is_bool( $environment['environment'] ) ) {
@@ -152,7 +153,7 @@ class Setup implements ConfigInterface
         if ( false === $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
-                ->symfony_error_handler()
+                ->set_error_handler()
                 ->database()
                 ->salts()
                 ->apply();
@@ -164,7 +165,7 @@ class Setup implements ConfigInterface
         if ( $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
-                ->symfony_error_handler()
+                ->set_error_handler()
                 ->database()
                 ->site_url()
                 ->asset_url()
@@ -212,20 +213,28 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Symfony Debug.
+     * Set error handler.
      *
      * @param bool $enable
      *
      * @return static
      */
-    public function symfony_error_handler(): ConfigInterface
+    public function set_error_handler( ?string $handler = null ): ConfigInterface
     {
         if ( ! $this->enable_error_handler() ) {
             return $this;
         }
 
-        if ( 'debug' === $this->environment ) {
+        if ( 'debug' !== $this->environment ) {
+            return $this;
+        }
+
+        if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
+        } elseif ( 'oops' ===  $this->error_handler ) {
+            $whoops = new \Whoops\Run();
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+            $whoops->register();
         }
 
         return $this;
@@ -233,6 +242,8 @@ class Setup implements ConfigInterface
 
     /**
      * Debug Settings.
+     *
+     * @param mixed $error_log_dir
      *
      * @return static
      */
