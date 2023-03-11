@@ -4,7 +4,6 @@ namespace DevUri\Config;
 
 use function Env\env;
 
-use Exception;
 use ReflectionClass;
 use Roots\WPConfig\Config;
 
@@ -33,18 +32,6 @@ trait ConfigTrait
         if ( ! \defined( $name ) ) {
             // @phpstan-ignore-next-line.
             $this->env->required( $name )->notEmpty();
-        }
-    }
-
-    /**
-     * @return null|string
-     */
-    public static function get( string $name )
-    {
-        try {
-            Config::get( $name );
-        } catch ( Exception $e ) {
-            return $e->getMessage();
         }
     }
 
@@ -98,12 +85,14 @@ trait ConfigTrait
 
         if ( ! \defined( 'WP_DEBUG' ) ) {
             $this->config_map = [ 'disabled' ];
-			return;
+
+            return;
         }
 
-        if ( defined( 'WP_DEBUG') && false === WP_DEBUG ) {
+        if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
             $this->config_map = [ 'disabled' ];
-			return;
+
+            return;
         }
 
         if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {

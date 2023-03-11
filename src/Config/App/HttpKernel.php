@@ -4,9 +4,6 @@ namespace DevUri\Config\App;
 
 use DevUri\Config\App\Traits\KernelTrait;
 use DevUri\Config\Setup;
-
-use function Env\env;
-
 use Exception;
 
 /**

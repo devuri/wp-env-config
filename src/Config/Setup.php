@@ -3,7 +3,6 @@
 namespace DevUri\Config;
 
 use Dotenv\Dotenv;
-use Env\Env;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
 
@@ -76,8 +75,6 @@ class Setup implements ConfigInterface
         } catch ( Exception $e ) {
             exit( $e->getMessage() );
         }
-
-        Env::$options = Env::USE_ENV_ARRAY;
 
         $this->set_config_map();
     }
@@ -224,7 +221,7 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-        if ( \defined( 'WP_DEBUG' ) && ( true === WP_DEBUG ) ) {
+        if ( 'debug' === $this->environment ) {
             Debug::enable();
         }
 
@@ -442,6 +439,22 @@ class Setup implements ConfigInterface
             var_dump( $e->getMessage() );
             exit();
         }// end try
+    }
+
+    /**
+     * Get Env value or return null.
+     *
+     * @param string $name the env var name.
+     *
+     * @return mixed
+     */
+    private static function get_env( string $name )
+    {
+        if ( \is_null( env( $name ) ) ) {
+            return null;
+        }
+
+        return env( $name );
     }
 
     private function reset_environment( $reset ): void
