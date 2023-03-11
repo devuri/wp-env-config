@@ -221,7 +221,7 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-		if ( 'debug' === $this->environment) {
+		if ( 'debug' === $this->environment ) {
 			Debug::enable();
 		}
 

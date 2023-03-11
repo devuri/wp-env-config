@@ -89,7 +89,7 @@ trait ConfigTrait
 			return;
         }
 
-        if ( defined( 'WP_DEBUG') && false === WP_DEBUG ) {
+        if ( defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
             $this->config_map = [ 'disabled' ];
 			return;
         }
