@@ -121,7 +121,7 @@ class Setup implements ConfigInterface
                 'error_log'   => null,
                 'debug'       => false,
                 // set error handler framework 'symfony' or 'oops'
-                'errors'      => 'symfony',
+                'errors'      => false,
             ],
             $environment
         );
@@ -215,7 +215,7 @@ class Setup implements ConfigInterface
     /**
      * Set error handler.
      *
-     * @param bool $enable
+     * @param string $handler overridde for $this->error_handler
      *
      * @return static
      */
@@ -228,6 +228,10 @@ class Setup implements ConfigInterface
         if ( 'debug' !== $this->environment ) {
             return $this;
         }
+
+		if ( $handler ) {
+			$this->error_handler = $handler;
+		}
 
         if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
