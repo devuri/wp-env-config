@@ -32,7 +32,6 @@
     "require": {
         "php": "^7.3 || ^7.4 || ^8.0",
         "johnpbloch/wordpress": "*",
-        "oscarotero/env": "^2.1",
         "roots/wp-config": "1.0.0",
         "symfony/console": "^5.4",
         "symfony/error-handler": "^5.1",

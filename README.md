@@ -113,21 +113,17 @@ define('FORCE_SSL_LOGIN', true );
 Setup::init(__DIR__)->config();
 
 ```
-or simply use `Setup::get( 'FORCE_SSL_LOGIN' )`:
 
-```php
-
-// FORCE_SSL_LOGIN.
-define('FORCE_SSL_LOGIN', Setup::get( 'FORCE_SSL_LOGIN' ) );
-
-```
 After setup we can define other constant in the normal way or using `env` function.
 
 ```php
+define('FORCE_SSL_LOGIN', false );
+
+// or to .env value
 define('FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) );
 
 ```
-Both `Setup::get( 'FORCE_SSL_LOGIN' )` and `env( 'FORCE_SSL_LOGIN' )` will grab the value from .env file.
+The `env( 'FORCE_SSL_LOGIN' )` will grab the value from .env file.
 
 **Additional setup options.**
 
@@ -145,6 +141,7 @@ Setup::init( __DIR__ )->config(
 
 **Hardening and secure setup mode.**
 
+This is the **most secure** setup suitable for **e-commerce** or mission critical web applications.
 
 ```php
 // secure setup mode:
@@ -153,7 +150,7 @@ Setup::init(__DIR__)->config('secure');
 ```
 This will disable both file editor and installer for themes and plugins.
 
-> **note** you will need to update plugins and theme manually or manage updates with composer.
+> **note** you will need to update plugins and theme manually or manage updates with composer (recommended).
 
 
 ## Only use env for Salts and Database config.
@@ -199,15 +196,13 @@ $table_prefix = Kernel::env('DB_PREFIX');
 The Kernel setup follows a more project based WordPress Skeleton structure, with the following top-level files and directories:
 
 ```shell
+# This is how the Kernel structure might look.
 
 ├── .env
 ├── config.php
 ├── composer.json
 ├── composer.lock
-├── package.json
-├── package-lock.json
 ├── wp-cli.yml
-├── README.md
 ├── LICENSE
 ├── public
     ├── assets
@@ -222,12 +217,10 @@ The Kernel setup follows a more project based WordPress Skeleton structure, with
     ├── index.php
     ├── wp-config.php
     └── wp
-├── src
-├── storage
-    ├── backup
-    ├── cache
-    └── logs
 ├── vendor
+
+# IMPORTANT: DO NOT attempt this structure, unless you are sure of what you are doing.
+# This can affect the entire web application and cause errors or unexpected behavior.
 ```
 
 We can also opt not to use the Kernel WordPress Skeleton, assuming we are working on a full site build structure, and define our own by setting second **init** param to **false** `$http_app->init('development', false)` .
@@ -300,7 +293,8 @@ Setup::init(__DIR__)->config('development', false); // bypass of default setup.
 
 
 ```php
-dump( Setup::init(__DIR__)->get_environment() ); // Get the current Environment setup.
+// Get the current Environment.
+dump( Setup::init(__DIR__)->get_environment() ); // 'development'
 
 ```
 
@@ -399,14 +393,17 @@ The ***env()*** function can be used to get the value of an environment variable
 
 * `"false"` is converted to boolean `false`
 * `"true"` is converted to boolean `true`
-* `"null"` is converted to `null`
+* `"null"` is converted to string `""`
+* `"123"` is converted to integer `123`
 * If the string contains only numbers is converted to an integer
-* If the string has quotes, remove them
+* The `strtolower` function is applied on output.
 
 ```php
 
 env('FOO');
 
+// or diable `strtolower`
+env('FOO', false);
 ```
 
 

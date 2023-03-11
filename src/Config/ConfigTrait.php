@@ -36,18 +36,6 @@ trait ConfigTrait
         }
     }
 
-    /**
-     * @return null|string
-     */
-    public static function get( string $name )
-    {
-        try {
-            Config::get( $name );
-        } catch ( Exception $e ) {
-            return $e->getMessage();
-        }
-    }
-
     public function apply(): void
     {
         Config::apply();
