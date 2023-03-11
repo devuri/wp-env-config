@@ -231,9 +231,9 @@ class Setup implements ConfigInterface
 
         if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
-        } elseif ( 'oops' ===  $this->error_handler ) {
+        } elseif ( 'oops' === $this->error_handler ) {
             $whoops = new \Whoops\Run();
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+            $whoops->pushHandler( new \Whoops\Handler\PrettyPageHandler() );
             $whoops->register();
         }
 
