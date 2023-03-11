@@ -5,6 +5,8 @@ namespace DevUri\Config;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
+use DevUri\Config\Traits\ConfigTrait;
+use DevUri\Config\Traits\Environment;
 
 /**
  * Setup WP Config.
@@ -12,6 +14,7 @@ use Symfony\Component\ErrorHandler\Debug;
 class Setup implements ConfigInterface
 {
     use ConfigTrait;
+    use Environment;
 
     /**
      * list of constants defined by Setup.
@@ -123,7 +126,7 @@ class Setup implements ConfigInterface
         );
 
         // set error logs dir.
-        $this->error_log_dir = $environment['error_log'];
+        $this->error_log_dir = $environment['error_log'] ?? false;
 
         // symfony error handler.
         $this->error_handler = (bool) $environment['symfony'];
@@ -233,7 +236,7 @@ class Setup implements ConfigInterface
      *
      * @return static
      */
-    public function debug( ?string $error_log_dir = null ): ConfigInterface
+    public function debug( $error_log_dir ): ConfigInterface
     {
         if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
@@ -244,34 +247,34 @@ class Setup implements ConfigInterface
         }
 
         if ( ! \in_array( $this->environment, self::init_settings(), true ) ) {
-            Environment::production();
+            $this->env_production();
 
             return $this;
         }
 
         switch ( $this->environment ) {
             case 'production':
-                Environment::production();
+                $this->env_production();
 
                 break;
             case 'staging':
-                Environment::staging( $error_log_dir );
+                $this->env_staging( $error_log_dir );
 
                 break;
             case 'debug':
-                Environment::debug( $error_log_dir );
+                $this->env_debug( $error_log_dir );
 
                 break;
             case 'development':
-                Environment::development( $error_log_dir );
+                $this->env_development( $error_log_dir );
 
                 break;
             case 'secure':
-                Environment::secure();
+                $this->env_secure( $error_log_dir );
 
                 break;
             default:
-                Environment::production();
+                $this->env_production();
         }// end switch
 
         return $this;

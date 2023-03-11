@@ -19,7 +19,7 @@ interface ConfigInterface
      *
      * @return self
      */
-    public function debug(): self;
+    public function debug( $error_log_dir ): self;
 
     /**
      * Symfony Debug.

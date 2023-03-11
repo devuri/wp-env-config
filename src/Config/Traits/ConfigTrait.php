@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config;
+namespace DevUri\Config\Traits;
 
 use function Env\env;
 

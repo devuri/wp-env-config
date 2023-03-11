@@ -2,7 +2,6 @@
 
 namespace DevUri\Config\App;
 
-use DevUri\Config\App\Traits\KernelTrait;
 use DevUri\Config\Setup;
 use Exception;
 
@@ -13,8 +12,6 @@ use Exception;
  */
 class HttpKernel
 {
-    use KernelTrait;
-
     protected $app_path    = null;
     protected $log_file    = null;
     protected $dir_name    = null;
