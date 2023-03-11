@@ -98,10 +98,10 @@ class HttpKernel
     {
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(
-                array_merge( $this->get_default_environment(), $env_type )
+                array_merge( $this->get_environment(), $env_type )
             );
         } else {
-            $this->app_setup->config( $this->get_default_environment() );
+            $this->app_setup->config( $this->get_environment( $env_type ) );
         }
 
         if ( true === $constants ) {
@@ -181,12 +181,14 @@ class HttpKernel
     /**
      * Set App defaults.
      *
-     * @return array
+     * @return (false|null|string)[]
+     *
+     * @psalm-return array{environment: null, error_log: string, debug: false, errors: 'symfony'}
      */
-    protected function get_default_environment(): array
+    protected function get_environment(): array
     {
         return [
-            'environment' => $env_type,
+            'environment' => null,
             'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
             'debug'       => false,
             'errors'      => 'symfony',
@@ -198,11 +200,12 @@ class HttpKernel
      *
      * @since WordPress 5.2.0
      *
-     * @return null|array Error information returned by `error_get_last()`, or null
-     *                    if none was recorded or the error should not be handled.
+     * @return (int|string)[]|null Error information returned by `error_get_last()`, or null if none was recorded or the error should not be handled.
      *
      * @see https://github.com/WordPress/wordpress-develop/blob/6.0/src/wp-includes/class-wp-fatal-error-handler.php
      * @see https://www.php.net/manual/en/function.error-get-last.php
+     *
+     * @psalm-return array{type: int, message: string, file: string, line: int}|null
      */
     protected static function detect_error(): ?array
     {
