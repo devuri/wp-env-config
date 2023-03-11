@@ -221,9 +221,9 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-		if ( 'debug' === $this->environment ) {
-			Debug::enable();
-		}
+        if ( 'debug' === $this->environment ) {
+            Debug::enable();
+        }
 
         return $this;
     }
@@ -441,20 +441,21 @@ class Setup implements ConfigInterface
         }// end try
     }
 
-	/**
-	 * Get Env value or return null
-	 *
-	 * @param  string $name the env var name.
-	 * @return mixed
-	 */
-	private static function get_env( string $name )
-	{
-		if ( is_null( env( $name ) ) ) {
-			return null;
-		}
+    /**
+     * Get Env value or return null.
+     *
+     * @param string $name the env var name.
+     *
+     * @return mixed
+     */
+    private static function get_env( string $name )
+    {
+        if ( \is_null( env( $name ) ) ) {
+            return null;
+        }
 
-		return env( $name );
-	}
+        return env( $name );
+    }
 
     private function reset_environment( $reset ): void
     {

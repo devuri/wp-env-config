@@ -46,15 +46,15 @@ if ( ! \function_exists( 'env' ) ) {
      */
     function env( string $name, bool $strtolower = true )
     {
-		if ( ! isset( $_ENV[ $name ] ) ) {
-			return null;
-		}
+        if ( ! isset( $_ENV[ $name ] ) ) {
+            return null;
+        }
 
-		if ( is_int_val( $_ENV[ $name ] ) ) {
-			return (int) $_ENV[ $name ];
-		}
+        if ( is_int_val( $_ENV[ $name ] ) ) {
+            return (int) $_ENV[ $name ];
+        }
 
-		switch ( strtolower( $_ENV[ $name ] ) ) {
+        switch ( strtolower( $_ENV[ $name ] ) ) {
             case 'true':
                 return true;
 
@@ -65,22 +65,24 @@ if ( ! \function_exists( 'env' ) ) {
                 return '';
         }
 
-		if ( $strtolower ) {
-			return strtolower( $_ENV[ $name ] );
-		}
+        if ( $strtolower ) {
+            return strtolower( $_ENV[ $name ] );
+        }
 
-		return $_ENV[ $name ];
+        return $_ENV[ $name ];
     }
-}//end if
+}// end if
 
 if ( ! \function_exists( 'is_int_val' ) ) {
-	/**
-	 * Check if a string is an integer value.
-	 *
-	 * @param string $str The string to check.
-	 * @return bool Returns true if the string is an integer value, and false otherwise.
-	 */
-	function is_int_val( $str ) {
-	    return is_numeric( $str ) && intval( $str ) == $str;
-	}
+    /**
+     * Check if a string is an integer value.
+     *
+     * @param string $str The string to check.
+     *
+     * @return bool Returns true if the string is an integer value, and false otherwise.
+     */
+    function is_int_val( $str )
+    {
+        return is_numeric( $str ) && \intval( $str ) == $str;
+    }
 }
