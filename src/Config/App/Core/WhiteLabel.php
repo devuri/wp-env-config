@@ -8,7 +8,7 @@
  * for full copyright and license information.
  */
 
-namespace App\Core;
+namespace DevUri\Config\App\Core;
 
 /**
  * white label class.
