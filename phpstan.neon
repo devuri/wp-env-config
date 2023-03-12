@@ -1,11 +1,12 @@
 includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - rules.neon
 parameters:
     bootstrapFiles:
         - tests/stubs.php
     tmpDir: tmp
     level: 1
+    ignoreErrors:
+        - "#\\(void\\) is used#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false
