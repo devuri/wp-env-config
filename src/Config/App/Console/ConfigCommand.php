@@ -11,9 +11,9 @@ class ConfigCommand extends Command
 {
     protected static $defaultName = 'config';
 
-    private $files_dir;
+    private $root_dir_path;
 
-    public function __construct( $files_dir )
+    public function __construct( $root_dir_path )
     {
         parent::__construct();
     }

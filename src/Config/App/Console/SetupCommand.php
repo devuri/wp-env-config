@@ -13,16 +13,16 @@ class SetupCommand extends Command
     protected static $defaultName = 'setup';
 
     private $filesystem;
-    private $files_dir;
+    private $root_dir_path;
 
-    public function __construct( Filesystem $filesystem, $files_dir )
+    public function __construct( $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
         $this->filesystem = $filesystem;
         $this->files      = [
-            'env'      => $files_dir . '/.env',
-            'htaccess' => $files_dir . '/public/.htaccess',
-            'robots'   => $files_dir . '/public/robots.txt',
+            'env'      => $root_dir_path . '/.env',
+            'htaccess' => $root_dir_path . '/public/.htaccess',
+            'robots'   => $root_dir_path . '/public/robots.txt',
         ];
     }
 
@@ -38,7 +38,7 @@ class SetupCommand extends Command
 
         if ( ! $this->filesystem->exists( $this->files['env'] ) ) {
             $output->writeln( '<comment>.env file does not exist. we will use .env-example.</comment>' );
-            $this->filesystem->rename( $this->files_dir . '.env-example', $this->files['env'] );
+            $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
         }
 
         foreach ( $this->files as $key => $file ) {
