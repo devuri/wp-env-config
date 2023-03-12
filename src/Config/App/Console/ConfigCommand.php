@@ -24,7 +24,7 @@ class ConfigCommand extends Command
             ->addArgument( '_task', InputArgument::OPTIONAL, 'The task that nino needs to perform.', false );
     }
 
-    protected function execute( InputInterface $input, OutputInterface $output )
+    protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $config_task = $input->getArgument( '_task' );
 

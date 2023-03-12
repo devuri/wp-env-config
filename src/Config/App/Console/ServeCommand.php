@@ -23,7 +23,7 @@ class ServeCommand extends Command
             ->addOption( 'ini', null, InputOption::VALUE_REQUIRED, 'The path to the php.ini file to use.', 'public/.user.ini' );
     }
 
-    protected function execute( InputInterface $input, OutputInterface $output )
+    protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $port    = $input->getOption( 'port' );
         $host    = $input->getOption( 'host' );

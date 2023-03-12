@@ -32,7 +32,7 @@ class SetupCommand extends Command
             ->addArgument( '_domain', InputArgument::REQUIRED, 'The replacement domain.' );
     }
 
-    protected function execute( InputInterface $input, OutputInterface $output )
+    protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $replacementDomain = $input->getArgument( '_domain' );
 
