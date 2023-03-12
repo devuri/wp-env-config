@@ -31,7 +31,7 @@ class Nino
     {
         $app = new Application();
 
-        $setup     = new SetupCommand( new Filesystem(), $this->root_dir );
+        $setup     = new SetupCommand( $this->root_dir, new Filesystem() );
         $installer = new InstallerCommand( $this->root_dir );
         $database  = new DatabaseCommand();
         $config    = new ConfigCommand( $this->root_dir );
