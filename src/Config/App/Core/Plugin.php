@@ -32,6 +32,7 @@ class Plugin
 					return;
 				}
 
+				// @phpstan-ignore-next-line
 				$env_label = strtoupper( HTTP_ENV_CONFIG );
 
 				$admin_bar->add_menu(
@@ -55,7 +56,7 @@ class Plugin
         return new WhiteLabel();
     }
 
-    public static function init()
+    public static function init(): self
     {
         return new self();
     }

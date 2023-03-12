@@ -36,14 +36,14 @@ class Setup implements ConfigInterface
     /**
      * Private $instance.
      *
-     * @var
+     * @var self
      */
     protected static $instance;
 
     /**
      * The $environment.
      *
-     * @var array|string
+     * @var string[]
      */
     protected $environment;
 
@@ -273,19 +273,19 @@ class Setup implements ConfigInterface
 
                 break;
             case 'staging':
-                $this->env_staging( $error_log_dir );
+                $this->env_staging();
 
                 break;
             case 'debug':
-                $this->env_debug( $error_log_dir );
+                $this->env_debug();
 
                 break;
             case 'development':
-                $this->env_development( $error_log_dir );
+                $this->env_development();
 
                 break;
             case 'secure':
-                $this->env_secure( $error_log_dir );
+                $this->env_secure();
 
                 break;
             default:

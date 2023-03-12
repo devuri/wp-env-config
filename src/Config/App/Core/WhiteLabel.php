@@ -76,18 +76,19 @@ class WhiteLabel
      *
      * @return void
      */
-    public function remove_admin_wp_logo( $wp_admin_bar ): void
+    public function remove_admin_wp_logo( object $wp_admin_bar ): void
     {
+		// @phpstan-ignore-next-line
         $wp_admin_bar->remove_node( 'wp-logo' );
     }
 
     /**
      * change_footer_text.
      *
-     * @return void
+     * @return string
      */
-    public function change_footer_text(): void
+    public function change_footer_text(): string
     {
-        echo wp_kses_post( '&copy; ' . $this->date_year . ' <a href="' . $this->home_url . '" target="_blank">' . $this->site_name . '</a> All Rights Reserved. ' . $this->powered_by );
+        return wp_kses_post( '&copy; ' . $this->date_year . ' <a href="' . $this->home_url . '" target="_blank">' . $this->site_name . '</a> All Rights Reserved. ' . $this->powered_by );
     }
 }

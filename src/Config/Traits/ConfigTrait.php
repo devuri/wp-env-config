@@ -2,8 +2,6 @@
 
 namespace DevUri\Config\Traits;
 
-use function Env\env;
-
 use ReflectionClass;
 use Roots\WPConfig\Config;
 
@@ -47,7 +45,7 @@ trait ConfigTrait
      * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
      * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
      *
-     * @return array Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
+     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
      */
     public function get_config_map(): array
     {

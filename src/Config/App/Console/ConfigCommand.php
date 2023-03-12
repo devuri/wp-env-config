@@ -16,6 +16,7 @@ class ConfigCommand extends Command
     public function __construct( string $root_dir_path )
     {
         parent::__construct();
+		$this->root_dir_path = $root_dir_path;
     }
 
     protected function configure(): void
