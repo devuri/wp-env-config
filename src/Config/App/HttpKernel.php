@@ -109,6 +109,9 @@ class HttpKernel
             $this->app_setup->config( $this->environment_args( $env_type ) );
         }
 
+        // make env available.
+        $this->define( 'HTTP_ENV_CONFIG', $this->app_setup->get_environment() );
+
         if ( true === $constants ) {
             $this->constants();
         }

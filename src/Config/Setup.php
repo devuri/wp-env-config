@@ -229,9 +229,9 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-		if ( $handler ) {
-			$this->error_handler = $handler;
-		}
+        if ( $handler ) {
+            $this->error_handler = $handler;
+        }
 
         if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
