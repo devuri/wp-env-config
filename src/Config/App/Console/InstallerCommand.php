@@ -17,7 +17,7 @@ class InstallerCommand extends Command
     private $password;
     private $admin_email;
 
-    public function __construct( $root_dir_path )
+    public function __construct( string $root_dir_path )
     {
         parent::__construct();
         $this->wp_path        = $root_dir_path . '/public/wp/';
@@ -35,6 +35,11 @@ class InstallerCommand extends Command
             ->addArgument( '_password', InputArgument::OPTIONAL, 'Admin password', null );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         // Include the necessary WordPress files

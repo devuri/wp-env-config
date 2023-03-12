@@ -65,7 +65,7 @@ trait Environment
         self::define( 'WP_DEBUG', true );
         ini_set( 'display_errors', '0' );
 
-        self::set_debug_log( $this->error_log_dir );
+        self::set_debug_log();
     }
 
     public function env_development(): void
@@ -79,7 +79,7 @@ trait Environment
         self::define( 'SCRIPT_DEBUG', true );
         ini_set( 'display_errors', '1' );
 
-        self::set_debug_log( $this->error_log_dir );
+        self::set_debug_log();
     }
 
     /**
@@ -92,13 +92,13 @@ trait Environment
         self::define( 'CONCATENATE_SCRIPTS', false );
         self::define( 'SAVEQUERIES', true );
 
-        self::set_debug_log( $this->error_log_dir );
+        self::set_debug_log();
 
         @error_reporting( E_ALL );
-        @ini_set( 'log_errors', true );
+        @ini_set( 'log_errors', '1' );
         @ini_set( 'log_errors_max_len', '0' );
-        @ini_set( 'display_errors', 1 );
-        @ini_set( 'display_startup_errors', 1 );
+        @ini_set( 'display_errors', '1' );
+        @ini_set( 'display_startup_errors', '1' );
     }
 
     /**

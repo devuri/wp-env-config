@@ -1,12 +1,15 @@
 includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
     bootstrapFiles:
         - tests/stubs.php
     tmpDir: tmp
-    level: 1
+    level: max
     ignoreErrors:
         - "#\\(void\\) is used#"
+        - "#Access to an undefined property#"
+        - "#Property [^:]+::\\$[^ ]+ has no type specified.#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false

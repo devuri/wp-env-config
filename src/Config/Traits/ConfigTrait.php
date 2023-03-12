@@ -16,7 +16,7 @@ trait ConfigTrait
      * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
      *
      * @param string      $name  constant name.
-     * @param bool|string $value constant value
+     * @param mixed $value constant value
      *
      * @return void
      */

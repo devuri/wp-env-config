@@ -11,7 +11,7 @@ abstract class Console extends Command
 {
     protected $root_dir_path;
 
-    public function __construct( $root_dir_path )
+    public function __construct( string $root_dir_path )
     {
         parent::__construct();
 
@@ -24,6 +24,9 @@ abstract class Console extends Command
             ->addArgument( '_task', InputArgument::OPTIONAL, 'The input.', false );
     }
 
+    /**
+     * @return int
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         return Command::SUCCESS;

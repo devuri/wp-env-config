@@ -13,7 +13,7 @@ class ConfigCommand extends Command
 
     private $root_dir_path;
 
-    public function __construct( $root_dir_path )
+    public function __construct( string $root_dir_path )
     {
         parent::__construct();
     }
@@ -24,6 +24,9 @@ class ConfigCommand extends Command
             ->addArgument( '_task', InputArgument::OPTIONAL, 'The task that nino needs to perform.', false );
     }
 
+    /**
+     * @return int
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $config_task = $input->getArgument( '_task' );

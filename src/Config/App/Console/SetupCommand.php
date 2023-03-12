@@ -15,7 +15,7 @@ class SetupCommand extends Command
     private $filesystem;
     private $root_dir_path;
 
-    public function __construct( $root_dir_path, Filesystem $filesystem )
+    public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
         $this->filesystem = $filesystem;
@@ -32,6 +32,9 @@ class SetupCommand extends Command
             ->addArgument( '_domain', InputArgument::REQUIRED, 'The replacement domain.' );
     }
 
+    /**
+     * @return int
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $replacementDomain = $input->getArgument( '_domain' );
@@ -72,6 +75,11 @@ class SetupCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return array<string, string>
+     */
     private function saltToArray(): array
     {
         $salts   = file_get_contents( 'https://api.wordpress.org/secret-key/1.1/salt/' );

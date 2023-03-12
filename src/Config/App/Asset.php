@@ -11,7 +11,7 @@ class Asset
      * Or optionally in the main config file.
      *
      * @param string     $asset path to the asset like: "/images/thing.png"
-     * @param null|mixed $path
+     * @param null|string $path
      *
      * @return string
      */

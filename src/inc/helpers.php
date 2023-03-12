@@ -10,7 +10,7 @@ if ( ! \function_exists( 'asset' ) ) {
      * Or optionally in the main config file.
      *
      * @param string     $asset path to the asset like: "/images/thing.png"
-     * @param null|mixed $path
+     * @param null|string $path
      *
      * @return string
      */
@@ -81,7 +81,7 @@ if ( ! \function_exists( 'is_int_val' ) ) {
      *
      * @return bool Returns true if the string is an integer value, and false otherwise.
      */
-    function is_int_val( $str )
+    function is_int_val( string $str )
     {
         return is_numeric( $str ) && \intval( $str ) == $str;
     }

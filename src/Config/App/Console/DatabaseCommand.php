@@ -35,6 +35,11 @@ class DatabaseCommand extends Command
         $this->addOption( 'ver', 'dv', InputArgument::OPTIONAL, 'Get the version of the MySQL server.' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $operation    = $input->getArgument( 'operation' );
