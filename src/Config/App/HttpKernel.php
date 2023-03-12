@@ -58,6 +58,11 @@ class HttpKernel
         $this->app_setup = Setup::init( $this->app_path );
     }
 
+    public function get_app(): Setup
+    {
+        return $this->app_setup;
+    }
+
     public function get_app_path(): string
     {
         return $this->app_path;
