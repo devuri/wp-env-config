@@ -17,28 +17,37 @@ class Plugin
         self::add_white_label();
 
         // Remove wp version.
-        add_filter('the_generator', function() {
-            return null;
-        });
+        add_filter(
+            'the_generator',
+            function() {
+				return null;
+			}
+        );
 
         // Add the env type to admin bar.
-        add_action('admin_bar_menu', function ( $admin_bar ): void {
-            if ( ! current_user_can('manage_options') ) {
-                return;
-            }
+        add_action(
+            'admin_bar_menu',
+            function ( $admin_bar ): void {
+				if ( ! current_user_can( 'manage_options' ) ) {
+					return;
+				}
 
-            $env_label = strtoupper( HTTP_ENV_CONFIG );
+				$env_label = strtoupper( HTTP_ENV_CONFIG );
 
-            $admin_bar->add_menu( [
-                'id'    => 'wp-app-environment',
-                'title' => wp_kses_post(":: Env $env_label ::"),
-                'href'  => '#',
-                'meta'  => [
-                    'title' => __("Environment: $env_label"),
-                    'class' => 'qm-warning',
-                ],
-            ]);
-        }, 1199);
+				$admin_bar->add_menu(
+                    [
+						'id'    => 'wp-app-environment',
+						'title' => wp_kses_post( ":: Env $env_label ::" ),
+						'href'  => '#',
+						'meta'  => [
+							'title' => __( "Environment: $env_label" ),
+							'class' => 'qm-warning',
+						],
+                    ]
+				);
+			},
+            1199
+        );
     }
 
     public static function add_white_label(): WhiteLabel

@@ -6,7 +6,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 class InstallerCommand extends Command
@@ -21,11 +20,11 @@ class InstallerCommand extends Command
     public function __construct( $root_dir_path )
     {
         parent::__construct();
-        $this->wp_path = $root_dir_path . '/public/wp/';
-        $this->site_title = strtoupper(self::generate_password( 5 ));
-        $this->admin_user = 'admin' . self::generate_password( 6 );
+        $this->wp_path        = $root_dir_path . '/public/wp/';
+        $this->site_title     = strtoupper( self::generate_password( 5 ) );
+        $this->admin_user     = 'admin' . self::generate_password( 6 );
         $this->admin_password = self::generate_password( 12 );
-        $this->admin_email = 'admin@' . self::generate_password( 8 ) . '.com';
+        $this->admin_email    = 'admin@' . self::generate_password( 8 ) . '.com';
     }
 
     protected function configure(): void
@@ -51,11 +50,13 @@ class InstallerCommand extends Command
         // Install WordPress
         $output->writeln( '<info>Starting WordPress Installer:</info>' );
 
-
-		$command = sprintf(
-			'core install --url=localhost:8080 --title=%s --admin_name=%s --admin_password=%s --admin_email=%s',
-			$site_title, $admin_user, $admin_password, $this->admin_email
-		);
+        $command = sprintf(
+            'core install --url=localhost:8000 --title=%s --admin_name=%s --admin_password=%s --admin_email=%s',
+            $site_title,
+            $admin_user,
+            $admin_password,
+            $this->admin_email
+        );
 
         $process = new Process( [ 'wp', $command ] );
         $process->run();
@@ -71,12 +72,12 @@ class InstallerCommand extends Command
         return Command::SUCCESS;
 
         $output->writeln( '<info>WordPress Installed Successfully!</info>' );
-        $output->writeln( "<info>site: $site_title</info> ");
-        $output->writeln( "<info>user: $admin_user</info> ");
-        $output->writeln( "<info>email: $this->admin_email</info> ");
-        $output->writeln( "<info>password: $admin_password</info> ");
+        $output->writeln( "<info>site: $site_title</info> " );
+        $output->writeln( "<info>user: $admin_user</info> " );
+        $output->writeln( "<info>email: $this->admin_email</info> " );
+        $output->writeln( "<info>password: $admin_password</info> " );
 
-		// history -c
+        // history -c
 
         return Command::SUCCESS;
     }
@@ -95,7 +96,7 @@ class InstallerCommand extends Command
         for ( $i = 0; $i < $length; $i++ ) {
             if ( 0 === $i ) {
                 $password .= $characters[ rand( 0, 51 ) ];
-            // First character must be a letter
+				// First character must be a letter
             } else {
                 $password .= $characters[ rand( 0, 61 ) ];
                 // Any character

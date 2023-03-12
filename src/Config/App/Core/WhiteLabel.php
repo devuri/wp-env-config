@@ -15,25 +15,25 @@ namespace DevUri\Config\App\Core;
  */
 class WhiteLabel
 {
-	protected $apt9_url;
-	protected $home_url;
-	protected $date_year;
-	protected $site_name;
-	protected $powered_by;
+    protected $apt9_url;
+    protected $home_url;
+    protected $date_year;
+    protected $site_name;
+    protected $powered_by;
 
-	public function __construct()
-	{
-		$this->apt9_url   = "https://github.com/devuri/apt9-framework";
-		$this->home_url   = home_url();
-		$this->date_year  = gmdate( 'Y' );
-		$this->site_name  = get_bloginfo( 'name' );
-		$this->powered_by = apply_filters( 'apt9_powered_by', 'Powered by the Apt9 Framework.' );
+    public function __construct()
+    {
+        $this->apt9_url   = 'https://github.com/devuri/apt9-framework';
+        $this->home_url   = home_url();
+        $this->date_year  = gmdate( 'Y' );
+        $this->site_name  = get_bloginfo( 'name' );
+        $this->powered_by = apply_filters( 'apt9_powered_by', 'Powered by the Apt9 Framework.' );
 
         // add_action( 'wp_before_admin_bar_render', [ $this, 'logout_link' ] );
         add_action( 'admin_bar_menu', [ $this, 'remove_admin_wp_logo' ], 99 );
         add_filter( 'admin_footer_text', [ $this, 'change_footer_text' ] );
         add_action( 'wp_dashboard_setup', [ $this, 'remove_dashboard_widgets' ], 99 );
-	}
+    }
 
     /**
      * Remove the Widgets ( do a check if the user can manage_options )
@@ -88,6 +88,6 @@ class WhiteLabel
      */
     public function change_footer_text(): void
     {
-        echo wp_kses_post('&copy; ' . $this->date_year . ' <a href="' . $this->home_url . '" target="_blank">' . $this->site_name . '</a> All Rights Reserved. '. $this->powered_by);
+        echo wp_kses_post( '&copy; ' . $this->date_year . ' <a href="' . $this->home_url . '" target="_blank">' . $this->site_name . '</a> All Rights Reserved. ' . $this->powered_by );
     }
 }
