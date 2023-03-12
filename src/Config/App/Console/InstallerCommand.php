@@ -30,8 +30,8 @@ class InstallerCommand extends Command
     {
         $this->setDescription( 'Install WordPress' )
             ->addArgument( 'site_title', InputArgument::REQUIRED, 'Site title', null )
-            ->addArgument( 'admin_user', InputArgument::VALUE_REQUIRED, 'Admin username', null )
-            ->addArgument( '_password', InputArgument::VALUE_REQUIRED, 'Admin password', null );
+            ->addArgument( 'admin_user', InputArgument::OPTIONAL, 'Admin username', null )
+            ->addArgument( '_password', InputArgument::OPTIONAL, 'Admin password', null );
     }
 
     protected function execute( InputInterface $input, OutputInterface $output ): int
