@@ -14,10 +14,7 @@ class Plugin
 {
     public function __construct()
     {
-        // add_action( 'wp_before_admin_bar_render', [ WhiteLabel::class, 'logout_link' ] );
-        add_action( 'admin_bar_menu', [ WhiteLabel::class, 'remove_admin_wp_logo' ], 99 );
-        add_filter( 'admin_footer_text', [ WhiteLabel::class, 'change_footer_text' ] );
-        add_action( 'wp_dashboard_setup', [ WhiteLabel::class, 'remove_dashboard_widgets' ], 99 );
+        self::add_white_label();
 
         // Remove wp version.
         add_filter('the_generator', function() {
@@ -42,6 +39,11 @@ class Plugin
                 ],
             ]);
         }, 1199);
+    }
+
+    public static function add_white_label(): WhiteLabel
+    {
+        return new WhiteLabel();
     }
 
     public static function init()
