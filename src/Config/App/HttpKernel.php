@@ -103,10 +103,10 @@ class HttpKernel
     {
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(
-                array_merge( $this->get_environment(), $env_type )
+                array_merge( $this->environment_args(), $env_type )
             );
         } else {
-            $this->app_setup->config( $this->get_environment( $env_type ) );
+            $this->app_setup->config( $this->environment_args( $env_type ) );
         }
 
         if ( true === $constants ) {
@@ -190,7 +190,7 @@ class HttpKernel
      *
      * @psalm-return array{environment: null, error_log: string, debug: false, errors: 'symfony'}
      */
-    protected function get_environment(): array
+    protected function environment_args(): array
     {
         return [
             'environment' => null,
