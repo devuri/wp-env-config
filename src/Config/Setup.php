@@ -2,6 +2,8 @@
 
 namespace DevUri\Config;
 
+use DevUri\Config\Traits\ConfigTrait;
+use DevUri\Config\Traits\Environment;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
@@ -12,6 +14,7 @@ use Symfony\Component\ErrorHandler\Debug;
 class Setup implements ConfigInterface
 {
     use ConfigTrait;
+    use Environment;
 
     /**
      * list of constants defined by Setup.
@@ -33,14 +36,14 @@ class Setup implements ConfigInterface
     /**
      * Private $instance.
      *
-     * @var
+     * @var self
      */
     protected static $instance;
 
     /**
      * The $environment.
      *
-     * @var array|string
+     * @var string[]
      */
     protected $environment;
 
@@ -84,7 +87,7 @@ class Setup implements ConfigInterface
      *
      * @param $path
      */
-    public static function init( string $path ): ConfigInterface
+    public static function init( string $path ): self
     {
         if ( ! isset( self::$instance ) ) {
             self::$instance = new self( $path );
@@ -96,12 +99,12 @@ class Setup implements ConfigInterface
     /**
      * Runs config setup with default setting.
      *
-     * @param null|array $environment .
-     * @param bool       $setup       .
+     * @param null|string[] $environment .
+     * @param bool          $setup       .
      *
-     * @return null|static
+     * @return static
      */
-    public function config( $environment = null, $setup = true )
+    public function config( $environment = null, $setup = true ): ConfigInterface
     {
         // check required vars.
         $this->is_required();
@@ -117,16 +120,17 @@ class Setup implements ConfigInterface
                 'environment' => null,
                 'error_log'   => null,
                 'debug'       => false,
-                'symfony'     => false,
+                // set error handler framework 'symfony' or 'oops'
+                'errors'      => false,
             ],
             $environment
         );
 
         // set error logs dir.
-        $this->error_log_dir = $environment['error_log'];
+        $this->error_log_dir = $environment['error_log'] ?? false;
 
         // symfony error handler.
-        $this->error_handler = (bool) $environment['symfony'];
+        $this->error_handler = $environment['errors'];
 
         // environment.
         if ( \is_bool( $environment['environment'] ) ) {
@@ -149,7 +153,7 @@ class Setup implements ConfigInterface
         if ( false === $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
-                ->symfony_error_handler()
+                ->set_error_handler()
                 ->database()
                 ->salts()
                 ->apply();
@@ -161,7 +165,7 @@ class Setup implements ConfigInterface
         if ( $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
-                ->symfony_error_handler()
+                ->set_error_handler()
                 ->database()
                 ->site_url()
                 ->asset_url()
@@ -172,6 +176,8 @@ class Setup implements ConfigInterface
                 ->salts()
                 ->apply();
         }
+
+        return $this;
     }
 
     /**
@@ -201,28 +207,42 @@ class Setup implements ConfigInterface
     /**
      * Get the current Environment setup.
      *
-     * @return string.
+     * @return string[]
+     *
+     * @psalm-return array<string>
      */
-    public function get_environment(): string
+    public function get_environment(): array
     {
         return $this->environment;
     }
 
     /**
-     * Symfony Debug.
+     * Set error handler.
      *
-     * @param bool $enable
+     * @param string $handler overridde for $this->error_handler
      *
      * @return static
      */
-    public function symfony_error_handler(): ConfigInterface
+    public function set_error_handler( ?string $handler = null ): ConfigInterface
     {
         if ( ! $this->enable_error_handler() ) {
             return $this;
         }
 
-        if ( 'debug' === $this->environment ) {
+        if ( 'debug' !== $this->environment ) {
+            return $this;
+        }
+
+        if ( $handler ) {
+            $this->error_handler = $handler;
+        }
+
+        if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
+        } elseif ( 'oops' === $this->error_handler ) {
+            $whoops = new \Whoops\Run();
+            $whoops->pushHandler( new \Whoops\Handler\PrettyPageHandler() );
+            $whoops->register();
         }
 
         return $this;
@@ -231,9 +251,11 @@ class Setup implements ConfigInterface
     /**
      * Debug Settings.
      *
+     * @param string|false $error_log_dir
+     *
      * @return static
      */
-    public function debug( ?string $error_log_dir = null ): ConfigInterface
+    public function debug( $error_log_dir ): ConfigInterface
     {
         if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
@@ -244,34 +266,34 @@ class Setup implements ConfigInterface
         }
 
         if ( ! \in_array( $this->environment, self::init_settings(), true ) ) {
-            Environment::production();
+            $this->env_production();
 
             return $this;
         }
 
         switch ( $this->environment ) {
             case 'production':
-                Environment::production();
+                $this->env_production();
 
                 break;
             case 'staging':
-                Environment::staging( $error_log_dir );
+                $this->env_staging();
 
                 break;
             case 'debug':
-                Environment::debug( $error_log_dir );
+                $this->env_debug();
 
                 break;
             case 'development':
-                Environment::development( $error_log_dir );
+                $this->env_development();
 
                 break;
             case 'secure':
-                Environment::secure();
+                $this->env_secure();
 
                 break;
             default:
-                Environment::production();
+                $this->env_production();
         }// end switch
 
         return $this;
@@ -396,7 +418,9 @@ class Setup implements ConfigInterface
     /**
      * Available Settings.
      *
-     * @return array
+     * @return string[]
+     *
+     * @psalm-return array{0: 'production', 1: 'staging', 2: 'debug', 3: 'development', 4: 'secure'}
      */
     protected static function init_settings(): array
     {

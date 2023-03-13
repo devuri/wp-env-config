@@ -1,11 +1,17 @@
 includes:
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - rules.neon
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
     bootstrapFiles:
         - tests/stubs.php
     tmpDir: tmp
-    level: 1
+    level: 2
+    ignoreErrors:
+        - "#\\(void\\) is used#"
+        - "#Access to an undefined property#"
+        - "#Property [^:]+::\\$[^ ]+ has no type specified.#"
+        - "#Parameter \\#[0-9]+ ...\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given.#"
+        - "#Parameter \\#[0-9]+ \\$str of function strtolower expects string, mixed given.#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false

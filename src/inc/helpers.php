@@ -9,8 +9,8 @@ if ( ! \function_exists( 'asset' ) ) {
      * You can configure the asset URL by setting the ASSET_URL in your .env
      * Or optionally in the main config file.
      *
-     * @param string     $asset path to the asset like: "/images/thing.png"
-     * @param null|mixed $path
+     * @param string      $asset path to the asset like: "/images/thing.png"
+     * @param null|string $path
      *
      * @return string
      */
@@ -41,8 +41,6 @@ if ( ! \function_exists( 'env' ) ) {
      * @param string $name the environment variable name.
      *
      * @return mixed
-     *
-     * @see https://github.com/oscarotero/env
      */
     function env( string $name, bool $strtolower = true )
     {
@@ -81,7 +79,7 @@ if ( ! \function_exists( 'is_int_val' ) ) {
      *
      * @return bool Returns true if the string is an integer value, and false otherwise.
      */
-    function is_int_val( $str )
+    function is_int_val( string $str )
     {
         return is_numeric( $str ) && \intval( $str ) == $str;
     }

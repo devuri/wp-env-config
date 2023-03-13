@@ -1,8 +1,6 @@
 <?php
 
-namespace DevUri\Config;
-
-use function Env\env;
+namespace DevUri\Config\Traits;
 
 use ReflectionClass;
 use Roots\WPConfig\Config;
@@ -15,8 +13,8 @@ trait ConfigTrait
      * This will check if the constant is defined before attempting to define.
      * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
      *
-     * @param string      $name  constant name.
-     * @param bool|string $value constant value
+     * @param string $name  constant name.
+     * @param mixed  $value constant value
      *
      * @return void
      */
@@ -47,9 +45,9 @@ trait ConfigTrait
      * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
      * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
      *
-     * @return null|array Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
+     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
      */
-    public function get_config_map(): ?array
+    public function get_config_map(): array
     {
         return $this->config_map;
     }
@@ -96,7 +94,13 @@ trait ConfigTrait
         }
 
         if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
-            $this->config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+            $config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+
+            if ( \is_array( $config_map ) ) {
+                $this->config_map = $config_map;
+            }
+
+            $this->config_map = [ 'invalid_type_returned' ];
         }
     }
 }

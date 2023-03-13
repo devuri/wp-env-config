@@ -9,17 +9,19 @@ interface ConfigInterface
      *
      * Define in child class.
      *
-     * @param null|array $environment .
-     * @param bool       $setup       .
+     * @param null|string[] $environment .
+     * @param bool          $setup       .
      */
-    public function config( $environment = null, $setup = true );
+    public function config( $environment = null, $setup = true ): self;
 
     /**
      * Debug Settings.
      *
+     * @param string|false $error_log_dir
+     *
      * @return self
      */
-    public function debug(): self;
+    public function debug( $error_log_dir ): self;
 
     /**
      * Symfony Debug.
@@ -28,7 +30,7 @@ interface ConfigInterface
      *
      * @return self
      */
-    public function symfony_error_handler(): self;
+    public function set_error_handler( ?string $handler = null ): self;
 
     /**
      * Site Url Settings.
@@ -82,5 +84,5 @@ interface ConfigInterface
     /**
      * Apply the setup.
      */
-    public function apply();
+    public function apply(): void;
 }
