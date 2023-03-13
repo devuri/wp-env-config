@@ -16,6 +16,7 @@ class HttpKernel
     protected $log_file    = null;
     protected $dir_name    = null;
     protected $app_setup   = null;
+    protected $env_secret  = [];
     protected static $list = [];
     protected static $args = [
         'web_root'        => 'public',
@@ -104,6 +105,18 @@ class HttpKernel
             require_once $config_override_file;
         }
     }
+
+	public function set_env_secret( string $key )
+	{
+		if ( ! isset($this->env_secret[$key])) {
+			$this->env_secret[$key] = $key;
+		}
+	}
+
+	public function get_secret()
+	{
+		return array_keys( $this->env_secret );
+	}
 
     /**
      * Start the app.
