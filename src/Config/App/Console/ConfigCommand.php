@@ -34,7 +34,7 @@ class ConfigCommand extends Command
 
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
-			dump( self::get_env( $_ENV ) );
+			dump( $this->get_env( $_ENV ) );
         }
         // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
 
@@ -47,11 +47,11 @@ class ConfigCommand extends Command
 	 * @param  string  $env_values
 	 * @return mixed
 	 */
-	protected static function get_env( array $config ): array
+	protected function get_env( array $config ): array
 	{
 		$env_vars = [];
 		foreach ($config as $key => $value) {
-		    if ( in_array( $key, self::env_secret() )) {
+		    if ( in_array( $key, $this->env_secret() )) {
 		        $env_vars[$key] = hash('sha256', $value);
 		    } else {
 		    	$env_vars[$key] = $value;
