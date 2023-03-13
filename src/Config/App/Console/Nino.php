@@ -5,6 +5,7 @@ namespace DevUri\Config\App\Console;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Filesystem;
+use DevUri\Config\App\HttpKernel;
 
 /**
  * Nino.
@@ -18,13 +19,15 @@ use Symfony\Component\Filesystem\Filesystem;
 class Nino
 {
     protected $root_dir;
+    protected $http_app;
 
     /**
      * New Application command.
      */
-    public function __construct( string $root_dir )
+    public function __construct( string $root_dir, ?HttpKernel $app = null )
     {
         $this->root_dir = $root_dir;
+        $this->http_app = $app;
     }
 
     public function load(): void
@@ -34,7 +37,7 @@ class Nino
         $setup     = new SetupCommand( $this->root_dir, new Filesystem() );
         $installer = new InstallerCommand( $this->root_dir );
         $database  = new DatabaseCommand();
-        $config    = new ConfigCommand( $this->root_dir );
+        $config    = new ConfigCommand( $this->root_dir, $this->http_app );
         $serve     = new ServeCommand();
 
         self::add_command( $serve, $app );
