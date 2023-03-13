@@ -78,7 +78,7 @@ class WhiteLabel
      */
     public function remove_admin_wp_logo( object $wp_admin_bar ): void
     {
-		// @phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $wp_admin_bar->remove_node( 'wp-logo' );
     }
 

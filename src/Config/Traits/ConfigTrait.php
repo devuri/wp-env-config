@@ -13,8 +13,8 @@ trait ConfigTrait
      * This will check if the constant is defined before attempting to define.
      * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
      *
-     * @param string      $name  constant name.
-     * @param mixed $value constant value
+     * @param string $name  constant name.
+     * @param mixed  $value constant value
      *
      * @return void
      */
@@ -94,14 +94,13 @@ trait ConfigTrait
         }
 
         if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
+            $config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
 
-			$config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+            if ( \is_array( $config_map ) ) {
+                $this->config_map = $config_map;
+            }
 
-			if ( is_array( $config_map ) ) {
-				$this->config_map = $config_map;
-			}
-
-			$this->config_map = [ 'invalid_type_returned' ];
+            $this->config_map = [ 'invalid_type_returned' ];
         }
     }
 }

@@ -100,7 +100,7 @@ class Setup implements ConfigInterface
      * Runs config setup with default setting.
      *
      * @param null|string[] $environment .
-     * @param bool       $setup       .
+     * @param bool          $setup       .
      *
      * @return Setup
      */
@@ -177,7 +177,7 @@ class Setup implements ConfigInterface
                 ->apply();
         }
 
-		return $this;
+        return $this;
     }
 
     /**

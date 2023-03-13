@@ -16,7 +16,7 @@ class ConfigCommand extends Command
     public function __construct( string $root_dir_path )
     {
         parent::__construct();
-		$this->root_dir_path = $root_dir_path;
+        $this->root_dir_path = $root_dir_path;
     }
 
     protected function configure(): void
@@ -35,9 +35,9 @@ class ConfigCommand extends Command
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
             dump( $_ENV );
-        } else {
-            //$output->writeln( "<comment>$config_task is not a valid config task</comment>" );
         }
+        // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
+        
 
         return Command::SUCCESS;
     }

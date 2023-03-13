@@ -28,12 +28,12 @@ class HttpKernel
         'disable_updates' => true,
     ];
 
-	/**
-	 * Setup HttpKernel.
-	 *
-	 * @param string $app_path
-	 * @param string[] $args
-	 */
+    /**
+     * Setup HttpKernel.
+     *
+     * @param string   $app_path
+     * @param string[] $args
+     */
     public function __construct( string $app_path, array $args = [] )
     {
         $this->app_path = $app_path;
@@ -45,7 +45,7 @@ class HttpKernel
             'year'  => gmdate( 'Y' ),
         ];
 
-		// @phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         if ( ! \is_array( $args ) ) {
             throw new Exception( 'Error: args must be of type array ', 1 );
         }
@@ -75,11 +75,11 @@ class HttpKernel
         return $this->app_path;
     }
 
-	/**
-	 * Get args
-	 *
-	 * @return string[]
-	 */
+    /**
+     * Get args.
+     *
+     * @return string[]
+     */
     public function get_args(): array
     {
         return self::$args;
@@ -108,8 +108,8 @@ class HttpKernel
     /**
      * Start the app.
      *
-     * @param null|string[]|false|string $env_type  the enviroment type
-     * @param bool                    $constants load up default constants
+     * @param null|false|string|string[] $env_type  the enviroment type
+     * @param bool                       $constants load up default constants
      */
     public function init( $env_type = null, $constants = true ): void
     {

@@ -47,7 +47,7 @@ class DatabaseCommand extends Command
 
         $options = '';
         if ( null !== $input->getOption( 'password' ) ) {
-			// @phpstan-ignore-next-line
+            // @phpstan-ignore-next-line
             $options .= sprintf( ' -p%s', $input->getOption( 'password' ) );
         }
         if ( null !== $input->getOption( 'drop' ) ) {
@@ -57,7 +57,7 @@ class DatabaseCommand extends Command
             $options .= ' -V';
         }
 
-		// @phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $command = sprintf( 'mysqladmin -h%s -u%s%s %s %s', $this->host, $this->username, $options, $operation, $databaseName );
 
         $process = new Process( [ 'mysqladmin', $command ] );
@@ -88,7 +88,7 @@ class DatabaseCommand extends Command
         for ( $i = 0; $i < $length; $i++ ) {
             if ( 0 === $i ) {
                 $password .= $characters[ rand( 0, 51 ) ];
-				// First character must be a letter
+            // First character must be a letter
             } else {
                 $password .= $characters[ rand( 0, 61 ) ];
                 // Any character

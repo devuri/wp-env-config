@@ -10,7 +10,7 @@ interface ConfigInterface
      * Define in child class.
      *
      * @param null|string[] $environment .
-     * @param bool       $setup       .
+     * @param bool          $setup       .
      */
     public function config( $environment = null, $setup = true ): self;
 

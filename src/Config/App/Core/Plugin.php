@@ -20,33 +20,33 @@ class Plugin
         add_filter(
             'the_generator',
             function() {
-				return null;
-			}
+                return null;
+            }
         );
 
         // Add the env type to admin bar.
         add_action(
             'admin_bar_menu',
             function ( $admin_bar ): void {
-				if ( ! current_user_can( 'manage_options' ) ) {
-					return;
-				}
+                if ( ! current_user_can( 'manage_options' ) ) {
+                    return;
+                }
 
-				// @phpstan-ignore-next-line
-				$env_label = strtoupper( HTTP_ENV_CONFIG );
+                // @phpstan-ignore-next-line
+                $env_label = strtoupper( HTTP_ENV_CONFIG );
 
-				$admin_bar->add_menu(
+                $admin_bar->add_menu(
                     [
-						'id'    => 'wp-app-environment',
-						'title' => wp_kses_post( ":: Env $env_label ::" ),
-						'href'  => '#',
-						'meta'  => [
-							'title' => __( "Environment: $env_label" ),
-							'class' => 'qm-warning',
-						],
+                        'id'    => 'wp-app-environment',
+                        'title' => wp_kses_post( ":: Env $env_label ::" ),
+                        'href'  => '#',
+                        'meta'  => [
+                            'title' => __( "Environment: $env_label" ),
+                            'class' => 'qm-warning',
+                        ],
                     ]
-				);
-			},
+                );
+            },
             1199
         );
     }
