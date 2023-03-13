@@ -13,7 +13,7 @@ class ConfigCommand extends Command
 
     private $root_dir_path;
 
-    public function __construct( string $root_dir_path, object $app )
+    public function __construct( string $root_dir_path, ?object $app = null )
     {
         parent::__construct();
         $this->root_dir_path = $root_dir_path;
