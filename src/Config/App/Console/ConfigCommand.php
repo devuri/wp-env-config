@@ -12,11 +12,13 @@ class ConfigCommand extends Command
     protected static $defaultName = 'config';
 
     private $root_dir_path;
+    private $http_app;
 
     public function __construct( string $root_dir_path, ?object $app = null )
     {
         parent::__construct();
         $this->root_dir_path = $root_dir_path;
+        $this->http_app = $app;
     }
 
     protected function configure(): void

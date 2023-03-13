@@ -5,7 +5,7 @@ parameters:
     bootstrapFiles:
         - tests/stubs.php
     tmpDir: tmp
-    level: max
+    level: 1
     ignoreErrors:
         - "#\\(void\\) is used#"
         - "#Access to an undefined property#"

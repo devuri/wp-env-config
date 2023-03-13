@@ -58,7 +58,6 @@ class Nino
     protected static function add_command( Command $command, Application $app ): void
     {
         $app->add( $command );
-        // @phpstan-ignore-next-line
         $app->setDefaultCommand( $command->getName() );
     }
 }

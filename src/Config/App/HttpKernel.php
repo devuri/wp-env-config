@@ -46,7 +46,6 @@ class HttpKernel
             'year'  => gmdate( 'Y' ),
         ];
 
-        // @phpstan-ignore-next-line
         if ( ! \is_array( $args ) ) {
             throw new Exception( 'Error: args must be of type array ', 1 );
         }
