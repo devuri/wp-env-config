@@ -13,7 +13,7 @@ class ConfigCommand extends Command
 
     private $root_dir_path;
 
-    public function __construct( string $root_dir_path )
+    public function __construct( string $root_dir_path, object $app )
     {
         parent::__construct();
         $this->root_dir_path = $root_dir_path;
@@ -51,7 +51,7 @@ class ConfigCommand extends Command
 	{
 		$env_vars = [];
 		foreach ($config as $key => $value) {
-		    if ( in_array( $key,array('DB_USER', 'DB_PASSWORD', 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT'))) {
+		    if ( in_array( $key, self::env_secret() )) {
 		        $env_vars[$key] = hash('sha256', $value);
 		    } else {
 		    	$env_vars[$key] = $value;
@@ -59,5 +59,13 @@ class ConfigCommand extends Command
 		}
 
 		return $env_vars;
+	}
+
+	private function env_secret( array $secrets = [] ): array
+	{
+		return array_merge(
+			$secrets,
+			array('DB_USER', 'DB_PASSWORD', 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT')
+		);
 	}
 }
