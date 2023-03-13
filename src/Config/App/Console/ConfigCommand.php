@@ -64,6 +64,11 @@ class ConfigCommand extends Command
         return $env_vars;
     }
 
+    /**
+     * @return (mixed|string)[]
+     *
+     * @psalm-return array{0: 'DB_USER', 1: 'DB_PASSWORD', 2: 'AUTH_KEY', 3: 'SECURE_AUTH_KEY', 4: 'LOGGED_IN_KEY', 5: 'NONCE_KEY', 6: 'AUTH_SALT', 7: 'SECURE_AUTH_SALT', 8: 'LOGGED_IN_SALT', 9: 'NONCE_SALT'}
+     */
     private function env_secret( array $secrets = [] ): array
     {
         return array_merge(

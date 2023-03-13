@@ -87,7 +87,7 @@ class Setup implements ConfigInterface
      *
      * @param $path
      */
-    public static function init( string $path ): ConfigInterface
+    public static function init( string $path ): self
     {
         if ( ! isset( self::$instance ) ) {
             self::$instance = new self( $path );
@@ -102,7 +102,7 @@ class Setup implements ConfigInterface
      * @param null|string[] $environment .
      * @param bool          $setup       .
      *
-     * @return Setup
+     * @return static
      */
     public function config( $environment = null, $setup = true ): ConfigInterface
     {
@@ -207,9 +207,11 @@ class Setup implements ConfigInterface
     /**
      * Get the current Environment setup.
      *
-     * @return array|string
+     * @return string[]
+     *
+     * @psalm-return array<string>
      */
-    public function get_environment()
+    public function get_environment(): array
     {
         return $this->environment;
     }
