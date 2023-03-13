@@ -249,7 +249,7 @@ class Setup implements ConfigInterface
     /**
      * Debug Settings.
      *
-     * @param mixed $error_log_dir
+     * @param string|false $error_log_dir
      *
      * @return static
      */

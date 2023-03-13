@@ -46,9 +46,9 @@ class ConfigCommand extends Command
     /**
      * Filter config output.
      *
-     * @param string $env_values
+     * @param string[] $config
      *
-     * @return mixed
+     * @return string[]
      */
     protected function get_env( array $config ): array
     {
