@@ -28,6 +28,12 @@ class HttpKernel
         'disable_updates' => true,
     ];
 
+	/**
+	 * Setup HttpKernel.
+	 *
+	 * @param string $app_path
+	 * @param string[] $args
+	 */
     public function __construct( string $app_path, array $args = [] )
     {
         $this->app_path = $app_path;
@@ -39,6 +45,7 @@ class HttpKernel
             'year'  => gmdate( 'Y' ),
         ];
 
+		// @phpstan-ignore-next-line
         if ( ! \is_array( $args ) ) {
             throw new Exception( 'Error: args must be of type array ', 1 );
         }
@@ -68,6 +75,11 @@ class HttpKernel
         return $this->app_path;
     }
 
+	/**
+	 * Get args
+	 *
+	 * @return string[]
+	 */
     public function get_args(): array
     {
         return self::$args;
@@ -96,7 +108,7 @@ class HttpKernel
     /**
      * Start the app.
      *
-     * @param null|array|false|string $env_type  the enviroment type
+     * @param null|string[]|false|string $env_type  the enviroment type
      * @param bool                    $constants load up default constants
      */
     public function init( $env_type = null, $constants = true ): void
@@ -106,7 +118,7 @@ class HttpKernel
                 array_merge( $this->environment_args(), $env_type )
             );
         } else {
-            $this->app_setup->config( $this->environment_args( $env_type ) );
+            $this->app_setup->config( $this->environment_args() );
         }
 
         // make env available.
@@ -119,8 +131,6 @@ class HttpKernel
 
     /**
      * Defines constants.
-     *
-     * @param mixed $dir_path
      *
      * @psalm-suppress UndefinedConstant
      *
@@ -179,7 +189,7 @@ class HttpKernel
     /**
      * Get list of defined constants.
      *
-     * @return array constants in constants().
+     * @return string[] constants in constants().
      */
     public function get_defined(): array
     {

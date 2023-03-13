@@ -94,7 +94,14 @@ trait ConfigTrait
         }
 
         if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
-            $this->config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+
+			$config_map = ( new ReflectionClass( $configClass ) )->getStaticPropertyValue( 'configMap' );
+
+			if ( is_array( $config_map ) ) {
+				$this->config_map = $config_map;
+			}
+
+			$this->config_map = [ 'invalid_type_returned' ];
         }
     }
 }

@@ -99,12 +99,12 @@ class Setup implements ConfigInterface
     /**
      * Runs config setup with default setting.
      *
-     * @param null|array $environment .
+     * @param null|string[] $environment .
      * @param bool       $setup       .
      *
-     * @return null|static
+     * @return Setup
      */
-    public function config( $environment = null, $setup = true )
+    public function config( $environment = null, $setup = true ): ConfigInterface
     {
         // check required vars.
         $this->is_required();
@@ -176,6 +176,8 @@ class Setup implements ConfigInterface
                 ->salts()
                 ->apply();
         }
+
+		return $this;
     }
 
     /**

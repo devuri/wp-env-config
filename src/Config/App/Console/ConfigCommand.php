@@ -33,10 +33,10 @@ class ConfigCommand extends Command
         $config_task = $input->getArgument( '_task' );
 
         if ( false === $config_task ) {
-            $output->writeln( '<info>Config Setup:</info>' );
+            $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
             dump( $_ENV );
         } else {
-            $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
+            //$output->writeln( "<comment>$config_task is not a valid config task</comment>" );
         }
 
         return Command::SUCCESS;

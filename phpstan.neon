@@ -10,6 +10,7 @@ parameters:
         - "#\\(void\\) is used#"
         - "#Access to an undefined property#"
         - "#Property [^:]+::\\$[^ ]+ has no type specified.#"
+        - "#Parameter \\#[0-9]+ ...\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given.#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false
