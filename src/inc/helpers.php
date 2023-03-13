@@ -41,8 +41,6 @@ if ( ! \function_exists( 'env' ) ) {
      * @param string $name the environment variable name.
      *
      * @return mixed
-     *
-     * @see https://github.com/oscarotero/env
      */
     function env( string $name, bool $strtolower = true )
     {
