@@ -106,17 +106,17 @@ class HttpKernel
         }
     }
 
-	public function set_env_secret( string $key )
-	{
-		if ( ! isset($this->env_secret[$key])) {
-			$this->env_secret[$key] = $key;
-		}
-	}
+    public function set_env_secret( string $key ): void
+    {
+        if ( ! isset($this->env_secret[$key])) {
+            $this->env_secret[$key] = $key;
+        }
+    }
 
-	public function get_secret()
-	{
-		return array_keys( $this->env_secret );
-	}
+    public function get_secret()
+    {
+        return array_keys( $this->env_secret );
+    }
 
     /**
      * Start the app.

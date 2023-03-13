@@ -34,38 +34,39 @@ class ConfigCommand extends Command
 
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
-			dump( $this->get_env( $_ENV ) );
+            dump( $this->get_env( $_ENV ) );
         }
         // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
 
         return Command::SUCCESS;
     }
 
-	/**
-	 * Filter config output.
-	 *
-	 * @param  string  $env_values
-	 * @return mixed
-	 */
-	protected function get_env( array $config ): array
-	{
-		$env_vars = [];
-		foreach ($config as $key => $value) {
-		    if ( in_array( $key, $this->env_secret() )) {
-		        $env_vars[$key] = hash('sha256', $value);
-		    } else {
-		    	$env_vars[$key] = $value;
-		    }
-		}
+    /**
+     * Filter config output.
+     *
+     * @param string $env_values
+     *
+     * @return mixed
+     */
+    protected function get_env( array $config ): array
+    {
+        $env_vars = [];
+        foreach ($config as $key => $value) {
+            if ( \in_array( $key, $this->env_secret(), true )) {
+                $env_vars[$key] = hash('sha256', $value);
+            } else {
+                $env_vars[$key] = $value;
+            }
+        }
 
-		return $env_vars;
-	}
+        return $env_vars;
+    }
 
-	private function env_secret( array $secrets = [] ): array
-	{
-		return array_merge(
-			$secrets,
-			array('DB_USER', 'DB_PASSWORD', 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT')
-		);
-	}
+    private function env_secret( array $secrets = [] ): array
+    {
+        return array_merge(
+            $secrets,
+            ['DB_USER', 'DB_PASSWORD', 'AUTH_KEY', 'SECURE_AUTH_KEY', 'LOGGED_IN_KEY', 'NONCE_KEY', 'AUTH_SALT', 'SECURE_AUTH_SALT', 'LOGGED_IN_SALT', 'NONCE_SALT']
+        );
+    }
 }
