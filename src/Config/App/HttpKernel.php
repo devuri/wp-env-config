@@ -107,8 +107,8 @@ class HttpKernel
 
     public function set_env_secret( string $key ): void
     {
-        if ( ! isset($this->env_secret[$key])) {
-            $this->env_secret[$key] = $key;
+        if ( ! isset( $this->env_secret[ $key ] ) ) {
+            $this->env_secret[ $key ] = $key;
         }
     }
 
