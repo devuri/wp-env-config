@@ -255,6 +255,26 @@ $http_app->init('development', false); // development | staging | production | s
 $table_prefix = Kernel::env('DB_PREFIX');
 ```
 
+## Error Handler
+The Kernel framework allows for the use of `oops` or `symfony` as error handlers.
+The default error handler is symfony, to change the handler use `init(['errors' => 'oops'])` or to disable the handlers completely use `init(['errors' => null])`
+
+> These are very powerful error handlers, and can potentially reveal sensitive web application data, for that reason they will only run in 'debug' or 'development' mode.
+
+```php
+
+// run setup.
+$http_app = new Kernel(__DIR__);
+
+
+$http_app->init(['errors' => 'oops']); // change the handler to use 'oops'
+
+// or
+
+$http_app->init(['errors' => null]); // disable error handlers
+
+```
+
 ## Setup Options and Environment
 
 list of setup options
