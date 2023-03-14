@@ -22,6 +22,8 @@ composer create-project devuri/wp-env-app my_web_project
 
 ## Usage
 
+> **note:** If you used the **create-project** command above to set things up, most of the following has already been done for you, in that case your next step would be to: Rename the .env.example file to .env add salts and update the database credentials and other settings as needed.
+
 The `.env` file is generally kept out of version control since it can contain
 sensitive API keys and passwords. The `.env` file should be added to the project's `.gitignore` file
 so that it will never be committed.
