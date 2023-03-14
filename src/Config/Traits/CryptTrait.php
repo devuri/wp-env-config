@@ -2,7 +2,6 @@
 
 namespace DevUri\Config\Traits;
 
-use ReflectionClass;
 use Roots\WPConfig\Config;
 
 trait CryptTrait
@@ -15,19 +14,20 @@ trait CryptTrait
      * the value is hashed using SHA-256 before being added to the resulting $encrypted_config array. Non-sensitive
      * values are added to the array without modification.
      *
-     * @param array $config An associative array containing keys and their corresponding values
-     * @param array|null $secrets An optional array of sensitive keys that need to be hashed (defaults to null)
+     * @param array      $config  An associative array containing keys and their corresponding values
+     * @param null|array $secrets An optional array of sensitive keys that need to be hashed (defaults to null)
+     *
      * @return array $encrypted_config An associative array with sensitive values hashed
      */
-    protected function encrypt_secret(array $config, array $secrets = [] ): array
+    protected function encrypt_secret( array $config, array $secrets = [] ): array
     {
         $encrypted = [];
 
-        foreach ($config as $key => $value) {
-            if (\in_array($key, $secrets, true)) {
-                $encrypted[$key] = hash('sha256', $value);
+        foreach ( $config as $key => $value ) {
+            if ( \in_array( $key, $secrets, true ) ) {
+                $encrypted[ $key ] = hash( 'sha256', $value );
             } else {
-                $encrypted[$key] = $value;
+                $encrypted[ $key ] = $value;
             }
         }
 

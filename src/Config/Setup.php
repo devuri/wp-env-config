@@ -230,9 +230,9 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-		if ( is_null( $this->error_handler ) ) {
-			return $this;
-		}
+        if ( \is_null( $this->error_handler ) ) {
+            return $this;
+        }
 
         if ( 'debug' !== $this->environment || 'development' !== $this->environment ) {
             return $this;
@@ -256,7 +256,7 @@ class Setup implements ConfigInterface
     /**
      * Debug Settings.
      *
-     * @param string|false $error_log_dir
+     * @param false|string $error_log_dir
      *
      * @return static
      */

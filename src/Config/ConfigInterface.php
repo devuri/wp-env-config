@@ -17,7 +17,7 @@ interface ConfigInterface
     /**
      * Debug Settings.
      *
-     * @param string|false $error_log_dir
+     * @param false|string $error_log_dir
      *
      * @return self
      */

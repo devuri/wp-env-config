@@ -49,7 +49,7 @@ trait ConfigTrait
      */
     public function get_config_map(): array
     {
-        return self::encrypt_secret( $this->config_map, self::env_secrets() ) ;
+        return self::encrypt_secret( $this->config_map, self::env_secrets() );
     }
 
     /**
