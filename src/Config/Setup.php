@@ -86,7 +86,7 @@ class Setup implements ConfigInterface
      *
      * @param $path
      */
-    public static function init( string $path ): ConfigInterface
+    public static function init( string $path ): self
     {
         if ( ! isset( self::$instance ) ) {
             self::$instance = new self( $path );
