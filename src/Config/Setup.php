@@ -230,6 +230,10 @@ class Setup implements ConfigInterface
             return $this;
         }
 
+		if ( is_null( $this->error_handler ) ) {
+			return $this;
+		}
+
         if ( 'debug' !== $this->environment || 'development' !== $this->environment ) {
             return $this;
         }
