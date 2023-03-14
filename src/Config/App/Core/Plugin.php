@@ -41,7 +41,7 @@ class Plugin
                         'title' => wp_kses_post( ":: Env $env_label ::" ),
                         'href'  => '#',
                         'meta'  => [
-                            'title' => __( "Environment: $env_label" ),
+                            'title' => __( "Environment: " ) . $env_label,
                             'class' => 'qm-warning',
                         ],
                     ]
