@@ -14,8 +14,8 @@ trait CryptTrait
      * the value is hashed using SHA-256 before being added to the resulting $encrypted_config array. Non-sensitive
      * values are added to the array without modification.
      *
-     * @param array      $config  An associative array containing keys and their corresponding values
-     * @param null|array $secrets An optional array of sensitive keys that need to be hashed (defaults to null)
+     * @param array $config  An associative array containing keys and their corresponding values
+     * @param array $secrets An optional array of sensitive keys that need to be hashed (defaults to null)
      *
      * @return array $encrypted_config An associative array with sensitive values hashed
      */

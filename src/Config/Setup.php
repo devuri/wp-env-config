@@ -210,7 +210,7 @@ class Setup implements ConfigInterface
      *
      * @return string
      *
-     * @psalm-return array<string>
+     * @psalm-return string
      */
     public function get_environment(): string
     {
