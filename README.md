@@ -15,7 +15,7 @@ Number three states that we should Store config in the environment.
 Installation is easy using [Composer](https://getcomposer.org/):
 
 ```bash
-$ composer require devuri/wp-env-config
+composer require devuri/wp-env-config
 ```
 ## Usage
 
