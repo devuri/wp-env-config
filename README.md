@@ -4,7 +4,7 @@ A small package to define WordPress configuration constants using environment va
 
 This package will allow define WordPress configuration constants using [PHP dotenv](https://github.com/vlucas/phpdotenv).
 We will be securing WordPress using environment variables from .env as an added layer of security.
-It’s good practice to never store sensitive credentials in your code.
+It’s good practice to never store sensitive credentials in our code.
 
 This follows the twelve-factor app methodology for building and deploying software.
 Number three states that we should Store config in the environment.
@@ -31,11 +31,11 @@ This ensures that no sensitive data will ever be in the version control history 
 of a security breach.
 
 
-Add your wp-config settings to a `.env` file in the root of your
-project. **Make sure the `.env` file is added to your `.gitignore` so it is not
+We can Add our wp-config settings to a `.env` file in the root of our
+project. **Make sure the `.env` file is added to `.gitignore` so it is not
 checked-in the code**, the `wp-config` file should be in the same dir.
-WordPress will automatically look one directory above your WordPress installation for the `wp-config.php` file,
-You can safely move it one directory above your WordPress installation.
+WordPress will automatically look one directory above our WordPress installation for the `wp-config.php` file,
+We can safely move it one directory above our WordPress installation.
 
 Database credentials:
 
@@ -63,7 +63,7 @@ Take a look at this sample `env` file [.env.example](https://github.com/devuri/w
 You can get **Env Format WordPress Salts** from Roots.io Generator https://roots.io/salts.html
 
 
-You can then load `.env` in your `wp-config.php` with:
+We can then load `.env` in our `wp-config.php` with:
 
 ```php
 //  Safely load /vendor/autoload.php
@@ -358,7 +358,7 @@ This will output the following:
 
 The ***asset()*** function will generate a URL for an asset.
 
-* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* We can configure the asset URL by setting the `ASSET_URL` in our .env `ASSET_URL="${WP_HOME}/assets"`
 * Or optionally in the main config file.
 
 ```php
@@ -376,7 +376,7 @@ asset( "/images/thing.png", "/static" ); // https://example.com/static/images/th
 The ***asset_url()*** URL for the asset directory.
 
 * **Note:** The `ASSET_URL` constant is optional.
-* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* We can configure the asset URL by setting the `ASSET_URL` in our .env `ASSET_URL="${WP_HOME}/assets"`
 * Or optionally in the main config file.
 
 
