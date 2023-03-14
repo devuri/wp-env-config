@@ -3,6 +3,7 @@
 namespace DevUri\Config;
 
 use DevUri\Config\Traits\ConfigTrait;
+use DevUri\Config\Traits\CryptTrait;
 use DevUri\Config\Traits\Environment;
 use Dotenv\Dotenv;
 use Exception;
@@ -14,6 +15,7 @@ use Symfony\Component\ErrorHandler\Debug;
 class Setup implements ConfigInterface
 {
     use ConfigTrait;
+    use CryptTrait;
     use Environment;
 
     /**
@@ -206,11 +208,11 @@ class Setup implements ConfigInterface
     /**
      * Get the current Environment setup.
      *
-     * @return string[]
+     * @return string
      *
-     * @psalm-return array<string>
+     * @psalm-return string
      */
-    public function get_environment(): array
+    public function get_environment(): string
     {
         return $this->environment;
     }
@@ -228,7 +230,11 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-        if ( 'debug' !== $this->environment ) {
+        if ( \is_null( $this->error_handler ) ) {
+            return $this;
+        }
+
+        if ( 'debug' !== $this->environment || 'development' !== $this->environment ) {
             return $this;
         }
 
@@ -250,7 +256,7 @@ class Setup implements ConfigInterface
     /**
      * Debug Settings.
      *
-     * @param string|false $error_log_dir
+     * @param false|string $error_log_dir
      *
      * @return static
      */

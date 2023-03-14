@@ -32,7 +32,6 @@ class Plugin
                     return;
                 }
 
-                // @phpstan-ignore-next-line
                 $env_label = strtoupper( HTTP_ENV_CONFIG );
 
                 $admin_bar->add_menu(
