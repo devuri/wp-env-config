@@ -16,7 +16,7 @@ Installation is easy using [Composer](https://getcomposer.org/):
 
 > recommended:
 ```bash
-composer create-project devuri/wp-env-app my_web_project
+composer create-project devuri/wp-env-app .
 ```
 
 
