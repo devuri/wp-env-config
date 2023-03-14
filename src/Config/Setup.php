@@ -3,6 +3,7 @@
 namespace DevUri\Config;
 
 use DevUri\Config\Traits\ConfigTrait;
+use DevUri\Config\Traits\CryptTrait;
 use DevUri\Config\Traits\Environment;
 use Dotenv\Dotenv;
 use Exception;
@@ -14,6 +15,7 @@ use Symfony\Component\ErrorHandler\Debug;
 class Setup implements ConfigInterface
 {
     use ConfigTrait;
+    use CryptTrait;
     use Environment;
 
     /**
