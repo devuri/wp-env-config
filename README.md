@@ -18,11 +18,6 @@ Installation is easy using [Composer](https://getcomposer.org/):
 ```bash
 composer create-project devuri/wp-env-app web_project
 ```
-or
-
-```bash
-composer require devuri/wp-env-config
-```
 
 
 ## Usage
