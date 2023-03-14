@@ -29,7 +29,7 @@ trait ConfigTrait
     {
         if ( ! \defined( $name ) ) {
             // @phpstan-ignore-next-line.
-            $this->env->required( $name )->notEmpty();
+            $this->dotenv->required( $name )->notEmpty();
         }
     }
 

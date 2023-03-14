@@ -29,9 +29,9 @@ class Setup implements ConfigInterface
     protected $path;
 
     /**
-     *  Dotenv $env.
+     *  Dotenv $dotenv.
      */
-    protected $env;
+    protected $dotenv;
 
     /**
      * Private $instance.
@@ -70,11 +70,10 @@ class Setup implements ConfigInterface
     {
         $this->path = $path;
 
-        $dotenv    = Dotenv::createImmutable( $this->path );
-        $this->env = $dotenv;
+        $this->dotenv = Dotenv::createImmutable( $this->path );
 
         try {
-            $dotenv->load();
+            $this->dotenv->load();
         } catch ( Exception $e ) {
             exit( $e->getMessage() );
         }
@@ -445,20 +444,20 @@ class Setup implements ConfigInterface
             $this->required( 'WP_SITEURL' );
 
             // db vars must be defined in .env.
-            $this->env->required( 'DB_HOST' )->notEmpty();
-            $this->env->required( 'DB_NAME' )->notEmpty();
-            $this->env->required( 'DB_USER' )->notEmpty();
-            $this->env->required( 'DB_PASSWORD' )->notEmpty();
+            $this->dotenv->required( 'DB_HOST' )->notEmpty();
+            $this->dotenv->required( 'DB_NAME' )->notEmpty();
+            $this->dotenv->required( 'DB_USER' )->notEmpty();
+            $this->dotenv->required( 'DB_PASSWORD' )->notEmpty();
 
             // salts must be defined in .env.
-            $this->env->required( 'AUTH_KEY' )->notEmpty();
-            $this->env->required( 'SECURE_AUTH_KEY' )->notEmpty();
-            $this->env->required( 'LOGGED_IN_KEY' )->notEmpty();
-            $this->env->required( 'NONCE_KEY' )->notEmpty();
-            $this->env->required( 'AUTH_SALT' )->notEmpty();
-            $this->env->required( 'SECURE_AUTH_SALT' )->notEmpty();
-            $this->env->required( 'LOGGED_IN_SALT' )->notEmpty();
-            $this->env->required( 'NONCE_SALT' )->notEmpty();
+            $this->dotenv->required( 'AUTH_KEY' )->notEmpty();
+            $this->dotenv->required( 'SECURE_AUTH_KEY' )->notEmpty();
+            $this->dotenv->required( 'LOGGED_IN_KEY' )->notEmpty();
+            $this->dotenv->required( 'NONCE_KEY' )->notEmpty();
+            $this->dotenv->required( 'AUTH_SALT' )->notEmpty();
+            $this->dotenv->required( 'SECURE_AUTH_SALT' )->notEmpty();
+            $this->dotenv->required( 'LOGGED_IN_SALT' )->notEmpty();
+            $this->dotenv->required( 'NONCE_SALT' )->notEmpty();
         } catch ( Exception $e ) {
             var_dump( $e->getMessage() );
             exit();
