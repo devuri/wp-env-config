@@ -97,6 +97,7 @@ $table_prefix = "wp_";
 ```
 This should be above the comment `/* That's all, stop editing! Happy publishing. */`
 Thats it, you're done!
+> Here is the basic app that implements this package: https://github.com/devuri/wp-env-app
 
 #### Developer Admin Account.
 
@@ -139,7 +140,7 @@ Setup::init( __DIR__ )->config(
 	[
 		'environment' => 'staging',
 		'error_log'   => "/tmp/logs/wp-errors/debug.log", // set log file location.
-		'symfony'     => false, // use symfony ErrorHandler (only works if WP_DEBUG is true)
+		'errors'     => 'symfony', // use symfony ErrorHandler (only works if WP_DEBUG is true)
 	]
 );
 ```
