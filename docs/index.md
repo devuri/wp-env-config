@@ -9,7 +9,7 @@
 
 ## Documentation
 
-- [Documentation](/resources/docs/)
+- [Documentation](/docs/resources/)
 - [Release Notes](https://github.com/devuri/wp-env-config/releases/)
 
 ## Support
