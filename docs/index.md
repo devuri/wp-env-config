@@ -3,6 +3,9 @@
 <br/>
   A small package yet powerful package that simplifies the process of defining configuration constants in WordPress.
 </p>
+<p align="center">
+  The aim of this package is to simplify the definition of WordPress configuration constants by leveraging PHP dotenv to access environment variables stored in a .env file. By utilizing environment variables in this way, we can enhance the security of our WordPress installation by avoiding the storage of sensitive credentials in our code.
+</p>
 
 ## Documentation
 
