@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.30.3](https://github.com/devuri/wp-env-config/compare/v0.30.2...v0.30.3) (2023-03-14)
+
+
+### Features
+
+* Adds `CryptTrait`, Encrypts the values of sensitive data in the given configuration array ([e0d8760](https://github.com/devuri/wp-env-config/commit/e0d8760d138604bf3a23bb4830ebe1e18954ca3f))
+
+
+### Bug Fixes
+
+* Adds `Error Handler` docs ([1292dde](https://github.com/devuri/wp-env-config/commit/1292dde5e8f5fa5ecf94429fd7d1677a66b6ab61))
+* fixes return type for `Setup::get_environment() ` ([3d9d8fc](https://github.com/devuri/wp-env-config/commit/3d9d8fcd3c6b3fb4c335d3a5bc61bcc4ea8c9e65))
+
 ## [0.30.2](https://github.com/devuri/wp-env-config/compare/v0.30.1...v0.30.2) (2023-03-14)
 
 
