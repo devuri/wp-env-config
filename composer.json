@@ -41,6 +41,9 @@
         "symfony/var-dumper": "^5.1.4",
         "vlucas/phpdotenv": "^5.2"
     },
+    "bin": [
+        "bin/nino"
+    ],
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
         "brain/monkey": "^2.6",
