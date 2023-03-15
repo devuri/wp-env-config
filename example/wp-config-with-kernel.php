@@ -2,8 +2,6 @@
 
 use DevUri\Config\Kernel;
 
-use function Env\env;
-
 if ( file_exists( \dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
     require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
 } else {
