@@ -47,6 +47,7 @@ Once installed, you can begin using the package in your WordPress project.
 
 To get started, create a `.env` file in the root directory of your project. 
 In this file, define the environment variables you wish to use as configuration constants. For example:
+> update the database credentials and other settings as needed.
 ```shell
 WP_HOME='https://example.com'
 WP_SITEURL="${WP_HOME}"
