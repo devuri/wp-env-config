@@ -1,28 +1,17 @@
 <?php
 
-require_once \dirname( __FILE__ ) . '/vendor/autoload.php';
-
 use DevUri\Config\Setup;
 
-/*
+require_once __FILE__ . '/vendor/autoload.php';
+
+/**
  * The base configuration for WordPress
- *
- * The wp-config.php creation script uses this file during the
- * installation. You don't have to use the web site, you can
- * copy this file to "wp-config.php" and fill in the values.
- *
- * This file contains the following configurations:
- *
- * * MySQL settings
- * * Secret keys
- * * Database table prefix
- * * ABSPATH
  *
  * @link https://codex.wordpress.org/Editing_wp-config.php
  *
  * @package WordPress
  */
-Setup::init(__DIR__)->config('secure'); // development | staging | production | secure
+Setup::init(__DIR__)->config(); // production
 
 /**
  * WordPress Database Table prefix.
@@ -32,12 +21,10 @@ Setup::init(__DIR__)->config('secure'); // development | staging | production | 
  */
 $table_prefix = env('DB_PREFIX');
 
-// That's all, stop editing! Happy publishing.
 
-// Absolute path to the WordPress directory.
-if ( ! \defined( 'ABSPATH' ) ) {
-    \define( 'ABSPATH', \dirname( __FILE__ ) . '/' );
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __FILE__ ) . '/' );
 }
 
-/** Sets up WordPress vars and included files. */
+// Sets up WordPress.
 require_once ABSPATH . 'wp-settings.php';
