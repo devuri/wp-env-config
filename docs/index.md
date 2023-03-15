@@ -16,7 +16,7 @@ For general support, send email to support@envconfig.org
 Support requests and general support on this repository will be closed.
 
 ## Changelog
-A complete listing of all notable changes to ClassifAI are documented in [CHANGELOG](https://github.com/devuri/wp-env-config/blob/master/CHANGELOG.md))
+A complete listing of all notable changes to ClassifAI are documented in [CHANGELOG](https://github.com/devuri/wp-env-config/blob/master/CHANGELOG.md)
 
 ## Report An Issue
 
