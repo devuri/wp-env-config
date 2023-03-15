@@ -3,5 +3,9 @@
 
 require __DIR__ . '/vendor/autoload.php'
 
+if ( 'cli' !== PHP_SAPI ) {
+    throw new Exception( 'Nino must be run from the command line.' );
+}
+
 // activate console.
 ( new DevUri\Config\App\Console\Nino( __DIR__ ) )->load();
