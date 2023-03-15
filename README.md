@@ -1,5 +1,7 @@
 ## WordPress Environment Configuration
 
+[![Unit Tests](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml)
+
 ### Introduction
 
 `wp-env-config` is a small yet powerful package that simplifies the process of defining configuration constants in WordPress. By leveraging PHP dotenv, this package enables you to securely store sensitive configuration data in environment variables, which is a best practice for building and deploying software according to the twelve-factor app methodology.
