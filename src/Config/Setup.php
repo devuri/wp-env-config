@@ -77,7 +77,8 @@ class Setup implements ConfigInterface
         try {
             $this->dotenv->load();
         } catch ( Exception $e ) {
-            dump( $e->getMessage() ); exit;
+            dump( $e->getMessage() );
+            exit;
         }
 
         $this->set_config_map();
@@ -465,7 +466,8 @@ class Setup implements ConfigInterface
             $this->dotenv->required( 'LOGGED_IN_SALT' )->notEmpty();
             $this->dotenv->required( 'NONCE_SALT' )->notEmpty();
         } catch ( Exception $e ) {
-            dump( $e->getMessage() ); exit;
+            dump( $e->getMessage() );
+            exit;
         }// end try
     }
 
