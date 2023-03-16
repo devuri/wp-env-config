@@ -37,32 +37,34 @@ class Nino
 
     public function load(): void
     {
-        $app = new Application();
+        $nino_cli = new Application();
 
-        $setup     = new SetupCommand( $this->root_dir, new Filesystem() );
-        $installer = new InstallerCommand( $this->root_dir );
-        $database  = new DatabaseCommand();
-        $config    = new ConfigCommand( $this->root_dir, $this->http_app );
-        $serve     = new ServeCommand();
+        $setup      = new SetupCommand( $this->root_dir, new Filesystem() );
+        $installer  = new InstallerCommand( $this->root_dir );
+        $certbotssl = new CertCommand();
+        $database   = new DatabaseCommand();
+        $config     = new ConfigCommand( $this->root_dir, $this->http_app );
+        $serve      = new ServeCommand();
 
-        self::add_command( $serve, $app );
-        // self::add_command( $database, $app );
-        self::add_command( $setup, $app );
-        self::add_command( $installer, $app );
-        self::add_command( $config, $app );
+        self::add_command( $serve, $nino_cli );
+        // self::add_command( $database, $nino_cli );
+        self::add_command( $setup, $nino_cli );
+        // self::add_command( $installer, $nino_cli );
+        self::add_command( $certbotssl, $nino_cli );
+        self::add_command( $config, $nino_cli );
 
-        $app->run();
+        $nino_cli->run();
     }
 
     /**
      * Add new Application command.
      *
-     * @param Command     $command the command
-     * @param Application $app     the Application
+     * @param Command     $command  the command
+     * @param Application $nino_cli the Application
      */
-    protected static function add_command( Command $command, Application $app ): void
+    protected static function add_command( Command $command, Application $cli ): void
     {
-        $app->add( $command );
-        $app->setDefaultCommand( $command->getName() );
+        $cli->add( $command );
+        $cli->setDefaultCommand( $command->getName() );
     }
 }
