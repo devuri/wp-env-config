@@ -7,3 +7,4 @@ define( 'APP_CONTENT_DIR', APP_PATH . '/content');
 define( 'CONTENT_DIR', '/content');
 define( 'PUBLIC_WEB_DIR', APP_PATH . '/public');
 define( 'HTTP_ENV_CONFIG', 'debug');
+define( 'USE_MYSQL', true );
