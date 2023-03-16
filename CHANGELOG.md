@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.30.4](https://github.com/devuri/wp-env-config/compare/v0.30.3...v0.30.4) (2023-03-16)
+
+
+### Features
+
+* `nino` is now available in `vendor/bin` ([561c27d](https://github.com/devuri/wp-env-config/commit/561c27d54ce5dd8696be9fadbbdf5eb6be6e97a0))
+* Adds support for `aaemnnosttv/wp-sqlite-db` ([f8b3d80](https://github.com/devuri/wp-env-config/commit/f8b3d807ad2b3f247d9e48e7422693fb34a3e5a1))
+
+
+### Bug Fixes
+
+* bin missing from package ([0d93d5c](https://github.com/devuri/wp-env-config/commit/0d93d5c5d62f15a842bfd15f7371befc48b99ace))
+
 ## [0.30.3](https://github.com/devuri/wp-env-config/compare/v0.30.2...v0.30.3) (2023-03-14)
 
 
