@@ -44,6 +44,8 @@ class SetupCommand extends Command
             $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
         }
 
+        $dbprefix = strtolower( self::generate_str( 8 ) . '_' );
+
         foreach ( $this->files as $key => $file ) {
             $pattern     = 'example.com';
             $replacement = $replacementDomain;
@@ -52,15 +54,21 @@ class SetupCommand extends Command
                 $backupFile = $file . '.bak';
                 $this->filesystem->copy( $file, $backupFile );
 
-                $content = file_get_contents( $file );
-                $content = str_replace( $pattern, $replacement, $content );
-                $this->filesystem->dumpFile( $file, $content );
+                $contents = file_get_contents( $file );
+                $contents = str_replace( $pattern, $replacement, $contents );
 
-                $output->writeln( "<info>Replaced all instances of '$pattern' in $file with '$replacement'.</info>" );
+                if ( '.env' === basename( $file ) ) {
+                    // (?!\w)  This ensures that lines like "DB_PREFIX=wp_yg4tzb" are not matched
+                    $contents = preg_replace( '/^(DB_PREFIX=wp_(?!\w)).*$/m', "DB_PREFIX=wp_$dbprefix" . PHP_EOL, $contents );
+                }
+
+                $this->filesystem->dumpFile( $file, $contents );
+
+                $output->writeln( "<info>Replaced: '$pattern' in $file with '$replacement'.</info>" );
             } else {
-                $output->writeln( "Could not find $file." );
+                $output->writeln( "Skipped: <comment>Could not find $file.</comment>" );
             }
-        }
+        }//end foreach
 
         $salts = (object) $this->saltToArray();
 
@@ -114,5 +122,29 @@ class SetupCommand extends Command
 		NONCE_SALT='$salt->NONCE_SALT'
 
 		END;
+    }
+
+    /**
+     * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
+     *
+     * @param int $length The length of the alphanum_str to generate.
+     *
+     * @return string The generated string.
+     */
+    private static function generate_str( int $length = 8 ): string
+    {
+        $characters   = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $alphanum_str = '';
+        for ( $i = 0; $i < $length; $i++ ) {
+            if ( 0 === $i ) {
+                $alphanum_str .= $characters[ rand( 0, 51 ) ];
+				// First character must be a letter
+            } else {
+                $alphanum_str .= $characters[ rand( 0, 61 ) ];
+                // Any character
+            }
+        }
+
+        return $alphanum_str;
     }
 }
