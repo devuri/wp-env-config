@@ -62,26 +62,6 @@ class HttpKernel
         $this->app_setup = Setup::init( $this->app_path );
     }
 
-	/**
-	 * Retrieve the current month.
-	 *
-	 * @return string The current month value (formatted as "01"-"12").
-	 */
-	private function get_current_month()
-	{
-	    return gmdate( 'm' );
-	}
-
-	/**
-	 * Retrieve the current year.
-	 *
-	 * @return string The current year value (formatted as "YYYY").
-	 */
-	private function get_current_year()
-	{
-	    return gmdate( 'Y' );
-	}
-
 
     public function get_app(): Setup
     {
@@ -151,14 +131,14 @@ class HttpKernel
             $this->app_setup->config( $this->environment_args() );
         }
 
-		/**
-		 * Adds support for `aaemnnosttv/wp-sqlite-db`
-		 *
-		 * We want to set USE_MYSQL to set MySQL as the default database.
-		 *
-		 * @link https://github.com/aaemnnosttv/wp-sqlite-db/blob/master/src/db.php
-		 */
-		$this->define( 'USE_MYSQL', true );
+        /*
+         * Adds support for `aaemnnosttv/wp-sqlite-db`
+         *
+         * We want to set USE_MYSQL to set MySQL as the default database.
+         *
+         * @link https://github.com/aaemnnosttv/wp-sqlite-db/blob/master/src/db.php
+         */
+        $this->define( 'USE_MYSQL', true );
 
         // make env available.
         $this->define( 'HTTP_ENV_CONFIG', $this->app_setup->get_environment() );
@@ -209,9 +189,9 @@ class HttpKernel
         // this will be handled via composer.
         $this->define( 'AUTOMATIC_UPDATER_DISABLED', self::$args['disable_updates'] );
 
-		// SQLite database location and filename.
-		$this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
-		$this->define( 'DB_FILE', self::$args['sqlite_file'] );
+        // SQLite database location and filename.
+        $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
+        $this->define( 'DB_FILE', self::$args['sqlite_file'] );
     }
 
     /**
@@ -277,5 +257,25 @@ class HttpKernel
         }
 
         return $error;
+    }
+
+    /**
+     * Retrieve the current month.
+     *
+     * @return string The current month value (formatted as "01"-"12").
+     */
+    private function get_current_month()
+    {
+        return gmdate( 'm' );
+    }
+
+    /**
+     * Retrieve the current year.
+     *
+     * @return string The current year value (formatted as "YYYY").
+     */
+    private function get_current_year()
+    {
+        return gmdate( 'Y' );
     }
 }
