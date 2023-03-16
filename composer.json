@@ -131,7 +131,7 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-	"suggest": {
+    "suggest": {
         "yahnis-elsts/wp-update-server": "Custom update API server.",
         "humanmade/s3-uploads": "Store Uploads on Amazon S3",
         "embed/embed": "If you want to replace WP_oEmbed requires PHP 7.4",
