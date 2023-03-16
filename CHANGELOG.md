@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.6](https://github.com/devuri/wp-env-config/compare/v0.30.5...v0.30.6) (2023-03-16)
+
+
+### Bug Fixes
+
+* dump error message for dotenv ([a186bbd](https://github.com/devuri/wp-env-config/commit/a186bbd4b96475c0d54472aa106e3eca971f61d2))
+
 ## [0.30.5](https://github.com/devuri/wp-env-config/compare/v0.30.4...v0.30.5) (2023-03-16)
 
 
