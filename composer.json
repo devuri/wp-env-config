@@ -41,9 +41,6 @@
         "symfony/var-dumper": "^5.1.4",
         "vlucas/phpdotenv": "^5.2"
     },
-    "bin": [
-        "bin/nino"
-    ],
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
         "brain/monkey": "^2.6",
@@ -133,5 +130,13 @@
             "johnpbloch/wordpress-core-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+	"suggest": {
+        "yahnis-elsts/wp-update-server": "Custom update API server.",
+        "humanmade/s3-uploads": "Store Uploads on Amazon S3",
+        "embed/embed": "If you want to replace WP_oEmbed requires PHP 7.4",
+        "latitude/latitude": "SQL query builder with zero dependencies. ",
+        "ibericode/vat": "PHP library to help you deal with Europe's VAT rules.",
+        "aaemnnosttv/wp-sqlite-db": "PHP library to help you deal with Europe's VAT rules."
     }
 }

@@ -34,6 +34,8 @@ class HttpKernelTest extends BaseTest
             'content_dir'     => 'content',
             'plugin_dir'      => 'plugins',
             'mu_plugin_dir'   => 'mu-plugins',
+            'sqlite_dir'      => 'sqlitedb',
+            'sqlite_file'     => '.sqlite-wpdatabase',
             'disable_updates' => true,
         ];
 

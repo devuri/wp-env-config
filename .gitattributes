@@ -9,7 +9,6 @@
 /wordpress                     export-ignore
 /wp                            export-ignore
 /docs                          export-ignore
-/bin                           export-ignore
 /example                       export-ignore
 phpunit.xml                    export-ignore
 CHANGELOG.md                   export-ignore

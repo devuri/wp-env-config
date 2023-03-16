@@ -29,10 +29,10 @@ class Nino
         $this->root_dir = $root_dir;
         $this->http_app = $app;
 
-		// cli only.
-		if ( PHP_SAPI !== 'cli' ) {
-		    exit('please run from command line only');
-		}
+        // cli only.
+        if ( PHP_SAPI !== 'cli' ) {
+            exit( 'please run from command line only' );
+        }
     }
 
     public function load(): void
