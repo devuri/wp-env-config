@@ -101,7 +101,7 @@ class InstallerCommand extends Command
         for ( $i = 0; $i < $length; $i++ ) {
             if ( 0 === $i ) {
                 $password .= $characters[ rand( 0, 51 ) ];
-            // First character must be a letter
+				// First character must be a letter
             } else {
                 $password .= $characters[ rand( 0, 61 ) ];
                 // Any character
