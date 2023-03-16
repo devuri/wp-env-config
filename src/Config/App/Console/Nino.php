@@ -60,7 +60,7 @@ class Nino
      * Add new Application command.
      *
      * @param Command     $command  the command
-     * @param Application $nino_cli the Application
+     * @param Application $cli the Application
      */
     protected static function add_command( Command $command, Application $cli ): void
     {
