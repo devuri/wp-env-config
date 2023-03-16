@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.30.5](https://github.com/devuri/wp-env-config/compare/v0.30.4...v0.30.5) (2023-03-16)
+
+
+### Features
+
+* Adds `SSL` support by `certbot` ([9ccb5cf](https://github.com/devuri/wp-env-config/commit/9ccb5cf4cee49947e617008e76db69a4d167ef06))
+
 ## [0.30.4](https://github.com/devuri/wp-env-config/compare/v0.30.3...v0.30.4) (2023-03-16)
 
 
