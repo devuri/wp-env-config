@@ -9,10 +9,25 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ServeCommand extends Command
 {
     protected static $defaultName = 'serve';
+
+    private $root_dir_path;
+    private $filesystem;
+
+    public function __construct( string $root_dir_path, Filesystem $filesystem )
+    {
+        parent::__construct();
+        $this->filesystem = $filesystem;
+        $this->files      = [
+            'env'      => $root_dir_path . '/.env',
+            'htaccess' => $root_dir_path . '/public/.htaccess',
+            'robots'   => $root_dir_path . '/public/robots.txt',
+        ];
+    }
 
     protected function configure(): void
     {
@@ -34,6 +49,11 @@ class ServeCommand extends Command
         $host    = $input->getOption( 'host' );
         $docroot = $input->getOption( 'docroot' );
         $ini     = $input->getOption( 'ini' );
+
+		if ( ! $this->filesystem->exists( $this->files['env'] ) ) {
+            $output->writeln( '<comment>.env file does not exist. we will use .env-example.</comment>' );
+            $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
+        }
 
         if ( ! is_numeric( $port ) || $port < 1024 || $port > 65535 ) {
             throw new InvalidArgumentException( sprintf( 'Invalid port number: %s', $port ) );
