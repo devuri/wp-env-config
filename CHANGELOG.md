@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.30.7](https://github.com/devuri/wp-env-config/compare/v0.30.6...v0.30.7) (2023-03-17)
+
+
+### Features
+
+* Adds changes `.env` db prefix if set to `wp_` ([39b03e7](https://github.com/devuri/wp-env-config/commit/39b03e7f57c0088d18e1d731ea17263c7c2fd174))
+
+
+### Bug Fixes
+
+* create `.env` before we serve in cases where it does not exist ([c952204](https://github.com/devuri/wp-env-config/commit/c9522046a08e287e1c5f0eab482c749997860c26))
+
 ## [0.30.6](https://github.com/devuri/wp-env-config/compare/v0.30.5...v0.30.6) (2023-03-16)
 
 

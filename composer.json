@@ -1,8 +1,8 @@
 {
-    "name":"devuri/wp-env-config",
-    "type":"library",
-    "description":"A small package to define WordPress configuration constants using environment variables with a .env file.",
-    "keywords":[
+    "name": "devuri/wp-env-config",
+    "type": "library",
+    "description": "A small package to define WordPress configuration constants using environment variables with a .env file.",
+    "keywords": [
         "wp",
         "wordpress",
         "wp-config",
@@ -13,86 +13,86 @@
         "dotenv",
         "devuri"
     ],
-    "homepage":"https://github.com/devuri/wp-env-config",
-    "license":"MIT",
-    "minimum-stability":"dev",
-    "prefer-stable":true,
-    "authors":[
+    "homepage": "https://github.com/devuri/wp-env-config",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
         {
-            "name":"Uriel Wilson",
-            "email":"support@urielwilson.com",
-            "homepage":"https://urielwilson.com",
-            "role":"Developer"
+            "name": "Uriel Wilson",
+            "email": "support@urielwilson.com",
+            "homepage": "https://urielwilson.com",
+            "role": "Developer"
         }
     ],
-    "support":{
-        "source":"https://github.com/devuri/wp-env-config",
-        "issues":"https://github.com/devuri/wp-env-config/issues"
+    "support": {
+        "source": "https://github.com/devuri/wp-env-config",
+        "issues": "https://github.com/devuri/wp-env-config/issues"
     },
-    "require":{
-        "php":"^7.3 || ^7.4 || ^8.0",
-        "filp/whoops":"^2.15",
-        "johnpbloch/wordpress":"*",
-        "roots/wp-config":"1.0.0",
-        "symfony/console":"^5.4",
-        "symfony/error-handler":"^5.1",
-        "symfony/filesystem":"^5.4",
-        "symfony/process":"^5.4",
-        "symfony/var-dumper":"^5.1.4",
-        "vlucas/phpdotenv":"^5.2"
+    "require": {
+        "php": "^7.3 || ^7.4 || ^8.0",
+        "filp/whoops": "^2.15",
+        "johnpbloch/wordpress": "*",
+        "roots/wp-config": "1.0.0",
+        "symfony/console": "^5.4",
+        "symfony/error-handler": "^5.1",
+        "symfony/filesystem": "^5.4",
+        "symfony/process": "^5.4",
+        "symfony/var-dumper": "^5.1.4",
+        "vlucas/phpdotenv": "^5.2"
     },
-    "require-dev":{
-        "10up/phpcs-composer":"dev-master",
-        "brain/monkey":"^2.6",
-        "php-stubs/wordpress-stubs":"^6.0",
-        "phpstan/phpstan":"^1.8",
-        "phpstan/phpstan-strict-rules":"^1.3",
-        "phpunit/phpunit":"^9.5",
-        "symfony/var-dumper":"^5.4",
-        "szepeviktor/phpstan-wordpress":"^1.1",
-        "vimeo/psalm":"^4.24",
-        "yoast/phpunit-polyfills":"^1.0"
+    "require-dev": {
+        "10up/phpcs-composer": "dev-master",
+        "brain/monkey": "^2.6",
+        "php-stubs/wordpress-stubs": "^6.0",
+        "phpstan/phpstan": "^1.8",
+        "phpstan/phpstan-strict-rules": "^1.3",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.4",
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "vimeo/psalm": "^4.24",
+        "yoast/phpunit-polyfills": "^1.0"
     },
-    "autoload":{
-        "files":[
+    "autoload": {
+        "files": [
             "src/inc/helpers.php"
         ],
-        "psr-4":{
-            "DevUri\\":"src/"
+        "psr-4": {
+            "DevUri\\": "src/"
         }
     },
-    "autoload-dev":{
-        "psr-4":{
-            "Tests\\":"tests/"
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
-    "scripts":{
-        "wpcs":"composer wpcs-lint",
-        "wpcs-lint":[
+    "scripts": {
+        "wpcs": "composer wpcs-lint",
+        "wpcs-lint": [
             "composer install -q",
             "phpcs -ns src"
         ],
-        "wpcs-lint-all":[
+        "wpcs-lint-all": [
             "composer install -q",
             "phpcs -s src"
         ],
-        "wpcs-fix":[
+        "wpcs-fix": [
             "composer install -q",
             "phpcbf src"
         ],
-        "test":[
+        "test": [
             "composer install -q",
             "vendor/bin/phpunit",
             "composer no-dev -q"
         ],
-        "lint":[
+        "lint": [
             "composer install -q",
             "composer phpstan",
             "composer psalm-secure",
             "composer psalm",
             "composer no-dev -q"
         ],
-        "build":[
+        "build": [
             "composer install -q",
             "composer wpcs-lint",
             "composer lint",
@@ -101,42 +101,42 @@
             "composer test",
             "composer no-dev -q"
         ],
-        "phpstan":"@php ./vendor/bin/phpstan analyse",
-        "psalm":"vendor/bin/psalm",
-        "psalm-secure":"vendor/bin/psalm --taint-analysis",
-        "psalm-info":"vendor/bin/psalm --show-info=true",
-        "psalm-fix-return":"vendor/bin/psalm --alter --issues=MissingReturnType",
-        "psalm-autofix":[
+        "phpstan": "@php ./vendor/bin/phpstan analyse",
+        "psalm": "vendor/bin/psalm",
+        "psalm-secure": "vendor/bin/psalm --taint-analysis",
+        "psalm-info": "vendor/bin/psalm --show-info=true",
+        "psalm-fix-return": "vendor/bin/psalm --alter --issues=MissingReturnType",
+        "psalm-autofix": [
             "composer install -q",
             "vendor/bin/psalm --alter --issues=InvalidNullableReturnType,MismatchingDocblockReturnType,InvalidReturnType,InvalidFalsableReturnType,LessSpecificReturnType,MissingParamType"
         ],
-        "codefix":[
+        "codefix": [
             "composer php-cs-fixer",
             "composer no-dev -q"
         ],
-        "php-cs-fixer":[
+        "php-cs-fixer": [
             "composer require --dev friendsofphp/php-cs-fixer ^3.13 -q",
             "vendor/bin/php-cs-fixer fix",
             "composer remove --dev friendsofphp/php-cs-fixer -q",
             "composer install --no-dev -q"
         ],
-        "no-dev":"composer install --no-dev"
+        "no-dev": "composer install --no-dev"
     },
-    "config":{
-        "optimize-autoloader":true,
-        "preferred-install":"dist",
-        "sort-packages":true,
-        "allow-plugins":{
-            "johnpbloch/wordpress-core-installer":true,
-            "dealerdirect/phpcodesniffer-composer-installer":true
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "johnpbloch/wordpress-core-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
-    "suggest":{
-        "yahnis-elsts/wp-update-server":"Custom update API server.",
-        "humanmade/s3-uploads":"Store Uploads on Amazon S3",
-        "embed/embed":"If you want to replace WP_oEmbed requires PHP 7.4",
-        "latitude/latitude":"SQL query builder with zero dependencies. ",
-        "ibericode/vat":"PHP library to help you deal with Europe's VAT rules.",
-        "aaemnnosttv/wp-sqlite-db":"PHP library to help you deal with Europe's VAT rules."
+    "suggest": {
+        "yahnis-elsts/wp-update-server": "Custom update API server.",
+        "humanmade/s3-uploads": "Store Uploads on Amazon S3",
+        "embed/embed": "If you want to replace WP_oEmbed requires PHP 7.4",
+        "latitude/latitude": "SQL query builder with zero dependencies. ",
+        "ibericode/vat": "PHP library to help you deal with Europe's VAT rules.",
+        "aaemnnosttv/wp-sqlite-db": "PHP library to help you deal with Europe's VAT rules."
     }
 }
