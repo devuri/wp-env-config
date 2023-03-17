@@ -44,7 +44,7 @@ class Nino
         $certbotssl = new CertCommand();
         $database   = new DatabaseCommand();
         $config     = new ConfigCommand( $this->root_dir, $this->http_app );
-        $serve      = new ServeCommand();
+        $serve      = new ServeCommand( $this->root_dir, new Filesystem() );
 
         self::add_command( $serve, $nino_cli );
         // self::add_command( $database, $nino_cli );
