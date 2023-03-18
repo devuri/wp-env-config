@@ -19,6 +19,7 @@ class SetupCommand extends Command
     {
         parent::__construct();
         $this->filesystem = $filesystem;
+        $this->root_dir_path = $root_dir_path;
         $this->files      = [
             'env'      => $root_dir_path . '/.env',
             'htaccess' => $root_dir_path . '/public/.htaccess',
@@ -68,7 +69,7 @@ class SetupCommand extends Command
             } else {
                 $output->writeln( "Skipped: <comment>Could not find $file.</comment>" );
             }
-        }//end foreach
+        }// end foreach
 
         $salts = (object) $this->saltToArray();
 
@@ -138,7 +139,7 @@ class SetupCommand extends Command
         for ( $i = 0; $i < $length; $i++ ) {
             if ( 0 === $i ) {
                 $alphanum_str .= $characters[ rand( 0, 51 ) ];
-				// First character must be a letter
+            // First character must be a letter
             } else {
                 $alphanum_str .= $characters[ rand( 0, 61 ) ];
                 // Any character
