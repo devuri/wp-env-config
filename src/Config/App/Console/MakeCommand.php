@@ -23,9 +23,9 @@ class MakeCommand extends Command
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
-        $this->filesystem = $filesystem;
+        $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-        $this->env_file = $root_dir_path . '/.env';
+        $this->env_file      = $root_dir_path . '/.env';
     }
 
     protected function configure(): void
@@ -48,19 +48,18 @@ class MakeCommand extends Command
         // find
         $env_file_content = file_get_contents( $this->env_file );
 
-        if (preg_match("/WP_DB_PHPADMIN/i", $env_file_content)) {
-            $output->writeln( PHP_EOL . "<comment>Your dbadmin path is stored as constant in .env:</comment><info>WP_DB_PHPADMIN</info>" . PHP_EOL );
+        if ( preg_match( '/WP_DB_PHPADMIN/i', $env_file_content ) ) {
+            $output->writeln( PHP_EOL . '<comment>Your dbadmin path is stored as constant in .env:</comment><info>WP_DB_PHPADMIN</info>' . PHP_EOL );
 
             return Command::SUCCESS;
         }
 
-
         try {
             $this->filesystem->mkdir(
-                Path::normalize( $this->root_dir_path . "/public/d$dbadmin"),
+                Path::normalize( $this->root_dir_path . "/public/d$dbadmin" ),
             );
         } catch ( IOExceptionInterface $ex ) {
-            $output->writeln( "<error>Failed creating directory at:</error> " . $ex->getPath() );
+            $output->writeln( '<error>Failed creating directory at:</error> ' . $ex->getPath() );
 
             return Command::FAILURE;
         }
