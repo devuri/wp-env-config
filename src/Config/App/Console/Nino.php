@@ -37,7 +37,7 @@ class Nino
 
     public function load(): void
     {
-        $nino_cli = new Application();
+        $nino = new Application();
 
         $setup      = new SetupCommand( $this->root_dir, new Filesystem() );
         $installer  = new InstallerCommand( $this->root_dir );
@@ -45,15 +45,17 @@ class Nino
         $database   = new DatabaseCommand();
         $config     = new ConfigCommand( $this->root_dir, $this->http_app );
         $serve      = new ServeCommand( $this->root_dir, new Filesystem() );
+        $dbadmin    = new MakeCommand( $this->root_dir, new Filesystem() );
 
-        self::add_command( $serve, $nino_cli );
-        // self::add_command( $database, $nino_cli );
-        self::add_command( $setup, $nino_cli );
-        // self::add_command( $installer, $nino_cli );
-        self::add_command( $certbotssl, $nino_cli );
-        self::add_command( $config, $nino_cli );
+        self::add_command( $serve, $nino );
+        // self::add_command( $database, $nino );
+        self::add_command( $setup, $nino );
+        // self::add_command( $installer, $nino );
+        self::add_command( $certbotssl, $nino );
+        self::add_command( $dbadmin, $nino );
+        self::add_command( $config, $nino );
 
-        $nino_cli->run();
+        $nino->run();
     }
 
     /**

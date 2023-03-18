@@ -18,9 +18,9 @@ class SetupCommand extends Command
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
-        $this->filesystem = $filesystem;
+        $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-        $this->files      = [
+        $this->files         = [
             'env'      => $root_dir_path . '/.env',
             'htaccess' => $root_dir_path . '/public/.htaccess',
             'robots'   => $root_dir_path . '/public/robots.txt',
@@ -139,7 +139,7 @@ class SetupCommand extends Command
         for ( $i = 0; $i < $length; $i++ ) {
             if ( 0 === $i ) {
                 $alphanum_str .= $characters[ rand( 0, 51 ) ];
-            // First character must be a letter
+				// First character must be a letter
             } else {
                 $alphanum_str .= $characters[ rand( 0, 61 ) ];
                 // Any character

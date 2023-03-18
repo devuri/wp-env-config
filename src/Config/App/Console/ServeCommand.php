@@ -21,9 +21,9 @@ class ServeCommand extends Command
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
-        $this->filesystem = $filesystem;
+        $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-        $this->files      = [
+        $this->files         = [
             'env'      => $root_dir_path . '/.env',
             'htaccess' => $root_dir_path . '/public/.htaccess',
             'robots'   => $root_dir_path . '/public/robots.txt',
