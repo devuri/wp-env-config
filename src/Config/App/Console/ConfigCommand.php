@@ -2,6 +2,7 @@
 
 namespace DevUri\Config\App\Console;
 
+use DevUri\Config\App\Console\Traits\Generator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,6 +10,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConfigCommand extends Command
 {
+    use Generator;
+
     protected static $defaultName = 'config';
 
     private $root_dir_path;
@@ -38,6 +41,12 @@ class ConfigCommand extends Command
             $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
             dump( $this->get_env( $_ENV ) );
         }
+
+        if ( 'uuid' === $config_task ) {
+            $uuid = self::uuid();
+            $output->writeln( "uuid: <info>$uuid</info>" . PHP_EOL );
+        }
+
         // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
 
         return Command::SUCCESS;

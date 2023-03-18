@@ -30,16 +30,17 @@
         "issues":"https://github.com/devuri/wp-env-config/issues"
     },
     "require":{
-        "php":"^7.3 || ^7.4 || ^8.0",
-        "filp/whoops":"^2.15",
-        "johnpbloch/wordpress":"*",
-        "roots/wp-config":"1.0.0",
-        "symfony/console":"^5.4",
-        "symfony/error-handler":"^5.1",
-        "symfony/filesystem":"^5.4",
-        "symfony/process":"^5.4",
-        "symfony/var-dumper":"^5.1.4",
-        "vlucas/phpdotenv":"^5.2"
+        "php": "^7.3 || ^7.4 || ^8.0",
+        "devuri/uuid-generator": "^0.0.1",
+        "filp/whoops": "^2.15",
+        "johnpbloch/wordpress": "*",
+        "roots/wp-config": "1.0.0",
+        "symfony/console": "^5.4",
+        "symfony/error-handler": "^5.1",
+        "symfony/filesystem": "^5.4",
+        "symfony/process": "^5.4",
+        "symfony/var-dumper": "^5.1.4",
+        "vlucas/phpdotenv": "^5.2"
     },
     "require-dev":{
         "10up/phpcs-composer": "dev-master",
