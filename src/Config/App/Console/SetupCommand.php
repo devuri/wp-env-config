@@ -19,6 +19,7 @@ class SetupCommand extends Command
     {
         parent::__construct();
         $this->filesystem = $filesystem;
+		$this->root_dir_path = $root_dir_path;
         $this->files      = [
             'env'      => $root_dir_path . '/.env',
             'htaccess' => $root_dir_path . '/public/.htaccess',
