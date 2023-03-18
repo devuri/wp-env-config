@@ -7,9 +7,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Filesystem\Filesystem;
 
 class ServeCommand extends Command
 {
@@ -51,7 +51,7 @@ class ServeCommand extends Command
         $docroot = $input->getOption( 'docroot' );
         $ini     = $input->getOption( 'ini' );
 
-		if ( ! $this->filesystem->exists( $this->files['env'] ) ) {
+        if ( ! $this->filesystem->exists( $this->files['env'] ) ) {
             $output->writeln( '<comment>.env file does not exist. we will use .env-example.</comment>' );
             $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
         }
