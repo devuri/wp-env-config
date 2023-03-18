@@ -44,7 +44,7 @@ class ConfigCommand extends Command
 
         if ( 'uuid' === $config_task ) {
             $uuid = self::uuid();
-            $output->writeln( "uuid: <info>$uuid</info>" . PHP_EOL );
+            $output->writeln( PHP_EOL . "<comment>The uuid is: </comment><info>$uuid</info>" . PHP_EOL );
         }
 
         // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
