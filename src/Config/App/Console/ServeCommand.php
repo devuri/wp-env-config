@@ -2,6 +2,7 @@
 
 namespace DevUri\Config\App\Console;
 
+use DevUri\Config\App\Console\Traits\Env;
 use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,10 +14,13 @@ use Symfony\Component\Process\Process;
 
 class ServeCommand extends Command
 {
+    use Env;
+
     protected static $defaultName = 'serve';
 
     private $root_dir_path;
     private $filesystem;
+    private $app_env;
 
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
@@ -28,6 +32,8 @@ class ServeCommand extends Command
             'htaccess' => $root_dir_path . '/public/.htaccess',
             'robots'   => $root_dir_path . '/public/robots.txt',
         ];
+
+        $this->app_env = self::get_env_array( $this->files['env'] );
     }
 
     protected function configure(): void
@@ -58,6 +64,13 @@ class ServeCommand extends Command
 
         if ( ! is_numeric( $port ) || $port < 1024 || $port > 65535 ) {
             throw new InvalidArgumentException( sprintf( 'Invalid port number: %s', $port ) );
+        }
+
+        $env_home_url = explode( ':', $this->app_env['WP_HOME'] );
+        $env_port = (int) $env_home_url[2];
+
+        if ( ! $this->is_valid_env_port( $port, $env_port ) ) {
+            $output->writeln( PHP_EOL . "<comment>Server port:$port did not match .env file port:$env_port</comment>" . PHP_EOL );
         }
 
         if ( ! is_dir( $docroot ) ) {
@@ -93,5 +106,14 @@ class ServeCommand extends Command
         }
 
         return 0;
+    }
+
+    protected function is_valid_env_port( $port, $env_port ): bool
+    {
+        if ( $env_port === $port ) {
+            return true;
+        }
+
+        return false;
     }
 }
