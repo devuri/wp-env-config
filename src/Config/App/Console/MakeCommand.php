@@ -2,7 +2,7 @@
 
 namespace DevUri\Config\App\Console;
 
-use DevUri\Config\App\Console\Traits\Generator;
+use DevUri\Config\App\Console\Traits\Generate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,7 +13,7 @@ use Symfony\Component\Filesystem\Path;
 
 class MakeCommand extends Command
 {
-    use Generator;
+    use Generate;
 
     protected static $defaultName = 'make:dbadmin';
 

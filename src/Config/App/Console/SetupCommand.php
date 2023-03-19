@@ -7,9 +7,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use DevUri\Config\App\Console\Traits\Env;
+use DevUri\Config\App\Console\Traits\Generate;
 
 class SetupCommand extends Command
 {
+	use Env;
+	use Generate;
+
     protected static $defaultName = 'setup';
 
     private $filesystem;
@@ -45,7 +50,7 @@ class SetupCommand extends Command
             $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
         }
 
-        $dbprefix = strtolower( self::generate_str( 8 ) . '_' );
+        $dbprefix = strtolower( self::rand_str( 8 ) . '_' );
 
         foreach ( $this->files as $key => $file ) {
             $pattern     = 'example.com';
@@ -82,70 +87,5 @@ class SetupCommand extends Command
         }
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * @return string[]
-     *
-     * @psalm-return array<string, string>
-     */
-    private function saltToArray(): array
-    {
-        $salts   = file_get_contents( 'https://api.wordpress.org/secret-key/1.1/salt/' );
-        $string  = str_replace( [ "\r", "\n" ], '', $salts );
-        $pattern = "/define\('([^']*)',\s*'([^']*)'\);/";
-        $result  = [];
-        if ( preg_match_all( $pattern, $string, $matches, PREG_SET_ORDER ) ) {
-            foreach ( $matches as $match ) {
-                $key            = $match[1];
-                $val            = $match[2];
-                $result[ $key ] = $val;
-            }
-        } else {
-            // Handle invalid input
-            $result = [ 'error' => 'Invalid input string' ];
-        }
-
-        return $result;
-    }
-
-    private static function saltContent( object $salt ): string
-    {
-        return <<<END
-
-		AUTH_KEY='$salt->AUTH_KEY'
-		SECURE_AUTH_KEY='$salt->SECURE_AUTH_KEY'
-		LOGGED_IN_KEY='$salt->LOGGED_IN_KEY'
-		NONCE_KEY='$salt->NONCE_KEY'
-		AUTH_SALT='$salt->AUTH_SALT'
-		SECURE_AUTH_SALT='$salt->SECURE_AUTH_SALT'
-		LOGGED_IN_SALT='$salt->LOGGED_IN_SALT'
-		NONCE_SALT='$salt->NONCE_SALT'
-
-		END;
-    }
-
-    /**
-     * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
-     *
-     * @param int $length The length of the alphanum_str to generate.
-     *
-     * @return string The generated string.
-     */
-    private static function generate_str( int $length = 8 ): string
-    {
-        $characters   = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $alphanum_str = '';
-        for ( $i = 0; $i < $length; $i++ ) {
-            if ( 0 === $i ) {
-                $alphanum_str .= $characters[ rand( 0, 51 ) ];
-				// First character must be a letter
-            } else {
-                $alphanum_str .= $characters[ rand( 0, 61 ) ];
-                // Any character
-            }
-        }
-
-        return $alphanum_str;
     }
 }
