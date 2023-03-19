@@ -27,7 +27,7 @@ class Nino
      */
     public function __construct( string $root_dir, ?HttpKernel $app = null )
     {
-		$this->nino = new Application();
+        $this->nino     = new Application();
         $this->root_dir = $root_dir;
         $this->http_app = $app;
 

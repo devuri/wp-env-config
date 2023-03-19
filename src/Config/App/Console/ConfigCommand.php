@@ -2,8 +2,8 @@
 
 namespace DevUri\Config\App\Console;
 
-use DevUri\Config\App\Console\Traits\Generate;
 use DevUri\Config\App\Console\Traits\Env;
+use DevUri\Config\App\Console\Traits\Generate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -11,8 +11,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ConfigCommand extends Command
 {
-    use Generate;
     use Env;
+    use Generate;
 
     protected static $defaultName = 'config';
 
