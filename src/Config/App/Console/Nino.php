@@ -20,12 +20,14 @@ class Nino
 {
     protected $root_dir;
     protected $http_app;
+    protected $nino;
 
     /**
      * New Application command.
      */
     public function __construct( string $root_dir, ?HttpKernel $app = null )
     {
+        $this->nino     = new Application();
         $this->root_dir = $root_dir;
         $this->http_app = $app;
 
@@ -37,36 +39,25 @@ class Nino
 
     public function load(): void
     {
-        $nino = new Application();
+        $this->add_command( new ServeCommand( $this->root_dir, new Filesystem() ) );
+        // $this->add_command( new DatabaseCommand() );
+        $this->add_command( new SetupCommand( $this->root_dir, new Filesystem() ) );
+        // $this->add_command( new InstallerCommand( $this->root_dir ) );
+        $this->add_command( new CertCommand() );
+        $this->add_command( new MakeCommand( $this->root_dir, new Filesystem() ) );
+        $this->add_command( new ConfigCommand( $this->root_dir, $this->http_app ) );
 
-        $setup      = new SetupCommand( $this->root_dir, new Filesystem() );
-        $installer  = new InstallerCommand( $this->root_dir );
-        $certbotssl = new CertCommand();
-        $database   = new DatabaseCommand();
-        $config     = new ConfigCommand( $this->root_dir, $this->http_app );
-        $serve      = new ServeCommand( $this->root_dir, new Filesystem() );
-        $dbadmin    = new MakeCommand( $this->root_dir, new Filesystem() );
-
-        self::add_command( $serve, $nino );
-        // self::add_command( $database, $nino );
-        self::add_command( $setup, $nino );
-        // self::add_command( $installer, $nino );
-        self::add_command( $certbotssl, $nino );
-        self::add_command( $dbadmin, $nino );
-        self::add_command( $config, $nino );
-
-        $nino->run();
+        $this->nino->run();
     }
 
     /**
      * Add new Application command.
      *
-     * @param Command     $command the command
-     * @param Application $cli     the Application
+     * @param Command $command the command
      */
-    protected static function add_command( Command $command, Application $cli ): void
+    protected function add_command( Command $command ): void
     {
-        $cli->add( $command );
-        $cli->setDefaultCommand( $command->getName() );
+        $this->nino->add( $command );
+        $this->nino->setDefaultCommand( $command->getName() );
     }
 }

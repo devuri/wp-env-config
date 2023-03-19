@@ -2,6 +2,7 @@
 
 namespace DevUri\Config\App\Console;
 
+use DevUri\Config\App\Console\Traits\Generate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,8 @@ use Symfony\Component\Process\Process;
 
 class InstallerCommand extends Command
 {
+    use Generate;
+
     protected static $defaultName = 'install:wp';
 
     private $wp_path;
@@ -21,10 +24,10 @@ class InstallerCommand extends Command
     {
         parent::__construct();
         $this->wp_path        = $root_dir_path . '/public/wp/';
-        $this->site_title     = strtoupper( self::generate_password( 5 ) );
-        $this->admin_user     = 'admin' . self::generate_password( 6 );
-        $this->admin_password = self::generate_password( 12 );
-        $this->admin_email    = 'admin@' . self::generate_password( 8 ) . '.com';
+        $this->site_title     = strtoupper( self::rand_str( 5 ) );
+        $this->admin_user     = 'admin' . self::rand_str( 6 );
+        $this->admin_password = self::rand_str( 12 );
+        $this->admin_email    = 'admin@' . self::rand_str( 8 ) . '.com';
     }
 
     protected function configure(): void
@@ -85,29 +88,5 @@ class InstallerCommand extends Command
         // history -c
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * Generate a random alphanumeric password of a specified length, starting with a letter.
-     *
-     * @param int $length The length of the password to generate.
-     *
-     * @return string The generated password.
-     */
-    private static function generate_password( int $length = 8 ): string
-    {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $password   = '';
-        for ( $i = 0; $i < $length; $i++ ) {
-            if ( 0 === $i ) {
-                $password .= $characters[ rand( 0, 51 ) ];
-				// First character must be a letter
-            } else {
-                $password .= $characters[ rand( 0, 61 ) ];
-                // Any character
-            }
-        }
-
-        return $password;
     }
 }
