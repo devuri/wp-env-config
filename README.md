@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="https://user-images.githubusercontent.com/4777400/225331174-d5ae1c0e-5ec0-493b-aabc-91c4cc6a14c4.png" />
 </p>
@@ -9,6 +8,8 @@
 ## WordPress Environment Configuration
 
 [![Unit Tests](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml)
+
+> **Note:** This branch is the development branch and contains features that may be in various stages of development **do not** use this branch in production, instead use the [release](https://github.com/devuri/wp-env-config/releases) versions.
 
 ### Introduction
 
