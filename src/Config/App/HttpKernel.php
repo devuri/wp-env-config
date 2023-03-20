@@ -59,9 +59,24 @@ class HttpKernel
             throw new Exception( 'Error: ' . $app_error['message'], 2 );
         }
 
+        /*
+         * By default, Dotenv will stop looking for files as soon as it finds one.
+         *
+         * To disable this behaviour, and load all files in order,
+         * we can disable the file loading with the `short_circuit` bool param.
+         *
+         * ['env', '.env', '.env.secure', '.env.prod', '.env.staging', '.env.dev', '.env.debug', '.env.local']
+         * Since these will load in order we can control our env by simply creating file that matches
+         * the enviroment on say staging we would create '.env.staging' since its the only file available
+         * those will be the only values loaded.
+         *
+         * We can use Setup methods `get_short_circuit()` and `get_env_files()`
+         * to know how the enviroment is configured.
+         *
+         * @link https://github.com/vlucas/phpdotenv/pull/394
+         */
         $this->app_setup = Setup::init( $this->app_path );
     }
-
 
     public function get_app(): Setup
     {

@@ -59,20 +59,69 @@ class Setup implements ConfigInterface
     /**
      * Error log dir.
      *
-     * @var array
+     * @var string
      */
     protected $error_log_dir;
+
+    /**
+     * Env files.
+     *
+     * @var array
+     */
+    protected $env_files = [];
+
+    /**
+     * short circuit loader.
+     *
+     * @var bool
+     */
+    protected $short_circuit;
 
     /**
      * Constructor.
      *
      * @param array|string $path current Directory.
      */
-    public function __construct( $path )
+    public function __construct( $path, ?array $supported_names = null, bool $short_circuit = true )
     {
         $this->path = $path;
 
-        $this->dotenv = Dotenv::createImmutable( $this->path );
+        // use multiple filenames.
+        if ( $supported_names ) {
+            $this->env_files = $supported_names;
+        } else {
+            $this->env_files = [
+                'env',
+				'.env',
+				'.env.secure',
+				'.env.prod',
+				'.env.staging',
+				'.env.dev',
+				'.env.debug',
+				'.env.local',
+            ];
+        }
+
+        /*
+         * By default, we'll stop looking for files as soon as we find one.
+         *
+         * To disable this behaviour, and load all files in order,
+         * we can disable the file loading with a new parameter.
+         *
+         * @link https://github.com/vlucas/phpdotenv/pull/394
+         */
+        $this->short_circuit = $short_circuit;
+
+        /*
+         * Uses multiple file names.
+         *
+         * Stop looking for files as soon as we find one.
+         * If only one file exists, load it
+         * If no files exist, crash.
+         *
+         * @link https://github.com/vlucas/phpdotenv/pull/394
+         */
+        $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
 
         try {
             $this->dotenv->load();
@@ -204,6 +253,30 @@ class Setup implements ConfigInterface
         self::define( 'WP_ENVIRONMENT_TYPE', $this->environment );
 
         return $this;
+    }
+
+    /**
+     * Get the short_circuit loaded.
+     *
+     * @return bool
+     *
+     * @psalm-return bool
+     */
+    public function get_short_circuit(): bool
+    {
+        return $this->short_circuit;
+    }
+
+    /**
+     * Get the Env files loaded.
+     *
+     * @return string[]
+     *
+     * @psalm-return string[]
+     */
+    public function get_env_files(): array
+    {
+        return $this->env_files;
     }
 
     /**
