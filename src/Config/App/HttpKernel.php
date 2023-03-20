@@ -28,6 +28,7 @@ class HttpKernel
         'mu_plugin_dir'   => 'mu-plugins',
         'sqlite_dir'      => 'sqlitedb',
         'sqlite_file'     => '.sqlite-wpdatabase',
+        'default_theme'   => 'twentytwentythree',
         'disable_updates' => true,
     ];
 
@@ -207,6 +208,15 @@ class HttpKernel
         // SQLite database location and filename.
         $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
         $this->define( 'DB_FILE', self::$args['sqlite_file'] );
+
+		/**
+		 * Slug of the default theme for this installation.
+		 * Used as the default theme when installing new sites.
+		 * It will be used as the fallback if the active theme doesn't exist.
+		 *
+		 * @see WP_Theme::get_core_default_theme()
+		 */
+		$this->define( 'WP_DEFAULT_THEME', self::$args['default_theme'] );
     }
 
     /**
