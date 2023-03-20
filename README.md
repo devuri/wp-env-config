@@ -122,6 +122,9 @@ env
 .env.dev
 .env.debug
 .env.local
+
+# By default, Dotenv will stop looking for files as soon as it finds one.
+
 ```
 
 You can define as many constants as you need using this approach.
