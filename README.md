@@ -113,7 +113,7 @@ require_once ABSPATH . 'wp-settings.php';
 This will load the environment variables from the `.env` file and define them as configuration constants.
 
 ```shell
-# the following files are supported (in that order):
+# the following files are supported (in that order)
 
 env
 .env
