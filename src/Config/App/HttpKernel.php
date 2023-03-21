@@ -209,14 +209,25 @@ class HttpKernel
         $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
         $this->define( 'DB_FILE', self::$args['sqlite_file'] );
 
-		/**
-		 * Slug of the default theme for this installation.
-		 * Used as the default theme when installing new sites.
-		 * It will be used as the fallback if the active theme doesn't exist.
-		 *
-		 * @see WP_Theme::get_core_default_theme()
-		 */
-		$this->define( 'WP_DEFAULT_THEME', self::$args['default_theme'] );
+        /*
+         * Slug of the default theme for this installation.
+         * Used as the default theme when installing new sites.
+         * It will be used as the fallback if the active theme doesn't exist.
+         *
+         * @see WP_Theme::get_core_default_theme()
+         */
+        $this->define( 'WP_DEFAULT_THEME', self::$args['default_theme'] );
+
+        // home url md5 value.
+        $this->define( 'COOKIEHASH', md5( env( 'WP_HOME' ) ) );
+
+        // Defines cookie-related override for WordPress constants.
+        $this->define( 'USER_COOKIE', 'wpc_user_' . COOKIEHASH );
+        $this->define( 'PASS_COOKIE', 'wpc_pass_' . COOKIEHASH );
+        $this->define( 'AUTH_COOKIE', 'wpc_' . COOKIEHASH );
+        $this->define( 'SECURE_AUTH_COOKIE', 'wpc_sec_' . COOKIEHASH );
+        $this->define( 'LOGGED_IN_COOKIE', 'wpc_logged_in_' . COOKIEHASH );
+        $this->define( 'TEST_COOKIE', md5( 'wpc_test_cookie' . env( 'WP_HOME' ) ) );
     }
 
     /**

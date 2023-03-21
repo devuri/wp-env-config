@@ -139,6 +139,6 @@
         "embed/embed":"If you want to replace WP_oEmbed requires PHP 7.4",
         "latitude/latitude":"SQL query builder with zero dependencies. ",
         "ibericode/vat":"PHP library to help you deal with Europe's VAT rules.",
-        "aaemnnosttv/wp-sqlite-db":"PHP library to help you deal with Europe's VAT rules."
+        "aaemnnosttv/wp-sqlite-db":"A drop-in for using a SQLite database with WordPress."
     }
 }
