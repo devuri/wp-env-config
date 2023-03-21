@@ -92,13 +92,13 @@ class Setup implements ConfigInterface
         } else {
             $this->env_files = [
                 'env',
-				'.env',
-				'.env.secure',
-				'.env.prod',
-				'.env.staging',
-				'.env.dev',
-				'.env.debug',
-				'.env.local',
+                '.env',
+                '.env.secure',
+                '.env.prod',
+                '.env.staging',
+                '.env.dev',
+                '.env.debug',
+                '.env.local',
             ];
         }
 
