@@ -102,6 +102,13 @@ class Setup implements ConfigInterface
             ];
         }
 
+        // Verifiy files to avoid Dotenv warning.
+        foreach ( $this->env_files as $key => $file ) {
+            if ( ! file_exists( $this->path . '/' . $file ) ) {
+                unset( $this->env_files[ $key ] );
+            }
+        }
+
         /*
          * By default, we'll stop looking for files as soon as we find one.
          *
