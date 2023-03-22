@@ -315,7 +315,7 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-        if ( 'debug' !== $this->environment || 'development' !== $this->environment ) {
+        if ( ! \in_array( $this->environment, [ 'debug', 'development', 'local' ], true ) ) {
             return $this;
         }
 
