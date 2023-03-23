@@ -34,4 +34,23 @@ trait Generate
 
         return $alphanum_str;
     }
+
+    protected static function htpasswd( string $username, $password ): string
+    {
+        $salt            = self::rand_str( 16 );
+        $salted_password = '$apr1$' . $salt . '$' . md5( $salt . $password . $salt );
+
+        return $username . ':' . $salted_password . ':' . $salt;
+    }
+
+    protected static function bcr_htpasswd( string $username, $password ): string
+    {
+		// Determine the number of hashing rounds (between 4 and 31)
+        $cost = 10;
+
+        // Generate a random salt using bcrypt's built-in function
+        $salt = sprintf( '$2y$%02d$%s', $cost, substr( strtr( base64_encode( random_bytes( 16 ) ), '+', '.' ), 0, 22 ) );
+
+        return $username . ':' . crypt( $password, $salt );
+    }
 }

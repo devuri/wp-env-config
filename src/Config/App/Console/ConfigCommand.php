@@ -49,8 +49,33 @@ class ConfigCommand extends Command
             $output->writeln( PHP_EOL . "<comment>The uuid is: </comment><info>$uuid</info>" . PHP_EOL );
         }
 
+        // Htpasswd Generator to create htpasswd.
+        $this->create_htpasswd_file( $config_task, $output );
+
         // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
 
         return Command::SUCCESS;
+    }
+
+    protected function create_htpasswd_file( string $config_task, OutputInterface $output ): void
+    {
+        // create passwords for htpasswd files.
+        if ( 'htpass' === $config_task ) {
+            $password = self::rand_str();
+
+            // just use `demo` user.
+            $htpasswd = self::htpasswd( 'demo', $password );
+            $output->writeln( PHP_EOL . "<comment>Htpasswd Generator:username and password:</comment><info>demo $password</info>" . PHP_EOL );
+            $output->writeln( PHP_EOL . "<comment>Add to htpasswd file:</comment><info>$htpasswd</info>" . PHP_EOL );
+            $output->writeln( PHP_EOL . '<comment>* Apache specific salted MD5 (can be insecure but is very common), use `sechtpass` to generate more secure password </comment>' . PHP_EOL );
+        } elseif ( 'sechtpass' ) {
+            $password = self::rand_str();
+
+            // just use `demo` user.
+            $htpasswd = self::bcr_htpasswd( 'demo', $password );
+            $output->writeln( PHP_EOL . "<comment>Htpasswd Generator:username and password:</comment><info>demo $password</info>" . PHP_EOL );
+            $output->writeln( PHP_EOL . "<comment>Add to htpasswd file:</comment><info>$htpasswd</info>" . PHP_EOL );
+            $output->writeln( PHP_EOL . '<comment>* Bcrypt for Apache v2.4 onwards</comment>' . PHP_EOL );
+        }
     }
 }
