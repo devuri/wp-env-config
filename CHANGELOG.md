@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.30.8](https://github.com/devuri/wp-env-config/compare/v0.30.7...v0.30.8) (2023-03-23)
+
+
+### Features
+
+* Adds `uuid` ([15c61c1](https://github.com/devuri/wp-env-config/commit/15c61c10de604585fbf7e280f1f9c39aa8bd082d))
+* Adds cookie-related override for WordPress constants ([5039404](https://github.com/devuri/wp-env-config/commit/5039404c658acb821cab3ea1fb9de5ff62dc3528))
+* Adds Generator to create `htpasswd` ([3190fc9](https://github.com/devuri/wp-env-config/commit/3190fc9c9544354cd6fbe7d580ebcadc74df66aa))
+* Adds multiple `env` file support: https://github.com/vlucas/phpdotenv/pull/394 ([a4f97b3](https://github.com/devuri/wp-env-config/commit/a4f97b3da326c967d5d19406f25cd0f17eec2f7a))
+* Adds suggest `spatie/ssh` ([cf0befa](https://github.com/devuri/wp-env-config/commit/cf0befaeaa0f5c4d04224310dfe5327df30dea27))
+* create `uuid` dir path to store phpmyadmin or adminer ([a968668](https://github.com/devuri/wp-env-config/commit/a968668c70c6db06f96da198d82a78e91044d919))
+* Set slug of the default theme ([147fe09](https://github.com/devuri/wp-env-config/commit/147fe0914c2fe3916b383c3636a87aa29a828b89))
+* Validate `.env` port matches `local` server port ([df8297c](https://github.com/devuri/wp-env-config/commit/df8297c6f04b6dd3a9192b0a46a03c737cf8472c))
+
+
+### Bug Fixes
+
+* consolidate `env` methods ([1f093c7](https://github.com/devuri/wp-env-config/commit/1f093c7688bd9b4c2c34e848b45dedb6a200b5e9))
+* fixes `root_dir_path` ([f3481af](https://github.com/devuri/wp-env-config/commit/f3481af3a5be0f9a12b067a434ad2b08be0cdcc5))
+* fixes debug error handlers based on `environment` ([434b06f](https://github.com/devuri/wp-env-config/commit/434b06f81caedc5abc35a01cf42a9bc308726065))
+* trait `Generator` is now `Generate` ([28383b7](https://github.com/devuri/wp-env-config/commit/28383b7256c9f439d1f2e42f0b41f9d57bc89c36))
+* use `$this-&gt;nino` ([1f1338d](https://github.com/devuri/wp-env-config/commit/1f1338dfd248d2d148e33acbeec9f9816866896f))
+* Verifiy files to avoid Dotenv warning. ([b762c2d](https://github.com/devuri/wp-env-config/commit/b762c2de3a23aa5d07b55ff6ee2c25192a38590d))
+
 ## [0.30.7](https://github.com/devuri/wp-env-config/compare/v0.30.6...v0.30.7) (2023-03-17)
 
 
