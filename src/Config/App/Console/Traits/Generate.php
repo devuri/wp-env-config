@@ -45,7 +45,7 @@ trait Generate
 
     protected static function bcr_htpasswd( string $username, $password ): string
     {
-		// Determine the number of hashing rounds (between 4 and 31)
+        // Determine the number of hashing rounds (between 4 and 31)
         $cost = 10;
 
         // Generate a random salt using bcrypt's built-in function
