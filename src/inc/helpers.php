@@ -42,7 +42,7 @@ if ( ! \function_exists( 'env' ) ) {
      *
      * @return mixed
      */
-    function env( string $name, bool $strtolower = true )
+    function env( string $name, bool $strtolower = false )
     {
         if ( ! isset( $_ENV[ $name ] ) ) {
             return null;
@@ -52,16 +52,13 @@ if ( ! \function_exists( 'env' ) ) {
             return (int) $_ENV[ $name ];
         }
 
-        switch ( strtolower( $_ENV[ $name ] ) ) {
-            case 'true':
-                return true;
-
-            case 'false':
-                return false;
-
-            case 'null':
-                return '';
-        }
+		if ( in_array( $_ENV[ $name ], ['True', 'true', 'TRUE'] )) {
+			return true;
+		} elseif ( in_array( $_ENV[ $name ], ['False', 'false', 'FALSE'] )) {
+			return false;
+		} elseif ( in_array( $_ENV[ $name ], ['Null', 'null', 'NULL'] )) {
+			return '';
+		}
 
         if ( $strtolower ) {
             return strtolower( $_ENV[ $name ] );
