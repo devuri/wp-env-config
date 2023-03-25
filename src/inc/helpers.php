@@ -52,13 +52,15 @@ if ( ! \function_exists( 'env' ) ) {
             return (int) $_ENV[ $name ];
         }
 
-		if ( in_array( $_ENV[ $name ], ['True', 'true', 'TRUE'] )) {
-			return true;
-		} elseif ( in_array( $_ENV[ $name ], ['False', 'false', 'FALSE'] )) {
-			return false;
-		} elseif ( in_array( $_ENV[ $name ], ['Null', 'null', 'NULL'] )) {
-			return '';
-		}
+        if ( \in_array( $_ENV[ $name ], [ 'True', 'true', 'TRUE' ], true ) ) {
+            return true;
+        }
+        if ( \in_array( $_ENV[ $name ], [ 'False', 'false', 'FALSE' ], true ) ) {
+            return false;
+        }
+        if ( \in_array( $_ENV[ $name ], [ 'Null', 'null', 'NULL' ], true ) ) {
+            return '';
+        }
 
         if ( $strtolower ) {
             return strtolower( $_ENV[ $name ] );
