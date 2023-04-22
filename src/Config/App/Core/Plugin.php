@@ -48,6 +48,11 @@ class Plugin
             },
             1199
         );
+
+        // custom theme directory located outside of wp-content.
+        if ( \defined( APP_THEME_DIR ) ) {
+            register_theme_directory( APP_THEME_DIR );
+        }
     }
 
     public static function add_white_label(): WhiteLabel

@@ -8,3 +8,5 @@ define( 'CONTENT_DIR', '/content');
 define( 'PUBLIC_WEB_DIR', APP_PATH . '/public');
 define( 'HTTP_ENV_CONFIG', 'debug');
 define( 'USE_MYSQL', true );
+define( 'COOKIEHASH', 'c984d06aafbecf6bc55569f964148ea3' );
+define( 'APP_THEME_DIR', APP_PATH . '/template' );
