@@ -250,8 +250,10 @@ class HttpKernel
      */
     public function define( string $const, $value = null ): void
     {
-        if ( 'APP_THEME_DIR' === $const && ! \defined( 'USE_APP_THEME' ) ) {
-            return;
+        if ( 'APP_THEME_DIR' === $const ) {
+            if ( false === static::use_app_theme() ) {
+                return;
+            }
         }
 
         if ( ! \defined( $const ) ) {
@@ -268,6 +270,24 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
+    }
+
+    /**
+     * App theme custom dir check.
+     *
+     * @return bool
+     */
+    protected static function use_app_theme(): bool
+    {
+        if ( ! \defined( 'USE_APP_THEME' ) ) {
+            return false;
+        }
+
+        if ( USE_APP_THEME ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
