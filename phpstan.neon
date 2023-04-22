@@ -7,11 +7,9 @@ parameters:
     tmpDir: tmp
     level: 2
     ignoreErrors:
-        - "#\\(void\\) is used#"
         - "#Access to an undefined property#"
         - "#Property [^:]+::\\$[^ ]+ has no type specified.#"
         - "#Parameter \\#[0-9]+ ...\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given.#"
-        - "#Parameter \\#[0-9]+ \\$str of function strtolower expects string, mixed given.#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false
