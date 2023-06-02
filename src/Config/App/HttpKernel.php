@@ -30,7 +30,8 @@ class HttpKernel
         'sqlite_file'     => '.sqlite-wpdatabase',
         'default_theme'   => 'twentytwentythree',
         'disable_updates' => true,
-        'theme_dir'       => 'template',
+        'can_deactivate'  => true,
+        'theme_dir'       => 'templates',
     ];
 
     /**
@@ -215,6 +216,13 @@ class HttpKernel
         // Disable any kind of automatic upgrade.
         // this will be handled via composer.
         $this->define( 'AUTOMATIC_UPDATER_DISABLED', self::$args['disable_updates'] );
+
+		/**
+		 * Prevent Admin users from deactivating plugins, true or false.
+		 *
+		 * @link https://gist.github.com/devuri/034ccb7c833f970192bb64317814da3b
+		 */
+		$this->define( 'CAN_DEACTIVATE_PLUGINS', self::$args['can_deactivate'] );
 
         // SQLite database location and filename.
         $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
