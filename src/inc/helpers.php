@@ -86,7 +86,7 @@ if ( ! \function_exists( 'is_int_val' ) ) {
 
 if ( ! \function_exists( 'get_http_env' ) ) {
     /**
-     * Get the current set wp app env
+     * Get the current set wp app env.
      *
      * This is used in the compose mu plugin.
      *
@@ -94,9 +94,10 @@ if ( ! \function_exists( 'get_http_env' ) ) {
      */
     function get_http_env()
     {
-		if ( ! \defined( 'HTTP_ENV_CONFIG' ) ) {
+        if ( ! \defined( 'HTTP_ENV_CONFIG' ) ) {
             return null;
         }
+
         return strtoupper( HTTP_ENV_CONFIG );
     }
 }

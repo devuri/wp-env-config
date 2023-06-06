@@ -54,30 +54,33 @@ class Plugin
             register_theme_directory( APP_THEME_DIR );
         }
 
-		/**
-		 * Prevent Admin users from deactivating plugins.
-		 *
-		 * While this will remove the deactivation link it does NOT prevent deactivation
-		 * It will only hide the link to deactivate.
-		 */
-		add_filter( 'plugin_action_links', function ( $actions, $plugin_file, $plugin_data, $context ) {
+        /*
+         * Prevent Admin users from deactivating plugins.
+         *
+         * While this will remove the deactivation link it does NOT prevent deactivation
+         * It will only hide the link to deactivate.
+         */
+        add_filter(
+            'plugin_action_links',
+            function ( $actions, $plugin_file, $plugin_data, $context ) {
+                if ( ! \defined( CAN_DEACTIVATE_PLUGINS ) ) {
+                    return $actions;
+                }
 
-			if ( ! defined( CAN_DEACTIVATE_PLUGINS ) ) {
-	            return $actions;
-	        }
+                // if set to true users should be allowed to deactivate plugins.
+                if ( true === CAN_DEACTIVATE_PLUGINS ) {
+                    return $actions;
+                }
 
-			// if set to true users should be allowed to deactivate plugins.
-			if ( true === CAN_DEACTIVATE_PLUGINS ) {
-				return $actions;
-	        }
+                if ( \array_key_exists( 'deactivate', $actions ) ) {
+                    unset( $actions['deactivate'] );
+                }
 
-			if ( array_key_exists( 'deactivate', $actions ) ){
-				unset( $actions['deactivate'] );
-			}
-
-			return $actions;
-
-		}, 10, 4 );
+                return $actions;
+            },
+            10,
+            4
+        );
     }
 
     public static function add_white_label(): WhiteLabel
