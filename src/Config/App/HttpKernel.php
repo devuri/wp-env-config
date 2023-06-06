@@ -30,7 +30,8 @@ class HttpKernel
         'sqlite_file'     => '.sqlite-wpdatabase',
         'default_theme'   => 'twentytwentythree',
         'disable_updates' => true,
-        'theme_dir'       => 'template',
+        'can_deactivate'  => true,
+        'theme_dir'       => 'templates',
     ];
 
     /**
@@ -216,6 +217,13 @@ class HttpKernel
         // this will be handled via composer.
         $this->define( 'AUTOMATIC_UPDATER_DISABLED', self::$args['disable_updates'] );
 
+        /*
+         * Prevent Admin users from deactivating plugins, true or false.
+         *
+         * @link https://gist.github.com/devuri/034ccb7c833f970192bb64317814da3b
+         */
+        $this->define( 'CAN_DEACTIVATE_PLUGINS', self::$args['can_deactivate'] );
+
         // SQLite database location and filename.
         $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
         $this->define( 'DB_FILE', self::$args['sqlite_file'] );
@@ -293,7 +301,7 @@ class HttpKernel
     /**
      * Set App defaults.
      *
-     * @return (false|null|string)[]
+     * @return (null|false|string)[]
      *
      * @psalm-return array{environment: null, error_log: string, debug: false, errors: 'symfony'}
      */
@@ -312,7 +320,7 @@ class HttpKernel
      *
      * @since WordPress 5.2.0
      *
-     * @return (int|string)[]|null Error information returned by `error_get_last()`, or null if none was recorded or the error should not be handled.
+     * @return null|(int|string)[] Error information returned by `error_get_last()`, or null if none was recorded or the error should not be handled.
      *
      * @see https://github.com/WordPress/wordpress-develop/blob/6.0/src/wp-includes/class-wp-fatal-error-handler.php
      * @see https://www.php.net/manual/en/function.error-get-last.php

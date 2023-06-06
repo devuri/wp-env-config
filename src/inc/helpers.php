@@ -83,3 +83,21 @@ if ( ! \function_exists( 'is_int_val' ) ) {
         return is_numeric( $str ) && \intval( $str ) == $str;
     }
 }
+
+if ( ! \function_exists( 'get_http_env' ) ) {
+    /**
+     * Get the current set wp app env.
+     *
+     * This is used in the compose mu plugin.
+     *
+     * @return string the current app env set, or null if not defined
+     */
+    function get_http_env()
+    {
+        if ( ! \defined( 'HTTP_ENV_CONFIG' ) ) {
+            return null;
+        }
+
+        return strtoupper( HTTP_ENV_CONFIG );
+    }
+}
