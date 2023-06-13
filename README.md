@@ -154,6 +154,19 @@ jobs:
 
 https://github.com/marketplace/actions/ssh-remote-commands
 
+### Headless Mode
+**Corcel**
+Corcel is a collection of PHP classes built on top of Eloquent ORM (from Laravel framework), that provides a fluent interface to connect and get data directly from a WordPress database.
+https://github.com/corcel/corcel
+
+**Headless Mode**
+A helper plugin for putting WordPress in "headless mode". Designed for when WordPress is the CMS for a headless/ decoupled WordPress site.
+``` php
+// Activate the plugin and In wp-config.php, add a line defining the constant:
+define( 'HEADLESS_MODE_CLIENT_URL', 'https://example.com' );
+```
+https://github.com/Shelob9/headless-mode
+
 ### Why
 
 The aim of this package is to simplify the definition of WordPress configuration constants by leveraging PHP dotenv to access environment variables stored in a .env file. By utilizing environment variables in this way, we can enhance the security of our WordPress installation by avoiding the storage of sensitive credentials in our code.
