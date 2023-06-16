@@ -31,7 +31,7 @@ class HttpKernel
         'default_theme'   => 'twentytwentythree',
         'disable_updates' => true,
         'can_deactivate'  => true,
-        'theme_dir'       => 'templates',
+        'theme_dir'       => null,
     ];
 
     /**
@@ -196,14 +196,15 @@ class HttpKernel
         $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . CONTENT_DIR );
 
         /*
-         * Themes, prefer '/template'
+         * Themes, prefer '/templates'
          *
          * This requires mu-plugin or add `register_theme_directory( APP_THEME_DIR );`
-         * Also requires USE_APP_THEME=true in .env
          *
          * @link https://github.com/devuri/custom-wordpress-theme-dir
          */
-        $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . self::$args['theme_dir'] );
+        if ( self::$args['theme_dir'] ) {
+            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . self::$args['theme_dir'] );
+        }
 
         // Plugins.
         $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . self::$args['plugin_dir'] );
@@ -258,12 +259,6 @@ class HttpKernel
      */
     public function define( string $const, $value = null ): void
     {
-        if ( 'APP_THEME_DIR' === $const ) {
-            if ( false === static::use_app_theme() ) {
-                return;
-            }
-        }
-
         if ( ! \defined( $const ) ) {
             \define( $const, $value );
             static::$list[ $const ] = $value;
@@ -278,24 +273,6 @@ class HttpKernel
     public function get_defined(): array
     {
         return static::$list;
-    }
-
-    /**
-     * App theme custom dir check.
-     *
-     * @return bool
-     */
-    protected static function use_app_theme(): bool
-    {
-        if ( ! \defined( 'USE_APP_THEME' ) ) {
-            return false;
-        }
-
-        if ( USE_APP_THEME ) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

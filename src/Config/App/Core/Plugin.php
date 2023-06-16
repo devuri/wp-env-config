@@ -50,7 +50,7 @@ class Plugin
         );
 
         // custom theme directory located outside of wp-content.
-        if ( \defined( APP_THEME_DIR ) ) {
+        if ( \defined( 'APP_THEME_DIR' ) ) {
             register_theme_directory( APP_THEME_DIR );
         }
 
@@ -63,7 +63,7 @@ class Plugin
         add_filter(
             'plugin_action_links',
             function ( $actions, $plugin_file, $plugin_data, $context ) {
-                if ( ! \defined( CAN_DEACTIVATE_PLUGINS ) ) {
+                if ( ! \defined( 'CAN_DEACTIVATE_PLUGINS' ) ) {
                     return $actions;
                 }
 
