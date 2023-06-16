@@ -203,7 +203,7 @@ class HttpKernel
          * @link https://github.com/devuri/custom-wordpress-theme-dir
          */
         if ( self::$args['theme_dir'] ) {
-        	$this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . self::$args['theme_dir'] );
+            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . self::$args['theme_dir'] );
         }
 
         // Plugins.
@@ -259,7 +259,7 @@ class HttpKernel
      */
     public function define( string $const, $value = null ): void
     {
-		if ( ! \defined( $const ) ) {
+        if ( ! \defined( $const ) ) {
             \define( $const, $value );
             static::$list[ $const ] = $value;
         }
