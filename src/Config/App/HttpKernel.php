@@ -32,6 +32,7 @@ class HttpKernel
         'disable_updates' => true,
         'can_deactivate'  => true,
         'theme_dir'       => null,
+        'error_handler'   => 'symfony',
     ];
 
     /**
@@ -288,7 +289,7 @@ class HttpKernel
             'environment' => null,
             'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
             'debug'       => false,
-            'errors'      => 'symfony',
+            'errors'      => self::$args['error_handler'],
         ];
     }
 

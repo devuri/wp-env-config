@@ -88,9 +88,9 @@
         ],
         "lint": [
             "composer install -q",
-            "composer phpstan",
             "composer psalm-secure",
             "composer psalm",
+			"composer phpstan",
             "composer no-dev -q"
         ],
         "build": [
