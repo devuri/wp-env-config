@@ -130,6 +130,168 @@ env
 
 You can define as many constants as you need using this approach.
 
+### Setup Options and Environment
+
+```php
+
+Setup::init(__DIR__)->config(); // production
+
+```
+
+```php
+Setup::init(__DIR__)->config('development'); // development
+
+```
+
+```php
+Setup::init(__DIR__)->config('staging'); // staging
+
+```
+
+```php
+Setup::init(__DIR__)->config('production'); // production
+
+```
+
+```php
+Setup::init(__DIR__)->config('secure'); // secure
+
+```
+
+```php
+Setup::init(__DIR__)->config('development', false )->environment()->database()->salts()->apply();
+
+```
+
+
+
+```php
+dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment setup.
+
+```
+
+
+### Environment Constants.
+
+Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
+
+```php
+dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
+```
+
+This will output the following:
+
+```shell
+"WP_ENVIRONMENT_TYPE" => "development"
+"WP_DEBUG" => true
+"SAVEQUERIES" => true
+"WP_DEBUG_DISPLAY" => true
+"WP_DISABLE_FATAL_ERROR_HANDLER" => true
+"SCRIPT_DEBUG" => true
+"WP_DEBUG_LOG" => true
+"DB_NAME" => ""
+"DB_USER" => ""
+"DB_PASSWORD" => ""
+"DB_HOST" => "localhost"
+"DB_CHARSET" => "utf8mb4"
+"DB_COLLATE" => ""
+"WP_HOME" => ""
+"ASSET_URL" => ""
+"WP_SITEURL" => ""
+"UPLOADS" => "wp-content/uploads"
+"WP_MEMORY_LIMIT" => "256M"
+"WP_MAX_MEMORY_LIMIT" => "256M"
+"CONCATENATE_SCRIPTS" => true
+"FORCE_SSL_ADMIN" => true
+"FORCE_SSL_LOGIN" => true
+"AUTOSAVE_INTERVAL" => 180
+"WP_POST_REVISIONS" => 10
+"AUTH_KEY" => ""
+"SECURE_AUTH_KEY" => ""
+"LOGGED_IN_KEY" => ""
+"NONCE_KEY" => ""
+"AUTH_SALT" => ""
+"SECURE_AUTH_SALT" => ""
+"LOGGED_IN_SALT" => ""
+"NONCE_SALT" => ""
+"DEVELOPERADMIN" => null
+```
+
+### Global helper functions.
+
+> `asset()`
+
+The ***asset()*** function will generate a URL for an asset.
+
+* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* Or optionally in the main config file.
+
+```php
+
+asset( "/bootstrap/css/bootstrap-grid.css" ); // https://example.com/assets/dist/bootstrap/css/bootstrap-grid.css
+
+asset( "/images/thing.png" ); // https://example.com/assets/dist/images/thing.png
+
+asset( "/images/thing.png", "/static" ); // https://example.com/static/images/thing.png
+
+```
+
+> `asset_url()`
+
+The ***asset_url()*** URL for the asset directory.
+
+* **Note:** The `ASSET_URL` constant is optional.
+* We can configure the asset URL by setting the `ASSET_URL` in your .env `ASSET_URL="${WP_HOME}/assets"`
+* Or optionally in the main config file.
+
+
+```php
+
+asset_url(); // https://example.com/assets/dist/
+
+asset_url() . "images/thing.png" // https://example.com/assets/dist/images/thing.png
+
+asset_url( "/static" ); // https://example.com/static
+
+```
+
+> `env()`
+
+The ***env()*** function can be used to get the value of an environment variable.
+
+```php
+
+env('FOO');
+
+```
+
+
+### Kernel.
+
+> `Kernel` ***$args***
+
+We can use the **Kernel** `$args` to setup a custom directory structure.
+
+```php
+
+$args = [
+        'web_root'        => 'public',
+        'wp_dir_path'     => 'wp',
+        'asset_dir'       => 'assets',
+        'content_dir'     => 'content',
+        'plugin_dir'      => 'plugins',
+        'mu_plugin_dir'   => 'mu-plugins',
+        'disable_updates' => true,
+    ];
+
+$http_app = new Kernel(__DIR__, $args);
+
+// or
+
+$http_app = new Kernel(__DIR__, ['content_dir' => 'content']);
+
+```
+
 ### CI/CD
 We can use a GitHub Actions workflow to automate the deployment process. 
 
