@@ -1,8 +1,8 @@
 <?php
 
-use Symfony\Component\Console\Application;
+namespace DevUri\Config\App\Console;
+
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
@@ -11,32 +11,32 @@ class GenerateComposer extends Command
 {
     protected static $defaultName = 'generate:composer';
 
-    protected function configure()
+    protected function configure(): void
     {
-        $this->setDescription('Generate composer.json file and run composer install');
+        $this->setDescription( 'Generate composer.json file and run composer install' );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
-	{
-        file_put_contents('composer.json', static::composer_file() );
+    protected function execute( InputInterface $input, OutputInterface $output ): void
+    {
+        file_put_contents( 'composer.json', $this->composer_file() );
 
-        $output->writeln('composer.json file generated.');
+        $output->writeln( 'composer.json file generated.' );
 
         // Run composer install
-        $process = new Process(['composer', 'install']);
-        $process->setTty(true);
+        $process = new Process( [ 'composer', 'install' ] );
+        $process->setTty( true );
         $process->run();
 
-        if ($process->isSuccessful()) {
-            $output->writeln('Composer install completed successfully.');
+        if ( $process->isSuccessful() ) {
+            $output->writeln( 'Composer install completed successfully.' );
         } else {
-            $output->writeln('Composer install failed.');
+            $output->writeln( 'Composer install failed.' );
         }
     }
 
-	private static function composer_file(): string
-	{
-		return '{
+    private function composer_file(): string
+    {
+        return '{
             "name":"devuri/wp-env-app",
             "type":"project",
             "license":"MIT",
@@ -81,5 +81,5 @@ class GenerateComposer extends Command
                 }
             }
         }';
-	}
+    }
 }
