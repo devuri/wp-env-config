@@ -1,7 +1,7 @@
 <?php
 
-use DevUri\Config\App\Asset;
 use DevUri\Config\App;
+use DevUri\Config\App\Asset;
 
 if ( ! \function_exists( 'asset' ) ) {
     /**
@@ -109,10 +109,12 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      *
      * @param string $app_path The base app path. like __DIR__
      *
-     * @return Kernel
+     * @return App
      */
-	function wpc_app( string $app_path ): Kernel
- 	{
- 		return ( new App( $app_path ) )->kernel();
- 	}
+    function wpc_app( string $app_path ): App
+    {
+        $app = new App( $app_path );
+
+        return $app->kernel();
+    }
 }
