@@ -2,7 +2,10 @@
 
 namespace Urisoft\App\Traits;
 
+use function defined;
+
 use ReflectionClass;
+use ReflectionException;
 use Roots\WPConfig\Config;
 
 trait ConfigTrait
@@ -11,7 +14,7 @@ trait ConfigTrait
      * Wrapper to define config constant items.
      *
      * This will check if the constant is defined before attempting to define.
-     * If it is defined then do nothing, that allows them be overridden, in wp-config.php.
+     * If it is defined then do nothing, that allows them to be overridden, in wp-config.php.
      *
      * @param string $name  constant name.
      * @param mixed  $value constant value
@@ -53,7 +56,7 @@ trait ConfigTrait
     }
 
     /**
-     * Env defaults,.
+     * Env defaults.
      *
      * These are some defaults that will apply
      * if they do not exist in .env
@@ -77,6 +80,9 @@ trait ConfigTrait
         return $constant[ $key ] ?? null;
     }
 
+    /**
+     * @throws ReflectionException
+     */
     private function set_config_map(): void
     {
         $configClass = 'Roots\WPApp\Config';

@@ -49,7 +49,7 @@ class Plugin
             1199
         );
 
-        // custom theme directory located outside of wp-content.
+        // custom theme directory located outside wp-content.
         if ( \defined( 'APP_THEME_DIR' ) ) {
             register_theme_directory( APP_THEME_DIR );
         }

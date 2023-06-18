@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the Slim White Label WordPress PLugin.
+ * This file is part of the Slim White Label WordPress Plugin.
  *
  * (c) Uriel Wilson
  *
@@ -37,7 +37,7 @@ class WhiteLabel
 
     /**
      * Remove the Widgets ( do a check if the user can manage_options )
-     * we should add an option for this to allow admins to choose who can view lowest level etc.
+     * we should add an option for this to allow admins to choose who can view the lowest level etc.
      */
     public function remove_dashboard_widgets(): void
     {
