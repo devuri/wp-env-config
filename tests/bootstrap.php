@@ -2,6 +2,9 @@
 
 require_once \dirname( __FILE__, 2 ) . '/vendor/autoload.php';
 
+// app test path
+\define('APP_TEST_PATH', __DIR__ );
+
 // true to run unit tests.
 \define('WP_ENV_TEST_MODE', true);
 
