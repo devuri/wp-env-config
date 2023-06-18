@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/devuri/wp-env-config/compare/v0.5.0...v0.5.1) (2023-06-18)
+
+
+### Features
+
+* adds `wpc_app_config_core()` load core plugin ([62ba254](https://github.com/devuri/wp-env-config/commit/62ba254ed314222b68d063f7f3375d14b16ee769))
+
 ## [0.5.0](https://github.com/devuri/wp-env-config/compare/0.4.1...v0.5.0) (2023-06-18)
 
 
