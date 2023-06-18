@@ -3,6 +3,7 @@
 namespace Urisoft\App\Console\Traits;
 
 use Devuri\UUIDGenerator\UUIDGenerator;
+use Exception;
 
 trait Generate
 {
@@ -41,6 +42,11 @@ trait Generate
         return $username . ':' . $salted_password . ':' . $salt;
     }
 
+    /**
+     * @param mixed $password
+     *
+     * @throws Exception
+     */
     protected static function bcr_htpasswd( string $username, $password ): string
     {
         // Determine the number of hashing rounds (between 4 and 31)

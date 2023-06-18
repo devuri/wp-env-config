@@ -12,7 +12,7 @@ interface ConfigInterface
      * @param null|string[] $environment .
      * @param bool          $setup       .
      */
-    public function config( $environment = null, $setup = true ): self;
+    public function config( $environment = null, bool $setup = true ): self;
 
     /**
      * Debug Settings.

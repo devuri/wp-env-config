@@ -8,6 +8,8 @@ use Symfony\Component\ErrorHandler\Debug;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\CryptTrait;
 use Urisoft\App\Traits\Environment;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 /**
  * Setup WP Config.
@@ -102,7 +104,7 @@ class Setup implements ConfigInterface
             ];
         }
 
-        // Verifiy files to avoid Dotenv warning.
+        // Verify files to avoid Dotenv warning.
         foreach ( $this->env_files as $key => $file ) {
             if ( ! file_exists( $this->path . '/' . $file ) ) {
                 unset( $this->env_files[ $key ] );
@@ -162,7 +164,7 @@ class Setup implements ConfigInterface
      *
      * @return static
      */
-    public function config( $environment = null, $setup = true ): ConfigInterface
+    public function config( $environment = null, bool $setup = true ): ConfigInterface
     {
         // check required vars.
         $this->is_required();
@@ -301,7 +303,7 @@ class Setup implements ConfigInterface
     /**
      * Set error handler.
      *
-     * @param string $handler overridde for $this->error_handler
+     * @param string $handler override for $this->error_handler
      *
      * @return static
      */
@@ -326,8 +328,8 @@ class Setup implements ConfigInterface
         if ( 'symfony' === $this->error_handler ) {
             Debug::enable();
         } elseif ( 'oops' === $this->error_handler ) {
-            $whoops = new \Whoops\Run();
-            $whoops->pushHandler( new \Whoops\Handler\PrettyPageHandler() );
+            $whoops = new Run();
+            $whoops->pushHandler( new PrettyPageHandler() );
             $whoops->register();
         }
 

@@ -2,6 +2,7 @@
 
 namespace Urisoft\App\Console;
 
+use Exception;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Filesystem;
@@ -37,6 +38,9 @@ class Nino
         }
     }
 
+    /**
+     * @throws Exception
+     */
     public function load(): void
     {
         $this->add_command( new ServeCommand( $this->root_dir, new Filesystem() ) );

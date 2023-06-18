@@ -2,6 +2,7 @@
 
 namespace Urisoft\App;
 
+use Exception;
 use Urisoft\App\Http\BaseKernel;
 
 class Kernel extends BaseKernel
@@ -11,6 +12,8 @@ class Kernel extends BaseKernel
      *
      * @param string   $app_path
      * @param string[] $args
+     *
+     * @throws Exception
      */
     public function __construct( string $app_path, array $args = [] )
     {

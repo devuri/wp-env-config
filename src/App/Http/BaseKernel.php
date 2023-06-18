@@ -2,11 +2,14 @@
 
 namespace Urisoft\App\Http;
 
+use function define;
+use function defined;
+
 use Exception;
 use Urisoft\App\Setup;
 
 /**
- * Setup common elemnts.
+ * Setup common elements.
  *
  * Handles global constants.
  */
@@ -40,6 +43,8 @@ class BaseKernel
      *
      * @param string   $app_path
      * @param string[] $args
+     *
+     * @throws Exception
      */
     public function __construct( string $app_path, array $args = [] )
     {
@@ -71,7 +76,7 @@ class BaseKernel
          *
          * ['env', '.env', '.env.secure', '.env.prod', '.env.staging', '.env.dev', '.env.debug', '.env.local']
          * Since these will load in order we can control our env by simply creating file that matches
-         * the enviroment on say staging we would create '.env.staging' since its the only file available
+         * the environment on say staging we would create '.env.staging' since it's the only file available
          * those will be the only values loaded.
          *
          * We can use Setup methods `get_short_circuit()` and `get_env_files()`
@@ -105,7 +110,7 @@ class BaseKernel
     /**
      * Setup overrides.
      *
-     * @param string $file custom file example overrisdes.php
+     * @param string $file custom file example overrides.php
      *
      * @return void
      */
@@ -129,7 +134,7 @@ class BaseKernel
         }
     }
 
-    public function get_secret()
+    public function get_secret(): array
     {
         return array_keys( $this->env_secret );
     }
@@ -137,10 +142,10 @@ class BaseKernel
     /**
      * Start the app.
      *
-     * @param null|false|string|string[] $env_type  the enviroment type
+     * @param null|false|string|string[] $env_type  the environment type
      * @param bool                       $constants load up default constants
      */
-    public function init( $env_type = null, $constants = true ): void
+    public function init( $env_type = null, bool $constants = true ): void
     {
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(
@@ -321,7 +326,7 @@ class BaseKernel
      *
      * @return string The current month value (formatted as "01"-"12").
      */
-    private function get_current_month()
+    private function get_current_month(): string
     {
         return gmdate( 'm' );
     }
@@ -331,7 +336,7 @@ class BaseKernel
      *
      * @return string The current year value (formatted as "YYYY").
      */
-    private function get_current_year()
+    private function get_current_year(): string
     {
         return gmdate( 'Y' );
     }

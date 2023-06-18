@@ -93,7 +93,7 @@ if ( ! \function_exists( 'get_http_env' ) ) {
      *
      * @return string the current app env set, or null if not defined
      */
-    function get_http_env()
+    function get_http_env(): ?string
     {
         if ( ! \defined( 'HTTP_ENV_CONFIG' ) ) {
             return null;
@@ -109,9 +109,9 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      *
      * @param string $app_path The base app path. like __DIR__
      *
-     * @return App
+     * @return \Urisoft\App\Http\BaseKernel
      */
-    function wpc_app( string $app_path ): App
+    function wpc_app( string $app_path ): Urisoft\App\Http\BaseKernel
     {
         $app = new App( $app_path );
 
