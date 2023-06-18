@@ -15,14 +15,14 @@ use Urisoft\App\Setup;
  */
 class BaseKernel
 {
-    protected string $app_path;
-    protected string $log_file;
-    protected ?string $dir_name = null;
-    protected ?string $config_file;
-    protected array $env_secret = [];
+    protected $app_path;
+    protected $log_file;
+    protected $dir_name;
+    protected $config_file;
+    protected $env_secret = [];
     protected static $list      = [];
-    protected Setup $app_setup;
-    protected array $args = [
+    protected $app_setup;
+    protected $args = [
         'web_root'        => 'public',
         'wp_dir_path'     => 'wp',
         'wordpress'       => 'wp',
@@ -55,7 +55,7 @@ class BaseKernel
         $this->log_file = mb_strtolower( gmdate( 'd-m-Y' ) ) . '.log';
 
         if ( ! \is_array( $args ) ) {
-            throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
+            throw new \InvalidArgumentException( 'Error: args must be of type array', 1 );
         }
 
         // @codingStandardsIgnoreLine
