@@ -15,13 +15,14 @@ use Urisoft\App\Setup;
  */
 class BaseKernel
 {
-    protected $app_path    = null;
-    protected $log_file    = null;
-    protected $dir_name    = null;
-    protected $app_setup   = null;
-    protected $env_secret  = [];
-    protected static $list = [];
-    protected static $args = [
+    protected $app_path;
+    protected $log_file;
+    protected $dir_name;
+    protected $config_file;
+    protected $env_secret = [];
+    protected static $list      = [];
+    protected $app_setup;
+    protected $args = [
         'web_root'        => 'public',
         'wp_dir_path'     => 'wp',
         'wordpress'       => 'wp',
@@ -36,6 +37,7 @@ class BaseKernel
         'can_deactivate'  => true,
         'theme_dir'       => null,
         'error_handler'   => 'symfony',
+        'config_file'     => 'config',
     ];
 
     /**
@@ -53,15 +55,17 @@ class BaseKernel
         $this->log_file = mb_strtolower( gmdate( 'd-m-Y' ) ) . '.log';
 
         if ( ! \is_array( $args ) ) {
-            throw new Exception( 'Error: args must be of type array ', 1 );
+            throw new \InvalidArgumentException( 'Error: args must be of type array', 1 );
         }
 
         // @codingStandardsIgnoreLine
-        if ( \array_key_exists( 'wordpress', $args ) ) {
-            self::$args['wp_dir_path'] = $args['wordpress'];
+        if (\array_key_exists('wordpress', $args)) {
+            $this->args['wp_dir_path'] = $args['wordpress'];
         }
 
-        self::$args = array_merge( self::$args, $args );
+        $this->config_file = $this->args['config_file'];
+
+        $this->args = array_merge( $this->args, $args );
         $app_error  = static::detect_error();
 
         if ( \is_array( $app_error ) ) {
@@ -104,22 +108,20 @@ class BaseKernel
      */
     public function get_args(): array
     {
-        return self::$args;
+        return $this->args;
     }
 
     /**
      * Setup overrides.
      *
-     * @param string $file custom file example overrides.php
-     *
      * @return void
      */
-    public function overrides( ?string $file = null ): void
+    public function overrides(): void
     {
-        if ( $file ) {
-            $config_override_file = $this->app_path . "/$file.php";
+        if ( $this->config_file ) {
+            $config_override_file = $this->app_path . "/{$this->config_file}.php";
         } else {
-            $config_override_file = $this->app_path . '/config.php';
+            $config_override_file = null;
         }
 
         if ( file_exists( $config_override_file ) ) {
@@ -185,16 +187,16 @@ class BaseKernel
         $this->define( 'APP_PATH', $this->get_app_path() );
 
         // define public web root dir.
-        $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . self::$args['web_root'] );
+        $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . $this->args['web_root'] );
 
         // wp dir path
-        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/' . self::$args['wp_dir_path'] );
+        $this->define( 'WP_DIR_PATH', PUBLIC_WEB_DIR . '/' . $this->args['wp_dir_path'] );
 
         // define assets dir.
-        $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/' . self::$args['asset_dir'] );
+        $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/' . $this->args['asset_dir'] );
 
         // Directory PATH.
-        $this->define( 'APP_CONTENT_DIR', '/' . self::$args['content_dir'] );
+        $this->define( 'APP_CONTENT_DIR', '/' . $this->args['content_dir'] );
         $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
 
         // Content Directory.
@@ -208,32 +210,32 @@ class BaseKernel
          *
          * @link https://github.com/devuri/custom-wordpress-theme-dir
          */
-        if ( self::$args['theme_dir'] ) {
-            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . self::$args['theme_dir'] );
+        if ( $this->args['theme_dir'] ) {
+            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . $this->args['theme_dir'] );
         }
 
         // Plugins.
-        $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . self::$args['plugin_dir'] );
-        $this->define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/' . self::$args['plugin_dir'] );
+        $this->define( 'WP_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . $this->args['plugin_dir'] );
+        $this->define( 'WP_PLUGIN_URL', env( 'WP_HOME' ) . '/' . $this->args['plugin_dir'] );
 
         // Must-Use Plugins.
-        $this->define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . self::$args['mu_plugin_dir'] );
-        $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/' . self::$args['mu_plugin_dir'] );
+        $this->define( 'WPMU_PLUGIN_DIR', PUBLIC_WEB_DIR . '/' . $this->args['mu_plugin_dir'] );
+        $this->define( 'WPMU_PLUGIN_URL', env( 'WP_HOME' ) . '/' . $this->args['mu_plugin_dir'] );
 
         // Disable any kind of automatic upgrade.
         // this will be handled via composer.
-        $this->define( 'AUTOMATIC_UPDATER_DISABLED', self::$args['disable_updates'] );
+        $this->define( 'AUTOMATIC_UPDATER_DISABLED', $this->args['disable_updates'] );
 
         /*
          * Prevent Admin users from deactivating plugins, true or false.
          *
          * @link https://gist.github.com/devuri/034ccb7c833f970192bb64317814da3b
          */
-        $this->define( 'CAN_DEACTIVATE_PLUGINS', self::$args['can_deactivate'] );
+        $this->define( 'CAN_DEACTIVATE_PLUGINS', $this->args['can_deactivate'] );
 
         // SQLite database location and filename.
-        $this->define( 'DB_DIR', APP_PATH . '/' . self::$args['sqlite_dir'] );
-        $this->define( 'DB_FILE', self::$args['sqlite_file'] );
+        $this->define( 'DB_DIR', APP_PATH . '/' . $this->args['sqlite_dir'] );
+        $this->define( 'DB_FILE', $this->args['sqlite_file'] );
 
         /*
          * Slug of the default theme for this installation.
@@ -242,7 +244,7 @@ class BaseKernel
          *
          * @see WP_Theme::get_core_default_theme()
          */
-        $this->define( 'WP_DEFAULT_THEME', self::$args['default_theme'] );
+        $this->define( 'WP_DEFAULT_THEME', $this->args['default_theme'] );
 
         // home url md5 value.
         $this->define( 'COOKIEHASH', md5( env( 'WP_HOME' ) ) );
@@ -294,7 +296,7 @@ class BaseKernel
             'environment' => null,
             'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
             'debug'       => false,
-            'errors'      => self::$args['error_handler'],
+            'errors'      => $this->args['error_handler'],
         ];
     }
 
