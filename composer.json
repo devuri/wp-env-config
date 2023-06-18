@@ -90,7 +90,7 @@
             "composer install -q",
             "composer psalm-secure",
             "composer psalm",
-			"composer phpstan",
+            "composer phpstan",
             "composer no-dev -q"
         ],
         "build": [
