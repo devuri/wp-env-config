@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use DevUri\Config\App\HttpKernel;
 use Tests\BaseTest;
+use Urisoft\App\Http\BaseKernel;
 
 /**
  * Test the Kernel.
@@ -12,11 +12,11 @@ use Tests\BaseTest;
  *
  * @coversNothing
  */
-class HttpKernelTest extends BaseTest
+class BaseKernelTest extends BaseTest
 {
-    public function http_app(): HttpKernel
+    public function http_app(): BaseKernel
     {
-        return new HttpKernel( getenv('FAKE_APP_DIR_PATH') );
+        return new BaseKernel( getenv('FAKE_APP_DIR_PATH') );
     }
 
     public function test_get_app_path(): void

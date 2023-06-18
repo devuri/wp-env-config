@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\App\Console\Traits;
+namespace Urisoft\App\Console\Traits;
 
 use Devuri\UUIDGenerator\UUIDGenerator;
 

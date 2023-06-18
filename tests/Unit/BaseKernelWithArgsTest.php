@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use DevUri\Config\App\HttpKernel;
 use Tests\BaseTest;
+use Urisoft\App\Http\BaseKernel;
 
 /**
  * Test the Kernel.
@@ -12,7 +12,7 @@ use Tests\BaseTest;
  *
  * @coversNothing
  */
-class HttpKernelWithArgsTest extends BaseTest
+class BaseKernelWithArgsTest extends BaseTest
 {
     public function test_http_app_with_args(): void
     {
@@ -21,7 +21,7 @@ class HttpKernelWithArgsTest extends BaseTest
             'wordpress'     => 'cms',
         ];
 
-        $app_with_args = new HttpKernel( getenv('FAKE_APP_DIR_PATH'), $args );
+        $app_with_args = new BaseKernel( getenv('FAKE_APP_DIR_PATH'), $args );
 
         $output = [
             'web_root'        => 'public',

@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\Traits;
+namespace Urisoft\App\Traits;
 
 /**
  * Setup Environment.

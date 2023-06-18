@@ -1,11 +1,11 @@
 <?php
 
-namespace DevUri\Config\App\Console;
+namespace Urisoft\App\Console;
 
-use DevUri\Config\App\HttpKernel;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Filesystem;
+use Urisoft\App\Kernel;
 
 /**
  * Nino.
@@ -25,7 +25,7 @@ class Nino
     /**
      * New Application command.
      */
-    public function __construct( string $root_dir, ?HttpKernel $app = null )
+    public function __construct( string $root_dir, ?Kernel $app = null )
     {
         $this->nino     = new Application();
         $this->root_dir = $root_dir;

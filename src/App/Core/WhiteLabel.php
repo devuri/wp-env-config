@@ -8,7 +8,7 @@
  * for full copyright and license information.
  */
 
-namespace DevUri\Config\App\Core;
+namespace Urisoft\App\Core;
 
 /**
  * white label class.

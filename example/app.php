@@ -1,6 +1,6 @@
 <?php
 
-use DevUri\Config\Kernel;
+use Urisoft\App\Kernel;
 
 /*
  * This is the bootstrap file for the web application.
