@@ -1,13 +1,13 @@
 <?php
 
-namespace DevUri\Config;
+namespace Urisoft\App;
 
-use DevUri\Config\Traits\ConfigTrait;
-use DevUri\Config\Traits\CryptTrait;
-use DevUri\Config\Traits\Environment;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
+use Urisoft\App\Traits\ConfigTrait;
+use Urisoft\App\Traits\CryptTrait;
+use Urisoft\App\Traits\Environment;
 
 /**
  * Setup WP Config.

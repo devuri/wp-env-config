@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config;
+namespace Urisoft\App;
 
 interface ConfigInterface
 {

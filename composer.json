@@ -59,7 +59,7 @@
             "src/inc/helpers.php"
         ],
         "psr-4": {
-            "DevUri\\": "src/"
+            "Urisoft\\": "src/"
         }
     },
     "autoload-dev": {

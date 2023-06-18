@@ -1,10 +1,10 @@
 <?php
 
-namespace DevUri\Config;
+namespace Urisoft\App;
 
-use DevUri\Config\App\HttpKernel;
+use Urisoft\App\Http\BaseKernel;
 
-class Kernel extends HttpKernel
+class Kernel extends BaseKernel
 {
     /**
      * Setup Kernel.

@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\Traits;
+namespace Urisoft\App\Traits;
 
 use ReflectionClass;
 use Roots\WPConfig\Config;
@@ -79,7 +79,7 @@ trait ConfigTrait
 
     private function set_config_map(): void
     {
-        $configClass = 'Roots\WPConfig\Config';
+        $configClass = 'Roots\WPApp\Config';
 
         if ( ! \defined( 'WP_DEBUG' ) ) {
             $this->config_map = [ 'disabled' ];

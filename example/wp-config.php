@@ -1,6 +1,6 @@
 <?php
 
-use DevUri\Config\Setup;
+use Urisoft\App\Setup;
 
 require_once __FILE__ . '/vendor/autoload.php';
 

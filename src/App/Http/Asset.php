@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\App;
+namespace Urisoft\App\Http;
 
 class Asset
 {

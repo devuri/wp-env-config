@@ -1,16 +1,16 @@
 <?php
 
-namespace DevUri\Config\App;
+namespace Urisoft\App\Http;
 
-use DevUri\Config\Setup;
 use Exception;
+use Urisoft\App\Setup;
 
 /**
  * Setup common elemnts.
  *
  * Handles global constants.
  */
-class HttpKernel
+class BaseKernel
 {
     protected $app_path    = null;
     protected $log_file    = null;
@@ -36,7 +36,7 @@ class HttpKernel
     ];
 
     /**
-     * Setup HttpKernel.
+     * Setup BaseKernel.
      *
      * @param string   $app_path
      * @param string[] $args

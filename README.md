@@ -56,7 +56,7 @@ Once installed, you can begin using the package in your WordPress project.
 
 ### Usage
 
-To get started, create a `.env` file in the root directory of your project. 
+To get started, create a `.env` file in the root directory of your project.
 In this file, define the environment variables you wish to use as configuration constants. For example:
 > update the database credentials and other settings as needed.
 ```shell
@@ -80,7 +80,7 @@ Then, in your **wp-config.php** file, add the following code:
 
 <?php
 
-use DevUri\Config\Setup;
+use Urisoft\App\Setup;
 
 require_once __FILE__ . '/vendor/autoload.php';
 
@@ -108,7 +108,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Sets up WordPress.
 require_once ABSPATH . 'wp-settings.php';
-    
+
 ```
 This will load the environment variables from the `.env` file and define them as configuration constants.
 
@@ -293,7 +293,7 @@ $http_app = new Kernel(__DIR__, ['content_dir' => 'content']);
 ```
 
 ### CI/CD
-We can use a GitHub Actions workflow to automate the deployment process. 
+We can use a GitHub Actions workflow to automate the deployment process.
 
 ```yaml
 name: remote ssh command

@@ -1,8 +1,7 @@
 <?php
 
-namespace DevUri\Config\App\Console;
+namespace Urisoft\App\Console;
 
-use DevUri\Config\App\Console\Traits\Generate;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -10,6 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
+use Urisoft\App\Console\Traits\Generate;
 
 class MakeCommand extends Command
 {

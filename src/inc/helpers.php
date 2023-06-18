@@ -1,7 +1,7 @@
 <?php
 
-use DevUri\Config\App;
-use DevUri\Config\App\Asset;
+use Urisoft\App\Http\App;
+use Urisoft\App\Http\Asset;
 
 if ( ! \function_exists( 'asset' ) ) {
     /**

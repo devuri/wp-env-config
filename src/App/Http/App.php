@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config;
+namespace Urisoft\App\Http;
 
 class App
 {
@@ -18,8 +18,8 @@ class App
         $this->config   = require_once $this->app_path . '/app.php';
     }
 
-    public function kernel(): Kernel
+    public function kernel(): BaseKernel
     {
-        return new Kernel( $this->app_path, $this->config );
+        return new BaseKernel( $this->app_path, $this->config );
     }
 }

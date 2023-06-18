@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\App\Console;
+namespace Urisoft\App\Console;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

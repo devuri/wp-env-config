@@ -1,6 +1,6 @@
 <?php
 
-namespace DevUri\Config\App\Console;
+namespace Urisoft\App\Console;
 
 use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
