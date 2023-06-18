@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.30.9](https://github.com/devuri/wp-env-config/compare/v0.30.8...v0.30.9) (2023-06-18)
+
+
+### Features
+
+* add `get_http_env()` Get the current set wp app env ([ce3bcdb](https://github.com/devuri/wp-env-config/commit/ce3bcdbd2d11518dcf4c214ea031ef122ee2a2ea))
+* Adds `generate:composer` to create composer file ([3612106](https://github.com/devuri/wp-env-config/commit/36121060a561a947c63a1430615fcebad6454014))
+* adds `nino install` to install plugin or theme ([e704045](https://github.com/devuri/wp-env-config/commit/e704045e429034843222b785ab86a9b3789ae279))
+* Adds `USE_APP_THEME` check ([d55fd95](https://github.com/devuri/wp-env-config/commit/d55fd950c7e228fa0a24ecafa9739d5d68ec7365))
+* Adds `wpc_app` function ([593e767](https://github.com/devuri/wp-env-config/commit/593e7676e82c5d1ab217c267226f1a3cc5ec8d08))
+* Adds custom theme dir ([39f97ba](https://github.com/devuri/wp-env-config/commit/39f97ba00d20b905090d7c79661f7ec7d1e353f4))
+* error handler can now be passed in as a `Kernel` argument ([da5419c](https://github.com/devuri/wp-env-config/commit/da5419c288719941e941ec93795f6eeefe6ee4fb))
+* Prevent Admin users from deactivating plugins. ([1326209](https://github.com/devuri/wp-env-config/commit/1326209cee84a40821371e944d82e5d6da62a468))
+* register custom theme directory in `Core Plugin` ([7162fcd](https://github.com/devuri/wp-env-config/commit/7162fcdc9a74b983eacf2b500021a89ef0d43ced))
+
+
+### Bug Fixes
+
+* fixes `strtolower` conversion ([92f5820](https://github.com/devuri/wp-env-config/commit/92f58202276c823328b908734650eededf379bf8))
+* fixes the `APP_THEME_DIR` ([2123cd6](https://github.com/devuri/wp-env-config/commit/2123cd6ab35491fd23fa89af02b60bc19fe60ff9))
+
 ## [0.30.8](https://github.com/devuri/wp-env-config/compare/v0.30.7...v0.30.8) (2023-03-23)
 
 
