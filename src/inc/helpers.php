@@ -1,5 +1,6 @@
 <?php
 
+use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\App;
 use Urisoft\App\Http\Asset;
 
@@ -116,5 +117,17 @@ if ( ! \function_exists( 'wpc_app' ) ) {
         $app = new App( $app_path );
 
         return $app->kernel();
+    }
+}
+
+if ( ! \function_exists( 'wpc_app_config_core' ) ) {
+    /**
+     * Start and load core plugin.
+     *
+     * @return void
+     */
+    function wpc_app_config_core(): void
+    {
+        Plugin::init();
     }
 }
