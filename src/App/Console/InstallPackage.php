@@ -21,7 +21,7 @@ class InstallPackage extends Command
         $this->addOption( 't', null, InputOption::VALUE_NONE, 'Install a theme' );
     }
 
-    protected function execute( InputInterface $input, OutputInterface $output ): void
+    protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $package = $input->getArgument( 'package' );
 
@@ -32,7 +32,7 @@ class InstallPackage extends Command
         } else {
             $output->writeln( 'Please specify the package type using either --p for plugin or --t for theme.' );
 
-            return;
+            return Command::FAILURE;
         }
 
         // Run composer require to install the package
@@ -42,8 +42,11 @@ class InstallPackage extends Command
 
         if ( $process->isSuccessful() ) {
             $output->writeln( 'Package "' . $package . '" installed successfully.' );
-        } else {
-            $output->writeln( 'Package installation failed.' );
+
+            return Command::SUCCESS;
         }
+        $output->writeln( 'Package installation failed.' );
+
+        return Command::FAILURE;
     }
 }

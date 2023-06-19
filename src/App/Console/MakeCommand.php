@@ -19,6 +19,7 @@ class MakeCommand extends Command
 
     private $root_dir_path;
     private $filesystem;
+    private $env_file;
 
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {

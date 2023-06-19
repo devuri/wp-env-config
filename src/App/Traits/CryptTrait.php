@@ -2,8 +2,6 @@
 
 namespace Urisoft\App\Traits;
 
-use Roots\WPConfig\Config;
-
 trait CryptTrait
 {
     /**
