@@ -6,6 +6,7 @@ use function define;
 use function defined;
 
 use Exception;
+use InvalidArgumentException;
 use Urisoft\App\Setup;
 
 /**
@@ -19,8 +20,8 @@ class BaseKernel
     protected $log_file;
     protected $dir_name;
     protected $config_file;
-    protected $env_secret = [];
-    protected static $list      = [];
+    protected $env_secret  = [];
+    protected static $list = [];
     protected $app_setup;
     protected $args = [
         'web_root'        => 'public',
@@ -55,7 +56,7 @@ class BaseKernel
         $this->log_file = mb_strtolower( gmdate( 'd-m-Y' ) ) . '.log';
 
         if ( ! \is_array( $args ) ) {
-            throw new \InvalidArgumentException( 'Error: args must be of type array', 1 );
+            throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
         }
 
         // @codingStandardsIgnoreLine
