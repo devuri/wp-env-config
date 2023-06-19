@@ -19,7 +19,7 @@
 To use `wp-env-config`, you can install it via Composer. Run the following command in your terminal:
 
 ```shell
-composer create-project devuri/wp-env-app .
+composer create-project devuri/wp-env-app blog
 ```
 > or for existing projects
 ```shell
