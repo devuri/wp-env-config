@@ -16,13 +16,16 @@ class Plugin
     {
         self::add_white_label();
 
-		add_action('send_headers', function() {
-			if ( ! defined('SET_SECURITY_HEADERS') ) {
-				return;
-			}
+        add_action(
+            'send_headers',
+            function(): void {
+                if ( ! \defined( 'SET_SECURITY_HEADERS' ) ) {
+                    return;
+                }
 
-			$this->security_headers();
-		});
+                $this->security_headers();
+            }
+        );
 
         // Remove wp version.
         add_filter(
@@ -101,15 +104,41 @@ class Plugin
         return new self();
     }
 
-	protected function security_headers()
-	{
-	    header('Access-Control-Allow-Origin: www.google-analytics.com');
-	    header('Strict-Transport-Security: max-age=31536000');
-	    header('Content-Security-Policy: script-src \'self\' *.example.com www.google-analytics.com *.google-analytics.com *.googlesyndication.com *.google.com *.google.com *.quantcount.com *.facebook.net *.gubagoo.io .hotjar.com *.gstatic.com *.inspectlet.com *.pingdom.net *.twitter.com *.quantserve.com *.googletagservices.com *.googleapis.com *.gubagoo.io \'unsafe-inline\';');
-	    header('X-Frame-Options: SAMEORIGIN');
-	    header('X-Content-Type-Options: nosniff');
-	    header('Content-Security-Policy: frame-ancestors \'self\' https://example.com');
-	    header('X-XSS-Protection: 1; mode=block;');
-	    header('Referrer-Policy: same-origin');
-	}
+    protected function security_headers(): void
+    {
+        $home_domain = $this->extract_domain( WP_HOME );
+
+        header( 'Access-Control-Allow-Origin: www.google-analytics.com' );
+        header( 'Strict-Transport-Security: max-age=31536000' );
+        header( 'Content-Security-Policy: script-src \'self\' *.' . $home_domain . ' www.google-analytics.com *.google-analytics.com *.googlesyndication.com *.google.com *.google.com *.quantcount.com *.facebook.net *.gubagoo.io .hotjar.com *.inspectlet.com *.pingdom.net *.twitter.com *.quantserve.com *.googletagservices.com *.googleapis.com *.gubagoo.io \'unsafe-inline\';' );
+        header( 'X-Frame-Options: SAMEORIGIN' );
+        header( 'X-Content-Type-Options: nosniff' );
+        header( 'Content-Security-Policy: frame-ancestors \'self\' https://' . $home_domain );
+        header( 'X-XSS-Protection: 1; mode=block;' );
+        header( 'Referrer-Policy: same-origin' );
+    }
+
+    /**
+     * Extracts the domain from a URL.
+     *
+     * @param string $url The URL to extract the domain from.
+     *
+     * @return null|string The extracted domain or null if extraction fails.
+     */
+    protected function extract_domain( string $url ): ?string
+    {
+        $parsed_url = wp_parse_url( $url );
+
+        if ( isset( $parsed_url['host'] ) ) {
+            $host_parts = explode( '.', $parsed_url['host'] );
+            $num_parts  = \count( $host_parts );
+
+            // Check if the host has at least two parts (e.g., 'example.com').
+            if ( $num_parts >= 2 ) {
+                return $host_parts[ $num_parts - 2 ] . '.' . $host_parts[ $num_parts - 1 ];
+            }
+        }
+
+        return null;
+    }
 }
