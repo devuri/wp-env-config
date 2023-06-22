@@ -59,7 +59,7 @@ class ServeCommand extends Command
 
         if ( ! $this->filesystem->exists( $this->files['env'] ) ) {
             $output->writeln( '<comment>.env file does not exist. we will use .env-example.</comment>' );
-            $this->filesystem->rename( $this->root_dir_path . '.env-example', $this->files['env'] );
+            $this->filesystem->rename( $this->root_dir_path . '/.env-example', $this->files['env'] );
         }
 
         if ( ! is_numeric( $port ) || $port < 1024 || $port > 65535 ) {
