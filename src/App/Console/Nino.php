@@ -45,6 +45,7 @@ class Nino
     {
         $this->add_command( new ServeCommand( $this->root_dir, new Filesystem() ) );
         $this->add_command( new SetupCommand( $this->root_dir, new Filesystem() ) );
+        $this->add_command( new BackupCommand( $this->root_dir, new Filesystem() ) );
         $this->add_command( new InstallPackage() );
         $this->add_command( new GenerateComposer( $this->root_dir, new Filesystem() ) );
         $this->add_command( new CertCommand() );
