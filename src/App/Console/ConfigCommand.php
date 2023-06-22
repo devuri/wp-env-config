@@ -53,7 +53,7 @@ class ConfigCommand extends Command
         }
 
         // Htpasswd Generator to create htpasswd.
-        if ( 'uuid' === $config_task ) {
+        if ( 'htpass' === $config_task || 'sechtpass' === $config_task ) {
             $this->create_htpasswd_file( $config_task, $output );
 
             return Command::SUCCESS;
