@@ -16,6 +16,14 @@ class Plugin
     {
         self::add_white_label();
 
+		add_action('send_headers', function() {
+			if ( ! defined('SET_SECURITY_HEADERS') ) {
+				return;
+			}
+
+			$this->security_headers();
+		});
+
         // Remove wp version.
         add_filter(
             'the_generator',
@@ -92,4 +100,16 @@ class Plugin
     {
         return new self();
     }
+
+	protected function security_headers()
+	{
+	    header('Access-Control-Allow-Origin: www.google-analytics.com');
+	    header('Strict-Transport-Security: max-age=31536000');
+	    header('Content-Security-Policy: script-src \'self\' *.example.com www.google-analytics.com *.google-analytics.com *.googlesyndication.com *.google.com *.google.com *.quantcount.com *.facebook.net *.gubagoo.io .hotjar.com *.gstatic.com *.inspectlet.com *.pingdom.net *.twitter.com *.quantserve.com *.googletagservices.com *.googleapis.com *.gubagoo.io \'unsafe-inline\';');
+	    header('X-Frame-Options: SAMEORIGIN');
+	    header('X-Content-Type-Options: nosniff');
+	    header('Content-Security-Policy: frame-ancestors \'self\' https://example.com');
+	    header('X-XSS-Protection: 1; mode=block;');
+	    header('Referrer-Policy: same-origin');
+	}
 }
