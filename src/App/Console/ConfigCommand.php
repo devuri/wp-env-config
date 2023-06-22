@@ -40,19 +40,21 @@ class ConfigCommand extends Command
         $config_task = $input->getArgument( '_task' );
 
         if ( false === $config_task ) {
-            $output->writeln( "<info>Config Setup:$this->root_dir_path</info>" );
-            dump( $this->get_env( $_ENV ) );
+            $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
+			return Command::SUCCESS;
         }
 
         if ( 'uuid' === $config_task ) {
             $uuid = self::uuid();
             $output->writeln( PHP_EOL . "<comment>The uuid is: </comment><info>$uuid</info>" . PHP_EOL );
-        }
+			return Command::SUCCESS;
+		}
 
-        // Htpasswd Generator to create htpasswd.
-        $this->create_htpasswd_file( $config_task, $output );
-
-        // $output->writeln( "<comment>$config_task is not a valid config task</comment>" );
+		// Htpasswd Generator to create htpasswd.
+		if ( 'uuid' === $config_task ) {
+			$this->create_htpasswd_file( $config_task, $output );
+            return Command::SUCCESS;
+		}
 
         return Command::SUCCESS;
     }
