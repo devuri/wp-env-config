@@ -45,7 +45,7 @@ class BackupCommand extends Command
         }
 
         // Create a timestamped backup file
-        $backup_file = $backup_directory . '/backup_' . date( 'YmdHis' ) . '.zip';
+        $backup_file = $backup_directory . '/backup_' . gmdate( 'YmdHis' ) . '.zip';
 
         // Create a ZIP archive of the site directory
         $zip = new ZipArchive();
