@@ -5,9 +5,14 @@ namespace Tests\App\Console\Traits;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
-use Urisoft\App\Console\CreateHtpasswd;
 use Symfony\Component\Filesystem\Filesystem;
+use Urisoft\App\Console\CreateHtpasswd;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class CreateHtpasswdTest extends TestCase
 {
     private $rootDirPath;
@@ -26,7 +31,7 @@ class CreateHtpasswdTest extends TestCase
         $this->filesystem->remove($this->rootDirPath . '/_htpass');
     }
 
-    public function testExecute()
+    public function test_execute(): void
     {
         $application = new Application();
         $application->add(new CreateHtpasswd($this->rootDirPath, $this->filesystem));

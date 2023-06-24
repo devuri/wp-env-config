@@ -13,6 +13,28 @@ trait Generate
     }
 
     /**
+     * Generate a random four-letter word.
+     *
+     * @return string The generated four-letter word.
+     */
+    public function four_letter_word(): string
+    {
+        $consonants = $this->get_consonants();
+        $vowels     = $this->get_vowels();
+        $word       = '';
+
+        for ( $j = 0; $j < 4; $j++ ) {
+            if ( 0 === $j % 2 ) {
+                $word .= $consonants[ array_rand( $consonants ) ];
+            } else {
+                $word .= $vowels[ array_rand( $vowels ) ];
+            }
+        }
+
+        return $word;
+    }
+
+    /**
      * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
      *
      * @param int $length The length of the alphanum_str to generate.
@@ -36,12 +58,12 @@ trait Generate
 
     protected static function htpasswd( string $username, $password, $salted = null ): string
     {
-		if( ! $salted ){
-			$salt  = self::rand_str( 16 );
-		} else {
-			$salt = $salted;
-		}
- 
+        if ( ! $salted ) {
+            $salt = self::rand_str( 16 );
+        } else {
+            $salt = $salted;
+        }
+
         $salted_password = '$apr1$' . $salt . '$' . md5( $salt . $password . $salt );
 
         return $username . ':' . $salted_password . ':' . $salt;
@@ -63,36 +85,14 @@ trait Generate
         return $username . ':' . crypt( $password, $salt );
     }
 
-	/**
-	 * Generate a random four-letter word.
-	 *
-	 * @return string The generated four-letter word.
-	 */
-	public function four_letter_word(): string
-	{
-	    $consonants = $this->get_consonants();
-	    $vowels = $this->get_vowels();
-	    $word = '';
-
-	    for ( $j = 0; $j < 4; $j++ ) {
-	        if ( $j % 2 === 0 ) {
-	            $word .= $consonants[ array_rand( $consonants ) ];
-	        } else {
-	            $word .= $vowels[ array_rand( $vowels ) ];
-	        }
-	    }
-
-	    return $word;
-	}
-
-	/**
+    /**
      * Get the consonants array.
      *
      * @return array The consonants array.
      */
     private function get_consonants(): array
-	{
-        return array( 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' );
+    {
+        return [ 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' ];
     }
 
     /**
@@ -101,8 +101,7 @@ trait Generate
      * @return array The vowels array.
      */
     private function get_vowels(): array
-	{
-        return array( 'a', 'e', 'i', 'o', 'u' );
+    {
+        return [ 'a', 'e', 'i', 'o', 'u' ];
     }
-
 }

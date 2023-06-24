@@ -74,12 +74,12 @@ class BackupCommand extends Command
                 $path       = $directory . '/' . $file;
                 $local_path = $prefix . '/' . $file;
 
-				// Exclude directory
+                // Exclude directory
                 if ( 'storage' === $file || 'vendor' === $file ) {
                     continue;
                 }
 
-				// Exclude directory
+                // Exclude directory
                 if ( 'plugins' === $file || 'wp' === $file ) {
                     continue;
                 }
