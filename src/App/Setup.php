@@ -79,12 +79,12 @@ class Setup implements ConfigInterface
      */
     protected $short_circuit;
 
-	/**
-	 * Set supported env types.
-	 *
-	 * @var array
-	 */
-	protected $env_types = [];
+    /**
+     * Set supported env types.
+     *
+     * @var array
+     */
+    protected $env_types = [];
 
     /**
      * Constructor.
@@ -95,14 +95,12 @@ class Setup implements ConfigInterface
     {
         $this->path = $path;
 
-		/**
-		 * Available Settings.
-		 *
-		 * If we cant find a supported env type we will set to production.
-		 *
-		 * @var string[]
-		 */
-		$this->env_types = ['secure', 'sec', 'production',  'prod', 'staging',  'development', 'dev', 'debug', 'local' ];
+        /*
+         * Available env type settings.
+         *
+         * If we cant find a supported env type we will set to production.
+         */
+        $this->env_types = [ 'secure', 'sec', 'production', 'prod', 'staging', 'development', 'dev', 'debug', 'local' ];
 
         // use multiple filenames.
         if ( $supported_names ) {
@@ -375,68 +373,36 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-		// Switch between different environments
-		$this->environment_switch();
+        // Switch between different environments
+        $this->environment_switch();
 
         // switch ( $this->environment ) {
-        //     case 'production':
-        //         $this->env_production();
-		//
-        //         break;
-        //     case 'staging':
-        //         $this->env_staging();
-		//
-        //         break;
-        //     case 'debug':
-        //         $this->env_debug();
-		//
-        //         break;
-        //     case 'development':
-        //         $this->env_development();
-		//
-        //         break;
-        //     case 'secure':
-        //         $this->env_secure();
-		//
-        //         break;
-        //     default:
-        //         $this->env_production();
+        // case 'production':
+        // $this->env_production();
+        //
+        // break;
+        // case 'staging':
+        // $this->env_staging();
+        //
+        // break;
+        // case 'debug':
+        // $this->env_debug();
+        //
+        // break;
+        // case 'development':
+        // $this->env_development();
+        //
+        // break;
+        // case 'secure':
+        // $this->env_secure();
+        //
+        // break;
+        // default:
+        // $this->env_production();
         // }// end switch
 
         return $this;
     }
-
-	/**
-	 * Switches between different environments based on the value of $this->environment.
-	 *
-	 * @return void
-	 */
-	protected function environment_switch(): void
-	{
-	    switch ($this->environment) {
-	        case 'production':
-	        case 'prod':
-	            $this->env_production();
-	            break;
-	        case 'staging':
-	            $this->env_staging();
-	            break;
-	        case 'debug':
-	        case 'local':
-	            $this->env_debug();
-	            break;
-	        case 'development':
-	        case 'dev':
-	            $this->env_development();
-	            break;
-	        case 'secure':
-	        case 'sec':
-	            $this->env_secure();
-	            break;
-	        default:
-	            $this->env_production();
-	    }
-	}
 
     /**
      * Site Url Settings.
@@ -554,6 +520,43 @@ class Setup implements ConfigInterface
         return $this;
     }
 
+    /**
+     * Switches between different environments based on the value of $this->environment.
+     *
+     * @return void
+     */
+    protected function environment_switch(): void
+    {
+        switch ( $this->environment ) {
+            case 'production':
+            case 'prod':
+                $this->env_production();
+
+                break;
+            case 'staging':
+                $this->env_staging();
+
+                break;
+            case 'debug':
+            case 'local':
+                $this->env_debug();
+
+                break;
+            case 'development':
+            case 'dev':
+                $this->env_development();
+
+                break;
+            case 'secure':
+            case 'sec':
+                $this->env_secure();
+
+                break;
+            default:
+                $this->env_production();
+        }// end switch
+    }
+
     protected function enable_error_handler(): bool
     {
         if ( $this->error_handler ) {
@@ -587,8 +590,7 @@ class Setup implements ConfigInterface
             $this->dotenv->required( 'LOGGED_IN_SALT' )->notEmpty();
             $this->dotenv->required( 'NONCE_SALT' )->notEmpty();
         } catch ( Exception $e ) {
-            dump( $e->getMessage() );
-            exit;
+            exit( $e->getMessage() );
         }// end try
     }
 
