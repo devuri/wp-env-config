@@ -79,6 +79,13 @@ class Setup implements ConfigInterface
      */
     protected $short_circuit;
 
+	/**
+	 * Set supported env types.
+	 *
+	 * @var array
+	 */
+	protected $env_types = [];
+
     /**
      * Constructor.
      *
@@ -87,6 +94,15 @@ class Setup implements ConfigInterface
     public function __construct( $path, ?array $supported_names = null, bool $short_circuit = true )
     {
         $this->path = $path;
+
+		/**
+		 * Available Settings.
+		 *
+		 * If we cant find a supported env type we will set to production.
+		 *
+		 * @var string[]
+		 */
+		$this->env_types = ['secure', 'sec', 'production',  'prod', 'staging',  'development', 'dev', 'debug', 'local' ];
 
         // use multiple filenames.
         if ( $supported_names ) {
@@ -317,7 +333,7 @@ class Setup implements ConfigInterface
             return $this;
         }
 
-        if ( ! \in_array( $this->environment, [ 'debug', 'development', 'local' ], true ) ) {
+        if ( ! \in_array( $this->environment, [ 'debug', 'development', 'dev', 'local' ], true ) ) {
             return $this;
         }
 
@@ -353,39 +369,74 @@ class Setup implements ConfigInterface
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
         }
 
-        if ( ! \in_array( $this->environment, self::init_settings(), true ) ) {
+        if ( ! \in_array( $this->environment, $this->env_types, true ) ) {
             $this->env_production();
 
             return $this;
         }
 
-        switch ( $this->environment ) {
-            case 'production':
-                $this->env_production();
+		// Switch between different environments
+		$this->environment_switch();
 
-                break;
-            case 'staging':
-                $this->env_staging();
-
-                break;
-            case 'debug':
-                $this->env_debug();
-
-                break;
-            case 'development':
-                $this->env_development();
-
-                break;
-            case 'secure':
-                $this->env_secure();
-
-                break;
-            default:
-                $this->env_production();
-        }// end switch
+        // switch ( $this->environment ) {
+        //     case 'production':
+        //         $this->env_production();
+		//
+        //         break;
+        //     case 'staging':
+        //         $this->env_staging();
+		//
+        //         break;
+        //     case 'debug':
+        //         $this->env_debug();
+		//
+        //         break;
+        //     case 'development':
+        //         $this->env_development();
+		//
+        //         break;
+        //     case 'secure':
+        //         $this->env_secure();
+		//
+        //         break;
+        //     default:
+        //         $this->env_production();
+        // }// end switch
 
         return $this;
     }
+
+	/**
+	 * Switches between different environments based on the value of $this->environment.
+	 *
+	 * @return void
+	 */
+	protected function environment_switch(): void
+	{
+	    switch ($this->environment) {
+	        case 'production':
+	        case 'prod':
+	            $this->env_production();
+	            break;
+	        case 'staging':
+	            $this->env_staging();
+	            break;
+	        case 'debug':
+	        case 'local':
+	            $this->env_debug();
+	            break;
+	        case 'development':
+	        case 'dev':
+	            $this->env_development();
+	            break;
+	        case 'secure':
+	        case 'sec':
+	            $this->env_secure();
+	            break;
+	        default:
+	            $this->env_production();
+	    }
+	}
 
     /**
      * Site Url Settings.
@@ -501,18 +552,6 @@ class Setup implements ConfigInterface
         self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
 
         return $this;
-    }
-
-    /**
-     * Available Settings.
-     *
-     * @return string[]
-     *
-     * @psalm-return array{0: 'production', 1: 'staging', 2: 'debug', 3: 'development', 4: 'secure'}
-     */
-    protected static function init_settings(): array
-    {
-        return [ 'production', 'staging', 'debug', 'development', 'secure' ];
     }
 
     protected function enable_error_handler(): bool
