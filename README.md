@@ -28,7 +28,7 @@ composer require devuri/wp-env-config
 Alternatively, you can add `devuri/wp-env-config` to your project's `composer.json` file:
 ```shell
 "require": {
-    "devuri/wp-env-config": "^0.30"
+    "devuri/wp-env-config": "^0.5"
 }
 ```
 Once installed, you can begin using the package in your WordPress project.
