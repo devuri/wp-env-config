@@ -13,6 +13,28 @@ trait Generate
     }
 
     /**
+     * Generate a random four-letter word.
+     *
+     * @return string The generated four-letter word.
+     */
+    public function four_letter_word(): string
+    {
+        $consonants = $this->get_consonants();
+        $vowels     = $this->get_vowels();
+        $word       = '';
+
+        for ( $j = 0; $j < 4; $j++ ) {
+            if ( 0 === $j % 2 ) {
+                $word .= $consonants[ array_rand( $consonants ) ];
+            } else {
+                $word .= $vowels[ array_rand( $vowels ) ];
+            }
+        }
+
+        return $word;
+    }
+
+    /**
      * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
      *
      * @param int $length The length of the alphanum_str to generate.
@@ -34,9 +56,14 @@ trait Generate
         return $alphanum_str;
     }
 
-    protected static function htpasswd( string $username, $password ): string
+    protected static function htpasswd( string $username, $password, $salted = null ): string
     {
-        $salt            = self::rand_str( 16 );
+        if ( ! $salted ) {
+            $salt = self::rand_str( 16 );
+        } else {
+            $salt = $salted;
+        }
+
         $salted_password = '$apr1$' . $salt . '$' . md5( $salt . $password . $salt );
 
         return $username . ':' . $salted_password . ':' . $salt;
@@ -56,5 +83,25 @@ trait Generate
         $salt = sprintf( '$2y$%02d$%s', $cost, substr( strtr( base64_encode( random_bytes( 16 ) ), '+', '.' ), 0, 22 ) );
 
         return $username . ':' . crypt( $password, $salt );
+    }
+
+    /**
+     * Get the consonants array.
+     *
+     * @return array The consonants array.
+     */
+    private function get_consonants(): array
+    {
+        return [ 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z' ];
+    }
+
+    /**
+     * Get the vowels array.
+     *
+     * @return array The vowels array.
+     */
+    private function get_vowels(): array
+    {
+        return [ 'a', 'e', 'i', 'o', 'u' ];
     }
 }
