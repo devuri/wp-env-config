@@ -37,6 +37,7 @@ class BaseKernel
         'disable_updates' => true,
         'can_deactivate'  => true,
         'theme_dir'       => null,
+        'templates_dir'   => null,
         'error_handler'   => 'symfony',
         'config_file'     => 'config',
     ];
@@ -57,6 +58,10 @@ class BaseKernel
 
         if ( ! \is_array( $args ) ) {
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
+        }
+
+		if (\array_key_exists('theme_dir', $args)) {
+            $this->args['templates_dir'] = $args['theme_dir'];
         }
 
         // @codingStandardsIgnoreLine
@@ -211,8 +216,8 @@ class BaseKernel
          *
          * @link https://github.com/devuri/custom-wordpress-theme-dir
          */
-        if ( $this->args['theme_dir'] ) {
-            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . $this->args['theme_dir'] );
+        if ( $this->args['templates_dir'] ) {
+            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . $this->args['templates_dir'] );
         }
 
         // Plugins.
