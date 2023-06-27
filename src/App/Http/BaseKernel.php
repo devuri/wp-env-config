@@ -36,7 +36,6 @@ class BaseKernel
         'default_theme'   => 'twentytwentythree',
         'disable_updates' => true,
         'can_deactivate'  => true,
-        'theme_dir'       => null,
         'templates_dir'   => null,
         'error_handler'   => 'symfony',
         'config_file'     => 'config',
@@ -60,7 +59,7 @@ class BaseKernel
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
         }
 
-		if (\array_key_exists('theme_dir', $args)) {
+        if ( \array_key_exists( 'theme_dir', $args ) ) {
             $this->args['templates_dir'] = $args['theme_dir'];
         }
 
