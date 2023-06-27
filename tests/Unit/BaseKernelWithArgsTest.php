@@ -36,7 +36,7 @@ class BaseKernelWithArgsTest extends BaseTest
             "default_theme" => "twentytwentythree",
             "disable_updates" => true,
             "can_deactivate" => true,
-            "theme_dir" => null,
+            "templates_dir" => null,
             "error_handler" => "symfony",
             "config_file" => "config",
         ];
