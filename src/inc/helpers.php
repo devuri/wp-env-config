@@ -136,20 +136,21 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
     /**
      * Start and load core plugin.
      *
-     * @return void
+     * @return array
      */
-	 function wpc_installed_plugins(): array
-	 {
-	    $plugins = get_plugins();
+    function wpc_installed_plugins(): array
+    {
+        $plugins = get_plugins();
 
-		$plugin_slugs = array();
+        $plugin_slugs = [];
 
-		foreach ( $plugins as $key => $plugin ) {
-			$slug = explode( '/', $key );
+        foreach ( $plugins as $key => $plugin ) {
+            $slug = explode( '/', $key );
 
-	        $plugin_slugs[] = '"wpackagist-plugin/'.$slug[0].'": "*",'; // Add the slug to the array
-	    }
+            $plugin_slugs[] = '"wpackagist-plugin/' . $slug[0] . '": "*",';
+            // Add the slug to the array
+        }
 
-	    return $plugin_slugs;
-	 }
-}
+        return $plugin_slugs;
+    }
+}// end if
