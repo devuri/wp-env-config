@@ -33,8 +33,8 @@
         "php": "^7.3 || ^7.4 || ^8.0",
         "devuri/uuid-generator": "^0.0.1",
         "filp/whoops": "^2.15",
-        "johnpbloch/wordpress": "*",
-        "roots/wp-config": "1.0.0",
+        "johnpbloch/wordpress": "^6.2",
+        "roots/wp-config": "^1.0",
         "symfony/console": "^5.4",
         "symfony/error-handler": "^5.1",
         "symfony/filesystem": "^5.4",
@@ -45,15 +45,19 @@
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
         "brain/monkey": "^2.6",
+        "laravel/envoy": "^2.8",
         "php-stubs/wordpress-stubs": "^6.0",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-strict-rules": "^1.3",
         "phpunit/phpunit": "^9.5",
-        "symfony/var-dumper": "^5.4",
+        "spatie/ssh": "^1.9",
         "szepeviktor/phpstan-wordpress": "^1.1",
         "vimeo/psalm": "^4.24",
         "yoast/phpunit-polyfills": "^1.0 || ^2.0"
     },
+	"bin": [
+		"bin/nino"
+	],
     "autoload": {
         "files": [
             "src/inc/helpers.php"
@@ -96,6 +100,7 @@
         ],
         "build": [
             "composer install -q",
+            "composer validate --strict",
             "composer wpcs-lint",
             "composer lint",
             "composer install -q",

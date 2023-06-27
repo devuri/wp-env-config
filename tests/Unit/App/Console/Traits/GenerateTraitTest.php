@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\App\Console\Traits;
+namespace Tests\Unit\App\Console\Traits;
 
 use PHPUnit\Framework\TestCase;
 use Urisoft\App\Console\Traits\Generate;
