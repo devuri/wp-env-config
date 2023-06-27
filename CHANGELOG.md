@@ -1,5 +1,46 @@
 # Changelog
 
+## [0.6.0](https://github.com/devuri/wp-env-config/compare/v0.5.1...v0.6.0) (2023-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* !BREAKING `symfony/console` is now `6.0` requires php `8.0.2`
+
+### Features
+
+* !BREAKING `symfony/console` is now `6.0` requires php `8.0.2` ([01fb09b](https://github.com/devuri/wp-env-config/commit/01fb09b74573fbac8a1e24322f3e9aaa041976c6))
+* `templates_dir` replaces theme_dir ([b2859dd](https://github.com/devuri/wp-env-config/commit/b2859dde1f903ec9c177df1ced686e881f27a966))
+* adds `config_file` for overrides ([a4bff89](https://github.com/devuri/wp-env-config/commit/a4bff899f58480d07bdd64e06249da4f2d6edd30))
+* adds `make:htpass` cli to create htaccess basic auth password file ([f2dbd3f](https://github.com/devuri/wp-env-config/commit/f2dbd3f84b24434990f6ce4344655b0c9618a50b))
+* adds alias `prod`, `local`, `dev` and `sec` for environment switch ([f9ee749](https://github.com/devuri/wp-env-config/commit/f9ee7498dd4a5f34e0258f8c4b2851e67bdb4443))
+* adds dev `laravel/envoy` and `spatie/ssh` ([824023f](https://github.com/devuri/wp-env-config/commit/824023f8f62d655528d4b00c96de2cbf287e8cfa))
+* adds security headers ([c929311](https://github.com/devuri/wp-env-config/commit/c929311d0943bb71ce88bd04bcf96e1c38580ab3))
+* get installed plugins as composer dependencies ([f15ac59](https://github.com/devuri/wp-env-config/commit/f15ac5983c5dbbe608a6471c021ef1e888fdd8d5))
+* rename `Nino Cli =&gt; 0.1.3` ([41fd1b3](https://github.com/devuri/wp-env-config/commit/41fd1b3deb8ad1de7831665da9a8f77d70065371))
+
+
+### Bug Fixes
+
+* `symfony/console:6.0` version constraint for console ([1afe274](https://github.com/devuri/wp-env-config/commit/1afe2748bdeeb0eb39cf699379f9de3350673419))
+* 7.3 compat fixes ([5765d92](https://github.com/devuri/wp-env-config/commit/5765d92c9e22e20167a399c26c5a3b280062c55c))
+* adds `APP_TEST_PATH` to fix tests warning ([183b8c8](https://github.com/devuri/wp-env-config/commit/183b8c8c179be02988ab17e32fcf9d0c42b167ae))
+* fix console output for config ([110efb1](https://github.com/devuri/wp-env-config/commit/110efb1e58fe36a1cae62d7c06cbbd249b15a340))
+* fix htpass cli ([924c06d](https://github.com/devuri/wp-env-config/commit/924c06d450aeb619937f92fe531e181ce7767bea))
+* fix test namespace ([5f30867](https://github.com/devuri/wp-env-config/commit/5f308670f71094aa9b839af990e9950b47c1cd37))
+* fixes for cli tools ([8980692](https://github.com/devuri/wp-env-config/commit/8980692f9f4e7722e8a524c5801a114f1b771300))
+* php serve cli ([db0fc02](https://github.com/devuri/wp-env-config/commit/db0fc026c2318c19a9c370e7c95629b46f9efcc3))
+* use gmdate ([81b1469](https://github.com/devuri/wp-env-config/commit/81b146922a4e34c942eef2c775915050e57e48a5))
+* version upgrades ([52fd71e](https://github.com/devuri/wp-env-config/commit/52fd71e8d75c7b45b957f6c2efd6610163de320e))
+
+
+### Miscellaneous Chores
+
+* build ([fb5d648](https://github.com/devuri/wp-env-config/commit/fb5d648f1d9dfc675e6bd9efca9fc144a85cbc6c))
+* **build:** build ([581b61a](https://github.com/devuri/wp-env-config/commit/581b61a811dc946d20bf1b0a62592f840c5154c9))
+* **build:** build ([c799978](https://github.com/devuri/wp-env-config/commit/c7999780bd65dae07797c5e671c5c519bcd1bbfa))
+* **build:** build ([b153478](https://github.com/devuri/wp-env-config/commit/b15347800bfd08ad6696f0aa7b055c34ff6805b0))
+
 ## [0.5.1](https://github.com/devuri/wp-env-config/compare/v0.5.0...v0.5.1) (2023-06-18)
 
 
