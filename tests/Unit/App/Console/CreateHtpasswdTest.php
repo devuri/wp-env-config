@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\App\Console\Traits;
+namespace Tests\Unit\App\Console;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
