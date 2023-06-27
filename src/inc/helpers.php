@@ -131,3 +131,25 @@ if ( ! \function_exists( 'wpc_app_config_core' ) ) {
         Plugin::init();
     }
 }
+
+if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
+    /**
+     * Start and load core plugin.
+     *
+     * @return void
+     */
+	 function wpc_installed_plugins(): array
+	 {
+	    $plugins = get_plugins();
+
+		$plugin_slugs = array();
+
+		foreach ( $plugins as $key => $plugin ) {
+			$slug = explode( '/', $key );
+
+	        $plugin_slugs[] = '"wpackagist-plugin/'.$slug[0].'": "*",'; // Add the slug to the array
+	    }
+
+	    return $plugin_slugs;
+	 }
+}
