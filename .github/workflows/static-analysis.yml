@@ -17,7 +17,7 @@ jobs:
       - name: "💽  Installing PHP, Composer"
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.0'
           coverage: none
           ini-values: display_errors = on, error_reporting = E_ALL
           tools: composer
