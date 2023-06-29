@@ -11,11 +11,11 @@ use Symfony\Component\Process\Process;
 
 class InstallPackage extends Command
 {
-    protected static $defaultName = 'install';
+    protected static $defaultName = 'i';
 
     protected function configure(): void
     {
-        $this->setDescription( 'Add a plugin or theme via composer' );
+        $this->setDescription( 'Add a plugin or theme via composer using slug only' );
         $this->addArgument( 'package', InputArgument::REQUIRED, 'The slug of the plugin or theme (example: brisko)' );
         $this->addOption( 'p', null, InputOption::VALUE_NONE, 'Install a plugin' );
         $this->addOption( 't', null, InputOption::VALUE_NONE, 'Install a theme' );

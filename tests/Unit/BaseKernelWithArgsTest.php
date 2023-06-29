@@ -39,6 +39,8 @@ class BaseKernelWithArgsTest extends BaseTest
             "templates_dir" => null,
             "error_handler" => "symfony",
             "config_file" => "config",
+            'sudo_admin' => null,
+            'sucuri_waf' => false,
         ];
 
         $this->assertEquals( $output, $app_with_args->get_args());
