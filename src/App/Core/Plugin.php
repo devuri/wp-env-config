@@ -14,7 +14,10 @@ class Plugin
 {
     public function __construct()
     {
-        self::add_white_label();
+        new WhiteLabel();
+
+        // Custom Sucuri settings.
+        new Sucuri();
 
         add_action(
             'send_headers',
@@ -92,11 +95,6 @@ class Plugin
             10,
             4
         );
-    }
-
-    public static function add_white_label(): WhiteLabel
-    {
-        return new WhiteLabel();
     }
 
     public static function init(): self

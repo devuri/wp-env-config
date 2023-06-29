@@ -39,6 +39,8 @@ class BaseKernel
         'templates_dir'   => null,
         'error_handler'   => 'symfony',
         'config_file'     => 'config',
+        'sudo_admin'      => null,
+        'sucuri_waf'      => false,
     ];
 
     /**
@@ -231,6 +233,9 @@ class BaseKernel
         // this will be handled via composer.
         $this->define( 'AUTOMATIC_UPDATER_DISABLED', $this->args['disable_updates'] );
 
+        // Sudo admin (granted more privilages uses user ID).
+        $this->define( 'WP_SUDO_ADMIN', $this->args['sudo_admin'] );
+
         /*
          * Prevent Admin users from deactivating plugins, true or false.
          *
@@ -261,6 +266,10 @@ class BaseKernel
         $this->define( 'SECURE_AUTH_COOKIE', 'wpc_sec_' . COOKIEHASH );
         $this->define( 'LOGGED_IN_COOKIE', 'wpc_logged_in_' . COOKIEHASH );
         $this->define( 'TEST_COOKIE', md5( 'wpc_test_cookie' . env( 'WP_HOME' ) ) );
+
+        // SUCURI
+        $this->define( 'ENABLE_SUCURI_WAF', $this->args['sucuri_waf'] );
+        $this->define( 'SUCURI_DATA_STORAGE', APP_PATH . '/storage/logs/sucuri' );
     }
 
     /**
