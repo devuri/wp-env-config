@@ -80,7 +80,7 @@ class BaseKernelTest extends BaseTest
             "LOGGED_IN_COOKIE" => "wpc_logged_in_c984d06aafbecf6bc55569f964148ea3",
             "TEST_COOKIE" => "613df23f4d18ac79c829ba8c18b503e4",
             "ENABLE_SUCURI_WAF" =>   false,
-            "SUCURI_DATA_STORAGE" =>   APP_TEST_PATH . "/storage/logs/sucuri",
+            "SUCURI_DATA_STORAGE" =>   APP_TEST_PATH . "../../storage/logs/sucuri",
         ];
 
         $this->assertIsArray( $this->http_app()->get_defined() );

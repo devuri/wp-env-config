@@ -100,7 +100,7 @@ class Setup implements ConfigInterface
          *
          * If we cant find a supported env type we will set to production.
          */
-        $this->env_types = [ 'secure', 'sec', 'production', 'prod', 'staging', 'development', 'dev', 'debug', 'local' ];
+        $this->env_types = [ 'secure', 'sec', 'production', 'prod', 'staging', 'development', 'dev', 'debug', 'deb', 'local' ];
 
         // use multiple filenames.
         if ( $supported_names ) {
@@ -537,6 +537,7 @@ class Setup implements ConfigInterface
                 $this->env_staging();
 
                 break;
+            case 'deb':
             case 'debug':
             case 'local':
                 $this->env_debug();
