@@ -40,14 +40,15 @@ if ( ! \function_exists( 'env' ) ) {
     /**
      * Get the value of an environment variable.
      *
-     * @param string $name the environment variable name.
+     * @param string     $name    the environment variable name.
+     * @param null|mixed $default
      *
      * @return mixed
      */
-    function env( string $name, bool $strtolower = false )
+    function env( string $name, $default = null, bool $strtolower = false )
     {
         if ( ! isset( $_ENV[ $name ] ) ) {
-            return null;
+            return $default;
         }
 
         if ( is_int_val( $_ENV[ $name ] ) ) {

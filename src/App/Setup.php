@@ -210,7 +210,7 @@ class Setup implements ConfigInterface
         if ( \is_bool( $environment['environment'] ) ) {
             $this->environment = $environment['environment'];
         } elseif ( \is_string( $environment['environment'] ) ) {
-            $this->environment = trim( $environment['environment'] );
+            $this->environment = trim( (string) $environment['environment'] );
         } else {
             $this->environment = $environment['environment'];
         }

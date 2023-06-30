@@ -1,6 +1,74 @@
 <?php
 
 return [
+	/*
+     * Security settings for the WordPress application.
+     *
+     * This array contains various security settings to enhance the security of the WordPress application.
+     *
+     * @var array $security {
+     *     An array of security settings.
+     *
+     *     @type bool $brute-force           Whether to enable brute force protection.
+     *     @type bool $two-factor            Whether to enable two-factor authentication.
+     *     @type bool $no-pwned-passwords    Whether to check for passwords that have been exposed in data breaches.
+     *     @type array|null $admin-ips       An array of IP addresses allowed for administrative access.
+     *                                      Set to null or an empty array to disable the feature.
+     *                                      Format: ['192.168.000.41', '192.168.000.34']
+     * }
+     */
+    'security' => [
+        'brute-force'        => true,
+        'two-factor'         => true,
+        'no-pwned-passwords' => true,
+        'admin-ips'          => [ '192.168.000.41', '192.168.000.34' ],
+    ],
+
+    /*
+     * Email SMTP configuration for WordPress.
+     *
+     * Configure the mailer settings for sending emails in WordPress using various providers such as Brevo, Postmark,
+     * SendGrid, Mailgun, and SES.
+     *
+     * Available providers:
+     * - 'brevo': Brevo mailer using the API key specified in the environment variable 'BREVO_API_KEY'.
+     * - 'postmark': Postmark mailer using the token specified in the environment variable 'POSTMARK_TOKEN'.
+     * - 'sendgrid': SendGrid mailer using the API key specified in the environment variable 'SENDGRID_API_KEY'.
+     * - 'mailgun': Mailgun mailer using the domain, secret, endpoint, and scheme specified in the respective
+     *              environment variables 'MAILGUN_DOMAIN', 'MAILGUN_SECRET', 'MAILGUN_ENDPOINT', and 'MAILGUN_SCHEME'.
+     * - 'ses': SES (Amazon Simple Email Service) mailer using the access key, secret access key, and region specified
+     *          in the respective environment variables 'AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', and 'AWS_DEFAULT_REGION'.
+     *
+     * Note: Make sure to set the required environment variables for each mailer provider.
+     */
+
+    'mailer'          => [
+        'brevo'    => [
+            'apikey' => env( 'BREVO_API_KEY' ),
+        ],
+
+        'postmark' => [
+            'token' => env( 'POSTMARK_TOKEN' ),
+        ],
+
+        'sendgrid' => [
+            'apikey' => env( 'SENDGRID_API_KEY' ),
+        ],
+
+        'mailgun'  => [
+            'domain'   => env( 'MAILGUN_DOMAIN' ),
+            'secret'   => env( 'MAILGUN_SECRET' ),
+            'endpoint' => env( 'MAILGUN_ENDPOINT', 'api.mailgun.net' ),
+            'scheme'   => 'https',
+        ],
+
+        'ses'      => [
+            'key'    => env( 'AWS_ACCESS_KEY_ID' ),
+            'secret' => env( 'AWS_SECRET_ACCESS_KEY' ),
+            'region' => env( 'AWS_DEFAULT_REGION', 'us-east-1' ),
+        ],
+    ],
+
     /*
      * Sudo Admin: The main administrator or developer.
      *
@@ -143,4 +211,54 @@ return [
      * Please note that the error handler will only run in 'debug', 'development', or 'local' environments.
      */
     "error_handler" => null,
+
+	/*
+     * Redis cache configuration for the WordPress application.
+     *
+     * This array contains configuration settings for the Redis cache integration in WordPress.
+     * For detailed installation instructions, refer to the documentation at:
+     * {@link https://github.com/rhubarbgroup/redis-cache/blob/develop/INSTALL.md}
+     *
+     * @var array $redis {
+     *     An array of Redis cache configuration settings.
+     *
+     *     @type bool $disabled            Whether Redis cache is disabled.
+     *                                    Default: false if the environment variable 'WP_REDIS_DISABLED' is not set.
+     *     @type string $host              The Redis server hostname or IP address.
+     *                                    Default: '127.0.0.1' if the environment variable 'WP_REDIS_HOST' is not set.
+     *     @type int $port                 The Redis server port number.
+     *                                    Default: 6379 if the environment variable 'WP_REDIS_PORT' is not set.
+     *     @type string $password          The password to authenticate with Redis.
+     *                                    Default: '' (empty string) if the environment variable 'WP_REDIS_PASSWORD' is not set.
+     *                                    Using the phpredis extension for Redis.
+     *     @type bool $adminbar            Whether to disable Redis cache for the WordPress admin bar.
+     *                                    Default: false if the environment variable 'WP_REDIS_DISABLE_ADMINBAR' is not set.
+     *     @type bool $disable-metrics     Whether to disable Redis cache metrics.
+     *                                    Default: false if the environment variable 'WP_REDIS_DISABLE_METRICS' is not set.
+     *     @type bool $disable-banners     Whether to disable Redis cache banners.
+     *                                    Default: false if the environment variable 'WP_REDIS_DISABLE_BANNERS' is not set.
+     *     @type string $prefix            The Redis cache key prefix.
+     *                                    Default: MD5 hash of 'WP_HOME' environment variable concatenated with 'redis-cache'
+     *                                    if the environment variable 'WP_REDIS_PREFIX' is not set.
+     *     @type int $database             The Redis database index to use (0-15).
+     *                                    Default: 0 if the environment variable 'WP_REDIS_DATABASE' is not set.
+     *     @type int $timeout              The Redis connection timeout in seconds.
+     *                                    Default: 1 if the environment variable 'WP_REDIS_TIMEOUT' is not set.
+     *     @type int $read-timeout         The Redis read timeout in seconds.
+     *                                    Default: 1 if the environment variable 'WP_REDIS_READ_TIMEOUT' is not set.
+     * }
+     */
+    'redis'           => [
+        'disabled'        => env( 'WP_REDIS_DISABLED', false ),
+        'host'            => env( 'WP_REDIS_HOST', '127.0.0.1' ),
+        'port'            => env( 'WP_REDIS_PORT', 6379 ),
+        'password'        => env( 'WP_REDIS_PASSWORD', '' ),
+        'adminbar'        => env( 'WP_REDIS_DISABLE_ADMINBAR', false ),
+        'disable-metrics' => env( 'WP_REDIS_DISABLE_METRICS', false ),
+        'disable-banners' => env( 'WP_REDIS_DISABLE_BANNERS', false ),
+        'prefix'          => env( 'WP_REDIS_PREFIX', md5( env( 'WP_HOME' ) ) . 'redis-cache' ),
+        'database'        => env( 'WP_REDIS_DATABASE', 0 ),
+        'timeout'         => env( 'WP_REDIS_TIMEOUT', 1 ),
+        'read-timeout'    => env( 'WP_REDIS_READ_TIMEOUT', 1 ),
+    ],
 ];
