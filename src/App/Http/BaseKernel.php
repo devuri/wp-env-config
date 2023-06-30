@@ -269,7 +269,7 @@ class BaseKernel
 
         // SUCURI
         $this->define( 'ENABLE_SUCURI_WAF', $this->args['sucuri_waf'] );
-        $this->define( 'SUCURI_DATA_STORAGE', APP_PATH . '/storage/logs/sucuri' );
+        $this->define( 'SUCURI_DATA_STORAGE', ABSPATH . '../../storage/logs/sucuri' );
     }
 
     /**
