@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.6.1](https://github.com/devuri/wp-env-config/compare/v0.6.0...v0.6.1) (2023-07-01)
+
+
+### Features
+
+* adds `Setup` and application error handling to `App` ([453d5e9](https://github.com/devuri/wp-env-config/commit/453d5e96ccef412600cce9bff342442fbaada6cd))
+* adds `sudo_admin` and Custom `Sucuri settings`  Disable Sucuri WAF ui ([214e1d8](https://github.com/devuri/wp-env-config/commit/214e1d88ea4ac442e4b3c143bae9d477b9ba486c))
+* adds try catch block to `wpc_app` helper ([3e449ec](https://github.com/devuri/wp-env-config/commit/3e449eca2696c37b6195ca4806123edca3b50384))
+* app config options: `security`, smtp `mailer` and `redis cache` ([5744c54](https://github.com/devuri/wp-env-config/commit/5744c546a2c11d72869ee85776b54d9bb7128004))
+* use `ConstantTrait` and add `redis` and `security` settings to BaseKernel ([80924a4](https://github.com/devuri/wp-env-config/commit/80924a496de29b8b8c6389ec6dca91930b996a6b))
+
+
+### Bug Fixes
+
+* replace cli `install` =&gt; `i` to install plugins and themes ([5f3419b](https://github.com/devuri/wp-env-config/commit/5f3419bf9fe6789f285656395ddfbc30963c16f7))
+* trim for 8.1 ([7bed1be](https://github.com/devuri/wp-env-config/commit/7bed1be3f4b06ed9efc8c69719570c6b265aec11))
+* various fixes for sucuriscan ([fba2017](https://github.com/devuri/wp-env-config/commit/fba20173accd9b182d0322f47eb531f6804e6b42))
+
+
+### Miscellaneous Chores
+
+* build ([ca71cc7](https://github.com/devuri/wp-env-config/commit/ca71cc7e7ae068c0acf312f9b66b3af9407dd7ea))
+
 ## [0.6.0](https://github.com/devuri/wp-env-config/compare/v0.5.1...v0.6.0) (2023-06-27)
 
 
