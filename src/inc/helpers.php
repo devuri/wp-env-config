@@ -113,9 +113,13 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      *
      * @return \Urisoft\App\Http\BaseKernel
      */
-    function wpc_app( string $app_path ): Urisoft\App\Http\BaseKernel
+    function wpc_app( string $app_path, string $options = 'app' ): Urisoft\App\Http\BaseKernel
     {
-        $app = new App( $app_path );
+        try {
+            $app = new App( $app_path, $options );
+        } catch ( Exception $e ) {
+            exit( $e->getMessage() );
+        }
 
         return $app->kernel();
     }
