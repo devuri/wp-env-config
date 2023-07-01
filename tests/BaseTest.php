@@ -21,4 +21,29 @@ abstract class BaseTest extends TestCase
         Monkey\tearDown();
         parent::tearDown();
     }
+
+    public function default_args(): array
+    {
+        return [
+            "web_root" => "public",
+            "wp_dir_path" => "wp",
+            "wordpress" => "wp",
+            "asset_dir" => "assets",
+            "content_dir" => "content",
+            "plugin_dir" => "plugins",
+            "mu_plugin_dir" => "mu-plugins",
+            "sqlite_dir" => "sqlitedb",
+            "sqlite_file" => ".sqlite-wpdatabase",
+            "default_theme" => "twentytwentythree",
+            "disable_updates" => true,
+            "can_deactivate" => true,
+            "error_handler" => "symfony",
+            "config_file" => "config",
+            'templates_dir' => null,
+            "sudo_admin" => null,
+            "sucuri_waf" => false,
+            'redis' => [],
+            'security' => [],
+        ];
+    }
 }
