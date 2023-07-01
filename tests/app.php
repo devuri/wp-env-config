@@ -1,7 +1,7 @@
 <?php
 
 return [
-	/*
+    /*
      * Security settings for the WordPress application.
      *
      * This array contains various security settings to enhance the security of the WordPress application.
@@ -212,7 +212,7 @@ return [
      */
     "error_handler" => null,
 
-	/*
+    /*
      * Redis cache configuration for the WordPress application.
      *
      * This array contains configuration settings for the Redis cache integration in WordPress.
