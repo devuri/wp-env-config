@@ -102,6 +102,28 @@ class Plugin
         return new self();
     }
 
+    public function restrict_admin_user(): void
+    {
+        // check if wp is installed and that this not returning null
+        $admin = get_role( 'administrator' );
+        $caps  = [
+            'edit_users',
+            'unfiltered_html',
+            'delete_users',
+            'create_users',
+            'unfiltered_upload',
+            'install_plugins',
+            'delete_plugins',
+            'install_themes',
+            'remove_users',
+            'delete_themes',
+        ];
+
+        foreach ( $caps as $cap ) {
+            $admin->remove_cap( $cap );
+        }
+    }
+
     protected function security_headers(): void
     {
         $home_domain = $this->extract_domain( WP_HOME );

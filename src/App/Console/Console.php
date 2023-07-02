@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 
 abstract class Console extends Command
 {
@@ -20,8 +21,9 @@ abstract class Console extends Command
 
     protected function configure(): void
     {
+		// This value is required (e.g. --task hello or -t hello), the option itself is still optional;
         $this->setDescription( ' Description.' )
-            ->addArgument( '_task', InputArgument::OPTIONAL, 'The input.', false );
+            ->addOption( 'task', 't', InputOption::VALUE_REQUIRED, 'The input.', false );
     }
 
     /**

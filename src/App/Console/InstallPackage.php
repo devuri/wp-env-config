@@ -17,17 +17,17 @@ class InstallPackage extends Command
     {
         $this->setDescription( 'Add a plugin or theme via composer using slug only' );
         $this->addArgument( 'package', InputArgument::REQUIRED, 'The slug of the plugin or theme (example: brisko)' );
-        $this->addOption( 'p', null, InputOption::VALUE_NONE, 'Install a plugin' );
-        $this->addOption( 't', null, InputOption::VALUE_NONE, 'Install a theme' );
+        $this->addOption( 'plugin', 'p', InputOption::VALUE_REQUIRED, 'Install a plugin' );
+        $this->addOption( 'theme', 't', InputOption::VALUE_REQUIRED, 'Install a theme' );
     }
 
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $package = $input->getArgument( 'package' );
 
-        if ( $input->getOption( 'p' ) ) {
+        if ( $input->getOption( 'plugin' ) ) {
             $package_name = 'wpackagist-plugin/' . $package;
-        } elseif ( $input->getOption( 't' ) ) {
+        } elseif ( $input->getOption( 'theme' ) ) {
             $package_name = 'wpackagist-theme/' . $package;
         } else {
             $output->writeln( 'Please specify the package type using either --p for plugin or --t for theme.' );
