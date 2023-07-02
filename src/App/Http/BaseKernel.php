@@ -249,6 +249,10 @@ class BaseKernel
      */
     protected static function detect_error(): ?array
     {
+        if ( PHP_SAPI === 'cli' ) {
+            return null;
+        }
+
         $error = error_get_last();
 
         if ( null === $error ) {
