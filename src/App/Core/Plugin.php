@@ -19,6 +19,9 @@ class Plugin
         // Custom Sucuri settings.
         new Sucuri();
 
+        // basic auth
+        BasicAuth::init();
+
         add_action(
             'send_headers',
             function(): void {

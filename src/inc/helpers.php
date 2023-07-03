@@ -40,8 +40,9 @@ if ( ! \function_exists( 'env' ) ) {
     /**
      * Get the value of an environment variable.
      *
-     * @param string     $name    the environment variable name.
+     * @param string     $name       the environment variable name.
      * @param null|mixed $default
+     * @param bool       $strtolower
      *
      * @return mixed
      */
@@ -110,6 +111,7 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      * Start up and set the Kernel.
      *
      * @param string $app_path The base app path. like __DIR__
+     * @param string $options  The options filename, default 'app'
      *
      * @return \Urisoft\App\Http\BaseKernel
      */
@@ -157,5 +159,17 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
         }
 
         return $plugin_slugs;
+    }
+}// end if
+
+if ( ! \function_exists( 'app_config' ) ) {
+    /**
+     * Get default app config values.
+     *
+     * @return array
+     */
+    function app_config(): array
+    {
+        return require_once __DIR__ . '/app.php';
     }
 }// end if

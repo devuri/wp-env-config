@@ -73,6 +73,7 @@
     },
     "scripts": {
         "wpcs": "composer wpcs-lint",
+        "wpcs-all": "composer wpcs-lint-all",
         "wpcs-lint": [
             "composer install -q",
             "phpcs -ns src"
@@ -147,6 +148,8 @@
         "latitude/latitude": "SQL query builder with zero dependencies. ",
         "ibericode/vat": "PHP library to help you deal with Europe's VAT rules.",
         "aaemnnosttv/wp-sqlite-db": "A drop-in for using a SQLite database with WordPress.",
-        "itsgoingd/clockwork": "php dev tools in your browser."
+        "itsgoingd/clockwork": "php dev tools in your browser.",
+        "daniel-zahariev/php-aws-ses": "Send emails via Amazon Simple Email Service (SES).",
+        "humanmade/aws-ses-wp-mail": "AWS SES is a very simple UI-less plugin for sending wp emails via AWS SES."
     }
 }

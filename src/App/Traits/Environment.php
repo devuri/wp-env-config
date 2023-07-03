@@ -94,11 +94,11 @@ trait Environment
 
         self::set_debug_log();
 
-        @error_reporting( E_ALL );
-        @ini_set( 'log_errors', '1' );
-        @ini_set( 'log_errors_max_len', '0' );
-        @ini_set( 'display_errors', '1' );
-        @ini_set( 'display_startup_errors', '1' );
+        error_reporting( E_ALL );
+        ini_set( 'log_errors', '1' );
+        ini_set( 'log_errors_max_len', '0' );
+        ini_set( 'display_errors', '1' );
+        ini_set( 'display_startup_errors', '1' );
     }
 
     /**

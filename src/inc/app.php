@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
      * Security settings for the WordPress application.
      *
@@ -17,11 +18,11 @@ return [
      *                                      Format: ['192.168.000.41', '192.168.000.34']
      * }
      */
-    'security' => [
+    'security'        => [
         'brute-force'        => true,
         'two-factor'         => true,
         'no-pwned-passwords' => true,
-        'admin-ips'          => [ '192.168.000.41', '192.168.000.34' ],
+        'admin-ips'          => [],
     ],
 
     /*
@@ -43,26 +44,30 @@ return [
      */
 
     'mailer'          => [
-        'brevo'    => [
+        'brevo'      => [
             'apikey' => env( 'BREVO_API_KEY' ),
         ],
 
-        'postmark' => [
+        'postmark'   => [
             'token' => env( 'POSTMARK_TOKEN' ),
         ],
 
-        'sendgrid' => [
+        'sendgrid'   => [
             'apikey' => env( 'SENDGRID_API_KEY' ),
         ],
 
-        'mailgun'  => [
+        'mailerlite' => [
+            'apikey' => env( 'MAILERLITE_API_KEY' ),
+        ],
+
+        'mailgun'    => [
             'domain'   => env( 'MAILGUN_DOMAIN' ),
             'secret'   => env( 'MAILGUN_SECRET' ),
             'endpoint' => env( 'MAILGUN_ENDPOINT', 'api.mailgun.net' ),
             'scheme'   => 'https',
         ],
 
-        'ses'      => [
+        'ses'        => [
             'key'    => env( 'AWS_ACCESS_KEY_ID' ),
             'secret' => env( 'AWS_SECRET_ACCESS_KEY' ),
             'region' => env( 'AWS_DEFAULT_REGION', 'us-east-1' ),
@@ -79,7 +84,7 @@ return [
      *
      * @default null
      */
-    "sudo_admin" => null,
+    'sudo_admin'      => env( 'SUDO_ADMIN', 0 ),
 
     /*
      * Web Root: the public web directory.
@@ -101,7 +106,48 @@ return [
      *     ]
      * }
      */
-    "web_root" => "public",
+    'web_root'        => 'public',
+
+    /*
+     * Configuration settings for the S3 Uploads plugin.
+     *
+     * @var array $s3_uploads
+     *   Configuration options for S3 Uploads.
+     *
+     * @param string $s3_uploads['bucket']
+     *   The name of the S3 bucket to upload files to. Defaults to 'site-uploads'.
+     *
+     * @param string $s3_uploads['key']
+     *   The AWS access key ID. Defaults to an empty string.
+     *
+     * @param string $s3_uploads['secret']
+     *   The AWS secret access key. Defaults to an empty string.
+     *
+     * @param string $s3_uploads['region']
+     *   The AWS region to use. Defaults to 'us-east-1'.
+     *
+     * @param string $s3_uploads['bucket-url']
+     *   The base URL of the S3 bucket. Defaults to 'https://example.com'.
+     *
+     * @param string $s3_uploads['object-acl']
+     *   The access control list for uploaded objects. Defaults to 'public'.
+     *
+     * @param string $s3_uploads['expires']
+     *   The expiration time for HTTP caching headers. Defaults to '2 days'.
+     *
+     * @param string $s3_uploads['http-cache']
+     *   The value for the 'Cache-Control' header. Defaults to '300'.
+     */
+    's3uploads'       => [
+        'bucket'     => env( 'S3_UPLOADS_BUCKET', 'site-uploads' ),
+        'key'        => env( 'S3_UPLOADS_KEY', '' ),
+        'secret'     => env( 'S3_UPLOADS_SECRET', '' ),
+        'region'     => env( 'S3_UPLOADS_REGION', 'us-east-1' ),
+        'bucket-url' => env( 'S3_UPLOADS_BUCKET_URL', 'https://example.com' ),
+        'object-acl' => env( 'S3_UPLOADS_OBJECT_ACL', 'public' ),
+        'expires'    => env( 'S3_UPLOADS_HTTP_EXPIRES', '2 days' ),
+        'http-cache' => env( 'S3_UPLOADS_HTTP_CACHE_CONTROL', '300' ),
+    ],
 
     /*
      * Global assets directory.
@@ -120,7 +166,7 @@ return [
      * - asset_url($path): Returns the asset URL without the filename. The $path parameter is the path to the asset.
      *   Example: asset_url("/dist") returns "https://example.com/assets/dist/".
      */
-    "asset_dir" => "assets",
+    'asset_dir'       => 'assets',
 
     /*
      * Sets the content directory for the project.
@@ -129,7 +175,7 @@ return [
      * The 'app' directory is equivalent to the 'wp-content' directory.
      * However, this can be modified to use a different directory, such as 'content'.
      */
-    "content_dir" => "app",
+    'content_dir'     => 'app',
 
     /*
      * Sets the plugins directory.
@@ -137,7 +183,7 @@ return [
      * The plugins directory is located outside the project directory and
      * allows for installation and management of plugins using Composer.
      */
-    "plugin_dir" => "plugins",
+    'plugin_dir'      => 'plugins',
 
     /*
      * Sets the directory for Must-Use (MU) plugins.
@@ -148,7 +194,7 @@ return [
      * By default, the framework includes the 'compose' MU plugin, which includes the 'web_app_config' hook.
      * This hook can be leveraged to configure the web application in most cases.
      */
-    "mu_plugin_dir" => "mu-plugins",
+    'mu_plugin_dir'   => 'mu-plugins',
 
     /*
      * SQLite Configuration
@@ -160,8 +206,8 @@ return [
      *
      * @see https://github.com/aaemnnosttv/wp-sqlite-db
      */
-    "sqlite_dir" => "sqlitedb",
-    "sqlite_file" => ".sqlite-wpdatabase",
+    'sqlite_dir'      => 'sqlitedb',
+    'sqlite_file'     => '.sqlite-wpdatabase',
 
     /*
      * Sets the default fallback theme for the project.
@@ -169,7 +215,7 @@ return [
      * By default, WordPress uses one of the "twenty*" themes as the fallback theme.
      * However, in our project, we have the flexibility to define our own custom fallback theme.
      */
-    "default_theme" => "brisko",
+    'default_theme'   => 'brisko',
 
     /*
      * Disable WordPress updates.
@@ -177,7 +223,7 @@ return [
      * Since we will manage updates with Composer,
      * it is recommended to disable all updates within WordPress.
      */
-    "disable_updates" => true,
+    'disable_updates' => true,
 
     /*
      * Controls whether we can deactivate plugins.
@@ -189,7 +235,7 @@ return [
      * Setting it to true brings back the ability to deactivate plugins.
      * The default setting is true.
      */
-    "can_deactivate" => false,
+    'can_deactivate'  => false,
 
     /*
      * Sets the directory for additional themes.
@@ -198,7 +244,7 @@ return [
      * to include our own custom themes for the project. This provides flexibility and allows
      * us to have a separate location for our custom theme files.
      */
-    "theme_dir" => "templates",
+    'theme_dir'       => 'templates',
 
     /*
      * Sets the error handler for the project.
@@ -206,11 +252,11 @@ return [
      * The framework provides options for using either Oops or Symfony as the error handler.
      * By default, the Symfony error handler is used.
      * To change the error handler, set the 'error_handler' option to 'oops'.
-     * To disable the error handlers completely, set the 'error_handler' option to null.
+     * To disable the error handlers completely, set the 'error_handler' option to false.
      *
      * Please note that the error handler will only run in 'debug', 'development', or 'local' environments.
      */
-    "error_handler" => null,
+    'error_handler'   => null,
 
     /*
      * Redis cache configuration for the WordPress application.
