@@ -68,7 +68,7 @@ class BasicAuth
      */
     public function require_auth(): void
     {
-        if ( $this->auth_option || false === $this->is_background_work() ) {
+        if ( ! $this->auth_option || true === $this->is_background_work() ) {
             return;
         }
 
