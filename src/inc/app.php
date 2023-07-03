@@ -252,7 +252,7 @@ return [
      * The framework provides options for using either Oops or Symfony as the error handler.
      * By default, the Symfony error handler is used.
      * To change the error handler, set the 'error_handler' option to 'oops'.
-     * To disable the error handlers completely, set the 'error_handler' option to null.
+     * To disable the error handlers completely, set the 'error_handler' option to false.
      *
      * Please note that the error handler will only run in 'debug', 'development', or 'local' environments.
      */

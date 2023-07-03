@@ -26,21 +26,14 @@ class Register
     public function register_settings(): void
     {
         register_setting(
-            'basicauth_options',
+            'general',
             $this->setting_name,
             [
-                'sanitize_callback' => [ $this, 'sanitize_setting' ],
+                'sanitize_callback' => 'absint',
                 'show_in_rest'      => true,
                 'default'           => 0,
-                'type'              => 'boolean',
+                'type'              => 'integer',
             ]
-        );
-
-        add_settings_section(
-            'basicauth_general_section',
-            'Web Application Authentication Settings',
-            [ $this, 'render_section' ],
-            'general'
         );
 
         add_settings_field(
@@ -48,37 +41,14 @@ class Register
             'Basic Authentication Setting',
             [ $this, 'render_settings' ],
             'general',
-            'basicauth_general_section',
+            'default',
             [
                 'type'        => 'checkbox',
                 'name'        => $this->setting_name,
                 'label_for'   => $this->setting_name,
-                'description' => 'When checked, Basic Authentication will be required for this environment. The default is for this to be active on dev and staging environments.',
-                'tip'         => esc_attr( 'Use to Setup Basic Authentication.' ),
+                'description' => 'Enable Basic Authentication',
             ]
         );
-    }
-
-    /**
-     * Sanitize the setting value.
-     *
-     * @param mixed $value The value to be sanitized.
-     *
-     * @return mixed The sanitized value.
-     */
-    public function sanitize_setting( $value )
-    {
-        $sanitized_value = ( 'on' === $value ) ? 1 : 0;
-
-        return sanitize_text_field( $sanitized_value );
-    }
-
-    /**
-     * Callback function for the general section.
-     */
-    public function render_section(): void
-    {
-        echo '<p>Basic Authentication settings.</p>';
     }
 
     /**
@@ -88,12 +58,11 @@ class Register
      */
     public function render_settings( $val ): void
     {
-        $is_enabled = ( 1 === get_option( $this->setting_name ) ) ? 'on' : 'off';
-        $checked    = checked( get_option( $this->setting_name ), 1, false );
+        $checked = checked( get_option( $this->setting_name ), 1, false );
         ?>
-		<input type="checkbox" id="<?php echo esc_attr( $this->setting_name ); ?>" name="<?php echo esc_attr( $this->setting_name ); ?>" value="<?php echo esc_attr( $is_enabled ); ?>" <?php echo $checked; ?> />
+		<input type="checkbox" id="<?php echo esc_attr( $this->setting_name ); ?>" name="<?php echo esc_attr( $this->setting_name ); ?>" value="1" <?php echo $checked; ?> />
 		<span class="description"><?php echo esc_html( $val['description'] ); ?></span>
-		<b class="wntip" data-title="<?php echo esc_attr( $val['tip'] ); ?>"> ? </b>
+		<p class="description"><?php echo esc_html( 'By checking this box, you ensure that users will need to provide authentication credentials to access the environment. By default, this feature is activated for both development (dev) and debug environments. You need to set BASIC_AUTH_USER and BASIC_AUTH_PASSWORD in your .env file' ); ?></span>
 		<?php
     }
 }

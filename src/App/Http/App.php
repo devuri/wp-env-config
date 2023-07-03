@@ -66,6 +66,10 @@ class App
             return;
         }
 
+        if ( false === $this->config['error_handler'] ) {
+            return;
+        }
+
         if ( \is_null( $this->config['error_handler'] ) ) {
             Debug::enable();
         } elseif ( 'oops' === $this->config['error_handler'] ) {
