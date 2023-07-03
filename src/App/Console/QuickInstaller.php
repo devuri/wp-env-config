@@ -2,8 +2,14 @@
 
 namespace Urisoft\App\Console;
 
+use Urisoft\App\Console\Traits\Env;
+use Urisoft\App\Console\Traits\Generate;
+
 class QuickInstaller
 {
+    use Env;
+    use Generate;
+
     protected $wp_dir_path = null;
     protected $params      = null;
 
@@ -11,7 +17,7 @@ class QuickInstaller
      * Setup Installer.
      *
      * @param string $wp_dir_path The base app path, e.g., __DIR__.
-     * @param array $params  .
+     * @param array  $params      .
      */
     public function __construct( string $wp_dir_path, array $params = [] )
     {
@@ -24,7 +30,7 @@ class QuickInstaller
                 'user_email'    => 'admin@example.com',
                 'is_public'     => true,
                 'deprecated'    => '',
-                'user_password' => $this->generatePassword(),
+                'user_password' => $this->rand_str(),
                 'language'      => '',
             ],
             $params
@@ -96,7 +102,9 @@ class QuickInstaller
 
         foreach ( $tables as $table ) {
             $table_name   = $wpdb->prefix . $table;
-            $table_exists = $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" );
+            $table_exists = $wpdb->get_var(
+                $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name )
+            );
 
             if ( $table_exists ) {
                 $tables_exist = true;
@@ -106,17 +114,5 @@ class QuickInstaller
         }
 
         return $tables_exist;
-    }
-
-    protected function generatePassword( $length = 12 ): string
-    {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $password   = '';
-
-        for ( $i = 0; $i < $length; $i++ ) {
-            $password .= $characters[ rand( 0, \strlen( $characters ) - 1 ) ];
-        }
-
-        return $password;
     }
 }
