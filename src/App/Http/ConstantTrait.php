@@ -40,10 +40,12 @@ trait ConstantTrait
          *
          * This requires mu-plugin or add `register_theme_directory( APP_THEME_DIR );`
          *
+         * path should be a folder within WP_CONTENT_DIR
+         *
          * @link https://github.com/devuri/custom-wordpress-theme-dir
          */
         if ( $this->args['templates_dir'] ) {
-            $this->define( 'APP_THEME_DIR', PUBLIC_WEB_DIR . '/' . $this->args['templates_dir'] );
+            $this->define( 'APP_THEME_DIR', $this->args['templates_dir'] );
         }
 
         // Plugins.
