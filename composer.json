@@ -39,7 +39,7 @@
         "symfony/error-handler": "^5.1",
         "symfony/filesystem": "^5.4 || ^6.0",
         "symfony/process": "^5.4 || ^6.0",
-        "symfony/var-dumper": "^5.1.4",
+        "symfony/var-dumper": "^5.1.4 || ^6.0.0",
         "vlucas/phpdotenv": "^5.2"
     },
     "require-dev": {
