@@ -100,7 +100,7 @@ class BasicAuth
             if ( ! $authenticated ) {
                 header( 'HTTP/1.1 401 Authorization Required' );
                 header( "WWW-Authenticate: Basic realm=\"$this->web_app development site login\"" );
-                exit;
+                exit( "<h2>Wrong Credentials: $this->web_app Requires login </h2>" );
             }
         }
     }
@@ -125,6 +125,10 @@ class BasicAuth
         }
 
         if ( \defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+            return true;
+        }
+
+        if ( current_user_can( 'manage_options' ) ) {
             return true;
         }
 
