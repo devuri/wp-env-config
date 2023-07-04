@@ -6,7 +6,6 @@ use Exception;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Filesystem\Filesystem;
-use Urisoft\App\Kernel;
 
 /**
  * Nino.
@@ -20,17 +19,15 @@ use Urisoft\App\Kernel;
 class Nino
 {
     protected $root_dir;
-    protected $http_app;
     protected $nino;
 
     /**
      * New Application command.
      */
-    public function __construct( string $root_dir, ?Kernel $app = null )
+    public function __construct( string $root_dir )
     {
         $this->nino     = new Application( 'Nino Cli', '0.1.3' );
         $this->root_dir = $root_dir;
-        $this->http_app = $app;
 
         // cli only.
         if ( PHP_SAPI !== 'cli' ) {
@@ -52,7 +49,7 @@ class Nino
         $this->add_command( new GenerateComposer( $this->root_dir, new Filesystem() ) );
         $this->add_command( new CertCommand() );
         $this->add_command( new MakeCommand( $this->root_dir, new Filesystem() ) );
-        $this->add_command( new ConfigCommand( $this->root_dir, $this->http_app ) );
+        $this->add_command( new ConfigCommand( $this->root_dir, new Filesystem() ) );
 
         $this->nino->run();
     }
