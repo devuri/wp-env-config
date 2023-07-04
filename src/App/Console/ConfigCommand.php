@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Urisoft\App\Console\Traits\Env;
 use Urisoft\App\Console\Traits\Generate;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ConfigCommand extends Command
 {
@@ -17,13 +18,13 @@ class ConfigCommand extends Command
     protected static $defaultName = 'config';
 
     private $root_dir_path;
-    private $http_app;
+    private $filesystem;
 
-    public function __construct( string $root_dir_path, ?object $app = null )
+    public function __construct( string $root_dir_path, Filesystem $filesystem  )
     {
         parent::__construct();
+		$this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-        $this->http_app      = $app;
     }
 
     protected function configure(): void
@@ -41,6 +42,13 @@ class ConfigCommand extends Command
 
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
+
+            return Command::SUCCESS;
+        }
+
+		if ( 'create-public-key' === $config_task ) {
+            $key_name = $this->create_uuid_key_file();
+            $output->writeln( PHP_EOL . "<comment>Public key was created (remember to add your actual key the file contains an example key): </comment><info>$key_name</info>" . PHP_EOL );
 
             return Command::SUCCESS;
         }

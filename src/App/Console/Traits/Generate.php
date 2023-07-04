@@ -104,4 +104,16 @@ trait Generate
     {
         return [ 'a', 'e', 'i', 'o', 'u' ];
     }
+
+
+    public function create_uuid_key_file()
+    {
+		$filename = self::uuid();
+		$this->filesystem->copy(
+			__DIR__. '/sample-key.pub',
+			$this->root_dir_path.'/publickeys/' . self::uuid() . '.pub'
+		);
+
+		return $filename;
+    }
 }
