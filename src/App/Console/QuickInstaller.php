@@ -67,9 +67,9 @@ class QuickInstaller
 
         global $wpdb;
 
-		if(is_blog_installed()){
-			return null;
-		}
+        if ( is_blog_installed() ) {
+            return null;
+        }
 
         if ( false === self::tables_exist( $wpdb ) ) {
             $installed = wp_install(

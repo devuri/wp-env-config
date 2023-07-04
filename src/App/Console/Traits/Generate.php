@@ -34,6 +34,18 @@ trait Generate
         return $word;
     }
 
+
+    public function create_uuid_key_file()
+    {
+        $filename = self::uuid();
+        $this->filesystem->copy(
+            __DIR__ . '/sample-key.pub',
+            $this->root_dir_path . '/publickeys/' . self::uuid() . '.pub'
+        );
+
+        return $filename;
+    }
+
     /**
      * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
      *
@@ -103,17 +115,5 @@ trait Generate
     private function get_vowels(): array
     {
         return [ 'a', 'e', 'i', 'o', 'u' ];
-    }
-
-
-    public function create_uuid_key_file()
-    {
-		$filename = self::uuid();
-		$this->filesystem->copy(
-			__DIR__. '/sample-key.pub',
-			$this->root_dir_path.'/publickeys/' . self::uuid() . '.pub'
-		);
-
-		return $filename;
     }
 }

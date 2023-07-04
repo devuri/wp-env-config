@@ -308,24 +308,24 @@ return [
         'read-timeout'    => env( 'WP_REDIS_READ_TIMEOUT', 1 ),
     ],
 
-	/**
-	 * Represents a public key used for encryption or verification purposes.
-	 * The public key can be stored as an option in the WordPress options table.
-	 *
-	 * The framework assumes that the public keys are stored in a top-level directory called "publickeys" in either the .pub or .pem format.
-	 * The keys can be retrieved and used as needed. Plugins can be used to fetch and save the keys.
-	 *
-	 * IMPORTANT: If you decide to save these keys, use the base64_encode function.
-	 * base64_encode is a function commonly used to encode binary data into a text format that can be safely stored or transmitted in various systems.
-	 * It takes binary data as input and returns a string consisting of characters from a predefined set (64 characters).
-	 * This encoding process ensures that the encoded data remains intact and can be decoded back into its original form when needed.
-	 *
-	 * use the command to generate key files: php nino config create-public-key
-	 * This will generate a sample key with uuid filename, replace the sample key with you own and add the filename to env file.
-	 *
-	 * @var array $publickey An array containing the UUID of the public key stored as an option in the WordPress options table.
-	 */
-	'publickey' => [
-	    'app-key'        => env( 'WEB_APP_PUBLIC_KEY', null ),
-	],
+    /*
+     * Represents a public key used for encryption or verification purposes.
+     * The public key can be stored as an option in the WordPress options table.
+     *
+     * The framework assumes that the public keys are stored in a top-level directory called "publickeys" in either the .pub or .pem format.
+     * The keys can be retrieved and used as needed. Plugins can be used to fetch and save the keys.
+     *
+     * IMPORTANT: If you decide to save these keys, use the base64_encode function.
+     * base64_encode is a function commonly used to encode binary data into a text format that can be safely stored or transmitted in various systems.
+     * It takes binary data as input and returns a string consisting of characters from a predefined set (64 characters).
+     * This encoding process ensures that the encoded data remains intact and can be decoded back into its original form when needed.
+     *
+     * use the command to generate key files: php nino config create-public-key
+     * This will generate a sample key with uuid filename, replace the sample key with you own and add the filename to env file.
+     *
+     * @var array $publickey An array containing the UUID of the public key stored as an option in the WordPress options table.
+     */
+    'publickey'       => [
+        'app-key' => env( 'WEB_APP_PUBLIC_KEY', null ),
+    ],
 ];
