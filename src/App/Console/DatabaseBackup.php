@@ -66,8 +66,8 @@ class DatabaseBackup extends Command
             'db_passowrd' => env( 'DB_PASSWORD' ),
             'db_host'     => env( 'DB_HOST' ),
             'db_prefix'   => env( 'DB_PREFIX' ),
-            'directory'   => $this->root_dir_path . '/storage/.backups/db',
-            'db_file'     => 'backup_' . self::rand_str() . mb_strtolower( gmdate( '_dmY_His' ) ) . '.sql',
+            'directory'   => $this->root_dir_path . '/storage/.sqldb',
+            'db_file'     => self::unique_filename( '.sql', env( 'DB_NAME' ) . '-db' ),
         ];
 
         if ( ! file_exists( $backup['directory'] ) ) {
