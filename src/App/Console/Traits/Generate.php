@@ -3,6 +3,7 @@
 namespace Urisoft\App\Console\Traits;
 
 use Devuri\UUIDGenerator\UUIDGenerator;
+use Urisoft\PasswordGenerator;
 use Exception;
 
 trait Generate
@@ -77,17 +78,7 @@ trait Generate
      */
     protected static function rand_str( int $length = 8 ): string
     {
-        $characters   = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $alphanum_str = '';
-        for ( $i = 0; $i < $length; $i++ ) {
-            if ( 0 === $i ) {
-                $alphanum_str .= $characters[ rand( 0, 51 ) ];
-            } else {
-                $alphanum_str .= $characters[ rand( 0, 61 ) ];
-            }
-        }
-
-        return $alphanum_str;
+        return PasswordGenerator::generatePassword( $length, false );
     }
 
     protected static function htpasswd( string $username, $password, $salted = null ): string
