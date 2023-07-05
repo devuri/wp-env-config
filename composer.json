@@ -36,10 +36,10 @@
         "johnpbloch/wordpress": "^6.2",
         "roots/wp-config": "^1.0",
         "symfony/console": "6.0.*",
-        "symfony/error-handler": "^5.1",
+        "symfony/error-handler": "^5.4",
         "symfony/filesystem": "^5.4",
         "symfony/process": "^5.4",
-        "symfony/var-dumper": "^5.1.4",
+        "symfony/var-dumper": "^5.4",
         "vlucas/phpdotenv": "^5.2"
     },
     "require-dev": {
@@ -150,6 +150,7 @@
         "aaemnnosttv/wp-sqlite-db": "A drop-in for using a SQLite database with WordPress.",
         "itsgoingd/clockwork": "php dev tools in your browser.",
         "daniel-zahariev/php-aws-ses": "Send emails via Amazon Simple Email Service (SES).",
-        "humanmade/aws-ses-wp-mail": "AWS SES is a very simple UI-less plugin for sending wp emails via AWS SES."
+        "humanmade/aws-ses-wp-mail": "AWS SES is a very simple UI-less plugin for sending wp emails via AWS SES.",
+        "predis/predis": "A flexible and feature-complete Redis client for PHP."
     }
 }
