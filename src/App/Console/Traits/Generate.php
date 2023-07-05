@@ -47,6 +47,28 @@ trait Generate
     }
 
     /**
+     * Generates a unique filename with optional prefix and hashing.
+     *
+     * @param string  $ext   The file extension.
+     * @param null|string  $name  Optional. The prefix for the filename. Default is null.
+     * @param false|string $hasit Optional. The hashing algorithm to use. Default is 'sha256'.
+     *
+     * @return string The unique filename generated.
+     */
+    public static function unique_filename( string $ext, ?string $name = null, $hasit = 'sha256' ): string
+    {
+        $prefix   = ( $name ) ? $name . '-' : null;
+        $filename = $prefix . self::uuid();
+        $datetime = mb_strtolower( gmdate( 'd-m-Y-' ) . time() );
+
+        if ( $hasit ) {
+            return $prefix . $datetime . hash( $hasit, $filename ) . $ext;
+        }
+
+        return $filename . '-' . $datetime . '-' . self::rand_str() . $ext;
+    }
+
+    /**
      * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
      *
      * @param int $length The length of the alphanum_str to generate.
