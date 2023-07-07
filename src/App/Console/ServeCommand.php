@@ -67,7 +67,7 @@ class ServeCommand extends Command
         }
 
         $env_home_url = explode( ':', $this->app_env['WP_HOME'] );
-        $env_port     = (int) $env_home_url[2];
+        $env_port     = $env_home_url[2] ?? 0;;
 
         if ( ! $this->is_valid_env_port( $port, $env_port ) ) {
             $output->writeln( PHP_EOL . "<comment>Server port:$port did not match .env file port:$env_port</comment>" . PHP_EOL );
