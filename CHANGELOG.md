@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.3](https://github.com/devuri/wp-env-config/compare/v0.6.2...v0.6.3) (2023-07-07)
+
+
+### Bug Fixes
+
+* fix adn exclude on Sucuri ([ef62d71](https://github.com/devuri/wp-env-config/commit/ef62d71fe3d8d2b5a01aee451d2271afa7caf170))
+* fixes undefined array item ([aae1cea](https://github.com/devuri/wp-env-config/commit/aae1ceab8ac9e3675251df314c41dc4615f56d2f))
+* use int on port checks ([d06195f](https://github.com/devuri/wp-env-config/commit/d06195faf61aadc66fc817f83be65df52c09da7b))
+
+
+### Miscellaneous Chores
+
+* build ([15301a0](https://github.com/devuri/wp-env-config/commit/15301a03244e05f9a3b8485e963ed700d767cd8e))
+
 ## [0.6.2](https://github.com/devuri/wp-env-config/compare/v0.6.1...v0.6.2) (2023-07-07)
 
 
