@@ -28,7 +28,7 @@ class GenerateTraitTest extends TestCase
         $randStr = self::rand_str($length);
 
         $this->assertEquals($length, \strlen($randStr));
-        $this->assertMatchesRegularExpression('/^[a-zA-Z][a-zA-Z0-9]{' . ($length - 1) . '}$/', $randStr);
+        $this->assertMatchesRegularExpression('/^[a-zA-Z0-9][a-zA-Z0-9]{' . ($length - 1) . '}$/', $randStr);
     }
 
     public function test_htpasswd(): void

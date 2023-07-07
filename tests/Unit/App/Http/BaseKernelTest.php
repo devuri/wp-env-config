@@ -48,6 +48,7 @@ class BaseKernelTest extends BaseTest
             "WPMU_PLUGIN_URL" => "https://example.com/mu-plugins",
             "AUTOMATIC_UPDATER_DISABLED" => true,
             "WP_SUDO_ADMIN" => null,
+            "SUDO_ADMIN_GROUP" => null,
             "CAN_DEACTIVATE_PLUGINS" => true,
             "DB_DIR" => APP_TEST_PATH . "/sqlitedb",
             "DB_FILE" => ".sqlite-wpdatabase",
@@ -80,7 +81,7 @@ class BaseKernelTest extends BaseTest
 
         $count = \count( $this->http_app()->get_defined() );
 
-        $this->assertEquals( 38, $count );
+        $this->assertEquals( 39, $count );
 
         $this->assertEquals( $const_defaults, $this->http_app()->get_defined());
     }
