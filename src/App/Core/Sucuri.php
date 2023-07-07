@@ -70,9 +70,15 @@ class Sucuri
 
             $sucuri_menu_prefix = is_multisite() ? 'network_' : '';
 
-            if ( $this->wp_sudo_admin !== $current_user->ID || ! $this->is_sudo_admin_group( $current_user->ID ) ) {
-                remove_action( 'admin_menu', $sucuri_menu_prefix . 'sucuriscanAddMenuPage' );
+            if ( $this->wp_sudo_admin === $current_user->ID ) {
+                return;
             }
+
+            if ( $this->is_sudo_admin_group( $current_user->ID ) ) {
+                return;
+            }
+
+            remove_action( 'admin_menu', $sucuri_menu_prefix . 'sucuriscanAddMenuPage' );
         }
     }
 

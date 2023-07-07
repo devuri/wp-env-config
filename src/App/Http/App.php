@@ -66,6 +66,10 @@ class App
             return;
         }
 
+        if ( \defined( 'WP_INSTALLING' ) ) {
+            return;
+        }
+
         if ( false === $this->config['error_handler'] ) {
             return;
         }
