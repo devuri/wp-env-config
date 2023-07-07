@@ -58,7 +58,7 @@ class DatabaseBackup extends Command
             ->setHelp( 'This command allows you to create a backup of the WordPress database.' );
     }
 
-    protected function execute( InputInterface $input, OutputInterface $output )
+    protected function execute( InputInterface $input, OutputInterface $output ): ?int
     {
         $backup = [
             'db_name'     => env( 'DB_NAME' ),

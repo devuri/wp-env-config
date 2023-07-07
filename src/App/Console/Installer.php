@@ -31,6 +31,11 @@ class Installer extends Command
             ->setHelp( 'This command installs WordPress.' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output )
     {
         $io = new SymfonyStyle( $input, $output );

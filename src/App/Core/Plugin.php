@@ -49,8 +49,8 @@ class Plugin
         apply_filters(
             'send_email_change_email',
             function ( $user, $userdata ) {
-				return env( 'SEND_EMAIL_CHANGE_EMAIL' ) ? env( 'SEND_EMAIL_CHANGE_EMAIL' ) : true;
-			}
+                return env( 'SEND_EMAIL_CHANGE_EMAIL' ) ? env( 'SEND_EMAIL_CHANGE_EMAIL' ) : true;
+            }
         );
 
         // Remove wp version.

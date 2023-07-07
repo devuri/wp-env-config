@@ -144,6 +144,11 @@ class BaseKernel
         }
     }
 
+    /**
+     * @return (int|string)[]
+     *
+     * @psalm-return list<array-key>
+     */
     public function get_secret(): array
     {
         return array_keys( $this->env_secret );

@@ -80,6 +80,11 @@ class BackupCommand extends Command
         $this->setDescription( 'Backup the WordPress web application' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output )
     {
         // backup db
@@ -168,6 +173,11 @@ class BackupCommand extends Command
     }
 
 
+    /**
+     * @return (null|int|mixed|string)[]
+     *
+     * @psalm-return array{db_name: mixed, db_user: mixed, sqlfile: string, code: int|null}
+     */
     private function create_sql_dump(): array
     {
         $sqldb = [

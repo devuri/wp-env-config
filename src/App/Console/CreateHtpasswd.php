@@ -36,6 +36,11 @@ class CreateHtpasswd extends Command
             ->addOption( 'password', 'p', InputOption::VALUE_OPTIONAL, 'The password' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output )
     {
         $io = new SymfonyStyle( $input, $output );

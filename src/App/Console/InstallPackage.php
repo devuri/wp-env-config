@@ -21,6 +21,11 @@ class InstallPackage extends Command
         $this->addOption( 'theme', 't', InputOption::VALUE_REQUIRED, 'Install a theme' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $package = $input->getArgument( 'package' );
