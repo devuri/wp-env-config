@@ -29,6 +29,11 @@ class GenerateComposer extends Command
         $this->setDescription( 'Generate fresh copy of composer.json file and run composer install' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         if ( $this->filesystem->exists( $this->composer_file ) ) {

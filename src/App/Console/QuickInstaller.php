@@ -45,7 +45,9 @@ class QuickInstaller
     /**
      * Installs WordPress and checks for the existence of default tables.
      *
-     * @return null|array Returns the result of the wp_install() function if the installation is successful and the tables don't exist, or null if any table already exists.
+     * @return null|(int|string)[] Returns the result of the wp_install() function if the installation is successful and the tables don't exist, or null if any table already exists.
+     *
+     * @psalm-return array{url: string, user_id: int, password: string, password_message: string}|null
      */
     public function install(): ?array
     {

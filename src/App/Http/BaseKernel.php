@@ -24,27 +24,6 @@ class BaseKernel
     protected $env_secret  = [];
     protected static $list = [];
     protected $app_setup;
-    protected $args = [
-        'web_root'        => 'public',
-        'wp_dir_path'     => 'wp',
-        'wordpress'       => 'wp',
-        'asset_dir'       => 'assets',
-        'content_dir'     => 'content',
-        'plugin_dir'      => 'plugins',
-        'mu_plugin_dir'   => 'mu-plugins',
-        'sqlite_dir'      => 'sqlitedb',
-        'sqlite_file'     => '.sqlite-wpdatabase',
-        'default_theme'   => 'twentytwentythree',
-        'disable_updates' => true,
-        'can_deactivate'  => true,
-        'templates_dir'   => null,
-        'error_handler'   => 'symfony',
-        'config_file'     => 'config',
-        'sudo_admin'      => null,
-        'sucuri_waf'      => false,
-        'redis'           => [],
-        'security'        => [],
-    ];
 
     /**
      * Setup BaseKernel.
@@ -131,6 +110,16 @@ class BaseKernel
     }
 
     /**
+     * Get app config args.
+     *
+     * @return string[]
+     */
+    public function get_app_config(): array
+    {
+        return $this->get_args();
+    }
+
+    /**
      * Setup overrides.
      *
      * @return void
@@ -155,6 +144,11 @@ class BaseKernel
         }
     }
 
+    /**
+     * @return (int|string)[]
+     *
+     * @psalm-return list<array-key>
+     */
     public function get_secret(): array
     {
         return array_keys( $this->env_secret );

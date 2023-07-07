@@ -41,6 +41,7 @@ abstract class BaseTest extends TestCase
             "config_file" => "config",
             'templates_dir' => null,
             "sudo_admin" => null,
+            "sudo_admin_group" => null,
             "sucuri_waf" => false,
             'redis' => [],
             'security' => [],

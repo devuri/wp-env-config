@@ -4,6 +4,11 @@ namespace Urisoft\App\Console\Traits;
 
 trait Env
 {
+    /**
+     * @return null|string[]
+     *
+     * @psalm-return array<string>|null
+     */
     public function get_env_array( string $env_file ): ?array
     {
         if ( ! $this->filesystem->exists( $env_file ) ) {

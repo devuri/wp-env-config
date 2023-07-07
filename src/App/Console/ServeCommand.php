@@ -108,7 +108,10 @@ class ServeCommand extends Command
         return 0;
     }
 
-    protected function is_valid_env_port( $port, $env_port ): bool
+    /**
+     * @param numeric $port
+     */
+    protected function is_valid_env_port( $port, int $env_port ): bool
     {
         if ( $env_port === $port ) {
             return true;

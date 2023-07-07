@@ -305,11 +305,11 @@ class Setup implements ConfigInterface
     /**
      * Get the current Environment setup.
      *
-     * @return string
+     * @return string[]
      *
-     * @psalm-return string
+     * @psalm-return array<string>
      */
-    public function get_environment(): string
+    public function get_environment(): array
     {
         return $this->environment;
     }

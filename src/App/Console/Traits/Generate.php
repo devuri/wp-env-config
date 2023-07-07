@@ -3,8 +3,8 @@
 namespace Urisoft\App\Console\Traits;
 
 use Devuri\UUIDGenerator\UUIDGenerator;
-use Urisoft\PasswordGenerator;
 use Exception;
+use Urisoft\PasswordGenerator;
 
 trait Generate
 {
@@ -50,7 +50,7 @@ trait Generate
     /**
      * Generates a unique filename with optional prefix and hashing.
      *
-     * @param string  $ext   The file extension.
+     * @param string       $ext   The file extension.
      * @param null|string  $name  Optional. The prefix for the filename. Default is null.
      * @param false|string $hasit Optional. The hashing algorithm to use. Default is 'sha256'.
      *
@@ -113,7 +113,9 @@ trait Generate
     /**
      * Get the consonants array.
      *
-     * @return array The consonants array.
+     * @return string[] The consonants array.
+     *
+     * @psalm-return array{0: 'b', 1: 'c', 2: 'd', 3: 'f', 4: 'g', 5: 'h', 6: 'j', 7: 'k', 8: 'l', 9: 'm', 10: 'n', 11: 'p', 12: 'q', 13: 'r', 14: 's', 15: 't', 16: 'v', 17: 'w', 18: 'x', 19: 'y', 20: 'z'}
      */
     private function get_consonants(): array
     {
@@ -123,7 +125,9 @@ trait Generate
     /**
      * Get the vowels array.
      *
-     * @return array The vowels array.
+     * @return string[] The vowels array.
+     *
+     * @psalm-return array{0: 'a', 1: 'e', 2: 'i', 3: 'o', 4: 'u'}
      */
     private function get_vowels(): array
     {

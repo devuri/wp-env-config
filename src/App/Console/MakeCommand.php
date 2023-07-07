@@ -41,6 +41,8 @@ class MakeCommand extends Command
      * make the dir in public/"$dbadmin"
      *
      * @return int
+     *
+     * @psalm-return 0|1
      */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {

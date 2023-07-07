@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * This file defines various framework configuration options using key-value pairs.
+ *
+ * The values can be set in this file or by using environment variables defined in the `.env` file.
+ * By utilizing environment variables, we can easily configure and customize the framework for different environments.
+ * Some values are predefined by the framework, while others can be explicitly defined here as per specific requirements.
+ *
+ * The configuration options can be accessed in two ways:
+ * 1. Using the `app_config()` framework helper function, which provides easy access to the configuration values.
+ * 2. Utilizing the `get_app_config()` method available in the framework's Kernel, which returns the configuration options as an array.
+ *
+ * Note that almost all configuration options in this file are optional, as the framework provides sensible defaults for required values.
+ * Any options not explicitly set here will be automatically handled by the framework.
+ *
+ * @var array
+ */
 return [
 
     /*
@@ -18,7 +34,7 @@ return [
      *                                      Format: ['192.168.000.41', '192.168.000.34']
      * }
      */
-    'security'        => [
+    'security'         => [
         'brute-force'        => true,
         'two-factor'         => true,
         'no-pwned-passwords' => true,
@@ -43,7 +59,7 @@ return [
      * Note: Make sure to set the required environment variables for each mailer provider.
      */
 
-    'mailer'          => [
+    'mailer'           => [
         'brevo'      => [
             'apikey' => env( 'BREVO_API_KEY' ),
         ],
@@ -84,7 +100,20 @@ return [
      *
      * @default null
      */
-    'sudo_admin'      => env( 'SUDO_ADMIN', 0 ),
+    'sudo_admin'       => env( 'SUDO_ADMIN', 1 ),
+
+    /*
+     * Sudo Admin Group: A group of users with higher administrative privileges.
+     *
+     * This option allows us to define a group of users with elevated administrative privileges,
+     * in addition to the main sudo admin user defined in the 'sudo_admin' option.
+     * The value should be an array of user IDs.
+     *
+     * @var array|null An array of user IDs representing the sudo admin group. Setting it to null disables the sudo admin group feature.
+     *
+     * @default null
+     */
+    'sudo_admin_group' => null,
 
     /*
      * Web Root: the public web directory.
@@ -106,7 +135,7 @@ return [
      *     ]
      * }
      */
-    'web_root'        => 'public',
+    'web_root'         => 'public',
 
     /*
      * Configuration settings for the S3 Uploads plugin.
@@ -138,7 +167,7 @@ return [
      * @param string $s3_uploads['http-cache']
      *   The value for the 'Cache-Control' header. Defaults to '300'.
      */
-    's3uploads'       => [
+    's3uploads'        => [
         'bucket'     => env( 'S3_UPLOADS_BUCKET', 'site-uploads' ),
         'key'        => env( 'S3_UPLOADS_KEY', '' ),
         'secret'     => env( 'S3_UPLOADS_SECRET', '' ),
@@ -166,7 +195,7 @@ return [
      * - asset_url($path): Returns the asset URL without the filename. The $path parameter is the path to the asset.
      *   Example: asset_url("/dist") returns "https://example.com/assets/dist/".
      */
-    'asset_dir'       => 'assets',
+    'asset_dir'        => 'assets',
 
     /*
      * Sets the content directory for the project.
@@ -175,7 +204,7 @@ return [
      * The 'app' directory is equivalent to the 'wp-content' directory.
      * However, this can be modified to use a different directory, such as 'content'.
      */
-    'content_dir'     => 'app',
+    'content_dir'      => 'app',
 
     /*
      * Sets the plugins directory.
@@ -183,7 +212,7 @@ return [
      * The plugins directory is located outside the project directory and
      * allows for installation and management of plugins using Composer.
      */
-    'plugin_dir'      => 'plugins',
+    'plugin_dir'       => 'plugins',
 
     /*
      * Sets the directory for Must-Use (MU) plugins.
@@ -194,7 +223,7 @@ return [
      * By default, the framework includes the 'compose' MU plugin, which includes the 'web_app_config' hook.
      * This hook can be leveraged to configure the web application in most cases.
      */
-    'mu_plugin_dir'   => 'mu-plugins',
+    'mu_plugin_dir'    => 'mu-plugins',
 
     /*
      * SQLite Configuration
@@ -206,8 +235,8 @@ return [
      *
      * @see https://github.com/aaemnnosttv/wp-sqlite-db
      */
-    'sqlite_dir'      => 'sqlitedb',
-    'sqlite_file'     => '.sqlite-wpdatabase',
+    'sqlite_dir'       => 'sqlitedb',
+    'sqlite_file'      => '.sqlite-wpdatabase',
 
     /*
      * Sets the default fallback theme for the project.
@@ -215,7 +244,7 @@ return [
      * By default, WordPress uses one of the "twenty*" themes as the fallback theme.
      * However, in our project, we have the flexibility to define our own custom fallback theme.
      */
-    'default_theme'   => 'brisko',
+    'default_theme'    => 'brisko',
 
     /*
      * Disable WordPress updates.
@@ -223,7 +252,7 @@ return [
      * Since we will manage updates with Composer,
      * it is recommended to disable all updates within WordPress.
      */
-    'disable_updates' => true,
+    'disable_updates'  => true,
 
     /*
      * Controls whether we can deactivate plugins.
@@ -235,7 +264,7 @@ return [
      * Setting it to true brings back the ability to deactivate plugins.
      * The default setting is true.
      */
-    'can_deactivate'  => false,
+    'can_deactivate'   => false,
 
     /*
      * Sets the directory for additional themes.
@@ -244,7 +273,7 @@ return [
      * to include our own custom themes for the project. This provides flexibility and allows
      * us to have a separate location for our custom theme files.
      */
-    'theme_dir'       => 'templates',
+    'theme_dir'        => 'templates',
 
     /*
      * Sets the error handler for the project.
@@ -256,7 +285,7 @@ return [
      *
      * Please note that the error handler will only run in 'debug', 'development', or 'local' environments.
      */
-    'error_handler'   => null,
+    'error_handler'    => null,
 
     /*
      * Redis cache configuration for the WordPress application.
@@ -294,7 +323,7 @@ return [
      *                                    Default: 1 if the environment variable 'WP_REDIS_READ_TIMEOUT' is not set.
      * }
      */
-    'redis'           => [
+    'redis'            => [
         'disabled'        => env( 'WP_REDIS_DISABLED', false ),
         'host'            => env( 'WP_REDIS_HOST', '127.0.0.1' ),
         'port'            => env( 'WP_REDIS_PORT', 6379 ),
@@ -325,7 +354,7 @@ return [
      *
      * @var array $publickey An array containing the UUID of the public key stored as an option in the WordPress options table.
      */
-    'publickey'       => [
+    'publickey'        => [
         'app-key' => env( 'WEB_APP_PUBLIC_KEY', null ),
     ],
 ];

@@ -80,6 +80,11 @@ class BackupCommand extends Command
         $this->setDescription( 'Backup the WordPress web application' );
     }
 
+    /**
+     * @return int
+     *
+     * @psalm-return 0|1
+     */
     protected function execute( InputInterface $input, OutputInterface $output )
     {
         // backup db
@@ -104,9 +109,9 @@ class BackupCommand extends Command
             array_merge(
                 $dbbackup,
                 [
-					'snap'      => $this->backup_file,
-					'date'      => gmdate( 'd-m-Y' ),
-					'timestamp' => time(),
+                    'snap'      => $this->backup_file,
+                    'date'      => gmdate( 'd-m-Y' ),
+                    'timestamp' => time(),
                 ]
             )
         );
@@ -161,13 +166,18 @@ class BackupCommand extends Command
                 } else {
                     $zip->addFile( $path, $local_path );
                 }
-            }//end if
+            }// end if
         }// end while
 
         closedir( $handle );
     }
 
 
+    /**
+     * @return (null|int|mixed|string)[]
+     *
+     * @psalm-return array{db_name: mixed, db_user: mixed, sqlfile: string, code: int|null}
+     */
     private function create_sql_dump(): array
     {
         $sqldb = [
