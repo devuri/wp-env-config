@@ -65,20 +65,20 @@ class Sucuri
      */
     public function remove_sucuri_admin_ui(): void
     {
-		if ( \defined( 'WP_SUDO_ADMIN' ) && is_user_logged_in() ) {
+        if ( \defined( 'WP_SUDO_ADMIN' ) && is_user_logged_in() ) {
             $current_user = wp_get_current_user();
 
             $sucuri_menu_prefix = is_multisite() ? 'network_' : '';
 
-			if ( $this->wp_sudo_admin === $current_user->ID ) {
-				return;
+            if ( $this->wp_sudo_admin === $current_user->ID ) {
+                return;
             }
 
-			if ( $this->is_sudo_admin_group( $current_user->ID ) ) {
-				return;
-			}
+            if ( $this->is_sudo_admin_group( $current_user->ID ) ) {
+                return;
+            }
 
-			remove_action( 'admin_menu', $sucuri_menu_prefix . 'sucuriscanAddMenuPage' );
+            remove_action( 'admin_menu', $sucuri_menu_prefix . 'sucuriscanAddMenuPage' );
         }
     }
 

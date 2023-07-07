@@ -306,7 +306,6 @@ class Setup implements ConfigInterface
      * Get the current Environment setup.
      *
      * @return string|string[]
-     *
      */
     public function get_environment()
     {
