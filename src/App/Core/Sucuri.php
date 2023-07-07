@@ -15,11 +15,16 @@ namespace Urisoft\App\Core;
  */
 class Sucuri
 {
+	protected $wp_sudo_admin;
+
+	protected $admin_group;
     /**
      * Initializes the Sucuri class.
      */
-    public function __construct()
+    public function __construct( ?int $wp_sudo_admin = null, ?array $admin_group = null )
     {
+		$this->wp_sudo_admin = $wp_sudo_admin;
+		$this->admin_group = $admin_group;
         add_action( 'plugins_loaded', [ $this, 'init_action' ] );
     }
 
@@ -65,11 +70,34 @@ class Sucuri
 
             $sucuri_menu_prefix = is_multisite() ? 'network_' : '';
 
-            if ( WP_SUDO_ADMIN !== $current_user->ID ) {
+            if ( $this->wp_sudo_admin !== $current_user->ID || ! $this->is_sudo_admin_group( $current_user->ID ) ) {
                 remove_action( 'admin_menu', $sucuri_menu_prefix . 'sucuriscanAddMenuPage' );
             }
         }
     }
+
+	/**
+	 * Check if a user belongs to the sudo admin group.
+	 *
+	 * This method determines whether a given user belongs to the sudo admin group. The sudo admin group
+	 * is defined as an array of user IDs with elevated administrative privileges.
+	 *
+	 * @param int $user_id The user ID to check.
+	 * @return bool|null Returns `true` if the user belongs to the sudo admin group, `false` if not,
+	 *                  or `null` if the sudo admin group is not defined or not an array.
+	 */
+	protected function is_sudo_admin_group( int $user_id ): ?bool
+	{
+		if( ! $this->admin_group || ! is_array( $this->admin_group ) ) {
+			return null;
+		}
+
+		if ( in_array( $user_id, $this->admin_group, true ) ) {
+            return true;
+        }
+
+		return false;
+	}
 
     /**
      * Removes WAF admin menu and the corresponding tab.

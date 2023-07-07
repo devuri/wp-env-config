@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * This file defines various framework configuration options using key-value pairs.
+ *
+ * The values can be set in this file or by using environment variables defined in the `.env` file.
+ * By utilizing environment variables, we can easily configure and customize the framework for different environments.
+ * Some values are predefined by the framework, while others can be explicitly defined here as per specific requirements.
+ *
+ * The configuration options can be accessed in two ways:
+ * 1. Using the `app_config()` framework helper function, which provides easy access to the configuration values.
+ * 2. Utilizing the `get_app_config()` method available in the framework's Kernel, which returns the configuration options as an array.
+ *
+ * Note that almost all configuration options in this file are optional, as the framework provides sensible defaults for required values.
+ * Any options not explicitly set here will be automatically handled by the framework.
+ *
+ * @var array
+ */
 return [
 
     /*
@@ -84,7 +100,20 @@ return [
      *
      * @default null
      */
-    'sudo_admin'      => env( 'SUDO_ADMIN', 0 ),
+    'sudo_admin'      => env( 'SUDO_ADMIN', 1 ),
+
+	/*
+	 * Sudo Admin Group: A group of users with higher administrative privileges.
+	 *
+	 * This option allows us to define a group of users with elevated administrative privileges,
+	 * in addition to the main sudo admin user defined in the 'sudo_admin' option.
+	 * The value should be an array of user IDs.
+	 *
+	 * @var array|null An array of user IDs representing the sudo admin group. Setting it to null disables the sudo admin group feature.
+	 *
+	 * @default null
+	 */
+	'sudo_admin_group' => null,
 
     /*
      * Web Root: the public web directory.

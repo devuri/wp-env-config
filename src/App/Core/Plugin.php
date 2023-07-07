@@ -14,10 +14,22 @@ class Plugin
 {
     public function __construct()
     {
+		if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN) {
+            $wp_sudo_admin = WP_SUDO_ADMIN;
+        } else {
+			$wp_sudo_admin = null;
+		}
+
+		if ( \defined( 'SUDO_ADMIN_GROUP' ) && SUDO_ADMIN_GROUP ) {
+			$admin_group = SUDO_ADMIN_GROUP;
+		} else {
+			$admin_group = null;
+		}
+
         new WhiteLabel();
 
         // Custom Sucuri settings.
-        new Sucuri();
+        new Sucuri( $wp_sudo_admin, $admin_group );
 
         // basic auth
         BasicAuth::init();
@@ -32,6 +44,13 @@ class Plugin
                 $this->security_headers();
             }
         );
+
+		/*
+		 * Disable User Notification of Password Change Confirmation
+		 */
+		apply_filters( 'send_email_change_email', function ( $user, $userdata ) {
+			return env('SEND_EMAIL_CHANGE_EMAIL') ? env('SEND_EMAIL_CHANGE_EMAIL') : true;
+		} );
 
         // Remove wp version.
         add_filter(
@@ -103,28 +122,6 @@ class Plugin
     public static function init(): self
     {
         return new self();
-    }
-
-    public function restrict_admin_user(): void
-    {
-        // check if wp is installed and that this not returning null
-        $admin = get_role( 'administrator' );
-        $caps  = [
-            'edit_users',
-            'unfiltered_html',
-            'delete_users',
-            'create_users',
-            'unfiltered_upload',
-            'install_plugins',
-            'delete_plugins',
-            'install_themes',
-            'remove_users',
-            'delete_themes',
-        ];
-
-        foreach ( $caps as $cap ) {
-            $admin->remove_cap( $cap );
-        }
     }
 
     protected function security_headers(): void
