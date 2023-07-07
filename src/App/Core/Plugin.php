@@ -14,17 +14,17 @@ class Plugin
 {
     public function __construct()
     {
-		if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN) {
+        if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN ) {
             $wp_sudo_admin = WP_SUDO_ADMIN;
         } else {
-			$wp_sudo_admin = null;
-		}
+            $wp_sudo_admin = null;
+        }
 
-		if ( \defined( 'SUDO_ADMIN_GROUP' ) && SUDO_ADMIN_GROUP ) {
-			$admin_group = SUDO_ADMIN_GROUP;
-		} else {
-			$admin_group = null;
-		}
+        if ( \defined( 'SUDO_ADMIN_GROUP' ) && SUDO_ADMIN_GROUP ) {
+            $admin_group = SUDO_ADMIN_GROUP;
+        } else {
+            $admin_group = null;
+        }
 
         new WhiteLabel();
 
@@ -45,12 +45,13 @@ class Plugin
             }
         );
 
-		/*
-		 * Disable User Notification of Password Change Confirmation
-		 */
-		apply_filters( 'send_email_change_email', function ( $user, $userdata ) {
-			return env('SEND_EMAIL_CHANGE_EMAIL') ? env('SEND_EMAIL_CHANGE_EMAIL') : true;
-		} );
+        // Disable User Notification of Password Change Confirmation
+        apply_filters(
+            'send_email_change_email',
+            function ( $user, $userdata ) {
+				return env( 'SEND_EMAIL_CHANGE_EMAIL' ) ? env( 'SEND_EMAIL_CHANGE_EMAIL' ) : true;
+			}
+        );
 
         // Remove wp version.
         add_filter(

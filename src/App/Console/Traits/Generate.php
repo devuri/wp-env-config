@@ -3,8 +3,8 @@
 namespace Urisoft\App\Console\Traits;
 
 use Devuri\UUIDGenerator\UUIDGenerator;
-use Urisoft\PasswordGenerator;
 use Exception;
+use Urisoft\PasswordGenerator;
 
 trait Generate
 {
@@ -50,7 +50,7 @@ trait Generate
     /**
      * Generates a unique filename with optional prefix and hashing.
      *
-     * @param string  $ext   The file extension.
+     * @param string       $ext   The file extension.
      * @param null|string  $name  Optional. The prefix for the filename. Default is null.
      * @param false|string $hasit Optional. The hashing algorithm to use. Default is 'sha256'.
      *

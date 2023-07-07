@@ -104,9 +104,9 @@ class BackupCommand extends Command
             array_merge(
                 $dbbackup,
                 [
-					'snap'      => $this->backup_file,
-					'date'      => gmdate( 'd-m-Y' ),
-					'timestamp' => time(),
+                    'snap'      => $this->backup_file,
+                    'date'      => gmdate( 'd-m-Y' ),
+                    'timestamp' => time(),
                 ]
             )
         );
@@ -161,7 +161,7 @@ class BackupCommand extends Command
                 } else {
                     $zip->addFile( $path, $local_path );
                 }
-            }//end if
+            }// end if
         }// end while
 
         closedir( $handle );

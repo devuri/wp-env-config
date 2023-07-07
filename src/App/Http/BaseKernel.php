@@ -109,7 +109,7 @@ class BaseKernel
         return $this->args;
     }
 
-	/**
+    /**
      * Get app config args.
      *
      * @return string[]

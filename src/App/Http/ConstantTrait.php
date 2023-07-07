@@ -6,27 +6,27 @@ use function define;
 
 trait ConstantTrait
 {
-	protected $args = [
-        'web_root'        => 'public',
-        'wp_dir_path'     => 'wp',
-        'wordpress'       => 'wp',
-        'asset_dir'       => 'assets',
-        'content_dir'     => 'content',
-        'plugin_dir'      => 'plugins',
-        'mu_plugin_dir'   => 'mu-plugins',
-        'sqlite_dir'      => 'sqlitedb',
-        'sqlite_file'     => '.sqlite-wpdatabase',
-        'default_theme'   => 'twentytwentythree',
-        'disable_updates' => true,
-        'can_deactivate'  => true,
-        'templates_dir'   => null,
-        'error_handler'   => 'symfony',
-        'config_file'     => 'config',
-        'sudo_admin'      => null,
-        'sudo_admin_group'=> null,
-        'sucuri_waf'      => false,
-        'redis'           => [],
-        'security'        => [],
+    protected $args = [
+        'web_root'         => 'public',
+        'wp_dir_path'      => 'wp',
+        'wordpress'        => 'wp',
+        'asset_dir'        => 'assets',
+        'content_dir'      => 'content',
+        'plugin_dir'       => 'plugins',
+        'mu_plugin_dir'    => 'mu-plugins',
+        'sqlite_dir'       => 'sqlitedb',
+        'sqlite_file'      => '.sqlite-wpdatabase',
+        'default_theme'    => 'twentytwentythree',
+        'disable_updates'  => true,
+        'can_deactivate'   => true,
+        'templates_dir'    => null,
+        'error_handler'    => 'symfony',
+        'config_file'      => 'config',
+        'sudo_admin'       => null,
+        'sudo_admin_group' => null,
+        'sucuri_waf'       => false,
+        'redis'            => [],
+        'security'         => [],
     ];
 
     /**
@@ -86,8 +86,8 @@ trait ConstantTrait
         // Sudo admin (granted more privilages uses user ID).
         $this->define( 'WP_SUDO_ADMIN', $this->args['sudo_admin'] );
 
-		// A group of users with higher administrative privileges.
-		$this->define( 'SUDO_ADMIN_GROUP', $this->args['sudo_admin_group'] );
+        // A group of users with higher administrative privileges.
+        $this->define( 'SUDO_ADMIN_GROUP', $this->args['sudo_admin_group'] );
 
         /*
          * Prevent Admin users from deactivating plugins, true or false.
@@ -155,6 +155,6 @@ trait ConstantTrait
             return null;
         }
 
-        return $this->args['redis'][$key] ?? null;
+        return $this->args['redis'][ $key ] ?? null;
     }
 }
