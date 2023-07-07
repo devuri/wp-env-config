@@ -1,5 +1,35 @@
 # Changelog
 
+## [0.6.2](https://github.com/devuri/wp-env-config/compare/v0.6.1...v0.6.2) (2023-07-07)
+
+
+### Features
+
+* add `DatabaseBackup` cli `db:backup` ([648bfc5](https://github.com/devuri/wp-env-config/commit/648bfc5847d8a1a93c5158425c71cab7dcea30dc))
+* add backups by month and year to backup command, include snap.json ([b856ed7](https://github.com/devuri/wp-env-config/commit/b856ed7753373dbbb952d34ade59c20157dbf107))
+* add upgrade to use `devuri/secure-password` ([5c485a7](https://github.com/devuri/wp-env-config/commit/5c485a745a3f4a9b8cb969c08cbecc5e537919fe))
+* adds  Restricted Admin ([d308ca6](https://github.com/devuri/wp-env-config/commit/d308ca69d13e7ae980cc7d8cf350a4252116babc))
+* adds `basic auth` plugin option ([ef3c868](https://github.com/devuri/wp-env-config/commit/ef3c868eb9f7c0a36c56f0ab7ec51194b8a1ce8c))
+* adds `PublicKey` support for encryption or verification purposes ([c019481](https://github.com/devuri/wp-env-config/commit/c019481604c9c6310e1966e644e4fa14d982a61a))
+* adds `sudo_admin_group` users with higher privileges ([90f4dc3](https://github.com/devuri/wp-env-config/commit/90f4dc3cff9ddde8f5934445a4e7ac6dd09ab9aa))
+* adds `wpi -u admin` cli wp installer `QuickInstaller` ([d20f90a](https://github.com/devuri/wp-env-config/commit/d20f90a84b8d36d9e77a2d26b26fcc9e6c6f2dee))
+* disable error handler with `false` ([5b9f186](https://github.com/devuri/wp-env-config/commit/5b9f18676d3bf8adad43ab5977ba8d1316c93b8d))
+
+
+### Bug Fixes
+
+* comment fix ([faf94ea](https://github.com/devuri/wp-env-config/commit/faf94eabdf563e0a0afc4c3721b1b12377b1a0fe))
+* deps ([3d88f46](https://github.com/devuri/wp-env-config/commit/3d88f465e02e1085efac68fe2c5f1016daea0923))
+* do not lock out the admin with basic auth ([fd96d60](https://github.com/devuri/wp-env-config/commit/fd96d600e525087a98d4e77be5a69f09d85cc7c4))
+* fix extra theme directory ([0d60b40](https://github.com/devuri/wp-env-config/commit/0d60b4059fbed513242df2c1d7f179a257b039f3))
+* fixes require ([e29ada0](https://github.com/devuri/wp-env-config/commit/e29ada08e1bac54f511eb7e91ea9c1952bf57687))
+
+
+### Miscellaneous Chores
+
+* build ([6f557f9](https://github.com/devuri/wp-env-config/commit/6f557f98d265b3f36c3ffed1b181b69ac32d9862))
+* build ([4a7c339](https://github.com/devuri/wp-env-config/commit/4a7c339547e1b84bcfee83950445428095821d30))
+
 ## [0.6.1](https://github.com/devuri/wp-env-config/compare/v0.6.0...v0.6.1) (2023-07-01)
 
 
