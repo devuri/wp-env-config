@@ -47,7 +47,7 @@ class Setup implements ConfigInterface
     /**
      * The $environment.
      *
-     * @var string[]
+     * @var string
      */
     protected $environment;
 
@@ -89,9 +89,9 @@ class Setup implements ConfigInterface
     /**
      * Constructor.
      *
-     * @param array|string $path current Directory.
+     * @param string $path current Directory.
      */
-    public function __construct( $path, ?array $supported_names = null, bool $short_circuit = true )
+    public function __construct( string $path, ?array $supported_names = null, bool $short_circuit = true )
     {
         $this->path = $path;
 
@@ -305,9 +305,10 @@ class Setup implements ConfigInterface
     /**
      * Get the current Environment setup.
      *
-     * @return string|string[]
+     * @return string
+     *
      */
-    public function get_environment()
+    public function get_environment(): string
     {
         return $this->environment;
     }

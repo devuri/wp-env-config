@@ -22,6 +22,9 @@ class BackupCommand extends Command
     private $filesystem;
     private $snapshot_dir;
     private $backup_file;
+    private $backup_time;
+    private $backup_dir;
+    private $backup_zip;
 
     /**
      * BackupCommand constructor.
@@ -35,24 +38,29 @@ class BackupCommand extends Command
     {
         $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-        $this->snapshot_dir  = $this->root_dir_path . '/.snapshot/' . gmdate( 'Y' ) . '/' . gmdate( 'm' );
-        $this->backup_file   = self::unique_filename( '.zip', 'snap' );
+        $this->load_dotenv( $this->root_dir_path );
+        $this->snapshot_dir = $this->root_dir_path . '/.snapshot/' . gmdate( 'Y' ) . '/' . gmdate( 'm' );
 
-        // load env
-        $dotenv = Dotenv::createImmutable(
-            $this->root_dir_path,
-            [
-                'env',
-                '.env',
-                '.env.secure',
-                '.env.prod',
-                '.env.staging',
-                '.env.dev',
-                '.env.debug',
-                '.env.local',
-            ]
-        );
-        $dotenv->load();
+        // Create backup directory if it doesn't exist.
+        if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
+            $this->filesystem->mkdir( $this->snapshot_dir );
+        }
+
+        // backup directory.
+        $this->backup_file = self::unique_filename( '.zip', 'snap' );
+        $this->backup_time = time();
+        $this->backup_dir  = $this->snapshot_dir . '/' . $this->backup_time;
+
+        // determines if we include plugins (true||false).
+        $this->backup_plugins = env( 'BACKUP_PLUGINS' );
+
+        // create backup directory
+        if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
+            $this->filesystem->mkdir( $this->backup_dir );
+        }
+
+        // zip filename
+        $this->backup_zip = $this->backup_dir . '/' . $this->backup_file;
 
         parent::__construct();
     }
@@ -90,20 +98,9 @@ class BackupCommand extends Command
         // backup db
         $dbbackup = $this->create_sql_dump();
 
-        // determines if we include plugins (true||false).
-        $this->backup_plugins = env( 'BACKUP_PLUGINS' );
-
         if ( 0 !== $dbbackup['code'] ) {
             return Command::FAILURE;
         }
-
-        // Create backup directory if it doesn't exist
-        if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
-            $this->filesystem->mkdir( $this->snapshot_dir );
-        }
-
-        // Create a timestamped backup file
-        $_backup = $this->snapshot_dir . '/' . $this->backup_file;
 
         $this->save_snap_info(
             array_merge(
@@ -111,23 +108,51 @@ class BackupCommand extends Command
                 [
                     'snap'      => $this->backup_file,
                     'date'      => gmdate( 'd-m-Y' ),
-                    'timestamp' => time(),
+                    'timestamp' => $this->backup_time,
                 ]
             )
         );
 
         // Create a ZIP archive of the site directory
         $zip = new ZipArchive();
-        $zip->open( $_backup, ZipArchive::CREATE | ZipArchive::OVERWRITE );
+        $zip->open( $this->backup_zip, ZipArchive::CREATE | ZipArchive::OVERWRITE );
         $this->add_directory_zip( $this->root_dir_path, '', $zip );
         $zip->close();
+
+        // save snap info
+        $this->filesystem->copy( $this->root_dir_path . '/snap.json', $this->backup_dir . '/snap.json' );
 
         // remove db directory.
         $this->filesystem->remove( $this->root_dir_path . '/.sqldb' );
         unlink( $this->root_dir_path . '/snap.json' );
-        // $output->writeln( 'Backup snapshot created: ' . $_backup );
+        // $output->writeln( 'Backup snapshot created: ' . $this->backup_zip );
 
         return Command::SUCCESS;
+    }
+
+    /**
+     * Load the $_ENV.
+     *
+     * @param string $root_dir_path
+     *
+     * @return void
+     */
+    private function load_dotenv( string $root_dir_path ): void
+    {
+        $dotenv = Dotenv::createImmutable(
+            $root_dir_path,
+            [
+                'env',
+                '.env',
+                '.env.secure',
+                '.env.prod',
+                '.env.staging',
+                '.env.dev',
+                '.env.debug',
+                '.env.local',
+            ]
+        );
+        $dotenv->load();
     }
 
     /**
