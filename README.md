@@ -6,13 +6,11 @@
 
 [![Unit Tests](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/devuri/wp-env-config/actions/workflows/unit-tests.yml)
 
-> **Note:** This branch is the development branch and contains features that may be in various stages of development **do not** use this branch in production, instead use the [release](https://github.com/devuri/wp-env-config/releases) versions.
-
 ### Introduction
 
 `wp-env-config` is a small yet powerful package that simplifies the process of defining configuration constants in WordPress. By leveraging PHP dotenv, this package enables you to securely store sensitive configuration data in environment variables, which is a best practice for building and deploying software according to the twelve-factor app methodology.
 
-> **Application development:** This repository houses the fundamental components of wp-env-config. If you are developing an application, please utilize wp-env-app located in this repository: [wp-env-app](https://github.com/devuri/wp-env-app).
+> **Note**  **Application development:** This repository houses the fundamental components of wp-env-config. If you are developing an application, please utilize wp-env-app located in this repository: [wp-env-app](https://github.com/devuri/wp-env-app).
 
 ### Installation
 
