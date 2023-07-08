@@ -72,7 +72,7 @@ if ( ! \function_exists( 'env' ) ) {
 
         return $_ENV[ $name ];
     }
-}// end if
+}//end if
 
 if ( ! \function_exists( 'is_int_val' ) ) {
     /**
@@ -162,7 +162,7 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
 
         return $plugin_slugs;
     }
-}// end if
+}//end if
 
 if ( ! \function_exists( 'app_config' ) ) {
     /**
@@ -176,4 +176,4 @@ if ( ! \function_exists( 'app_config' ) ) {
     {
         return require_once __DIR__ . '/app.php';
     }
-}// end if
+}
