@@ -127,26 +127,26 @@ class BackupCommand extends Command
         unlink( $this->root_dir_path . '/snap.json' );
         // $output->writeln( 'Backup snapshot created: ' . $this->backup_zip );
 
-		// maybe upload to s3
-		if ( env( 'ENABLE_S3_BACKUP' ) ) {
-			$this->s3_upload_backup( $this->backup_zip, $this->backup_file );
-		}
+        // maybe upload to s3
+        if ( env( 'ENABLE_S3_BACKUP' ) ) {
+            $this->s3_upload_backup( $this->backup_zip, 'wpsnaps/' . $this->backup_file );
+        }
 
         return Command::SUCCESS;
     }
 
-	protected function s3_upload_backup( string $local_file, string $s3objectfilekey ): bool
-	{
-		$uploader = new S3Uploader(
-			env( 'S3_BACKUP_KEY', '' ),
-			env( 'S3_BACKUP_SECRET', '' ),
-			env( 'S3_BACKUP_BUCKET', 'site-backups' ),
-			env( 'S3_BACKUP_REGION', 'us-east-1' ),
+    protected function s3_upload_backup( string $local_file, string $s3objectfilekey ): bool
+    {
+        $uploader = new S3Uploader(
+            env( 'S3_BACKUP_KEY', '' ),
+            env( 'S3_BACKUP_SECRET', '' ),
+            env( 'S3_BACKUP_BUCKET', 'wp-env-s3snaps' ),
+            env( 'S3_BACKUP_REGION', 'us-west-1' ),
             // Specify the region where your S3 bucket is located
-		);
+        );
 
-		return $uploader->uploadFile( $local_file, $s3objectfilekey );
-	}
+        return $uploader->uploadFile( $local_file, $s3objectfilekey );
+    }
 
     /**
      * Load the $_ENV.
