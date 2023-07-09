@@ -10,7 +10,7 @@
 ## Documentation
 
 - [Resources](/wp-env-config/docs/resources/)
-- [Environment Variables](/wp-env-config/docs/envfile/)
+- [Environment Variables](/wp-env-config/docs/env/)
 - [Release Notes](https://github.com/devuri/wp-env-config/releases/)
 
 ## Support
