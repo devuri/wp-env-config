@@ -129,7 +129,7 @@ class BackupCommand extends Command
 
 		// maybe upload to s3
 		if ( env( 'ENABLE_S3_BACKUP' ) ) {
-			$this->s3_upload_backup( $this->backup_zip, $this->backup_file );
+			$this->s3_upload_backup( $this->backup_zip, 'wpsnaps/'. $this->backup_file );
 		}
 
         return Command::SUCCESS;
@@ -140,8 +140,8 @@ class BackupCommand extends Command
 		$uploader = new S3Uploader(
 			env( 'S3_BACKUP_KEY', '' ),
 			env( 'S3_BACKUP_SECRET', '' ),
-			env( 'S3_BACKUP_BUCKET', 'site-backups' ),
-			env( 'S3_BACKUP_REGION', 'us-east-1' ),
+			env( 'S3_BACKUP_BUCKET', 'wp-env-s3snaps'),
+			env( 'S3_BACKUP_REGION', 'us-west-1' ),
             // Specify the region where your S3 bucket is located
 		);
 

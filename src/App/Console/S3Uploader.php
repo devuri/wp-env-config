@@ -10,7 +10,7 @@ class S3Uploader
     private $s3Client;
     private $bucketName;
 
-    public function __construct( $accessKeyId, $secretAccessKey, $region, $bucketName )
+    public function __construct( $accessKeyId, $secretAccessKey, $bucketName, $region  )
     {
         $this->bucketName = $bucketName;
         $this->s3Client   = new S3Client(
@@ -40,11 +40,24 @@ class S3Uploader
             }
 
             if ( ! $bucketExists ) {
-                $this->s3Client->createBucket( [ 'Bucket' => $this->bucketName ] );
+				$this->s3Client->createBucket([
+                'Bucket' => $this->bucketName,
+                'CreateBucketConfiguration' => [
+                    'LocationConstraint' => $this->s3Client->getRegion(),
+                ],
+            ]);
+
+			$this->s3Client->putBucketVersioning([
+                'Bucket' => $this->bucketName,
+                'VersioningConfiguration' => [
+                    'Status' => 'Enabled',
+                ],
+            ]);
 
                 return true;
             }
         } catch ( AwsException $e ) {
+			error_log("Error(could not create s3 bucket): " . $e->getMessage());
             return false;
         }
 
@@ -67,6 +80,7 @@ class S3Uploader
 
             return true;
         } catch ( AwsException $e ) {
+			error_log("Error( s3 upload failed): " . $e->getMessage());
             return false;
         }
     }
