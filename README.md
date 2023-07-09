@@ -54,8 +54,8 @@ Once installed, you can begin using the package in your WordPress project.
 ### Usage
 
 To get started, create a `.env` file in the root directory of your project.
-In this file, define the environment variables you wish to use as configuration constants. For example:
-> update the database credentials and other settings as needed.
+In this file, define the environment variables you wish to use as configuration constants, update the database credentials and other settings as needed.
+
 ```shell
 WP_HOME='https://example.com'
 WP_SITEURL="${WP_HOME}"
@@ -72,6 +72,10 @@ DB_PASSWORD=
 DB_HOST=localhost
 DB_PREFIX=wp_
 ```
+
+> Full list of [Environment Variables](https://devuri.github.io/wp-env-config/env/)
+
+
 Then, in your **wp-config.php** file, add the following code:
 ```php
 
