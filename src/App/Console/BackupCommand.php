@@ -25,6 +25,7 @@ class BackupCommand extends Command
     private $backup_time;
     private $backup_dir;
     private $backup_zip;
+    private $s3backup_dir;
 
     /**
      * BackupCommand constructor.
@@ -53,6 +54,9 @@ class BackupCommand extends Command
 
         // determines if we include plugins (true||false).
         $this->backup_plugins = env( 'BACKUP_PLUGINS' );
+
+		// usually the sitename.
+        $this->s3backup_dir = env( 'S3_BACKUP_DIR', 'wpsnaps' );
 
         // create backup directory
         if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
@@ -129,7 +133,7 @@ class BackupCommand extends Command
 
         // maybe upload to s3
         if ( env( 'ENABLE_S3_BACKUP' ) ) {
-            $this->s3_upload_backup( $this->backup_zip, 'wpsnaps/' . $this->backup_file );
+            $this->s3_upload_backup( $this->backup_zip, $this->s3backup_dir . '/' . $this->backup_file );
         }
 
         return Command::SUCCESS;
