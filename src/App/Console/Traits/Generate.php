@@ -60,7 +60,7 @@ trait Generate
     {
         $prefix   = ( $name ) ? $name . '-' : null;
         $filename = $prefix . self::uuid();
-        $datetime = mb_strtolower( gmdate( 'd-m-Y-' ) . time() );
+        $datetime = mb_strtolower( gmdate( 'Y-M-d_' ) . time() );
 
         if ( $hasit ) {
             return $prefix . $datetime . hash( $hasit, $filename ) . $ext;
@@ -145,6 +145,23 @@ trait Generate
         }
 
         return $domain;
+    }
+
+    /**
+     * Get the date.
+     *
+     * @param string $format
+     * @param bool   $lowercase
+     *
+     * @return string
+     */
+    protected static function getdate( string $format, bool $lowercase = true ): string
+    {
+        if ( true === $lowercase ) {
+            return mb_strtolower( gmdate( $format ) );
+        }
+
+        return gmdate( $format );
     }
 
     /**
