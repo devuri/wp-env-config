@@ -40,7 +40,7 @@
         "symfony/console": "6.0.*",
         "symfony/error-handler": "^5.4",
         "symfony/filesystem": "^5.4",
-        "symfony/process": "^5.4",
+        "symfony/process": "^5.4 || ^6.0",
         "symfony/var-dumper": "^5.4",
         "vlucas/phpdotenv": "^5.2"
     },
