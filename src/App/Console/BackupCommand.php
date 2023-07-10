@@ -47,13 +47,13 @@ class BackupCommand extends Command
             $this->filesystem->mkdir( $this->snapshot_dir );
         }
 
-		// usually the sitename or alphanum siteID.
+        // usually the sitename or alphanum siteID.
         $this->s3wp_dir = env( 'S3_BACKUP_DIR', $this->get_domain( env( 'WP_HOME' ) ) );
 
         // backup directory.
-        $this->backup_file = self::unique_filename( '.zip', $this->s3wp_dir.'_snap' );
+        $this->backup_file = self::unique_filename( '.zip', $this->s3wp_dir . '_snap' );
         $this->backup_time = time();
-        $this->backup_dir  = $this->snapshot_dir . '/' . self::getdate( 'd-F-Y' ) . '/'. $this->backup_time;
+        $this->backup_dir  = $this->snapshot_dir . '/' . self::getdate( 'd-F-Y' ) . '/' . $this->backup_time;
 
         // determines if we include plugins (true||false).
         $this->backup_plugins = env( 'BACKUP_PLUGINS' );
@@ -110,12 +110,12 @@ class BackupCommand extends Command
             array_merge(
                 $dbbackup,
                 [
-                    'site-url' => env( 'WP_HOME' ),
-                    'table-prefix' => env("DB_PREFIX"),
-                    'snap'      => $this->backup_file,
-                    'date'      => gmdate( 'd-m-Y' ),
-                    'timestamp' => $this->backup_time,
-                    's3_dir'    => $this->s3wp_dir,
+                    'site-url'     => env( 'WP_HOME' ),
+                    'table-prefix' => env( 'DB_PREFIX' ),
+                    'snap'         => $this->backup_file,
+                    'date'         => gmdate( 'd-m-Y' ),
+                    'timestamp'    => $this->backup_time,
+                    's3_dir'       => $this->s3wp_dir,
                 ]
             )
         );
@@ -139,10 +139,10 @@ class BackupCommand extends Command
             $this->s3_upload_backup( $this->backup_zip, $this->wpbucket_dir() . $this->backup_file );
         }
 
-		// if s3 is enabled we can delete local backups.
-		if(  env( 'ENABLE_S3_BACKUP' ) && env( 'DELETE_LOCAL_S3BACKUP' ) ) {
-			$this->filesystem->remove( $this->root_dir_path . '/.snapshot' );
-		}
+        // if s3 is enabled we can delete local backups.
+        if ( env( 'ENABLE_S3_BACKUP' ) && env( 'DELETE_LOCAL_S3BACKUP' ) ) {
+            $this->filesystem->remove( $this->root_dir_path . '/.snapshot' );
+        }
 
         return Command::SUCCESS;
     }
@@ -160,7 +160,7 @@ class BackupCommand extends Command
         return $uploader->uploadFile( $local_file, $s3objectfilekey );
     }
 
-	/**
+    /**
      * The backup directory in s3 bucket.
      *
      * @param mixed $project
@@ -174,7 +174,8 @@ class BackupCommand extends Command
 
             return null;
         }
-        return 'wp/' . $this->s3wp_dir . '/' . self::getdate( 'Y' ) . '/' . gmdate( 'F' ) . '/'. self::getdate( 'd-F-Y' ) . '/';
+
+        return 'wp/' . $this->s3wp_dir . '/' . self::getdate( 'Y' ) . '/' . gmdate( 'F' ) . '/' . self::getdate( 'd-F-Y' ) . '/';
     }
 
     /**

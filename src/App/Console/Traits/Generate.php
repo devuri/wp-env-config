@@ -148,6 +148,23 @@ trait Generate
     }
 
     /**
+     * Get the date.
+     *
+     * @param string $format
+     * @param bool   $lowercase
+     *
+     * @return string
+     */
+    protected static function getdate( string $format, bool $lowercase = true ): string
+    {
+        if ( true === $lowercase ) {
+            return mb_strtolower( gmdate( $format ) );
+        }
+
+        return gmdate( $format );
+    }
+
+    /**
      * Get the consonants array.
      *
      * @return string[] The consonants array.
@@ -170,19 +187,4 @@ trait Generate
     {
         return [ 'a', 'e', 'i', 'o', 'u' ];
     }
-
-	/**
-	 * Get the date.
-	 *
-	 * @param  string $format
-	 * @param  bool $lowercase
-	 * @return string
-	 */
-	protected static function getdate( string $format, bool $lowercase = true ): string
-	{
-		if ( true === $lowercase ) {
-			return mb_strtolower(gmdate( $format ));
-		}
-		return gmdate( $format );
-	}
 }

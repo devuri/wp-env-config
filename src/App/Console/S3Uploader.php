@@ -72,8 +72,8 @@ class S3Uploader
     public function uploadFile( $localFilePath, $s3ObjectKey ): bool
     {
         try {
-			// TODO this is not always available
-            //$this->createBucketIfNotExists();
+            // TODO this is not always available
+            // $this->createBucketIfNotExists();
 
             $this->s3Client->putObject(
                 [
