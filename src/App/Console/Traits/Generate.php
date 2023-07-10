@@ -111,6 +111,43 @@ trait Generate
     }
 
     /**
+     * Get the website name from a domain.
+     *
+     * Example:
+     * ```php
+     * $domain = 'http://staging.mycoolwebsite.io';
+     * $websiteName = get_domain($domain);
+     * echo $websiteName;  // Output: staging-mycoolwebsite-io
+     * ```
+     *
+     * @param string $domain The domain URL.
+     *
+     * @return string The extracted website name.
+     */
+    protected function get_domain( string $domain ): ?string
+    {
+        if ( ! $domain ) {
+            return null;
+        }
+        $domain      = preg_replace( '/^https?:\/\//', '', $domain );
+        $domain      = preg_replace( '/\/.*$/', '', $domain );
+        $segments    = explode( '.', $domain );
+        $numSegments = \count( $segments );
+        if ( $numSegments >= 2 ) {
+            if ( $numSegments > 2 ) {
+                $subdomain   = implode( '-', \array_slice( $segments, 0, $numSegments - 2 ) );
+                $websiteName = $segments[ $numSegments - 2 ] . '-' . $segments[ $numSegments - 1 ];
+
+                return $subdomain . '-' . $websiteName;
+            }
+
+            return $segments[ $numSegments - 2 ] . '-' . $segments[ $numSegments - 1 ];
+        }
+
+        return $domain;
+    }
+
+    /**
      * Get the consonants array.
      *
      * @return string[] The consonants array.

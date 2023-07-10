@@ -63,4 +63,26 @@ class GenerateTraitTest extends TestCase
         $this->assertEquals(4, \strlen($word));
         $this->assertMatchesRegularExpression('/^[a-z]{4}$/', $word);
     }
+
+    public function test_get_domain(): void
+    {
+        $nullWebsite = $this->get_domain(null);
+        $this->assertNull($nullWebsite);
+
+        $SecureName = $this->get_domain('https://staging.mycoolwebsite.io');
+        $this->assertIsString($SecureName);
+        $this->assertEquals('staging-mycoolwebsite-io', $SecureName);
+
+        $websiteName1 = $this->get_domain('http://staging.mycoolwebsite.io');
+        $this->assertIsString($websiteName1);
+        $this->assertEquals('staging-mycoolwebsite-io', $websiteName1);
+
+        $websiteName2 = $this->get_domain('http://v1.staging.mycoolwebsite.io');
+        $this->assertIsString($websiteName2);
+        $this->assertEquals('v1-staging-mycoolwebsite-io', $websiteName2);
+
+        $websiteName3 = $this->get_domain('http://sub.subdomain.example.com');
+        $this->assertIsString($websiteName3);
+        $this->assertEquals('sub-subdomain-example-com', $websiteName3);
+    }
 }
