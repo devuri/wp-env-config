@@ -25,7 +25,7 @@ class BackupCommand extends Command
     private $backup_time;
     private $backup_dir;
     private $backup_zip;
-    private $s3backup_dir;
+    private $s3wp_dir;
 
     /**
      * BackupCommand constructor.
@@ -55,8 +55,8 @@ class BackupCommand extends Command
         // determines if we include plugins (true||false).
         $this->backup_plugins = env( 'BACKUP_PLUGINS' );
 
-		// usually the sitename.
-        $this->s3backup_dir = env( 'S3_BACKUP_DIR', 'wpsnaps' );
+        // usually the sitename or alphanum siteID.
+        $this->s3wp_dir = env( 'S3_BACKUP_DIR', $this->get_domain( env( 'WP_HOME' ) ) );
 
         // create backup directory
         if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
@@ -113,17 +113,18 @@ class BackupCommand extends Command
                     'snap'      => $this->backup_file,
                     'date'      => gmdate( 'd-m-Y' ),
                     'timestamp' => $this->backup_time,
+                    's3_dir'    => $this->s3wp_dir,
                 ]
             )
         );
 
-        // Create a ZIP archive of the site directory
+        // Create a ZIP archive of the site directory.
         $zip = new ZipArchive();
         $zip->open( $this->backup_zip, ZipArchive::CREATE | ZipArchive::OVERWRITE );
         $this->add_directory_zip( $this->root_dir_path, '', $zip );
         $zip->close();
 
-        // save snap info
+        // save snap info.
         $this->filesystem->copy( $this->root_dir_path . '/snap.json', $this->backup_dir . '/snap.json' );
 
         // remove db directory.
@@ -131,9 +132,9 @@ class BackupCommand extends Command
         unlink( $this->root_dir_path . '/snap.json' );
         // $output->writeln( 'Backup snapshot created: ' . $this->backup_zip );
 
-        // maybe upload to s3
+        // maybe upload to s3.
         if ( env( 'ENABLE_S3_BACKUP' ) ) {
-            $this->s3_upload_backup( $this->backup_zip, $this->s3backup_dir . '/' . $this->backup_file );
+            $this->s3_upload_backup( $this->backup_zip, $this->wpbucket_dir() . $this->backup_file );
         }
 
         return Command::SUCCESS;
@@ -145,11 +146,28 @@ class BackupCommand extends Command
             env( 'S3_BACKUP_KEY', '' ),
             env( 'S3_BACKUP_SECRET', '' ),
             env( 'S3_BACKUP_BUCKET', 'wp-env-s3snaps' ),
-            env( 'S3_BACKUP_REGION', 'us-west-1' ),
             // Specify the region where your S3 bucket is located
+            env( 'S3_BACKUP_REGION', 'us-west-1' ),
         );
 
         return $uploader->uploadFile( $local_file, $s3objectfilekey );
+    }
+
+    /**
+     * The backup directory in s3 bucket.
+     *
+     * @param mixed $project
+     *
+     * @return string
+     */
+    private function wpbucket_dir( $project = 'prod' ): ?string
+    {
+        if ( ! $this->s3wp_dir ) {
+            error_log( 's3 upload failed, env value for S3_BACKUP_DIR or WP_HOME is not set' );
+
+            return null;
+        }
+        return 'wp/' . $this->s3wp_dir . '/' . gmdate( 'Y' ) . '/' . gmdate( 'm' ) . '/';
     }
 
     /**

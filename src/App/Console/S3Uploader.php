@@ -42,29 +42,29 @@ class S3Uploader
             if ( ! $bucketExists ) {
                 $this->s3Client->createBucket(
                     [
-						'Bucket'                    => $this->bucketName,
-						'CreateBucketConfiguration' => [
-							'LocationConstraint' => $this->s3Client->getRegion(),
-						],
-					]
+                        'Bucket'                    => $this->bucketName,
+                        'CreateBucketConfiguration' => [
+                            'LocationConstraint' => $this->s3Client->getRegion(),
+                        ],
+                    ]
                 );
 
                 $this->s3Client->putBucketVersioning(
                     [
-						'Bucket'                  => $this->bucketName,
-						'VersioningConfiguration' => [
-							'Status' => 'Enabled',
-						],
-					]
+                        'Bucket'                  => $this->bucketName,
+                        'VersioningConfiguration' => [
+                            'Status' => 'Enabled',
+                        ],
+                    ]
                 );
 
                 return true;
-            }//end if
+            }// end if
         } catch ( AwsException $e ) {
             error_log( 'Error(could not create s3 bucket): ' . $e->getMessage() );
 
             return false;
-        }//end try
+        }// end try
 
         return null;
     }
