@@ -26,13 +26,13 @@ class EncryptionTest extends TestCase
         $data = 'This is a test string';
 
         // Encrypt the data
-        $encryptedData = $this->encryption->encrypt($data);
+        $encryptedData = $this->encryption->encrypt($data, false );
 
         // Ensure the encrypted data is not empty
         $this->assertNotEmpty($encryptedData);
 
         // Decrypt the encrypted data
-        $decryptedData = $this->encryption->decrypt($encryptedData);
+        $decryptedData = $this->encryption->decrypt($encryptedData, false );
 
         // Ensure the decrypted data matches the original data
         $this->assertEquals($data, $decryptedData);

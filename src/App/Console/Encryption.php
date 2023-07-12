@@ -85,27 +85,39 @@ class Encryption
     /**
      * Encrypts the given data.
      *
-     * @param mixed $data The data to encrypt.
+     * @param mixed $data   The data to encrypt.
+     * @param mixed $base64
      *
      * @return string The encrypted data.
      */
-    public function encrypt( $data ): string
+    public function encrypt( $data, $base64 = true ): string
     {
         $this->load_encryption_key();
 
-        return Crypto::encrypt( $data, $this->EncryptionKey );
+        $encrypted = Crypto::encrypt( $data, $this->EncryptionKey );
+
+        if ( $base64 ) {
+            return base64_encode( $encrypted );
+        }
+
+        return $encrypted;
     }
 
     /**
      * Decrypts the given ciphertext.
      *
      * @param string $ciphertext The ciphertext to decrypt.
+     * @param mixed  $decode
      *
      * @return null|mixed The decrypted data, or null if decryption fails.
      */
-    public function decrypt( $ciphertext )
+    public function decrypt( $ciphertext, $decode = true )
     {
         $this->load_encryption_key();
+
+        if ( $decode ) {
+            $ciphertext = base64_decode( $ciphertext, true );
+        }
 
         try {
             return Crypto::decrypt( $ciphertext, $this->EncryptionKey );
