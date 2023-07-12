@@ -1,5 +1,6 @@
 <?php
 
+use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\App;
 use Urisoft\App\Http\Asset;
@@ -176,4 +177,26 @@ if ( ! \function_exists( 'app_config' ) ) {
     {
         return require_once __DIR__ . '/app.php';
     }
+}
+
+/**
+ * Gets hash of given string.
+ *
+ * If no secret key is provided we will use the SECURE_AUTH_KEY wp key.
+ *
+ * @param string $data      Message to be hashed.
+ * @param string $secretkey Secret key used for generating the HMAC variant.
+ * @param string $algo      Name of selected hashing algorithm (i.e. "md5", "sha256", "haval160,4", etc..)
+ *
+ * @return string Returns a string containing the calculated hash value.
+ *
+ * @see https://www.php.net/manual/en/function.hash-hmac.php
+ */
+function evhash( $data, ?string $secretkey = null, string $algo = 'sha256' ): string
+{
+    if ( \is_null( $secretkey ) ) {
+        return hash_hmac( $algo, $data, env( 'SECURE_AUTH_KEY' ) );
+    }
+
+    return hash_hmac( $algo, $data, $secretkey );
 }

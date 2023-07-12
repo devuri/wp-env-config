@@ -2,6 +2,7 @@
 
 namespace Urisoft\App\Console;
 
+use Dotenv\Dotenv;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,12 +20,15 @@ class ConfigCommand extends Command
 
     private $root_dir_path;
     private $filesystem;
+    private $encryption;
 
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
         $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
+        $this->load_dotenv( $this->root_dir_path );
+        $this->encryption = new Encryption( $this->root_dir_path, $this->filesystem );
     }
 
     protected function configure(): void
@@ -42,6 +46,12 @@ class ConfigCommand extends Command
 
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
+
+            return Command::SUCCESS;
+        }
+
+        if ( 'secureit' === $config_task ) {
+            $this->encryption->encrypt_envfile( '/.env' );
 
             return Command::SUCCESS;
         }
@@ -90,5 +100,31 @@ class ConfigCommand extends Command
             $output->writeln( PHP_EOL . "<comment>Add to htpasswd file:</comment><info>$htpasswd</info>" . PHP_EOL );
             $output->writeln( PHP_EOL . '<comment>* Bcrypt for Apache v2.4 onwards</comment>' . PHP_EOL );
         }
+    }
+
+    /**
+     * Load the $_ENV.
+     *
+     * @param string $root_dir_path
+     *
+     * @return void
+     */
+    private function load_dotenv( string $root_dir_path ): void
+    {
+        $dotenv = Dotenv::createImmutable(
+            $root_dir_path,
+            [
+                'env',
+                '.env',
+                '.env.secure',
+                '.env.prod',
+                '.env.staging',
+                '.env.dev',
+                '.env.debug',
+                '.env.local',
+            ]
+        );
+
+        $dotenv->load();
     }
 }
