@@ -12,4 +12,5 @@ define( 'COOKIEHASH', 'c984d06aafbecf6bc55569f964148ea3' );
 define( 'APP_THEME_DIR', APP_PATH . '/template' );
 define( 'CAN_DEACTIVATE_PLUGINS', true );
 define( 'WPINC', true );
+\define('APP_TEST_PATH', __DIR__ );
 define( 'WEBAPP_ENCRYPTION_KEY', APP_TEST_PATH . '/.secret.txt' );

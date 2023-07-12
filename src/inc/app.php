@@ -26,9 +26,9 @@ return [
      * @var array $security {
      *     An array of security settings.
      *
-	 *     @type string|null $encryption_key  Full path to encryption key file (.txt) e.g., 'home/user/etc/.myweb-app-secret'
-	 *                                        This will become home/user/etc/.myweb-app-secret.txt.
-	 *                                        Set to null if encryption key is not defined.
+     *     @type string|null $encryption_key  Full path to encryption key file (.txt) e.g., 'home/user/etc/.myweb-app-secret'
+     *                                        This will become home/user/etc/.myweb-app-secret.txt.
+     *                                        Set to null if encryption key is not defined.
      *     @type bool $brute-force            Whether to enable brute force protection.
      *     @type bool $two-factor             Whether to enable two-factor authentication.
      *     @type bool $no-pwned-passwords     Whether to check for passwords that have been exposed in data breaches.
@@ -38,7 +38,7 @@ return [
      * }
      */
     'security'         => [
-		'encryption_key'     => null,
+        'encryption_key'     => null,
         'brute-force'        => true,
         'two-factor'         => true,
         'no-pwned-passwords' => true,

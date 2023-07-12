@@ -2,11 +2,16 @@
 
 namespace Tests\Unit\App\Console;
 
-use Urisoft\App\Console\Encryption;
-use PHPUnit\Framework\TestCase;
 use Defuse\Crypto\Crypto;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
+use Urisoft\App\Console\Encryption;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 class EncryptionTest extends TestCase
 {
     protected $encryption;
@@ -16,7 +21,7 @@ class EncryptionTest extends TestCase
         $this->encryption = new Encryption(APP_TEST_PATH, new Filesystem());
     }
 
-    public function testEncryptAndDecrypt()
+    public function test_encrypt_and_decrypt(): void
     {
         $data = 'This is a test string';
 
@@ -33,7 +38,7 @@ class EncryptionTest extends TestCase
         $this->assertEquals($data, $decryptedData);
     }
 
-    public function testEncryptEnvFile()
+    public function test_encrypt_env_file(): void
     {
         $this->encryption->encrypt_envfile('/.env.local');
 
@@ -46,12 +51,12 @@ class EncryptionTest extends TestCase
             $this->encryption->load_encryption_key()
         );
 
-		$envContents = file_get_contents(APP_TEST_PATH . '/.env.local');
+        $envContents = file_get_contents(APP_TEST_PATH . '/.env.local');
 
         // Ensure the decrypted .env contents match the original .env contents
         $this->assertEquals($envContents, $decryptedEnvContents);
 
-		// remove the test file.
-		unlink( APP_TEST_PATH . '/.env.encrypted' );
+        // remove the test file.
+        unlink( APP_TEST_PATH . '/.env.encrypted' );
     }
 }
