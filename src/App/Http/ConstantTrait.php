@@ -147,6 +147,9 @@ trait ConstantTrait
 
         $this->define( 'WP_REDIS_TIMEOUT', $this->redis( 'timeout' ) );
         $this->define( 'WP_REDIS_READ_TIMEOUT', $this->redis( 'read-timeout' ) );
+
+		// web app security key
+		$this->define( 'WEBAPP_ENCRYPTION_KEY', $this->security( 'encryption_key' ) );
     }
 
     protected function redis( string $key )
@@ -157,4 +160,13 @@ trait ConstantTrait
 
         return $this->args['redis'][ $key ] ?? null;
     }
+
+	protected function security( string $key )
+	{
+		if ( empty( $this->args['security'] ) ) {
+			return null;
+		}
+
+		return $this->args['security'][ $key ] ?? null;
+	}
 }

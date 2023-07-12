@@ -42,7 +42,8 @@
         "symfony/filesystem": "^5.4",
         "symfony/process": "^5.4",
         "symfony/var-dumper": "^5.4",
-        "vlucas/phpdotenv": "^5.2"
+        "vlucas/phpdotenv": "^5.2",
+		"defuse/php-encryption": "^2.4"
     },
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
