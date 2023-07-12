@@ -268,7 +268,7 @@ return [
      * Setting it to true brings back the ability to deactivate plugins.
      * The default setting is true.
      */
-    'can_deactivate'   => false,
+    'can_deactivate'   => true,
 
     /*
      * Sets the directory for additional themes.
