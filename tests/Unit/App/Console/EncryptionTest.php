@@ -23,6 +23,21 @@ class EncryptionTest extends TestCase
         $this->secret_test_data = 'This is our secret test string';
     }
 
+    protected function tearDown(): void
+    {
+        $files = [
+            APP_TEST_PATH . '/.env.encrypted',
+            APP_TEST_PATH . '/.env.dencryptfile',
+            APP_TEST_PATH . '/.env.encryptfile',
+        ];
+
+        foreach ( $files as $file ) {
+            if ( file_exists( $file ) ) {
+                unlink( $file );
+            }
+        }
+    }
+
     public function test_encrypt_and_decrypt(): void
     {
         $encryptedData = $this->encryption->encrypt($this->secret_test_data, false );
@@ -61,41 +76,26 @@ class EncryptionTest extends TestCase
         $this->assertEquals($envContents, $decryptedEnvContents);
     }
 
-	public function test_file_encryption(): void
+    public function test_file_encryption(): void
     {
-		$this->encryption->encrypt_file(
-			APP_TEST_PATH . '/.env.local',
-			APP_TEST_PATH . '/.env.encryptfile'
-		);
+        $this->encryption->encrypt_file(
+            APP_TEST_PATH . '/.env.local',
+            APP_TEST_PATH . '/.env.encryptfile'
+        );
 
         $this->assertFileExists(APP_TEST_PATH . '/.env.encryptfile');
 
-		$this->encryption->decrypt_file(
-			APP_TEST_PATH . '/.env.encryptfile',
-			APP_TEST_PATH . '/.env.dencryptfile'
-		);
+        $this->encryption->decrypt_file(
+            APP_TEST_PATH . '/.env.encryptfile',
+            APP_TEST_PATH . '/.env.dencryptfile'
+        );
 
-		$this->assertFileExists(APP_TEST_PATH . '/.env.dencryptfile');
+        $this->assertFileExists(APP_TEST_PATH . '/.env.dencryptfile');
 
-		$fileContents = file_get_contents(APP_TEST_PATH . '/.env.local');
+        $fileContents = file_get_contents(APP_TEST_PATH . '/.env.local');
 
-		$decryptedfile = file_get_contents(APP_TEST_PATH . '/.env.dencryptfile');
+        $decryptedfile = file_get_contents(APP_TEST_PATH . '/.env.dencryptfile');
 
-		$this->assertEquals($fileContents, $decryptedfile);
-    }
-
-	protected function tearDown(): void
-    {
-		$files = [
-			APP_TEST_PATH . '/.env.encrypted',
-			APP_TEST_PATH . '/.env.dencryptfile',
-			APP_TEST_PATH . '/.env.encryptfile',
-		];
-
-		foreach ( $files as $file ) {
-			if ( file_exists( $file ) ) {
-			  unlink( $file );
-			}
-		}
+        $this->assertEquals($fileContents, $decryptedfile);
     }
 }

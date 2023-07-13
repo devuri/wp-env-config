@@ -60,19 +60,19 @@ class Encryption
     }
 
 
-	public function encrypt_file( $input_file, $output_file ): void
-	{
-		$this->load_encryption_key();
+    public function encrypt_file( $input_file, $output_file ): void
+    {
+        $this->load_encryption_key();
 
-		File::encryptFile($input_file, $output_file, $this->EncryptionKey);
-	}
+        File::encryptFile( $input_file, $output_file, $this->EncryptionKey );
+    }
 
-	public function decrypt_file( $encrypted_file, $decrypted_file ): void
-	{
-		$this->load_encryption_key();
+    public function decrypt_file( $encrypted_file, $decrypted_file ): void
+    {
+        $this->load_encryption_key();
 
-		File::decryptFile($encrypted_file, $decrypted_file, $this->EncryptionKey);
-	}
+        File::decryptFile( $encrypted_file, $decrypted_file, $this->EncryptionKey );
+    }
 
     /**
      * Encrypts the contents of the .env file.
