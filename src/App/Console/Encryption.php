@@ -3,6 +3,7 @@
 namespace Urisoft\App\Console;
 
 use Defuse\Crypto\Crypto;
+use Defuse\Crypto\File;
 use Defuse\Crypto\Key;
 use Exception;
 use InvalidArgumentException;
@@ -56,6 +57,21 @@ class Encryption
         $this->EncryptionKey = Key::loadFromAsciiSafeString( $this->keyAscii );
 
         return $this->EncryptionKey;
+    }
+
+
+    public function encrypt_file( $input_file, $output_file ): void
+    {
+        $this->load_encryption_key();
+
+        File::encryptFile( $input_file, $output_file, $this->EncryptionKey );
+    }
+
+    public function decrypt_file( $encrypted_file, $decrypted_file ): void
+    {
+        $this->load_encryption_key();
+
+        File::decryptFile( $encrypted_file, $decrypted_file, $this->EncryptionKey );
     }
 
     /**
