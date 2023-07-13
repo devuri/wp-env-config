@@ -3,15 +3,15 @@
 namespace Urisoft\App\Console;
 
 use Dotenv\Dotenv;
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 use Urisoft\App\Console\Traits\Env;
 use Urisoft\App\Console\Traits\Generate;
-use InvalidArgumentException;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class ConfigCommand extends Command
 {
@@ -31,7 +31,7 @@ class ConfigCommand extends Command
         $this->root_dir_path = $root_dir_path;
         $this->load_dotenv( $this->root_dir_path );
 
-		try {
+        try {
             $this->encryption = new Encryption( $this->root_dir_path, $this->filesystem );
         } catch ( InvalidArgumentException $e ) {
             $this->encryption = null;
@@ -49,7 +49,7 @@ class ConfigCommand extends Command
      */
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
-		$io = new SymfonyStyle( $input, $output );
+        $io = new SymfonyStyle( $input, $output );
 
         $config_task = $input->getArgument( '_task' );
 
@@ -59,22 +59,21 @@ class ConfigCommand extends Command
             return Command::SUCCESS;
         }
 
-		if ( 'cryptkey' === $config_task ) {
+        if ( 'cryptkey' === $config_task ) {
+            $keyfile = 'secret-' . strtolower( $this->rand_str( 12 ) );
 
-			$keyfile = 'secret-' . strtolower($this->rand_str( 12 ));
+            $secretkey = EncryptionKey::generate_key();
 
-			$secretkey = EncryptionKey::generate_key();
+            $this->filesystem->dumpFile( $this->root_dir_path . "/.$keyfile.txt", $secretkey );
 
-			$this->filesystem->dumpFile( $this->root_dir_path . "/.$keyfile.txt", $secretkey );
-
-			$io->success( 'Encryption Key Created.' );
-			$io->info(
+            $io->success( 'Encryption Key Created.' );
+            $io->info(
                 [
                     'Ciphertext is decryptable by anyone with knowledge of the key.',
                     'Keyfile: ' . $this->root_dir_path . "/.$keyfile.txt",
                 ]
             );
-			$io->note( 'Be sure to keep this key file secret.' );
+            $io->note( 'Be sure to keep this key file secret.' );
 
             return Command::SUCCESS;
         }

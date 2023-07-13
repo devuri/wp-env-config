@@ -34,7 +34,7 @@ class EncryptionTest extends TestCase
         $this->assertEquals($this->secret_test_data, $decryptedData);
     }
 
-	public function test_encoded_encrypt_and_decrypt(): void
+    public function test_encoded_encrypt_and_decrypt(): void
     {
         $encryptedData = $this->encryption->encrypt($this->secret_test_data);
 
