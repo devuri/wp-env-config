@@ -15,37 +15,42 @@ use Urisoft\App\Console\Encryption;
 class EncryptionTest extends TestCase
 {
     protected $encryption;
+    protected $secret_test_data;
 
     protected function setUp(): void
     {
         $this->encryption = new Encryption(APP_TEST_PATH, new Filesystem());
+        $this->secret_test_data = 'This is our secret test string';
     }
 
     public function test_encrypt_and_decrypt(): void
     {
-        $data = 'This is a test string';
+        $encryptedData = $this->encryption->encrypt($this->secret_test_data, false );
 
-        // Encrypt the data
-        $encryptedData = $this->encryption->encrypt($data, false );
-
-        // Ensure the encrypted data is not empty
         $this->assertNotEmpty($encryptedData);
 
-        // Decrypt the encrypted data
         $decryptedData = $this->encryption->decrypt($encryptedData, false );
 
-        // Ensure the decrypted data matches the original data
-        $this->assertEquals($data, $decryptedData);
+        $this->assertEquals($this->secret_test_data, $decryptedData);
+    }
+
+	public function test_encoded_encrypt_and_decrypt(): void
+    {
+        $encryptedData = $this->encryption->encrypt($this->secret_test_data);
+
+        $this->assertNotEmpty($encryptedData);
+
+        $decryptedData = $this->encryption->decrypt( $encryptedData );
+
+        $this->assertEquals($this->secret_test_data, $decryptedData);
     }
 
     public function test_encrypt_env_file(): void
     {
         $this->encryption->encrypt_envfile('/.env.local');
 
-        // Ensure the encrypted .env file exists
         $this->assertFileExists(APP_TEST_PATH . '/.env.encrypted');
 
-        // Decrypt the encrypted .env file
         $decryptedEnvContents = Crypto::decrypt(
             file_get_contents(APP_TEST_PATH . '/.env.encrypted'),
             $this->encryption->load_encryption_key()
@@ -53,10 +58,8 @@ class EncryptionTest extends TestCase
 
         $envContents = file_get_contents(APP_TEST_PATH . '/.env.local');
 
-        // Ensure the decrypted .env contents match the original .env contents
         $this->assertEquals($envContents, $decryptedEnvContents);
 
-        // remove the test file.
         unlink( APP_TEST_PATH . '/.env.encrypted' );
     }
 }
