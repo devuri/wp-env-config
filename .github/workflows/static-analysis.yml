@@ -25,6 +25,9 @@ jobs:
       - name: "💽  Installing Composer Packages"
         run: composer install
 
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
       - name: "🧪 Psalm Code Analysis Checks"
         run: composer psalm
 
