@@ -110,9 +110,9 @@
             "composer wpcs-lint",
             "composer lint",
             "composer install -q",
-            "composer lint",
-            "composer phpdoc -q",
+			"composer phpdoc -q",
             "composer test",
+            "composer lint",
             "composer no-dev -q"
         ],
         "phpstan": "@php ./vendor/bin/phpstan analyse",

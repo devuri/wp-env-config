@@ -28,10 +28,12 @@ class BaseKernel
     /**
      * Setup BaseKernel.
      *
-     * @param string   $app_path
-     * @param string[] $args
+     * @param string     $app_path
+     * @param string[]   $args
+     * @param null|Setup $setup
      *
      * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function __construct( string $app_path, array $args = [], ?Setup $setup = null )
     {

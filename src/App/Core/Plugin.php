@@ -15,7 +15,7 @@ class Plugin
     public function __construct()
     {
         if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN ) {
-            $wp_sudo_admin = WP_SUDO_ADMIN;
+            $wp_sudo_admin = (int) WP_SUDO_ADMIN;
         } else {
             $wp_sudo_admin = null;
         }
