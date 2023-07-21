@@ -43,7 +43,7 @@
         "symfony/process": "^5.4",
         "symfony/var-dumper": "^5.4",
         "vlucas/phpdotenv": "^5.2",
-		"defuse/php-encryption": "^2.4"
+        "defuse/php-encryption": "^2.4"
     },
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
@@ -111,11 +111,14 @@
             "composer lint",
             "composer install -q",
             "composer lint",
+            "composer phpdoc -q",
             "composer test",
             "composer no-dev -q"
         ],
         "phpstan": "@php ./vendor/bin/phpstan analyse",
         "psalm": "vendor/bin/psalm",
+        "phpdoc": "@php ./bin/phpdoc",
+        "phpdoc-v": "@php ./bin/phpdoc -vvv",
         "psalm-secure": "vendor/bin/psalm --taint-analysis",
         "psalm-info": "vendor/bin/psalm --show-info=true",
         "psalm-fix-return": "vendor/bin/psalm --alter --issues=MissingReturnType",
