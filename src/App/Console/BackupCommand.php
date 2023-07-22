@@ -4,6 +4,7 @@ namespace Urisoft\App\Console;
 
 use Dotenv\Dotenv;
 use Exception;
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -26,6 +27,9 @@ class BackupCommand extends Command
     private $backup_dir;
     private $backup_zip;
     private $s3wp_dir;
+    private $encrypter;
+    private $encrypted_backup;
+    private $s3uploader;
 
     /**
      * BackupCommand constructor.
@@ -41,6 +45,13 @@ class BackupCommand extends Command
         $this->root_dir_path = $root_dir_path;
         $this->load_dotenv( $this->root_dir_path );
         $this->snapshot_dir = $this->root_dir_path . '/.snapshot/' . gmdate( 'Y' ) . '/' . gmdate( 'F' );
+
+        // setup Encryption
+        try {
+            $this->encrypter = new Encryption( $this->root_dir_path, $this->filesystem );
+        } catch ( InvalidArgumentException $e ) {
+            $this->encrypter = null;
+        }
 
         // Create backup directory if it doesn't exist.
         if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
@@ -65,6 +76,18 @@ class BackupCommand extends Command
 
         // zip filename
         $this->backup_zip = $this->backup_dir . '/' . $this->backup_file;
+
+        // maybe encrypted backup.
+        $this->encrypted_backup = $this->backup_zip . '.encrypted';
+
+        // setup s3
+        $this->s3uploader = new S3Uploader(
+            env( 'S3_BACKUP_KEY', '' ),
+            env( 'S3_BACKUP_SECRET', '' ),
+            env( 'S3_BACKUP_BUCKET', 'wp-s3snaps' ),
+            // Specify the region where your S3 bucket is located
+            env( 'S3_BACKUP_REGION', 'us-west-1' ),
+        );
 
         parent::__construct();
     }
@@ -134,9 +157,16 @@ class BackupCommand extends Command
         unlink( $this->root_dir_path . '/snap.json' );
         // $output->writeln( 'Backup snapshot created: ' . $this->backup_zip );
 
+        if ( env( 'S3ENCRYPTED_BACKUP' ) ) {
+            $this->encrypter->encrypt_file(
+                $this->backup_zip,
+                $this->encrypted_backup
+            );
+        }
+
         // maybe upload to s3.
         if ( env( 'ENABLE_S3_BACKUP' ) ) {
-            $this->s3_upload_backup( $this->backup_zip, $this->wpbucket_dir() . $this->backup_file );
+            $this->s3_upload_backup();
         }
 
         // if s3 is enabled we can delete local backups.
@@ -147,17 +177,13 @@ class BackupCommand extends Command
         return Command::SUCCESS;
     }
 
-    protected function s3_upload_backup( string $local_file, string $s3objectfilekey ): bool
+    protected function s3_upload_backup(): bool
     {
-        $uploader = new S3Uploader(
-            env( 'S3_BACKUP_KEY', '' ),
-            env( 'S3_BACKUP_SECRET', '' ),
-            env( 'S3_BACKUP_BUCKET', 'wp-env-s3snaps' ),
-            // Specify the region where your S3 bucket is located
-            env( 'S3_BACKUP_REGION', 'us-west-1' ),
-        );
+        if ( env( 'S3ENCRYPTED_BACKUP' ) ) {
+            return $this->s3uploader->uploadFile( $this->encrypted_backup, $this->wpbucket_dir() . $this->backup_file . '.encrypted' );
+        }
 
-        return $uploader->uploadFile( $local_file, $s3objectfilekey );
+        return $this->s3uploader->uploadFile( $this->backup_zip, $this->wpbucket_dir() . $this->backup_file );
     }
 
     /**
