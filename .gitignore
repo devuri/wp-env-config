@@ -2,6 +2,7 @@ composer.phar
 composer.lock
 .phpunit.result.cache
 /vendor
+/coverage-report
 /tmp
 /wordpress
 /wp
