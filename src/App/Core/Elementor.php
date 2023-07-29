@@ -2,6 +2,9 @@
 
 namespace Urisoft\App\Core;
 
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Easier setup for Elementor Pro activation.
  *
@@ -29,23 +32,30 @@ class Elementor
     public const LICENSE_DATA_OPTION          = '_elementor_pro_license_data';
     public const LICENSE_DATA_FALLBACK_OPTION = self::LICENSE_DATA_OPTION . '_fallback';
 
+    private $api_version = null;
+    private $license_key = null;
+
     /**
      * Initializes the Elementor pro class.
      *
-     * @param null|string $license_key
+     * @param string $license_key
      *
      * @throws InvalidArgumentException
      * @throws Exception
      */
     public function __construct( string $license_key )
     {
-        if ( ! \defined('ELEMENTOR_PRO_VERSION') ) {
+        if ( ! \defined( 'ELEMENTOR_PRO_VERSION' ) ) {
             throw new InvalidArgumentException( 'ELEMENTOR_PRO_VERSION is not defined' );
         }
 
-		if ( ! current_user_can( 'manage_options' ) ) {
-			throw new Exception( 'not valid' );
-		}
+        if ( ! current_user_can( 'manage_options' ) ) {
+            throw new Exception( 'not valid' );
+        }
+
+        if ( \defined( 'ELEMENTOR_PRO_VERSION' ) ) {
+            $this->api_version = ELEMENTOR_PRO_VERSION;
+        }
 
         $this->license_key = $license_key;
     }
@@ -98,6 +108,12 @@ class Elementor
 
     private function post_request( string $edd_action = 'activate_license' )
     {
+        if ( \is_null( $this->api_version ) ) {
+            error_log( 'api_version is null' );
+
+            return false;
+        }
+
         $response = wp_remote_post(
             self::STORE_URL,
             [
@@ -105,7 +121,7 @@ class Elementor
                 'body'    => [
                     'edd_action'  => $edd_action,
                     'license'     => $this->license_key,
-                    'api_version' => ELEMENTOR_PRO_VERSION,
+                    'api_version' => $this->api_version,
                     'item_name'   => self::PRODUCT_NAME,
                     'site_lang'   => get_bloginfo( 'language' ),
                     'url'         => home_url(),
@@ -119,7 +135,7 @@ class Elementor
 
         $response_code = (int) wp_remote_retrieve_response_code( $response );
 
-        if ( 200 !== $response_code || empty( $data ) ) {
+        if ( 200 !== $response_code ) {
             return false;
         }
 
@@ -128,7 +144,7 @@ class Elementor
 
     private function license_data()
     {
-		$license_data = get_option( self::LICENSE_KEY_OPTION );
+        $license_data = get_option( self::LICENSE_KEY_OPTION );
 
         if ( ! $license_data ) {
             return [
