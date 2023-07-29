@@ -11,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 use Urisoft\App\Console\Traits\Generate;
+use Urisoft\Encryption;
 use ZipArchive;
 
 class BackupCommand extends Command
