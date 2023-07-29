@@ -57,11 +57,6 @@ class BaseKernel
         $this->config_file = $this->args['config_file'];
 
         $this->args = array_merge( $this->args, $args );
-        $app_error  = static::detect_error();
-
-        if ( \is_array( $app_error ) ) {
-            throw new Exception( 'Error: ' . $app_error['message'], 2 );
-        }
 
         /*
          * By default, Dotenv will stop looking for files as soon as it finds one.
@@ -229,33 +224,6 @@ class BaseKernel
             'debug'       => false,
             'errors'      => $this->args['error_handler'],
         ];
-    }
-
-    /**
-     * Detects the error causing the crash if it should be handled.
-     *
-     * @since WordPress 5.2.0
-     *
-     * @return null|(int|string)[] Error information returned by `error_get_last()`, or null if none was recorded or the error should not be handled.
-     *
-     * @see https://github.com/WordPress/wordpress-develop/blob/6.0/src/wp-includes/class-wp-fatal-error-handler.php
-     * @see https://www.php.net/manual/en/function.error-get-last.php
-     *
-     * @psalm-return array{type: int, message: string, file: string, line: int}|null
-     */
-    protected static function detect_error(): ?array
-    {
-        if ( PHP_SAPI === 'cli' ) {
-            return null;
-        }
-
-        $error = error_get_last();
-
-        if ( null === $error ) {
-            return null;
-        }
-
-        return $error;
     }
 
     /**

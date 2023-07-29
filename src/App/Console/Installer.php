@@ -27,6 +27,7 @@ class Installer extends Command
     protected function configure(): void
     {
         $this->setDescription( 'Installs WordPress' )
+            ->addOption( 'title', 't', InputOption::VALUE_REQUIRED, 'The  blog title.', 'Web Application:' . mt_rand( 189, 999 ) )
             ->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, 'The admin username.', 'admin' )
             ->addOption( 'email', 'e', InputOption::VALUE_REQUIRED, 'The admin email address.', 'admin@example.com' )
             ->setHelp( 'This command installs WordPress.' );
@@ -41,8 +42,9 @@ class Installer extends Command
     {
         $io = new SymfonyStyle( $input, $output );
 
-        $username = $input->getOption( 'user' );
-        $email = $input->getOption( 'email' );
+        $blog_title = $input->getOption( 'title' );
+        $username   = $input->getOption( 'user' );
+        $email      = $input->getOption( 'email' );
 
         $io->title( 'Starting WordPress installation...' );
 
@@ -52,7 +54,8 @@ class Installer extends Command
         $result = self::wp_installer(
             $this->root_dir_path . '/public/wp/',
             [
-                'user_name' => $username,
+                'blog_title' => $blog_title,
+                'user_name'  => $username,
                 'user_email' => $email,
             ]
         );
