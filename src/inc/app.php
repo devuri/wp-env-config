@@ -354,7 +354,7 @@ return [
      * This encoding process ensures that the encoded data remains intact and can be decoded back into its original form when needed.
      *
      * use the command to generate key files: php nino config create-public-key
-     * This will generate a sample key with uuid filename, replace the sample key with you own and add the filename to env file.
+     * This will generate a sample key with uuid filename, replace the sample key with your own and add the filename to env file.
      *
      * @var array $publickey An array containing the UUID of the public key stored as an option in the WordPress options table.
      */
