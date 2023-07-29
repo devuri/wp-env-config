@@ -34,6 +34,7 @@
         "aws/aws-sdk-php": "^3.275",
         "devuri/secure-password": "^0.1",
         "devuri/uuid-generator": "^0.0.1",
+        "devuri/encryption": "^0.1",
         "filp/whoops": "^2.15",
         "johnpbloch/wordpress": "^6.2",
         "roots/wp-config": "^1.0",
