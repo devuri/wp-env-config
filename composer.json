@@ -37,7 +37,7 @@
         "filp/whoops": "^2.15",
         "johnpbloch/wordpress": "^6.2",
         "roots/wp-config": "^1.0",
-        "symfony/console": "6.0.*",
+        "symfony/console": "5.4.*",
         "symfony/error-handler": "^5.4",
         "symfony/filesystem": "^5.4",
         "symfony/process": "^5.4",
