@@ -11,12 +11,12 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Installer extends Command
 {
-    protected static $defaultName = 'wpi';
+    protected static $defaultName = 'wp:install';
 
     private $root_dir_path;
     private $filesystem;
 
-    // wpi -u admin
+    // wp:install -u admin
     public function __construct( string $root_dir_path, Filesystem $filesystem )
     {
         parent::__construct();
@@ -28,6 +28,7 @@ class Installer extends Command
     {
         $this->setDescription( 'Installs WordPress' )
             ->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, 'The admin username.', 'admin' )
+            ->addOption( 'email', 'e', InputOption::VALUE_REQUIRED, 'The admin email address.', 'admin@example.com' )
             ->setHelp( 'This command installs WordPress.' );
     }
 
@@ -41,6 +42,7 @@ class Installer extends Command
         $io = new SymfonyStyle( $input, $output );
 
         $username = $input->getOption( 'user' );
+        $email = $input->getOption( 'email' );
 
         $io->title( 'Starting WordPress installation...' );
 
@@ -51,6 +53,7 @@ class Installer extends Command
             $this->root_dir_path . '/public/wp/',
             [
                 'user_name' => $username,
+                'user_email' => $email,
             ]
         );
 
