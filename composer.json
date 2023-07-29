@@ -94,6 +94,12 @@
             "vendor/bin/phpunit",
             "composer no-dev -q"
         ],
+        "test-covers": [
+            "@putenv XDEBUG_MODE=coverage",
+            "composer install -q",
+            "vendor/bin/phpunit --coverage-html coverage-report",
+            "composer no-dev -q"
+        ],
         "lint": [
             "composer install -q",
             "composer audit",
@@ -110,8 +116,9 @@
             "composer wpcs-lint",
             "composer lint",
             "composer install -q",
-			"composer phpdoc -q",
+            "composer phpdoc -q",
             "composer test",
+            "composer test-covers",
             "composer lint",
             "composer no-dev -q"
         ],
