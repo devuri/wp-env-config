@@ -4,6 +4,7 @@ use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\App;
 use Urisoft\App\Http\Asset;
+use Urisoft\DotAccess;
 
 if ( ! \function_exists( 'asset' ) ) {
     /**
@@ -165,7 +166,7 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
     }
 }// end if
 
-if ( ! \function_exists( 'app_config' ) ) {
+if ( ! \function_exists( 'app_config_default' ) ) {
     /**
      * Get default app config values.
      *
@@ -173,10 +174,25 @@ if ( ! \function_exists( 'app_config' ) ) {
      *
      * @psalm-return array{security: array{'brute-force': true, 'two-factor': true, 'no-pwned-passwords': true, 'admin-ips': array<empty, empty>}, mailer: array{brevo: array{apikey: mixed}, postmark: array{token: mixed}, sendgrid: array{apikey: mixed}, mailerlite: array{apikey: mixed}, mailgun: array{domain: mixed, secret: mixed, endpoint: mixed, scheme: 'https'}, ses: array{key: mixed, secret: mixed, region: mixed}}, sudo_admin: mixed, sudo_admin_group: null, web_root: 'public', s3uploads: array{bucket: mixed, key: mixed, secret: mixed, region: mixed, 'bucket-url': mixed, 'object-acl': mixed, expires: mixed, 'http-cache': mixed}, asset_dir: 'assets', content_dir: 'app', plugin_dir: 'plugins', mu_plugin_dir: 'mu-plugins', sqlite_dir: 'sqlitedb', sqlite_file: '.sqlite-wpdatabase', default_theme: 'brisko', disable_updates: true, can_deactivate: false, theme_dir: 'templates', error_handler: null, redis: array{disabled: mixed, host: mixed, port: mixed, password: mixed, adminbar: mixed, 'disable-metrics': mixed, 'disable-banners': mixed, prefix: mixed, database: mixed, timeout: mixed, 'read-timeout': mixed}, publickey: array{'app-key': mixed}}
      */
-    function app_config(): array
+    function app_config_default(): array
     {
         return require_once __DIR__ . '/app.php';
     }
+}
+
+/**
+ * Wrapper function for accessing nested data using dot notation.
+ *
+ * @param string $key The dot notation key to access the data.
+ * @param mixed $default The default value to return if the key is not found.
+ *
+ * @return mixed The value associated with the key or the default value.
+ */
+function config( $key, $default = null )
+{
+	$dotdata = new DotAccess( APP_PATH . '/app.php' );
+
+    return $dotdata->get($key, $default);
 }
 
 /**

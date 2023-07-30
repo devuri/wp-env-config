@@ -8,8 +8,8 @@
  * Some values are predefined by the framework, while others can be explicitly defined here as per specific requirements.
  *
  * The configuration options can be accessed in two ways:
- * 1. Using the `app_config()` framework helper function, which provides easy access to the configuration values.
- * 2. Utilizing the `get_app_config()` method available in the framework's Kernel, which returns the configuration options as an array.
+ * 1. Using the `config()` framework helper function, which provides easy access to the configuration values.
+ * 2. Utilizing the `get_config()` method available in the framework's Kernel, which returns the configuration options as an array.
  *
  * Note that almost all configuration options in this file are optional, as the framework provides sensible defaults for required values.
  * Any options not explicitly set here will be automatically handled by the framework.
