@@ -183,16 +183,16 @@ if ( ! \function_exists( 'app_config_default' ) ) {
 /**
  * Wrapper function for accessing nested data using dot notation.
  *
- * @param string $key The dot notation key to access the data.
- * @param mixed $default The default value to return if the key is not found.
+ * @param string $key     The dot notation key to access the data.
+ * @param mixed  $default The default value to return if the key is not found.
  *
  * @return mixed The value associated with the key or the default value.
  */
 function config( $key, $default = null )
 {
-	$dotdata = new DotAccess( APP_PATH . '/app.php' );
+    $dotdata = new DotAccess( APP_PATH . '/app.php' );
 
-    return $dotdata->get($key, $default);
+    return $dotdata->get( $key, $default );
 }
 
 /**

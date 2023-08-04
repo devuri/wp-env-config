@@ -110,6 +110,26 @@ trait Generate
         return $username . ':' . crypt( $password, $salt );
     }
 
+	/**
+	 * Generates a unique identifier within a given range of values using
+	 * PHP's built-in random_int function.
+	 *
+	 * @param int $min The minimum value for the identifier. Defaults to 100000.
+	 * @param int $max The maximum value for the identifier. Defaults to 900000.
+	 *
+	 * @throws Exception
+	 *
+	 * @return int A randomly generated integer between the values specified.
+	 *
+	 * @see https://www.php.net/manual/en/function.random-int.php
+	 *
+	 * @psalm-return int<100000, 900000>
+	 */
+	public static function random_id( int $min = 100000, int $max = 900000 ): int
+	{
+	    return random_int( $min, $max );
+	}
+
     /**
      * Get the website name from a domain.
      *
