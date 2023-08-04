@@ -2,6 +2,7 @@
 
 namespace Urisoft\App\Console;
 
+use Dotenv\Dotenv;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -9,11 +10,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 use Urisoft\App\Console\Traits\Generate;
-use Dotenv\Dotenv;
 
 class LoginCommand extends Command
 {
-	use Generate;
+    use Generate;
 
     protected static $defaultName = 'wp:login';
 
@@ -26,7 +26,7 @@ class LoginCommand extends Command
         parent::__construct();
         $this->filesystem    = $filesystem;
         $this->root_dir_path = $root_dir_path;
-		$this->load_dotenv( $this->root_dir_path );
+        $this->load_dotenv( $this->root_dir_path );
     }
 
     protected function configure(): void
@@ -45,7 +45,7 @@ class LoginCommand extends Command
     {
         $io = new SymfonyStyle( $input, $output );
 
-        $username   = $input->getOption( 'user' );
+        $username = $input->getOption( 'user' );
 
         $io->title( 'WordPress Auto-login Started...' );
 
@@ -54,7 +54,7 @@ class LoginCommand extends Command
         if ( $autoLoginUrl ) {
             $io->newLine();
             $io->section( 'Auto-login URL:' );
-            $io->writeln($autoLoginUrl);
+            $io->writeln( $autoLoginUrl );
             $io->newLine();
 
             return Command::SUCCESS;
@@ -70,26 +70,24 @@ class LoginCommand extends Command
      *
      * @return string
      */
-    protected static function login( string $username  ): string
+    protected static function login( string $username ): string
     {
-	    $secretKey = env('AUTO_LOGIN_SECRET_KEY');
+        $secretKey = env( 'AUTO_LOGIN_SECRET_KEY' );
 
-		$service_data = [
-			'timestamp' => time(),
-			'username' => urlencode($username),
-			'site_id' => self::random_id(),
-		];
+        $service_data = [
+            'timestamp' => time(),
+            'username'  => urlencode( $username ),
+            'site_id'   => self::random_id(),
+        ];
 
-		$http_query = http_build_query($service_data, '', '&');
+        $http_query = http_build_query( $service_data, '', '&' );
 
-		$signature = hash_hmac('sha256', $http_query, $secretKey);
+        $signature = hash_hmac( 'sha256', $http_query, $secretKey );
 
-	    $autoLoginUrl = env( 'WP_HOME' ) . '/?auto_login=1&' . $http_query . '&signature=' . $signature;
-
-	    return $autoLoginUrl;
+        return env( 'WP_HOME' ) . '/?auto_login=1&' . $http_query . '&signature=' . $signature;
     }
 
-	/**
+    /**
      * Load the $_ENV.
      *
      * @param string $root_dir_path

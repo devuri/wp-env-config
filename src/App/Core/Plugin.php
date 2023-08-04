@@ -91,10 +91,13 @@ class Plugin
             register_theme_directory( APP_THEME_DIR );
         }
 
-		// Disable login screen language switcher.
-		add_filter( 'login_display_language_dropdown', function() {
-			return false;
-		} );
+        // Disable login screen language switcher.
+        add_filter(
+            'login_display_language_dropdown',
+            function() {
+                return false;
+            }
+        );
 
         /*
          * Prevent Admin users from deactivating plugins.

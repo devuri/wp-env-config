@@ -116,13 +116,13 @@ trait Env
 		END;
     }
 
-	protected static function autoLoginSecret(): string
+    protected static function autoLoginSecret(): string
     {
-		$secretKey = bin2hex(random_bytes(32));
+        $secret_key = bin2hex( random_bytes( 32 ) );
 
         return <<<END
 
-		AUTO_LOGIN_SECRET_KEY='$secretKey'
+		AUTO_LOGIN_SECRET_KEY='$secret_key'
 		END;
     }
 }

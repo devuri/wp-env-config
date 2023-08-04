@@ -86,10 +86,8 @@ class SetupCommand extends Command
             $output->writeln( '<info>Salts saved to new env file.</info>' );
         }
 
-
-		// Adds login secret.
-		$this->filesystem->dumpFile( $this->files['env'], self::autoLoginSecret() );
-
+        // Adds login secret.
+        $this->filesystem->dumpFile( $this->files['env'], self::autoLoginSecret() );
 
         return Command::SUCCESS;
     }

@@ -12,8 +12,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 use Urisoft\App\Console\Traits\Env;
 use Urisoft\App\Console\Traits\Generate;
-use Urisoft\EncryptionKey;
 use Urisoft\Encryption;
+use Urisoft\EncryptionKey;
 
 class ConfigCommand extends Command
 {
