@@ -87,7 +87,7 @@ class SetupCommand extends Command
         }
 
         // Adds login secret.
-        $this->filesystem->dumpFile( $this->files['env'], self::autoLoginSecret() );
+        $this->filesystem->appendToFile( $this->files['env'], self::autoLoginSecret() );
 
         return Command::SUCCESS;
     }
