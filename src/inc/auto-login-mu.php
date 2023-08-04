@@ -6,7 +6,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
     exit;
 }
 
-function wp_env_verify_signature( $service, $signature )
+function wpenv_verify_signature( $service, $signature )
 {
     $secretKey = env( 'AUTO_LOGIN_SECRET_KEY' );
 
@@ -15,6 +15,15 @@ function wp_env_verify_signature( $service, $signature )
     $generatedSignature = hash_hmac( 'sha256', $http_query, $secretKey );
 
     return hash_equals( $generatedSignature, $signature );
+}
+
+function wpenv_get_req_input( string $req_input )
+{
+    if ( isset( $_GET[ $req_input ] ) ) {
+        return sanitize_text_field( wp_unslash( $_GET[ $req_input ] ) );
+    }
+
+    return null;
 }
 
 function auto_login_mu_plugin_check_auto_login(): void
@@ -28,9 +37,9 @@ function auto_login_mu_plugin_check_auto_login(): void
 
     if ( isset( $_GET['auto_login'] ) ) {
         $service = [
-            'timestamp' => sanitize_text_field( wp_unslash( $_GET['timestamp'] ) ?? '' ),
-            'username'  => sanitize_text_field( wp_unslash( $_GET['username'] ) ?? '' ),
-            'site_id'   => sanitize_text_field( wp_unslash( $_GET['site_id'] ) ?? '' ),
+            'timestamp' => wpenv_get_req_input( 'timestamp' ),
+            'username'  => wpenv_get_req_input( 'username' ),
+            'site_id'   => wpenv_get_req_input( 'site_id' ),
         ];
 
         // Get the current timestamp.
@@ -43,13 +52,13 @@ function auto_login_mu_plugin_check_auto_login(): void
             return;
         }
 
-        $signature = sanitize_text_field( wp_unslash( $_GET['signature'] ) ?? '' );
+        $signature = wpenv_get_req_input( 'signature' );
 
-        if ( empty( $service['username'] ) || empty( $signature ) ) {
+        if ( \is_null( $service['username'] ) || \is_null( $signature ) ) {
             return;
         }
 
-        if ( ! wp_env_verify_signature( $service, $signature ) ) {
+        if ( ! wpenv_verify_signature( $service, $signature ) ) {
             wp_safe_redirect( $home_url );
 
             return;
@@ -57,7 +66,7 @@ function auto_login_mu_plugin_check_auto_login(): void
 
         $user = get_user_by( 'login', $service['username'] );
 
-        if ( ! is_wp_error( $user ) ) {
+        if ( $user ) {
             wp_clear_auth_cookie();
             wp_set_current_user( $user->ID );
             wp_set_auth_cookie( $user->ID, false, is_ssl() );
