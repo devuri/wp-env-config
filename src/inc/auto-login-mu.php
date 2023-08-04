@@ -20,7 +20,6 @@ function wp_env_verify_signature($service, $signature)
 function auto_login_mu_plugin_check_auto_login() {
 
 	$home_url = home_url('/');
-	$admin_url = admin_url();
 
 	if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'sec', 'secure', 'prod', 'production' ], true ) ) {
 		wp_safe_redirect($home_url);
@@ -57,13 +56,18 @@ function auto_login_mu_plugin_check_auto_login() {
 
 		$user = get_user_by('login', $service['username']);
 
-        if ($user) {
-            wp_set_current_user($user->ID);
-            wp_set_auth_cookie($user->ID);
-            do_action('wp_login', $user->user_login, $user);
-        }
+		if ( ! is_wp_error( $user ) ) {
+			wp_clear_auth_cookie();
+			wp_set_current_user( $user->ID );
+			wp_set_auth_cookie( $user->ID, false, is_ssl() );
 
-        wp_safe_redirect($admin_url);
+			do_action( 'wp_login', $user->user_login, $user );
+			$redirect_to = user_admin_url();
+			wp_safe_redirect( $redirect_to );
+			exit;
+		}
+
+        wp_safe_redirect($home_url);
         exit;
     }
 }
