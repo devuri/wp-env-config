@@ -34,13 +34,12 @@ class Plugin
         // basic auth
         BasicAuth::init();
 
+        // allows auto login.
+        AutoLogin::init();
+
         add_action(
             'send_headers',
             function(): void {
-                if ( ! \defined( 'SET_SECURITY_HEADERS' ) ) {
-                    return;
-                }
-
                 $this->security_headers();
             }
         );
@@ -135,6 +134,10 @@ class Plugin
 
     protected function security_headers(): void
     {
+        if ( ! \defined( 'SET_SECURITY_HEADERS' ) ) {
+            return;
+        }
+
         $home_domain = $this->extract_domain( WP_HOME );
 
         header( 'Access-Control-Allow-Origin: www.google-analytics.com' );

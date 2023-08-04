@@ -137,6 +137,10 @@ if ( ! \function_exists( 'wpc_app_config_core' ) ) {
      */
     function wpc_app_config_core(): void
     {
+        if ( ! \defined( 'ABSPATH' ) ) {
+            exit;
+        }
+
         Plugin::init();
     }
 }

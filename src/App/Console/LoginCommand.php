@@ -84,7 +84,7 @@ class LoginCommand extends Command
 
         $signature = hash_hmac( 'sha256', $http_query, $secretKey );
 
-        return env( 'WP_HOME' ) . '/?auto_login=1&' . $http_query . '&signature=' . $signature;
+        return env( 'WP_HOME' ) . '/?wpenv_auto_login=1&' . $http_query . '&signature=' . $signature;
     }
 
     /**
