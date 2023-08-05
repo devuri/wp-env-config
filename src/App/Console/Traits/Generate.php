@@ -89,6 +89,22 @@ trait Generate
         return random_int( $min, $max );
     }
 
+	/**
+	 * Generates a secure secret key of the specified length.
+	 *
+	 * This static method generates a cryptographically secure secret key of the specified length
+	 * in bytes using the random_bytes function. The generated key is then converted to a hexadecimal string
+	 * using bin2hex to ensure it is suitable for use in various security-related scenarios.
+	 *
+	 * @param int $bytes The length of the secret key to generate, in bytes.
+	 *
+	 * @return string The cryptographically secure secret key as a hexadecimal string.
+	 */
+	public static function secret_key( int $bytes = 32 ): string
+    {
+        return bin2hex( random_bytes( $bytes ) );
+    }
+
     /**
      * Generate a random alphanumeric alphanum_str of a specified length, starting with a letter.
      *

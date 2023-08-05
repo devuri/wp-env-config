@@ -72,7 +72,7 @@ class LoginCommand extends Command
      */
     protected static function login( string $username ): string
     {
-        $secretKey = env( 'AUTO_LOGIN_SECRET_KEY' );
+        $secretKey = env( 'WPENV_AUTO_LOGIN_SECRET_KEY' );
 
         $service_data = [
             'timestamp' => time(),

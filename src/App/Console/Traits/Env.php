@@ -122,7 +122,7 @@ trait Env
 
         return <<<END
 
-		AUTO_LOGIN_SECRET_KEY='$secret_key'
+		WPENV_AUTO_LOGIN_SECRET_KEY='$secret_key'
 		END;
     }
 }
