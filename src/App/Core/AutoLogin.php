@@ -60,7 +60,7 @@ class AutoLogin
      */
     public function __construct()
     {
-        $this->secret_key     = env( 'AUTO_LOGIN_SECRET_KEY' );
+        $this->secret_key     = env( 'WPENV_AUTO_LOGIN_SECRET_KEY' );
         $this->home_url       = home_url( '/' );
         $this->user_admin_url = user_admin_url();
         $this->login_service  = [];

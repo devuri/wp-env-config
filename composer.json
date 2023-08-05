@@ -167,6 +167,7 @@
         "itsgoingd/clockwork": "php dev tools in your browser.",
         "daniel-zahariev/php-aws-ses": "Send emails via Amazon Simple Email Service (SES).",
         "humanmade/aws-ses-wp-mail": "AWS SES is a very simple UI-less plugin for sending wp emails via AWS SES.",
-        "predis/predis": "A flexible and feature-complete Redis client for PHP."
+        "predis/predis": "A flexible and feature-complete Redis client for PHP.",
+        "phpseclib/phpseclib": "Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc."
     }
 }
