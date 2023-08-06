@@ -54,11 +54,6 @@ class BackupCommand extends Command
             $this->encrypter = null;
         }
 
-        // Create backup directory if it doesn't exist.
-        if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
-            $this->filesystem->mkdir( $this->snapshot_dir );
-        }
-
         // usually the sitename or alphanum siteID.
         $this->s3wp_dir = env( 'S3_BACKUP_DIR', $this->get_domain( env( 'WP_HOME' ) ) );
 
@@ -69,11 +64,6 @@ class BackupCommand extends Command
 
         // determines if we include plugins (true||false).
         $this->backup_plugins = env( 'BACKUP_PLUGINS' );
-
-        // create backup directory
-        if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
-            $this->filesystem->mkdir( $this->backup_dir );
-        }
 
         // zip filename
         $this->backup_zip = $this->backup_dir . '/' . $this->backup_file;
@@ -92,6 +82,24 @@ class BackupCommand extends Command
 
         parent::__construct();
     }
+
+	/**
+	 * Handles directory setups.
+	 *
+	 * @return void
+	 */
+	protected function create_backup_dir()
+	{
+		// Create snapshot directory.
+		if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
+			$this->filesystem->mkdir( $this->snapshot_dir );
+		}
+
+		// Create backup_dir directory.
+        if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
+            $this->filesystem->mkdir( $this->backup_dir );
+        }
+	}
 
     /**
      * Saves an array to the 'snap.json' file using the Symfony Filesystem component.
@@ -125,6 +133,9 @@ class BackupCommand extends Command
     {
         // backup db
         $dbbackup = $this->create_sql_dump();
+
+		// create_backup_dir()
+		$this->create_backup_dir();
 
         if ( 0 !== $dbbackup['code'] ) {
             return Command::FAILURE;
