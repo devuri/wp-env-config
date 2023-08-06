@@ -35,7 +35,7 @@ class Plugin
         BasicAuth::init();
 
         // allows auto login.
-        AutoLogin::init();
+        AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
 
         add_action(
             'send_headers',

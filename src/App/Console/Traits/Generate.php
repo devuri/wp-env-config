@@ -89,18 +89,18 @@ trait Generate
         return random_int( $min, $max );
     }
 
-	/**
-	 * Generates a secure secret key of the specified length.
-	 *
-	 * This static method generates a cryptographically secure secret key of the specified length
-	 * in bytes using the random_bytes function. The generated key is then converted to a hexadecimal string
-	 * using bin2hex to ensure it is suitable for use in various security-related scenarios.
-	 *
-	 * @param int $bytes The length of the secret key to generate, in bytes.
-	 *
-	 * @return string The cryptographically secure secret key as a hexadecimal string.
-	 */
-	public static function secret_key( int $bytes = 32 ): string
+    /**
+     * Generates a secure token of the specified length.
+     *
+     * This static method generates a cryptographically secure token of the specified length
+     * in bytes using the random_bytes function. The generated key is then converted to a hexadecimal string
+     * using bin2hex to ensure it is suitable for use in various security-related scenarios.
+     *
+     * @param int $bytes The length of the token to generate, in bytes.
+     *
+     * @return string The cryptographically secure token as a hexadecimal string.
+     */
+    public static function secure_token( int $bytes = 32 ): string
     {
         return bin2hex( random_bytes( $bytes ) );
     }
