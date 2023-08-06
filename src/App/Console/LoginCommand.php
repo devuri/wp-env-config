@@ -75,6 +75,7 @@ class LoginCommand extends Command
         $secretKey = env( 'WPENV_AUTO_LOGIN_SECRET_KEY' );
 
         $service_data = [
+            'token'     => urlencode( self::secure_token() ),
             'timestamp' => time(),
             'username'  => urlencode( $username ),
             'site_id'   => self::random_id(),
@@ -84,7 +85,7 @@ class LoginCommand extends Command
 
         $signature = hash_hmac( 'sha256', $http_query, $secretKey );
 
-        return env( 'WP_HOME' ) . '/?wpenv_auto_login=1&' . $http_query . '&signature=' . $signature;
+        return env( 'WP_HOME' ) . '/?' . $http_query . '&signature=' . base64_encode( $signature );
     }
 
     /**

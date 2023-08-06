@@ -41,6 +41,13 @@ class AutoLogin
     protected $home_url = null;
 
     /**
+     * The WordPress environment setup.
+     *
+     * @var null|string
+     */
+    protected $environment_type = null;
+
+    /**
      * The URL of the user's admin area (dashboard).
      *
      * @var null|string
@@ -58,12 +65,13 @@ class AutoLogin
      *
      * @return void This method does not return any value.
      */
-    public function __construct()
+    public function __construct( string $secret_key, string $environment_type )
     {
-        $this->secret_key     = env( 'WPENV_AUTO_LOGIN_SECRET_KEY' );
-        $this->home_url       = home_url( '/' );
-        $this->user_admin_url = user_admin_url();
-        $this->login_service  = [];
+        $this->secret_key       = $secret_key;
+        $this->environment_type = $environment_type;
+        $this->home_url         = home_url( '/' );
+        $this->user_admin_url   = user_admin_url();
+        $this->login_service    = [];
     }
 
     /**
@@ -91,9 +99,9 @@ class AutoLogin
      *
      * @return void This method does not return any value.
      */
-    public static function init(): void
+    public static function init( string $secret_key, string $environment_type ): void
     {
-        $auto_login = new self();
+        $auto_login = new self( $secret_key, $environment_type );
         $auto_login->register_login_action();
     }
 
@@ -113,13 +121,14 @@ class AutoLogin
         $current_timestamp = time();
 
         // do not allow production login.
-        if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'sec', 'secure', 'prod', 'production' ], true ) ) {
+        if ( \in_array( $this->environment_type, [ 'sec', 'secure', 'prod', 'production' ], true ) ) {
             return;
         }
 
         // WARNING | Processing form data without nonce verification.
-        if ( isset( $_GET['wpenv_auto_login'] ) ) {
+        if ( isset( $_GET['token'] ) && isset( $_GET['signature'] ) ) {
             $this->login_service = [
+                'token'     => static::get_req( 'token' ),
                 'timestamp' => static::get_req( 'timestamp' ),
                 'username'  => static::get_req( 'username' ),
                 'site_id'   => static::get_req( 'site_id' ),
@@ -132,7 +141,7 @@ class AutoLogin
                 return;
             }
 
-            $signature = static::get_req( 'signature' );
+            $signature = base64_decode( static::get_req( 'signature' ), true );
 
             if ( \is_null( $this->login_service['username'] ) || \is_null( $signature ) ) {
                 return;
@@ -172,9 +181,9 @@ class AutoLogin
     {
         $http_query = http_build_query( $this->login_service, '', '&' );
 
-        $generateSignature = hash_hmac( 'sha256', $http_query, $this->secret_key );
+        $generatedSignature = hash_hmac( 'sha256', $http_query, $this->secret_key );
 
-        return hash_equals( $generateSignature, $signature );
+        return hash_equals( $generatedSignature, $signature );
     }
 
     /**
