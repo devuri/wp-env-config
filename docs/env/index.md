@@ -95,6 +95,7 @@ DB_PREFIX='wp_xyz123_'
 ### Premium Features
 
 - `AVADAKEY`: Your Avada theme license key for premium features.
+- `ELEMENTOR_PRO_LICENSE` : Elementor Pro theme license key.
 
 ### Memory Limit
 
