@@ -1,5 +1,58 @@
 # Changelog
 
+## [0.6.4](https://github.com/devuri/wp-env-config/compare/v0.6.3...v0.6.4) (2023-08-06)
+
+
+### Features
+
+* `wpi` is now `wp:install` ([483f349](https://github.com/devuri/wp-env-config/commit/483f349f75310d8a30223bf35c1b6eb24aadc774))
+* add blog title to install options ([c81e11f](https://github.com/devuri/wp-env-config/commit/c81e11fadd38a4bf1e455212d025f73d962f862f))
+* add support for file `Exception` using `Defuse\Crypto\File` ([0e4ecc9](https://github.com/devuri/wp-env-config/commit/0e4ecc9a9b78e9b107d5d9ac3d466966e02b6cec))
+* adds `config('key')` for accessing nested data using dot notation ([a21ab49](https://github.com/devuri/wp-env-config/commit/a21ab49d10d299e2167e5bb568da95d8f2caad95))
+* adds `devuri/dot-access` ([d975244](https://github.com/devuri/wp-env-config/commit/d975244ad5f4680197cf6b8947b06107c377d573))
+* adds `php-encryption` and `Encryption` class ([d02bd3d](https://github.com/devuri/wp-env-config/commit/d02bd3dd65a0647ed45109d507a5dc33dd1dec60))
+* adds Auto-Login MU Plugin and CLI ([6b50e33](https://github.com/devuri/wp-env-config/commit/6b50e33ac3e752ecbf539067a3623f1e7dff369f))
+* adds Elementor Pro activation class ([557f696](https://github.com/devuri/wp-env-config/commit/557f6968a4779cddab209a419697e9b54dcf05d5))
+* adds encrypted backup option ([4251bcf](https://github.com/devuri/wp-env-config/commit/4251bcffda63e8fbf860cd054d41b2367c56f91b))
+* adds s3 backup option ([30d4e3f](https://github.com/devuri/wp-env-config/commit/30d4e3f442c1464f219d1b658855128bdb86855c))
+* adds TODO Setup Activity Logs. ([939ee99](https://github.com/devuri/wp-env-config/commit/939ee996869cb347e0a68047b5cb3ede02a26bf9))
+* better handle on `S3_BACKUP_DIR` now uses domain as default ([3e44c3e](https://github.com/devuri/wp-env-config/commit/3e44c3e98803c7149e08012600d2b025d22ef3e0))
+* can generate key file with: `php nino config cryptkey` ([518f63c](https://github.com/devuri/wp-env-config/commit/518f63c0baca7906609254ad61d069264ffd8374))
+* fix filename and use month name, add `DELETE_LOCAL_S3BACKUP` ([51bd6e7](https://github.com/devuri/wp-env-config/commit/51bd6e756a0a4169f582c644acfbbc04352f7ccb))
+* s3backup_dir env option `S3_BACKUP_DIR` ([f30e6fc](https://github.com/devuri/wp-env-config/commit/f30e6fcfece2fae740f4e453ddabe97e3df0a361))
+* use `devuri/encryption` replaces `Encryption` class ([e54da9f](https://github.com/devuri/wp-env-config/commit/e54da9f97d87592ec4d5aaba9f68a88c484caa86))
+
+
+### Bug Fixes
+
+* append login secret ([7c52612](https://github.com/devuri/wp-env-config/commit/7c526123da9c65d1f4a66c4ee719df0de7a73421))
+* better login and token handling ([bae96fd](https://github.com/devuri/wp-env-config/commit/bae96fd83aa1c22816403dcfe99e0671d41b0f8c))
+* create bucket is not always an option ([a29c51e](https://github.com/devuri/wp-env-config/commit/a29c51eed5093085dfb7cd1f9c6043027ede834b))
+* deactivate is true ([f36b67e](https://github.com/devuri/wp-env-config/commit/f36b67eda562c0f817095ede91b289f26f28cb72))
+* encode and ecode ciphertext ([839f667](https://github.com/devuri/wp-env-config/commit/839f6678718bb2313d690885f35266e2da851ce0))
+* fix backup, same day backups now use timestamp ([5751540](https://github.com/devuri/wp-env-config/commit/5751540101e524300e33e1d1e3f9281982e2bbf4))
+* fixes bucket creation ([12f9378](https://github.com/devuri/wp-env-config/commit/12f9378a4560cffa068b14bca0fbaeeaa3c73e7a))
+* missing Encryption ([b9a7ab0](https://github.com/devuri/wp-env-config/commit/b9a7ab0c32238e517245bc97d26b05b5e1cb0bc8))
+* move auto login to core Plugin so its always available ([5df8a86](https://github.com/devuri/wp-env-config/commit/5df8a869e0c7c572867e795831dcbe9c3b767208))
+* remove detects the error ([11cabef](https://github.com/devuri/wp-env-config/commit/11cabef72ef2b96fbb9d70fd01326d4775f608d3))
+* use `symfony/console:5.4.*` for php 7.4 ([ae8b85e](https://github.com/devuri/wp-env-config/commit/ae8b85e01cda9768b6a55112d038a5efd02d47c1))
+* use `WPENV_AUTO_LOGIN_SECRET_KEY` ([55a9743](https://github.com/devuri/wp-env-config/commit/55a9743041bb4ea34229fcddbc5a722b1bc45f01))
+
+
+### Miscellaneous Chores
+
+* build ([f069a9e](https://github.com/devuri/wp-env-config/commit/f069a9e4ed5cb3f31931d2c794cdb9d05d157c0d))
+* build ([f5e7405](https://github.com/devuri/wp-env-config/commit/f5e7405eb5b6a73ba495b73f554964923287fb35))
+* build ([3b1538d](https://github.com/devuri/wp-env-config/commit/3b1538d796d206c692b7893c0dd35e29b2a98cdb))
+* build ([f23350f](https://github.com/devuri/wp-env-config/commit/f23350f80740852dbe4b8ecc16540b8c062562a0))
+* build ([3a28e0d](https://github.com/devuri/wp-env-config/commit/3a28e0dcaeb2f9ace070f431edb96dc6186db604))
+* build ([363260b](https://github.com/devuri/wp-env-config/commit/363260b5a305195d94819c466ef1d88654e4bcbb))
+* build ([c425c57](https://github.com/devuri/wp-env-config/commit/c425c573dc207559cf3ed2bd5cecd36cf61e5a0f))
+* build ([0dad801](https://github.com/devuri/wp-env-config/commit/0dad801cc99b812833b04743ba94e1a429cc4881))
+* build ([196e182](https://github.com/devuri/wp-env-config/commit/196e182ca81b223f4e9d8a5a2cf0026ccbdaa2c2))
+* code build ([1f4bc3c](https://github.com/devuri/wp-env-config/commit/1f4bc3ccab6a42f0bb6933ad4c2cd4d3d16b222b))
+* tests for encoded values ([da2e0d3](https://github.com/devuri/wp-env-config/commit/da2e0d39fb88e96be94e9cc4ddbdb39ef74ecad8))
+
 ## [0.6.3](https://github.com/devuri/wp-env-config/compare/v0.6.2...v0.6.3) (2023-07-07)
 
 
