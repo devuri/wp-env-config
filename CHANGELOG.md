@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/devuri/wp-env-config/compare/v0.6.4...v0.6.5) (2023-08-06)
+
+
+### Bug Fixes
+
+* fixes created dir before cli is run ([b4e064f](https://github.com/devuri/wp-env-config/commit/b4e064f0a86cfc3b28b9bf6e45be5086a53dbc37))
+
 ## [0.6.4](https://github.com/devuri/wp-env-config/compare/v0.6.3...v0.6.4) (2023-08-06)
 
 
