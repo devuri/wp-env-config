@@ -118,7 +118,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -195,6 +195,21 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_random_id">random_id()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Generates a unique identifier within a given range of values using
+PHP&#039;s built-in random_int function.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_secure_token">secure_token()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Generates a secure token of the specified length.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_unique_filename">unique_filename()</a>
     <span>
                                 &nbsp;: string    </span>
@@ -203,6 +218,13 @@
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_uuid">uuid()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Urisoft-App-Console-Traits-Env.html#method_autoLoginSecret">autoLoginSecret()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
@@ -341,7 +363,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -375,7 +397,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -409,7 +431,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -443,7 +465,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -481,7 +503,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -652,6 +674,145 @@
             -public
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_random_id">
+        random_id()
+        <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_random_id" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">87</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Generates a unique identifier within a given range of values using
+PHP&#039;s built-in random_int function.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">random_id</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$min</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">100000</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$max</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">900000</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$min</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">100000</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The minimum value for the identifier. Defaults to 100000.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$max</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">900000</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The maximum value for the identifier. Defaults to 900000.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                            
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="https://www.php.net/manual/en/function.random-int.php"><abbr title="https://www.php.net/manual/en/function.random-int.php">https://www.php.net/manual/en/function.random-int.php</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">psalm-return</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>int&lt;100000, 900000&gt;</p>
+</section>
+
+                                    </dd>
+                        </dl>
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">int</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>A randomly generated integer between the values specified.</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_secure_token">
+        secure_token()
+        <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_secure_token" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Generates a secure token of the specified length.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">secure_token</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$bytes</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">32</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"><p>This static method generates a cryptographically secure token of the specified length
+in bytes using the random_bytes function. The generated key is then converted to a hexadecimal string
+using bin2hex to ensure it is suitable for use in various security-related scenarios.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$bytes</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">32</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The length of the token to generate, in bytes.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>The cryptographically secure token as a hexadecimal string.</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_unique_filename">
         unique_filename()
         <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_unique_filename" class="headerlink"><i class="fas fa-link"></i></a>
@@ -750,6 +911,39 @@
             -protected
                                     -static                    "
 >
+    <h4 class="phpdocumentor-element__name" id="method_autoLoginSecret">
+        autoLoginSecret()
+        <a href="classes/Urisoft-App-Console-Traits-Env.html#method_autoLoginSecret" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Env.php"><a href="files/src-app-console-traits-env.html"><abbr title="src/App/Console/Traits/Env.php">Env.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">119</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">autoLoginSecret</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">string</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                    -static                    "
+>
     <h4 class="phpdocumentor-element__name" id="method_bcr_htpasswd">
         bcr_htpasswd()
         <a href="classes/Urisoft-App-Console-Traits-Generate.html#method_bcr_htpasswd" class="headerlink"><i class="fas fa-link"></i></a>
@@ -757,7 +951,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">102</span>
+    <span class="phpdocumentor-element-found-in__line">138</span>
 
     </aside>
 
@@ -821,7 +1015,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">43</span>
 
     </aside>
 
@@ -854,7 +1048,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">111</span>
+    <span class="phpdocumentor-element-found-in__line">113</span>
 
     </aside>
 
@@ -964,7 +1158,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -1015,7 +1209,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">127</span>
+    <span class="phpdocumentor-element-found-in__line">163</span>
 
     </aside>
 
@@ -1111,7 +1305,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">158</span>
+    <span class="phpdocumentor-element-found-in__line">194</span>
 
     </aside>
 
@@ -1161,7 +1355,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
@@ -1221,7 +1415,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">115</span>
 
     </aside>
 
@@ -1359,7 +1553,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">174</span>
+    <span class="phpdocumentor-element-found-in__line">210</span>
 
     </aside>
 
@@ -1409,7 +1603,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/Traits/Generate.php"><a href="files/src-app-console-traits-generate.html"><abbr title="src/App/Console/Traits/Generate.php">Generate.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">186</span>
+    <span class="phpdocumentor-element-found-in__line">222</span>
 
     </aside>
 
@@ -1459,7 +1653,7 @@ echo $websiteName;  // Output: staging-mycoolwebsite-io
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Console/ConfigCommand.php"><a href="files/src-app-console-configcommand.html"><abbr title="src/App/Console/ConfigCommand.php">ConfigCommand.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 

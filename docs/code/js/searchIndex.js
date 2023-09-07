@@ -76,6 +76,11 @@ Search.appendIndex(
             "summary": "Saves\u0020an\u0020array\u0020to\u0020the\u0020\u0027snap.json\u0027\u0020file\u0020using\u0020the\u0020Symfony\u0020Filesystem\u0020component.",
             "url": "classes/Urisoft-App-Console-BackupCommand.html#method_save_snap_info"
         },                {
+            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Acreate_backup_dir\u0028\u0029",
+            "name": "create_backup_dir",
+            "summary": "Handles\u0020directory\u0020setups.",
+            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_create_backup_dir"
+        },                {
             "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Aconfigure\u0028\u0029",
             "name": "configure",
             "summary": "",
@@ -340,81 +345,6 @@ Search.appendIndex(
             "name": "filesystem",
             "summary": "",
             "url": "classes/Urisoft-App-Console-DatabaseBackup.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption",
-            "name": "Encryption",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Setup\u0020Encryption.",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Aload_encryption_key\u0028\u0029",
-            "name": "load_encryption_key",
-            "summary": "Loads\u0020the\u0020encryption\u0020key\u0020from\u0020the\u0020specified\u0020path.",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_load_encryption_key"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Aencrypt_file\u0028\u0029",
-            "name": "encrypt_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_encrypt_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Adecrypt_file\u0028\u0029",
-            "name": "decrypt_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_decrypt_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Aencrypt_envfile\u0028\u0029",
-            "name": "encrypt_envfile",
-            "summary": "Encrypts\u0020the\u0020contents\u0020of\u0020the\u0020.env\u0020file.",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_encrypt_envfile"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Aencrypt\u0028\u0029",
-            "name": "encrypt",
-            "summary": "Encrypts\u0020the\u0020given\u0020data.",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_encrypt"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003Adecrypt\u0028\u0029",
-            "name": "decrypt",
-            "summary": "Decrypts\u0020the\u0020given\u0020ciphertext.",
-            "url": "classes/Urisoft-App-Console-Encryption.html#method_decrypt"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A\u0024keyAscii",
-            "name": "keyAscii",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#property_keyAscii"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A\u0024EncryptionKey",
-            "name": "EncryptionKey",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#property_EncryptionKey"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Encryption\u003A\u003A\u0024AsciiKeyfile",
-            "name": "AsciiKeyfile",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Encryption.html#property_AsciiKeyfile"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\EncryptionKey",
-            "name": "EncryptionKey",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-EncryptionKey.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\EncryptionKey\u003A\u003Agenerate_key\u0028\u0029",
-            "name": "generate_key",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-EncryptionKey.html#method_generate_key"
         },                {
             "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer",
             "name": "GenerateComposer",
@@ -791,6 +721,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Console-Traits-Env.html#method_saltContent"
         },                {
+            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003AautoLoginSecret\u0028\u0029",
+            "name": "autoLoginSecret",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_autoLoginSecret"
+        },                {
             "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate",
             "name": "Generate",
             "summary": "",
@@ -815,6 +750,16 @@ Search.appendIndex(
             "name": "unique_filename",
             "summary": "Generates\u0020a\u0020unique\u0020filename\u0020with\u0020optional\u0020prefix\u0020and\u0020hashing.",
             "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_unique_filename"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Arandom_id\u0028\u0029",
+            "name": "random_id",
+            "summary": "Generates\u0020a\u0020unique\u0020identifier\u0020within\u0020a\u0020given\u0020range\u0020of\u0020values\u0020using\nPHP\u0027s\u0020built\u002Din\u0020random_int\u0020function.",
+            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_random_id"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Asecure_token\u0028\u0029",
+            "name": "secure_token",
+            "summary": "Generates\u0020a\u0020secure\u0020token\u0020of\u0020the\u0020specified\u0020length.",
+            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_secure_token"
         },                {
             "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Arand_str\u0028\u0029",
             "name": "rand_str",
@@ -1501,15 +1446,235 @@ Search.appendIndex(
             "summary": "Start\u0020and\u0020load\u0020core\u0020plugin.",
             "url": "namespaces/default.html#function_wpc_installed_plugins"
         },                {
-            "fqsen": "\\app_config\u0028\u0029",
-            "name": "app_config",
+            "fqsen": "\\app_config_default\u0028\u0029",
+            "name": "app_config_default",
             "summary": "Get\u0020default\u0020app\u0020config\u0020values.",
-            "url": "namespaces/default.html#function_app_config"
+            "url": "namespaces/default.html#function_app_config_default"
+        },                {
+            "fqsen": "\\config\u0028\u0029",
+            "name": "config",
+            "summary": "Retrieve\u0020configuration\u0020data\u0020using\u0020dot\u0020notation.",
+            "url": "namespaces/default.html#function_config"
         },                {
             "fqsen": "\\evhash\u0028\u0029",
             "name": "evhash",
             "summary": "Gets\u0020hash\u0020of\u0020given\u0020string.",
             "url": "namespaces/default.html#function_evhash"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand",
+            "name": "LoginCommand",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aconfigure\u0028\u0029",
+            "name": "configure",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_configure"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_execute"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Alogin\u0028\u0029",
+            "name": "login",
+            "summary": "WordPress\u0020Quick\u0020Login.",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_login"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aload_dotenv\u0028\u0029",
+            "name": "load_dotenv",
+            "summary": "Load\u0020the\u0020\u0024_ENV.",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_load_dotenv"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024defaultName",
+            "name": "defaultName",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_defaultName"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024root_dir_path",
+            "name": "root_dir_path",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_root_dir_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024filesystem",
+            "name": "filesystem",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_filesystem"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin",
+            "name": "AutoLogin",
+            "summary": "Class\u0020AutoLogin.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "AutoLogin\u0020constructor.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Aregister_login_action\u0028\u0029",
+            "name": "register_login_action",
+            "summary": "Registers\u0020the\u0020auto\u002Dlogin\u0020action\u0020to\u0020handle\u0020automatic\u0020logins\u0020when\u0020the\u0020\u0027init\u0027\u0020action\u0020is\u0020triggered.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_register_login_action"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Ainit\u0028\u0029",
+            "name": "init",
+            "summary": "Initializes\u0020the\u0020automatic\u0020login\u0020functionality.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_init"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Ahandle_auto_login\u0028\u0029",
+            "name": "handle_auto_login",
+            "summary": "Handles\u0020the\u0020automatic\u0020login\u0020process\u0020based\u0020on\u0020the\u0020provided\u0020query\u0020parameters.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_handle_auto_login"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Averify_signature\u0028\u0029",
+            "name": "verify_signature",
+            "summary": "Verifies\u0020the\u0020authenticity\u0020of\u0020the\u0020signature\u0020for\u0020the\u0020auto\u002Dlogin\u0020request.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_verify_signature"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Aauthenticate\u0028\u0029",
+            "name": "authenticate",
+            "summary": "Authenticates\u0020the\u0020user\u0020and\u0020performs\u0020necessary\u0020actions\u0020after\u0020successful\u0020authentication.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_authenticate"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Aget_req\u0028\u0029",
+            "name": "get_req",
+            "summary": "Retrieves\u0020and\u0020sanitizes\u0020a\u0020specific\u0020query\u0020parameter\u0020from\u0020the\u0020\u0024_GET\u0020superglobal\u0020array.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_get_req"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A\u0024secret_key",
+            "name": "secret_key",
+            "summary": "The\u0020secret\u0020key\u0020used\u0020for\u0020generating\u0020and\u0020verifying\u0020signatures.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#property_secret_key"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A\u0024login_service",
+            "name": "login_service",
+            "summary": "Holds\u0020the\u0020login\u0020service\u0020parameters.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#property_login_service"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A\u0024home_url",
+            "name": "home_url",
+            "summary": "The\u0020URL\u0020of\u0020the\u0020home\u0020page\u0020of\u0020the\u0020WordPress\u0020site.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#property_home_url"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A\u0024environment_type",
+            "name": "environment_type",
+            "summary": "The\u0020WordPress\u0020environment\u0020setup.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#property_environment_type"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003A\u0024user_admin_url",
+            "name": "user_admin_url",
+            "summary": "The\u0020URL\u0020of\u0020the\u0020user\u0027s\u0020admin\u0020area\u0020\u0028dashboard\u0029.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#property_user_admin_url"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor",
+            "name": "Elementor",
+            "summary": "Easier\u0020setup\u0020for\u0020Elementor\u0020Pro\u0020activation.",
+            "url": "classes/Urisoft-App-Core-Elementor.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initializes\u0020the\u0020Elementor\u0020pro\u0020class.",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Aactivate\u0028\u0029",
+            "name": "activate",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_activate"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Adeactivate\u0028\u0029",
+            "name": "deactivate",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_deactivate"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Apost_request\u0028\u0029",
+            "name": "post_request",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_post_request"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Alicense_data\u0028\u0029",
+            "name": "license_data",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_license_data"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003APRODUCT_NAME",
+            "name": "PRODUCT_NAME",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_PRODUCT_NAME"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTORE_URL",
+            "name": "STORE_URL",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STORE_URL"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ARENEW_URL",
+            "name": "RENEW_URL",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_RENEW_URL"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTATUS_VALID",
+            "name": "STATUS_VALID",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STATUS_VALID"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTATUS_INVALID",
+            "name": "STATUS_INVALID",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STATUS_INVALID"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTATUS_EXPIRED",
+            "name": "STATUS_EXPIRED",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STATUS_EXPIRED"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTATUS_INACTIVE",
+            "name": "STATUS_INACTIVE",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STATUS_INACTIVE"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ASTATUS_DISABLED",
+            "name": "STATUS_DISABLED",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_STATUS_DISABLED"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003AREQUEST_LOCK_TTL",
+            "name": "REQUEST_LOCK_TTL",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_REQUEST_LOCK_TTL"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003AREQUEST_LOCK_OPTION",
+            "name": "REQUEST_LOCK_OPTION",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_REQUEST_LOCK_OPTION"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ALICENSE_KEY_OPTION",
+            "name": "LICENSE_KEY_OPTION",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_LICENSE_KEY_OPTION"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ALICENSE_DATA_OPTION",
+            "name": "LICENSE_DATA_OPTION",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_LICENSE_DATA_OPTION"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ALICENSE_DATA_FALLBACK_OPTION",
+            "name": "LICENSE_DATA_FALLBACK_OPTION",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_LICENSE_DATA_FALLBACK_OPTION"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003A\u0024api_version",
+            "name": "api_version",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#property_api_version"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003A\u0024license_key",
+            "name": "license_key",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#property_license_key"
         },                {
             "fqsen": "\\",
             "name": "\\",
