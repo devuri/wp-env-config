@@ -77,8 +77,8 @@ class AutoLogin
     /**
      * Registers the auto-login action to handle automatic logins when the 'init' action is triggered.
      *
-     * This method registers the 'hanlde_auto_login' method to be executed when the 'init' action is triggered.
-     * The 'hanlde_auto_login' method handles automatic logins by processing specific query parameters and
+     * This method registers the 'handle_auto_login' method to be executed when the 'init' action is triggered.
+     * The 'handle_auto_login' method handles automatic logins by processing specific query parameters and
      * authenticating users based on the provided information. The registration of this action is conditional
      * and depends on the presence of a secret key for added security.
      *
@@ -87,7 +87,7 @@ class AutoLogin
     public function register_login_action(): void
     {
         if ( $this->secret_key ) {
-            add_action( 'init', [ $this, 'hanlde_auto_login' ] );
+            add_action( 'init', [ $this, 'handle_auto_login' ] );
         }
     }
 
@@ -115,7 +115,7 @@ class AutoLogin
      *
      * @return void This method does not return any value.
      */
-    public function hanlde_auto_login(): void
+    public function handle_auto_login(): void
     {
         // Get the current timestamp.
         $current_timestamp = time();
@@ -126,22 +126,22 @@ class AutoLogin
         }
 
         // WARNING | Processing form data without nonce verification.
-        if ( isset( $_GET['token'] ) && isset( $_GET['signature'] ) ) {
+        if ( isset( $_GET['token'] ) && isset( $_GET['sig'] ) ) {
             $this->login_service = [
-                'token'     => static::get_req( 'token' ),
-                'timestamp' => static::get_req( 'timestamp' ),
-                'username'  => static::get_req( 'username' ),
-                'site_id'   => static::get_req( 'site_id' ),
+                'token'    => static::get_req( 'token' ),
+                'time'     => static::get_req( 'time' ),
+                'username' => static::get_req( 'username' ),
+                'site_id'  => static::get_req( 'site_id' ),
             ];
 
             // Check if the URL has expired (more than 30 seconds old).
-            if ( $current_timestamp - (int) $this->login_service['timestamp'] > 30 ) {
+            if ( $current_timestamp - (int) $this->login_service['time'] > 30 ) {
                 wp_die( 'login expired' );
 
                 return;
             }
 
-            $signature = base64_decode( static::get_req( 'signature' ), true );
+            $signature = base64_decode( static::get_req( 'sig' ), true );
 
             if ( \is_null( $this->login_service['username'] ) || \is_null( $signature ) ) {
                 return;

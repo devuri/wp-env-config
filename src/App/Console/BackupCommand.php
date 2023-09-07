@@ -83,24 +83,6 @@ class BackupCommand extends Command
         parent::__construct();
     }
 
-	/**
-	 * Handles directory setups.
-	 *
-	 * @return void
-	 */
-	protected function create_backup_dir()
-	{
-		// Create snapshot directory.
-		if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
-			$this->filesystem->mkdir( $this->snapshot_dir );
-		}
-
-		// Create backup_dir directory.
-        if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
-            $this->filesystem->mkdir( $this->backup_dir );
-        }
-	}
-
     /**
      * Saves an array to the 'snap.json' file using the Symfony Filesystem component.
      *
@@ -119,6 +101,24 @@ class BackupCommand extends Command
         }
     }
 
+    /**
+     * Handles directory setups.
+     *
+     * @return void
+     */
+    protected function create_backup_dir(): void
+    {
+        // Create snapshot directory.
+        if ( ! $this->filesystem->exists( $this->snapshot_dir ) ) {
+            $this->filesystem->mkdir( $this->snapshot_dir );
+        }
+
+        // Create backup_dir directory.
+        if ( ! $this->filesystem->exists( $this->backup_dir ) ) {
+            $this->filesystem->mkdir( $this->backup_dir );
+        }
+    }
+
     protected function configure(): void
     {
         $this->setDescription( 'Backup the WordPress web application' );
@@ -134,8 +134,8 @@ class BackupCommand extends Command
         // backup db
         $dbbackup = $this->create_sql_dump();
 
-		// create_backup_dir()
-		$this->create_backup_dir();
+        // create_backup_dir()
+        $this->create_backup_dir();
 
         if ( 0 !== $dbbackup['code'] ) {
             return Command::FAILURE;
