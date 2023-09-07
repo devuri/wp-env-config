@@ -185,16 +185,35 @@ if ( ! \function_exists( 'app_config_default' ) ) {
 }
 
 /**
- * Wrapper function for accessing nested data using dot notation.
+ * Retrieve configuration data using dot notation.
  *
- * @param string $key     The dot notation key to access the data.
- * @param mixed  $default The default value to return if the key is not found.
+ * This function provides a convenient way to access nested data stored in a configuration file
+ * using dot notation. It uses the DotAccess library to facilitate easy access to the data.
  *
- * @return mixed The value associated with the key or the default value.
+ * @param null|string $key         The dot notation key to access the data. If null, the entire
+ *                                 configuration data will be returned.
+ * @param mixed       $default     The default value to return if the key is not found.
+ * @param mixed       $data_access
+ *
+ * @return mixed The value associated with the specified key or the default value if the key
+ *               is not found. If no key is provided (null), the entire configuration data is
+ *               returned.
+ *
+ * @see https://github.com/devuri/dot-access DotAccess library used for dot notation access.
  */
-function config( $key, $default = null )
+function config( ?string $key = null, $default = null, $data_access = false )
 {
-    $dotdata = new DotAccess( APP_PATH . '/app.php' );
+    $dotdata = null;
+
+    if ( $data_access ) {
+        $dotdata = $data_access;
+    } else {
+        $dotdata = new DotAccess( APP_PATH . '/app.php' );
+    }
+
+    if ( \is_null( $key ) ) {
+        return $dotdata;
+    }
 
     return $dotdata->get( $key, $default );
 }
