@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.6.6](https://github.com/devuri/wp-env-config/compare/v0.6.5...v0.6.6) (2023-09-08)
+
+
+### Features
+
+* adds `devuri/cpt-meta-box` 0.4 `use DevUri\PostTypeMeta\MetaBox` ([a4f8024](https://github.com/devuri/wp-env-config/commit/a4f802475195b32dbd40f1343566efa518176661))
+* adds `php nino up` and `php nino down` handles maintenance mode, `up` will create .maintenance in the public dir and `down` will remove it ([4d9705c](https://github.com/devuri/wp-env-config/commit/4d9705ced87d4431f0fe53fa171e312499608997))
+* new `config()` function to get config options ([757a06f](https://github.com/devuri/wp-env-config/commit/757a06f08e80130843db18851a68749ab23b8f56))
+
+
+### Bug Fixes
+
+* autofix port number on local ([9437ebc](https://github.com/devuri/wp-env-config/commit/9437ebc891bae8659e67147324c284d6f1015c14))
+* only enable auto login if `WPENV_AUTO_LOGIN_SECRET_KEY` is available ([e8aed54](https://github.com/devuri/wp-env-config/commit/e8aed5409d6b8484775a21f8874919d77b6a66e0))
+
+
+### Miscellaneous Chores
+
+* build ([982b319](https://github.com/devuri/wp-env-config/commit/982b31940bdc24e72e3237452ff19a886deb2002))
+* docs ([c1678b3](https://github.com/devuri/wp-env-config/commit/c1678b3d49cb621573e62ff837a014206e671af0))
+* misc updates for auto login ([d27efd3](https://github.com/devuri/wp-env-config/commit/d27efd3eae920b8121f1ce700aceced57493ff20))
+
 ## [0.6.5](https://github.com/devuri/wp-env-config/compare/v0.6.4...v0.6.5) (2023-08-06)
 
 
