@@ -65,7 +65,7 @@ class AutoLogin
      *
      * @return void This method does not return any value.
      */
-    public function __construct( string $secret_key, string $environment_type )
+    public function __construct( ?string $secret_key = null, ?string $environment_type = null )
     {
         $this->secret_key       = $secret_key;
         $this->environment_type = $environment_type;
