@@ -34,10 +34,10 @@ class Plugin
         // basic auth
         BasicAuth::init();
 
-		// allows auto login.
-		if( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ) ) {
-			AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
-		}
+        // allows auto login.
+        if ( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ) ) {
+            AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
+        }
 
         add_action(
             'send_headers',
@@ -70,11 +70,11 @@ class Plugin
                     return;
                 }
 
-				if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
-		            $env_label = strtoupper( HTTP_ENV_CONFIG );
-		        } else {
-		            $env_label = null;
-		        }
+                if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
+                    $env_label = strtoupper( HTTP_ENV_CONFIG );
+                } else {
+                    $env_label = null;
+                }
 
                 $admin_bar->add_menu(
                     [

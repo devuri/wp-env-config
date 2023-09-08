@@ -55,15 +55,17 @@ class ConfigCommand extends Command
 
         $config_task = $input->getArgument( '_task' );
 
-		// handles maintenance.
-		if ( 'up' === $config_task ) {
-			$this->set_maintenance_mode( 'up' );
-			return Command::SUCCESS;
-        } elseif ( 'down' === $config_task ) {
-			$this->set_maintenance_mode( 'down' );
-			return Command::SUCCESS;
-		}
+        // handles maintenance.
+        if ( 'up' === $config_task ) {
+            $this->set_maintenance_mode( 'up' );
 
+            return Command::SUCCESS;
+        }
+        if ( 'down' === $config_task ) {
+            $this->set_maintenance_mode( 'down' );
+
+            return Command::SUCCESS;
+        }
 
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
@@ -142,20 +144,19 @@ class ConfigCommand extends Command
         }
     }
 
-	protected function set_maintenance_mode( $_task )
-	{
-		if ( 'up' === $_task ) {
+    protected function set_maintenance_mode( $_task ): void
+    {
+        if ( 'up' === $_task ) {
+            if ( $this->filesystem->exists( $this->root_dir_path . '/public/.maintenance' ) ) {
+                $this->filesystem->remove( $this->root_dir_path . '/public/.maintenance' );
+            }
 
-			if ( $this->filesystem->exists( $this->root_dir_path . '/public/.maintenance' ) ) {
-				$this->filesystem->remove( $this->root_dir_path . '/public/.maintenance' );
-			}
-
-			return;
-        } elseif ( 'down' === $_task ) {
-
-			$this->filesystem->dumpFile( $this->root_dir_path . '/public/.maintenance', 'Maintenance mode' );
+            return;
         }
-	}
+        if ( 'down' === $_task ) {
+            $this->filesystem->dumpFile( $this->root_dir_path . '/public/.maintenance', 'Maintenance mode' );
+        }
+    }
 
     /**
      * Load the $_ENV.
