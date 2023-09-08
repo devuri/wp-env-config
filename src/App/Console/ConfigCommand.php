@@ -55,6 +55,18 @@ class ConfigCommand extends Command
 
         $config_task = $input->getArgument( '_task' );
 
+        // handles maintenance.
+        if ( 'up' === $config_task ) {
+            $this->set_maintenance_mode( 'up' );
+
+            return Command::SUCCESS;
+        }
+        if ( 'down' === $config_task ) {
+            $this->set_maintenance_mode( 'down' );
+
+            return Command::SUCCESS;
+        }
+
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
 
@@ -129,6 +141,20 @@ class ConfigCommand extends Command
             $output->writeln( PHP_EOL . "<comment>Htpasswd Generator:username and password:</comment><info>demo $password</info>" . PHP_EOL );
             $output->writeln( PHP_EOL . "<comment>Add to htpasswd file:</comment><info>$htpasswd</info>" . PHP_EOL );
             $output->writeln( PHP_EOL . '<comment>* Bcrypt for Apache v2.4 onwards</comment>' . PHP_EOL );
+        }
+    }
+
+    protected function set_maintenance_mode( $_task ): void
+    {
+        if ( 'up' === $_task ) {
+            if ( $this->filesystem->exists( $this->root_dir_path . '/public/.maintenance' ) ) {
+                $this->filesystem->remove( $this->root_dir_path . '/public/.maintenance' );
+            }
+
+            return;
+        }
+        if ( 'down' === $_task ) {
+            $this->filesystem->dumpFile( $this->root_dir_path . '/public/.maintenance', 'Maintenance mode' );
         }
     }
 

@@ -221,6 +221,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_create_htpasswd_file"
         },                {
+            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aset_maintenance_mode\u0028\u0029",
+            "name": "set_maintenance_mode",
+            "summary": "",
+            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_set_maintenance_mode"
+        },                {
             "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aload_dotenv\u0028\u0029",
             "name": "load_dotenv",
             "summary": "Load\u0020the\u0020\u0024_ENV.",
