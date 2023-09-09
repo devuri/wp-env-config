@@ -3,12 +3,10 @@
 namespace Urisoft\App\Traits;
 
 /**
- * Trait EnvironmentSwitch
+ * Trait EnvironmentSwitch.
  *
  * This trait provides methods for setting up different environmental configurations
  * such as development, staging, production, and debugging within your application.
- *
- * @package Urisoft\App\Traits
  */
 trait EnvironmentSwitch
 {

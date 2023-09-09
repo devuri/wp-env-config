@@ -3,14 +3,12 @@
 namespace Urisoft\App;
 
 /**
- * Class EnvSwitch
+ * Class EnvSwitch.
  *
  * This class implements the EnvInterface and provides methods for setting up different environmental configurations
  * such as development, staging, production, and debugging within your application.
- *
- * @implements EnvInterface
  */
-class EnvSwitch implements EnvInterface
+abstract class EnvSwitch implements EnvInterface
 {
     // Class implementation goes here
 }

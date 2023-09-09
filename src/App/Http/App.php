@@ -74,8 +74,9 @@ class App
             return;
         }
 
-		if ( true === $this->config['error_handler'] ) {
-			Debug::enable();
+        if ( true === $this->config['error_handler'] ) {
+            Debug::enable();
+
             return;
         }
 

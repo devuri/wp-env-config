@@ -7,8 +7,8 @@ use function defined;
 use Exception;
 use InvalidArgumentException;
 use Urisoft\App\Setup;
-use Urisoft\App\Traits\ConstantTrait;
 use Urisoft\App\Traits\ConstantConfigTrait;
+use Urisoft\App\Traits\ConstantTrait;
 
 /**
  * Setup common elements.
@@ -17,8 +17,8 @@ use Urisoft\App\Traits\ConstantConfigTrait;
  */
 class BaseKernel
 {
-    use ConstantTrait;
     use ConstantConfigTrait;
+    use ConstantTrait;
 
     protected $app_path;
     protected $log_file;

@@ -5,11 +5,11 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
+use Urisoft\App\Traits\ConstantConfigTrait;
 use Urisoft\App\Traits\CryptTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
-use Urisoft\App\Traits\ConstantConfigTrait;
 
 /**
  * Setup WP Config.
@@ -153,7 +153,7 @@ class Setup implements ConfigInterface
             exit;
         }
 
-        $this->set_config_map();
+        $this->set_constant_map();
     }
 
     /**
@@ -517,6 +517,36 @@ class Setup implements ConfigInterface
     }
 
     /**
+     * Ensure that a specific constant is defined and not empty.
+     *
+     * This method checks if the given constant is defined. If not, it uses the Dotenv library to ensure
+     * that the constant is present and not empty in the environment configuration. If the constant is missing
+     * or empty, it will throw an exception.
+     *
+     * @param string $name The name of the constant to check.
+     */
+    public function required( string $name ): void
+    {
+        if ( ! \defined( $name ) ) {
+            $this->dotenv->required( $name )->notEmpty();
+        }
+    }
+
+    /**
+     * Display a list of constants defined by Setup.
+     *
+     * Retrieves a list of constants defined by the Setup class,
+     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
+     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
+     *
+     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
+     */
+    public function get_constant_map(): array
+    {
+        return self::encrypt_secret( $this->constant_map, self::env_secrets() );
+    }
+
+    /**
      * Switches between different environments based on the value of $this->environment.
      *
      * @return void
@@ -592,27 +622,6 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Get Env value or return null.
-     *
-     * @param string $name the env var name.
-     *
-     * @return mixed
-     */
-    private static function get_env( string $name )
-    {
-        if ( \is_null( env( $name ) ) ) {
-            return null;
-        }
-
-        return env( $name );
-    }
-
-    private function reset_environment( $reset ): void
-    {
-        $this->environment = $reset;
-    }
-
-	/**
      * Env defaults.
      *
      * These are some defaults that will apply
@@ -637,14 +646,35 @@ class Setup implements ConfigInterface
         return $constant[ $key ] ?? null;
     }
 
-	/**
-	 * Set the constant map based on environmental conditions.
-	 *
-	 * This method determines the constant map based on the presence of WP_DEBUG and the environment type.
-	 * If WP_DEBUG is not defined or set to false, the constant map will be set to ['disabled'].
-	 * If the environment type is 'development', 'debug', or 'staging', it will use the static $constants property
-	 * as the constant map if it's an array; otherwise, it will set the constant map to ['invalid_type_returned'].
-	 */
+    /**
+     * Get Env value or return null.
+     *
+     * @param string $name the env var name.
+     *
+     * @return mixed
+     */
+    private static function get_env( string $name )
+    {
+        if ( \is_null( env( $name ) ) ) {
+            return null;
+        }
+
+        return env( $name );
+    }
+
+    private function reset_environment( $reset ): void
+    {
+        $this->environment = $reset;
+    }
+
+    /**
+     * Set the constant map based on environmental conditions.
+     *
+     * This method determines the constant map based on the presence of WP_DEBUG and the environment type.
+     * If WP_DEBUG is not defined or set to false, the constant map will be set to ['disabled'].
+     * If the environment type is 'development', 'debug', or 'staging', it will use the static $constants property
+     * as the constant map if it's an array; otherwise, it will set the constant map to ['invalid_type_returned'].
+     */
     private function set_constant_map(): void
     {
         if ( ! \defined( 'WP_DEBUG' ) ) {
@@ -668,36 +698,5 @@ class Setup implements ConfigInterface
 
             $this->constant_map = [ 'invalid_type_returned' ];
         }
-    }
-
-	/**
-	 * Ensure that a specific constant is defined and not empty.
-	 *
-	 * This method checks if the given constant is defined. If not, it uses the Dotenv library to ensure
-	 * that the constant is present and not empty in the environment configuration. If the constant is missing
-	 * or empty, it will throw an exception.
-	 *
-	 * @param string $name The name of the constant to check.
-	 */
-	public function required( string $name ): void
-    {
-        if ( ! \defined( $name ) ) {
-            // @phpstan-ignore-next-line.
-            $this->dotenv->required( $name )->notEmpty();
-        }
-    }
-
-    /**
-     * Display a list of constants defined by Setup.
-     *
-     * Retrieves a list of constants defined by the Setup class,
-     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
-     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
-     *
-     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
-     */
-    public function get_constant_map(): array
-    {
-        return self::encrypt_secret( $this->constant_map, self::env_secrets() );
     }
 }
