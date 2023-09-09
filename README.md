@@ -178,7 +178,7 @@ dump( Setup::init(__DIR__)->getEnvironment() ); // Get the current Environment s
 Debug must be on and 'development' set as WP_ENVIRONMENT_TYPE in the .env file.
 
 ```php
-dump( Setup::init(__DIR__)->configMap() ); // Display a list of constants defined by Setup.
+dump( Setup::init(__DIR__)->get_constant_map() ); // Display a list of constants defined by Setup.
 ```
 
 This will output the following:
