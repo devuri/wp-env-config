@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/devuri/wp-env-config/compare/v0.7.0...v0.7.1) (2023-09-09)
+
+
+### Bug Fixes
+
+* configMap() is get_constant_map() ([c537d75](https://github.com/devuri/wp-env-config/commit/c537d75f6a9297a9b6fb5e6ef7afdb4b689ced90))
+
 ## [0.7.0](https://github.com/devuri/wp-env-config/compare/v0.6.6...v0.7.0) (2023-09-09)
 
 
