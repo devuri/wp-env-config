@@ -74,7 +74,13 @@ class App
             return;
         }
 
-        if ( \is_null( $this->config['error_handler'] ) ) {
+        if ( true === $this->config['error_handler'] ) {
+            Debug::enable();
+
+            return;
+        }
+
+        if ( \is_null( $this->config['error_handler'] ) || 'symfony' === $this->config['error_handler'] ) {
             Debug::enable();
         } elseif ( 'oops' === $this->config['error_handler'] ) {
             $whoops = new Run();

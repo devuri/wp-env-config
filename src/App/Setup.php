@@ -5,9 +5,9 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
-use Urisoft\App\Traits\ConfigTrait;
+use Urisoft\App\Traits\ConstantConfigTrait;
 use Urisoft\App\Traits\CryptTrait;
-use Urisoft\App\Traits\Environment;
+use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -16,16 +16,16 @@ use Whoops\Run;
  */
 class Setup implements ConfigInterface
 {
-    use ConfigTrait;
+    use ConstantConfigTrait;
     use CryptTrait;
-    use Environment;
+    use EnvironmentSwitch;
 
     /**
      * list of constants defined by Setup.
      *
      * @var array
      */
-    protected $config_map = [ 'disabled' ];
+    protected $constant_map = [ 'disabled' ];
 
     /**
      *  Directory $path.
@@ -153,7 +153,7 @@ class Setup implements ConfigInterface
             exit;
         }
 
-        $this->set_config_map();
+        $this->set_constant_map();
     }
 
     /**
@@ -229,8 +229,7 @@ class Setup implements ConfigInterface
                 ->debug( $this->error_log_dir )
                 ->set_error_handler()
                 ->database()
-                ->salts()
-                ->apply();
+                ->salts();
 
             return $this;
         }
@@ -247,8 +246,7 @@ class Setup implements ConfigInterface
                 ->optimize()
                 ->force_ssl()
                 ->autosave()
-                ->salts()
-                ->apply();
+                ->salts();
         }
 
         return $this;
@@ -519,6 +517,36 @@ class Setup implements ConfigInterface
     }
 
     /**
+     * Ensure that a specific constant is defined and not empty.
+     *
+     * This method checks if the given constant is defined. If not, it uses the Dotenv library to ensure
+     * that the constant is present and not empty in the environment configuration. If the constant is missing
+     * or empty, it will throw an exception.
+     *
+     * @param string $name The name of the constant to check.
+     */
+    public function required( string $name ): void
+    {
+        if ( ! \defined( $name ) ) {
+            $this->dotenv->required( $name )->notEmpty();
+        }
+    }
+
+    /**
+     * Display a list of constants defined by Setup.
+     *
+     * Retrieves a list of constants defined by the Setup class,
+     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
+     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
+     *
+     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
+     */
+    public function get_constant_map(): array
+    {
+        return self::encrypt_secret( $this->constant_map, self::env_secrets() );
+    }
+
+    /**
      * Switches between different environments based on the value of $this->environment.
      *
      * @return void
@@ -594,6 +622,31 @@ class Setup implements ConfigInterface
     }
 
     /**
+     * Env defaults.
+     *
+     * These are some defaults that will apply
+     * if they do not exist in .env
+     *
+     * @param string $key val to retrieve
+     *
+     * @return mixed
+     */
+    protected static function const( string $key )
+    {
+        $constant['environment'] = 'production';
+        $constant['debug']       = true;
+        $constant['db_host']     = 'localhost';
+        $constant['optimize']    = true;
+        $constant['memory']      = '256M';
+        $constant['ssl_admin']   = true;
+        $constant['ssl_login']   = true;
+        $constant['autosave']    = 180;
+        $constant['revisions']   = 10;
+
+        return $constant[ $key ] ?? null;
+    }
+
+    /**
      * Get Env value or return null.
      *
      * @param string $name the env var name.
@@ -612,5 +665,38 @@ class Setup implements ConfigInterface
     private function reset_environment( $reset ): void
     {
         $this->environment = $reset;
+    }
+
+    /**
+     * Set the constant map based on environmental conditions.
+     *
+     * This method determines the constant map based on the presence of WP_DEBUG and the environment type.
+     * If WP_DEBUG is not defined or set to false, the constant map will be set to ['disabled'].
+     * If the environment type is 'development', 'debug', or 'staging', it will use the static $constants property
+     * as the constant map if it's an array; otherwise, it will set the constant map to ['invalid_type_returned'].
+     */
+    private function set_constant_map(): void
+    {
+        if ( ! \defined( 'WP_DEBUG' ) ) {
+            $this->constant_map = [ 'disabled' ];
+
+            return;
+        }
+
+        if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
+            $this->constant_map = [ 'disabled' ];
+
+            return;
+        }
+
+        if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
+            $constant_map = static::$constants;
+
+            if ( \is_array( $constant_map ) ) {
+                $this->constant_map = $constant_map;
+            }
+
+            $this->constant_map = [ 'invalid_type_returned' ];
+        }
     }
 }

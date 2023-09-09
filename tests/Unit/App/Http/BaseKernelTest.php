@@ -31,7 +31,7 @@ class BaseKernelTest extends BaseTest
 
     public function test_constants_defined(): void
     {
-        $this->http_app()->constants();
+        $this->http_app()->set_config_constants();
 
         $const_defaults = [
             "APP_PATH" => APP_TEST_PATH,
