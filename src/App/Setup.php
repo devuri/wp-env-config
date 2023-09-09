@@ -7,7 +7,7 @@ use Exception;
 use Symfony\Component\ErrorHandler\Debug;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\CryptTrait;
-use Urisoft\App\Traits\Environment;
+use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -18,7 +18,7 @@ class Setup implements ConfigInterface
 {
     use ConfigTrait;
     use CryptTrait;
-    use Environment;
+    use EnvironmentSwitch;
 
     /**
      * list of constants defined by Setup.
@@ -612,5 +612,30 @@ class Setup implements ConfigInterface
     private function reset_environment( $reset ): void
     {
         $this->environment = $reset;
+    }
+
+	/**
+     * Env defaults.
+     *
+     * These are some defaults that will apply
+     * if they do not exist in .env
+     *
+     * @param string $key val to retrieve
+     *
+     * @return mixed
+     */
+    protected static function const( string $key )
+    {
+        $constant['environment'] = 'production';
+        $constant['debug']       = true;
+        $constant['db_host']     = 'localhost';
+        $constant['optimize']    = true;
+        $constant['memory']      = '256M';
+        $constant['ssl_admin']   = true;
+        $constant['ssl_login']   = true;
+        $constant['autosave']    = 180;
+        $constant['revisions']   = 10;
+
+        return $constant[ $key ] ?? null;
     }
 }

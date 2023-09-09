@@ -56,31 +56,6 @@ trait ConfigTrait
     }
 
     /**
-     * Env defaults.
-     *
-     * These are some defaults that will apply
-     * if they do not exist in .env
-     *
-     * @param string $key val to retrieve
-     *
-     * @return mixed
-     */
-    protected static function const( string $key )
-    {
-        $constant['environment'] = 'production';
-        $constant['debug']       = true;
-        $constant['db_host']     = 'localhost';
-        $constant['optimize']    = true;
-        $constant['memory']      = '256M';
-        $constant['ssl_admin']   = true;
-        $constant['ssl_login']   = true;
-        $constant['autosave']    = 180;
-        $constant['revisions']   = 10;
-
-        return $constant[ $key ] ?? null;
-    }
-
-    /**
      * @throws ReflectionException
      */
     private function set_config_map(): void
