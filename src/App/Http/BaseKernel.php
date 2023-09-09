@@ -7,6 +7,8 @@ use function defined;
 use Exception;
 use InvalidArgumentException;
 use Urisoft\App\Setup;
+use Urisoft\App\Traits\ConstantTrait;
+use Urisoft\App\Traits\ConstantConfigTrait;
 
 /**
  * Setup common elements.
@@ -16,6 +18,7 @@ use Urisoft\App\Setup;
 class BaseKernel
 {
     use ConstantTrait;
+    use ConstantConfigTrait;
 
     protected $app_path;
     protected $log_file;
@@ -180,33 +183,18 @@ class BaseKernel
         $this->define( 'HTTP_ENV_CONFIG', $this->app_setup->get_environment() );
 
         if ( true === $constants ) {
-            $this->constants();
-        }
-    }
-
-    /**
-     * Create constants.
-     *
-     * @param null|mixed $value
-     *
-     * @return void
-     */
-    public function define( string $const, $value = null ): void
-    {
-        if ( ! \defined( $const ) ) {
-            \define( $const, $value );
-            static::$list[ $const ] = $value;
+            $this->set_config_constants();
         }
     }
 
     /**
      * Get list of defined constants.
      *
-     * @return string[] constants in constants().
+     * @return string[] constants in set_config_constants().
      */
     public function get_defined(): array
     {
-        return static::$list;
+        return static::$constants;
     }
 
     /**

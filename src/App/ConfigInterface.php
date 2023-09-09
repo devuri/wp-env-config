@@ -80,9 +80,4 @@ interface ConfigInterface
      * @return self
      */
     public function autosave(): self;
-
-    /**
-     * Apply the setup.
-     */
-    public function apply(): void;
 }

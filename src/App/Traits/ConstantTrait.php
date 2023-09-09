@@ -1,6 +1,6 @@
 <?php
 
-namespace Urisoft\App\Http;
+namespace Urisoft\App\Traits;
 
 use function define;
 
@@ -36,7 +36,7 @@ trait ConstantTrait
      *
      * @return void
      */
-    public function constants(): void
+    public function set_config_constants(): void
     {
         // define app_path.
         $this->define( 'APP_PATH', $this->get_app_path() );
