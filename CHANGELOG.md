@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.7.0](https://github.com/devuri/wp-env-config/compare/v0.6.6...v0.7.0) (2023-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* replace `ConfigTrait` with `ConstantConfigTrait`
+
+### Features
+
+* replace `ConfigTrait` with `ConstantConfigTrait` ([780aa6f](https://github.com/devuri/wp-env-config/commit/780aa6fec5783cbe318a86561a7b248af3a8c6d5))
+
+
+### Bug Fixes
+
+* `Environment` is now `EnvironmentSwitch` adds `EnvInterface` ([de0d579](https://github.com/devuri/wp-env-config/commit/de0d5792a4d61c8b6545867ce93841b4261710fb))
+
+
+### Miscellaneous Chores
+
+* codefix ([afe79f6](https://github.com/devuri/wp-env-config/commit/afe79f617cb7ea63030dec531598bf3b55511b8e))
+* update composer ([512105d](https://github.com/devuri/wp-env-config/commit/512105d0c84060f8fc2c4eb89e8807c7f9f7f910))
+
 ## [0.6.6](https://github.com/devuri/wp-env-config/compare/v0.6.5...v0.6.6) (2023-09-08)
 
 
