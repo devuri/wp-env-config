@@ -18,6 +18,13 @@ trait ConstantBuilderTrait
      */
     protected static $constants = [];
 
+	/**
+     * list of constants defined by Setup.
+     *
+     * @var array
+     */
+    protected $constant_map = [ 'disabled' ];
+
     /**
      * Define a constant with a value.
      *
@@ -64,5 +71,52 @@ trait ConstantBuilderTrait
         }
 
         return null;
+    }
+
+	/**
+     * Display a list of constants defined by Setup.
+     *
+     * Retrieves a list of constants defined by the Setup class,
+     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
+     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
+     *
+     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
+     */
+    public function get_constant_map(): array
+    {
+        return self::encrypt_secret( $this->constant_map, self::env_secrets() );
+    }
+
+	/**
+     * Set the constant map based on environmental conditions.
+     *
+     * This method determines the constant map based on the presence of WP_DEBUG and the environment type.
+     * If WP_DEBUG is not defined or set to false, the constant map will be set to ['disabled'].
+     * If the environment type is 'development', 'debug', or 'staging', it will use the static $constants property
+     * as the constant map if it's an array; otherwise, it will set the constant map to ['invalid_type_returned'].
+     */
+    protected function set_constant_map(): void
+    {
+        if ( ! \defined( 'WP_DEBUG' ) ) {
+            $this->constant_map = [ 'disabled' ];
+
+            return;
+        }
+
+        if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
+            $this->constant_map = [ 'disabled' ];
+
+            return;
+        }
+
+        if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
+            $constant_map = static::$constants;
+
+            if ( \is_array( $constant_map ) ) {
+                $this->constant_map = $constant_map;
+            }
+
+            $this->constant_map = [ 'invalid_type_returned' ];
+        }
     }
 }
