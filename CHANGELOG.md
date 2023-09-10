@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.7.2](https://github.com/devuri/wp-env-config/compare/v0.7.1...v0.7.2) (2023-09-10)
+
+
+### Bug Fixes
+
+* `ConstantConfigTrait` is now `ConstantBuilderTrait` ([f24c5f8](https://github.com/devuri/wp-env-config/commit/f24c5f861bb4ef0a142226479d49a0555c1f18f4))
+
+
+### Miscellaneous Chores
+
+* adds test ([d572ab1](https://github.com/devuri/wp-env-config/commit/d572ab167aab73fc629aff7067a0cf11b8f1b262))
+* codefix ([b91b91f](https://github.com/devuri/wp-env-config/commit/b91b91f6b0a76daa058b94ebb47a4e82ab47840c))
+* docs ([45740ec](https://github.com/devuri/wp-env-config/commit/45740ec19cee0eeb1dbef880717276058178c0e5))
+
 ## [0.7.1](https://github.com/devuri/wp-env-config/compare/v0.7.0...v0.7.1) (2023-09-09)
 
 
