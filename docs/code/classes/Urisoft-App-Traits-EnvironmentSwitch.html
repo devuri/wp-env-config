@@ -96,18 +96,21 @@
 
     <article class="phpdocumentor-element -trait">
         <h2 class="phpdocumentor-content__title">
-    ConfigTrait
+    EnvironmentSwitch
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
-        
-    <section class="phpdocumentor-description"></section>
+            <p class="phpdocumentor-summary">Trait EnvironmentSwitch.</p>
+
+    <section class="phpdocumentor-description"><p>This trait provides methods for setting up different environmental configurations
+such as development, staging, production, and debugging within your application.</p>
+</section>
 
 
 
@@ -123,67 +126,46 @@
 
 <dl class="phpdocumentor-table-of-contents">
                         <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_asset_url">asset_url()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_debug">env_debug()</a>
     <span>
-                                &nbsp;: static    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>The Site Asset Url Settings.</dd>
+<dd>Debug.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_autosave">autosave()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_development">env_development()</a>
     <span>
-                                &nbsp;: static    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>AUTOSAVE and REVISIONS.</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_database">database()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_production">env_production()</a>
     <span>
-                                &nbsp;: static    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>DB settings.</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_force_ssl">force_ssl()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_secure">env_secure()</a>
     <span>
-                                &nbsp;: static    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>SSL.</dd>
+<dd>Secure.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_memory">memory()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_staging">env_staging()</a>
     <span>
-                                &nbsp;: static    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Memory Settings.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_optimize">optimize()</a>
-    <span>
-                                &nbsp;: static    </span>
-</dt>
-<dd>Optimize.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_salts">salts()</a>
-    <span>
-                                &nbsp;: static    </span>
-</dt>
-<dd>Authentication Unique Keys and Salts.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_site_url">site_url()</a>
-    <span>
-                                &nbsp;: static    </span>
-</dt>
-<dd>Site Url Settings.</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_const">const()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log">set_debug_log()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Env defaults.</dd>
+<dd>Set debug environment.</dd>
 
         </dl>
 
@@ -194,7 +176,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Urisoft-App-Traits-ConfigTrait.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -202,29 +184,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_asset_url">
-        asset_url()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_asset_url" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_env_debug">
+        env_debug()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_debug" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The Site Asset Url Settings.</p>
+        <p class="phpdocumentor-summary">Debug.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">asset_url</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">env_debug</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -235,29 +217,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_autosave">
-        autosave()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_autosave" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_env_development">
+        env_development()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_development" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">AUTOSAVE and REVISIONS.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">autosave</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">env_development</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -268,128 +250,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_database">
-        database()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_database" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_env_production">
+        env_production()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_production" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">90</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">DB settings.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">database</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_force_ssl">
-        force_ssl()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_force_ssl" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">64</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">SSL.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">force_ssl</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_memory">
-        memory()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_memory" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">51</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Memory Settings.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">memory</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
-
-    
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_optimize">
-        optimize()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_optimize" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Optimize.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">optimize</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">env_production</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -400,29 +283,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_salts">
-        salts()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_salts" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_env_secure">
+        env_secure()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_secure" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">108</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Authentication Unique Keys and Salts.</p>
+        <p class="phpdocumentor-summary">Secure.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">salts</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">env_secure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -433,29 +316,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_site_url">
-        site_url()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_site_url" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_env_staging">
+        env_staging()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_staging" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Site Url Settings.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">site_url</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">static</span></code>
+                    <span class="phpdocumentor-signature__name">env_staging</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-    
+        <section class="phpdocumentor-description"></section>
+
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">static</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -464,46 +347,31 @@
         class="phpdocumentor-element
             -method
             -protected
-                                    -static                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_const">
-        const()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_const" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_set_debug_log">
+        set_debug_log()
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Env defaults.</p>
+        <p class="phpdocumentor-summary">Set debug environment.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">const</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">set_debug_log</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"><p>These are some defaults that will apply
-if they do not exist in .env</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>val to retrieve</p>
-</section>
-
-            </dd>
-            </dl>
-
+    
+    
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -586,7 +454,7 @@ if they do not exist in .env</p>
 </section>
             </div>
         </div>
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

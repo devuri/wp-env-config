@@ -111,7 +111,7 @@
     
             <span class="phpdocumentor-element__extends">
             Uses
-                            <a href="classes/Urisoft-App-Traits-ConfigTrait.html"><abbr title="\Urisoft\App\Traits\ConfigTrait">ConfigTrait</abbr></a>,                             <a href="classes/Urisoft-App-Traits-CryptTrait.html"><abbr title="\Urisoft\App\Traits\CryptTrait">CryptTrait</abbr></a>,                             <a href="classes/Urisoft-App-Traits-Environment.html"><abbr title="\Urisoft\App\Traits\Environment">Environment</abbr></a>                    </span>
+                            <a href="classes/Urisoft-App-Traits-ConfigTrait.html"><abbr title="\Urisoft\App\Traits\ConfigTrait">ConfigTrait</abbr></a>,                             <abbr title="\Urisoft\App\Traits\ConstantBuilderTrait">ConstantBuilderTrait</abbr>,                             <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html"><abbr title="\Urisoft\App\Traits\EnvironmentSwitch">EnvironmentSwitch</abbr></a>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
@@ -150,13 +150,6 @@
 
 <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a href="classes/Urisoft-App-Setup.html#property_config_map">$config_map</a>
-    <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-<dd>list of constants defined by Setup.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a href="classes/Urisoft-App-Setup.html#property_dotenv">$dotenv</a>
     <span>
                         &nbsp;: mixed            </span>
@@ -227,21 +220,14 @@
 <dd>Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_apply">apply()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_asset_url">asset_url()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_asset_url">asset_url()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>The Site Asset Url Settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_autosave">autosave()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_autosave">autosave()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
@@ -255,7 +241,7 @@
 <dd>Runs config setup with default setting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_database">database()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_database">database()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
@@ -269,60 +255,46 @@
 <dd>Debug Settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_define">define()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Wrapper to define config constant items.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_env_debug">env_debug()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_debug">env_debug()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Debug.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_env_development">env_development()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_development">env_development()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_env_production">env_production()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_production">env_production()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_env_secure">env_secure()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_secure">env_secure()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd>Secure.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_env_staging">env_staging()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_staging">env_staging()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_force_ssl">force_ssl()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_force_ssl">force_ssl()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>SSL.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_get_config_map">get_config_map()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, string&gt;    </span>
-</dt>
-<dd>Display a list of constants defined by Setup.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Urisoft-App-Setup.html#method_get_env_files">get_env_files()</a>
@@ -353,28 +325,28 @@
 <dd>Singleton.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_memory">memory()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_memory">memory()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Memory Settings.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_optimize">optimize()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_optimize">optimize()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
 <dd>Optimize.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_required">required()</a>
+    <a href="classes/Urisoft-App-Setup.html#method_required">required()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd></dd>
+<dd>Ensure that a specific constant is defined and not empty.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_salts">salts()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_salts">salts()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
@@ -395,7 +367,7 @@
 <dd>Set error handler.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Setup.html#method_site_url">site_url()</a>
+    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_site_url">site_url()</a>
     <span>
                                 &nbsp;: static    </span>
 </dt>
@@ -416,20 +388,6 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Traits-CryptTrait.html#method_encrypt_secret">encrypt_secret()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-<dd>Encrypts the values of sensitive data in the given configuration array.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Traits-CryptTrait.html#method_env_secrets">env_secrets()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed|string&gt;    </span>
-</dt>
-<dd>List of secret values that should always be encrypted.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Urisoft-App-Setup.html#method_environment_switch">environment_switch()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -444,7 +402,7 @@
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Traits-Environment.html#method_set_debug_log">set_debug_log()</a>
+    <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log">set_debug_log()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -459,13 +417,6 @@
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a href="classes/Urisoft-App-Setup.html#method_reset_environment">reset_environment()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_set_config_map">set_config_map()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -490,39 +441,6 @@
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_config_map">
-        $config_map
-        <a href="classes/Urisoft-App-Setup.html#property_config_map" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">28</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">list of constants defined by Setup.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$config_map</span>
-     = <span class="phpdocumentor-signature__default-value">[&#039;disabled&#039;]</span></code>
-
-    
-    
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="property_dotenv">
         $dotenv
         <a href="classes/Urisoft-App-Setup.html#property_dotenv" class="headerlink"><i class="fas fa-link"></i></a>
@@ -532,7 +450,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -566,7 +484,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">73</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -599,7 +517,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -632,7 +550,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -665,7 +583,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -698,7 +616,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -731,7 +649,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -764,7 +682,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
@@ -798,7 +716,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">80</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -835,7 +753,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -889,47 +807,14 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_apply">
-        apply()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_apply" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_asset_url">
+        asset_url()
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_asset_url" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">apply</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_asset_url">
-        asset_url()
-        <a href="classes/Urisoft-App-Setup.html#method_asset_url" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">423</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -957,12 +842,12 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_autosave">
         autosave()
-        <a href="classes/Urisoft-App-Setup.html#method_autosave" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_autosave" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">473</span>
+    <span class="phpdocumentor-element-found-in__line">77</span>
 
     </aside>
 
@@ -995,7 +880,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">181</span>
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -1044,12 +929,12 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_database">
         database()
-        <a href="classes/Urisoft-App-Setup.html#method_database" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_database" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">486</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -1082,7 +967,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">358</span>
+    <span class="phpdocumentor-element-found-in__line">349</span>
 
     </aside>
 
@@ -1116,73 +1001,16 @@
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_define">
-        define()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_define" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">24</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Wrapper to define config constant items.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">define</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-        <section class="phpdocumentor-description"><p>This will check if the constant is defined before attempting to define.
-If it is defined then do nothing, that allows them to be overridden, in wp-config.php.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$name</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>constant name.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>constant value</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_env_debug">
         env_debug()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_env_debug" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_debug" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">91</span>
 
     </aside>
 
@@ -1210,12 +1038,12 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
 >
     <h4 class="phpdocumentor-element__name" id="method_env_development">
         env_development()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_env_development" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_development" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -1243,12 +1071,12 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
 >
     <h4 class="phpdocumentor-element__name" id="method_env_production">
         env_production()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_env_production" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_production" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -1276,12 +1104,12 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
 >
     <h4 class="phpdocumentor-element__name" id="method_env_secure">
         env_secure()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_env_secure" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_secure" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -1309,12 +1137,12 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
 >
     <h4 class="phpdocumentor-element__name" id="method_env_staging">
         env_staging()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_env_staging" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_staging" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">58</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -1342,12 +1170,12 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
 >
     <h4 class="phpdocumentor-element__name" id="method_force_ssl">
         force_ssl()
-        <a href="classes/Urisoft-App-Setup.html#method_force_ssl" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_force_ssl" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">460</span>
+    <span class="phpdocumentor-element-found-in__line">64</span>
 
     </aside>
 
@@ -1373,45 +1201,6 @@ If it is defined then do nothing, that allows them to be overridden, in wp-confi
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get_config_map">
-        get_config_map()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_get_config_map" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">53</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Display a list of constants defined by Setup.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_config_map</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span></code>
-
-        <section class="phpdocumentor-description"><p>Retrieves a list of constants defined by the Setup class,
-but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
-If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].</p>
-</section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, string&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_get_env_files">
         get_env_files()
         <a href="classes/Urisoft-App-Setup.html#method_get_env_files" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1419,7 +1208,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">300</span>
+    <span class="phpdocumentor-element-found-in__line">291</span>
 
     </aside>
 
@@ -1467,7 +1256,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">310</span>
+    <span class="phpdocumentor-element-found-in__line">301</span>
 
     </aside>
 
@@ -1500,7 +1289,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">288</span>
+    <span class="phpdocumentor-element-found-in__line">279</span>
 
     </aside>
 
@@ -1548,7 +1337,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">164</span>
+    <span class="phpdocumentor-element-found-in__line">157</span>
 
     </aside>
 
@@ -1586,12 +1375,12 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
 >
     <h4 class="phpdocumentor-element__name" id="method_memory">
         memory()
-        <a href="classes/Urisoft-App-Setup.html#method_memory" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_memory" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">447</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -1619,12 +1408,12 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
 >
     <h4 class="phpdocumentor-element__name" id="method_optimize">
         optimize()
-        <a href="classes/Urisoft-App-Setup.html#method_optimize" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_optimize" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">435</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -1652,21 +1441,25 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
 >
     <h4 class="phpdocumentor-element__name" id="method_required">
         required()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_required" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Setup.html#method_required" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">405</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Ensure that a specific constant is defined and not empty.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">required</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>This method checks if the given constant is defined. If not, it uses the Dotenv library to ensure
+that the constant is present and not empty in the environment configuration. If the constant is missing
+or empty, it will throw an exception.</p>
+</section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
@@ -1675,7 +1468,8 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
+                    <section class="phpdocumentor-description"><p>The name of the constant to check.</p>
+</section>
 
             </dd>
             </dl>
@@ -1696,12 +1490,12 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
 >
     <h4 class="phpdocumentor-element__name" id="method_salts">
         salts()
-        <a href="classes/Urisoft-App-Setup.html#method_salts" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_salts" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">504</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
@@ -1734,7 +1528,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">262</span>
+    <span class="phpdocumentor-element-found-in__line">253</span>
 
     </aside>
 
@@ -1767,7 +1561,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">322</span>
+    <span class="phpdocumentor-element-found-in__line">313</span>
 
     </aside>
 
@@ -1807,12 +1601,12 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
 >
     <h4 class="phpdocumentor-element__name" id="method_site_url">
         site_url()
-        <a href="classes/Urisoft-App-Setup.html#method_site_url" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_site_url" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">410</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -1845,7 +1639,7 @@ If WP_DEBUG is not defined or is set to false, the function returns ['disabled']
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -1893,7 +1687,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">559</span>
+    <span class="phpdocumentor-element-found-in__line">450</span>
 
     </aside>
 
@@ -1919,126 +1713,6 @@ if they do not exist in .env</p>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_encrypt_secret">
-        encrypt_secret()
-        <a href="classes/Urisoft-App-Traits-CryptTrait.html#method_encrypt_secret" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/CryptTrait.php"><a href="files/src-app-traits-crypttrait.html"><abbr title="src/App/Traits/CryptTrait.php">CryptTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Encrypts the values of sensitive data in the given configuration array.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">encrypt_secret</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$secrets</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-        <section class="phpdocumentor-description"><p>This method iterates through the provided $config array, checking each key against the list
-of sensitive keys provided by the optional $secrets parameter. If a key is found in the sensitive list,
-the value is hashed using SHA-256 before being added to the resulting $encrypted_config array. Non-sensitive
-values are added to the array without modification.</p>
-</section>
-
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An associative array containing keys and their corresponding values</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$secrets</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>An optional array of sensitive keys that need to be hashed (defaults to null)</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>$encrypted_config An associative array with sensitive values hashed</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                    -static                    "
->
-    <h4 class="phpdocumentor-element__name" id="method_env_secrets">
-        env_secrets()
-        <a href="classes/Urisoft-App-Traits-CryptTrait.html#method_env_secrets" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/CryptTrait.php"><a href="files/src-app-traits-crypttrait.html"><abbr title="src/App/Traits/CryptTrait.php">CryptTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">42</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">List of secret values that should always be encrypted.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">env_secrets</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$secrets</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed|string&gt;</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$secrets</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"></section>
-
-            </dd>
-            </dl>
-
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">psalm-return</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                                
-                                                 <section class="phpdocumentor-description"><p>array{0: 'DB_USER', 1: 'DB_PASSWORD', 2: 'AUTH_KEY', 3: 'SECURE_AUTH_KEY', 4: 'LOGGED_IN_KEY', 5: 'NONCE_KEY', 6: 'AUTH_SALT', 7: 'SECURE_AUTH_SALT', 8: 'LOGGED_IN_SALT', 9: 'NONCE_SALT'}</p>
-</section>
-
-                                    </dd>
-                        </dl>
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed|string&gt;</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_environment_switch">
         environment_switch()
         <a href="classes/Urisoft-App-Setup.html#method_environment_switch" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2046,7 +1720,7 @@ values are added to the array without modification.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">526</span>
+    <span class="phpdocumentor-element-found-in__line">417</span>
 
     </aside>
 
@@ -2079,7 +1753,7 @@ values are added to the array without modification.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">569</span>
+    <span class="phpdocumentor-element-found-in__line">460</span>
 
     </aside>
 
@@ -2107,12 +1781,12 @@ values are added to the array without modification.</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_set_debug_log">
         set_debug_log()
-        <a href="classes/Urisoft-App-Traits-Environment.html#method_set_debug_log" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/Environment.php"><a href="files/src-app-traits-environment.html"><abbr title="src/App/Traits/Environment.php">Environment.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/EnvironmentSwitch.php"><a href="files/src-app-traits-environmentswitch.html"><abbr title="src/App/Traits/EnvironmentSwitch.php">EnvironmentSwitch.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -2145,7 +1819,7 @@ values are added to the array without modification.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">603</span>
+    <span class="phpdocumentor-element-found-in__line">494</span>
 
     </aside>
 
@@ -2190,7 +1864,7 @@ values are added to the array without modification.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">612</span>
+    <span class="phpdocumentor-element-found-in__line">503</span>
 
     </aside>
 
@@ -2214,52 +1888,6 @@ values are added to the array without modification.</p>
             </dl>
 
     
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">void</span>
-            &mdash;
-        
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_set_config_map">
-        set_config_map()
-        <a href="classes/Urisoft-App-Traits-ConfigTrait.html#method_set_config_map" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/ConfigTrait.php"><a href="files/src-app-traits-configtrait.html"><abbr title="src/App/Traits/ConfigTrait.php">ConfigTrait.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">86</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">set_config_map</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    
-    
-    
-    <h5 class="phpdocumentor-tag-list__heading" id="tags">
-        Tags
-        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
-    </h5>
-    <dl class="phpdocumentor-tag-list">
-                                    <dt class="phpdocumentor-tag-list__entry">
-                    <span class="phpdocumentor-tag__name">throws</span>
-                </dt>
-                <dd class="phpdocumentor-tag-list__definition">
-                                                                <span class="phpdocumentor-tag-link"><abbr title="\ReflectionException">ReflectionException</abbr></span>
-                                                            
-                                             
-                                    </dd>
-                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">void</span>

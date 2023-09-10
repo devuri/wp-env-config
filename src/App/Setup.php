@@ -5,8 +5,8 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
-use Urisoft\App\Traits\ConstantConfigTrait;
-use Urisoft\App\Traits\CryptTrait;
+use Urisoft\App\Traits\ConfigTrait;
+use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -16,16 +16,9 @@ use Whoops\Run;
  */
 class Setup implements ConfigInterface
 {
-    use ConstantConfigTrait;
-    use CryptTrait;
+    use ConfigTrait;
+    use ConstantBuilderTrait;
     use EnvironmentSwitch;
-
-    /**
-     * list of constants defined by Setup.
-     *
-     * @var array
-     */
-    protected $constant_map = [ 'disabled' ];
 
     /**
      *  Directory $path.
@@ -260,18 +253,18 @@ class Setup implements ConfigInterface
     public function set_environment(): ConfigInterface
     {
         if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
-            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
+            $this->define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
 
             return $this;
         }
 
         if ( \is_null( $this->environment ) ) {
-            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
+            $this->define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
 
             return $this;
         }
 
-        self::define( 'WP_ENVIRONMENT_TYPE', $this->environment );
+        $this->define( 'WP_ENVIRONMENT_TYPE', $this->environment );
 
         return $this;
     }
@@ -401,122 +394,6 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Site Url Settings.
-     *
-     * @return static
-     */
-    public function site_url(): ConfigInterface
-    {
-        self::define( 'WP_HOME', env( 'WP_HOME' ) );
-        self::define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
-
-        return $this;
-    }
-
-    /**
-     * The Site Asset Url Settings.
-     *
-     * @return static
-     */
-    public function asset_url(): ConfigInterface
-    {
-        self::define( 'ASSET_URL', env( 'ASSET_URL' ) );
-
-        return $this;
-    }
-
-    /**
-     * Optimize.
-     *
-     * @return static
-     */
-    public function optimize(): ConfigInterface
-    {
-        self::define( 'CONCATENATE_SCRIPTS', env( 'CONCATENATE_SCRIPTS' ) ?? self::const( 'optimize' ) );
-
-        return $this;
-    }
-
-    /**
-     * Memory Settings.
-     *
-     * @return static
-     */
-    public function memory(): ConfigInterface
-    {
-        self::define( 'WP_MEMORY_LIMIT', env( 'MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
-        self::define( 'WP_MAX_MEMORY_LIMIT', env( 'MAX_MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
-
-        return $this;
-    }
-
-    /**
-     * SSL.
-     *
-     * @return static
-     */
-    public function force_ssl(): ConfigInterface
-    {
-        self::define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?? self::const( 'ssl_admin' ) );
-        self::define( 'FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) ?? self::const( 'ssl_login' ) );
-
-        return $this;
-    }
-
-    /**
-     * AUTOSAVE and REVISIONS.
-     *
-     * @return static
-     */
-    public function autosave(): ConfigInterface
-    {
-        self::define( 'AUTOSAVE_INTERVAL', env( 'AUTOSAVE_INTERVAL' ) ?? self::const( 'autosave' ) );
-        self::define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?? self::const( 'revisions' ) );
-
-        return $this;
-    }
-
-    /**
-     * DB settings.
-     *
-     * @return static
-     */
-    public function database(): ConfigInterface
-    {
-        self::define( 'DB_NAME', env( 'DB_NAME' ) );
-        self::define( 'DB_USER', env( 'DB_USER' ) );
-        self::define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
-        self::define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
-        self::define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?? 'utf8mb4' );
-        self::define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?? '' );
-
-        return $this;
-    }
-
-
-    /**
-     * Authentication Unique Keys and Salts.
-     *
-     * @return static
-     */
-    public function salts(): ConfigInterface
-    {
-        self::define( 'AUTH_KEY', env( 'AUTH_KEY' ) );
-        self::define( 'SECURE_AUTH_KEY', env( 'SECURE_AUTH_KEY' ) );
-        self::define( 'LOGGED_IN_KEY', env( 'LOGGED_IN_KEY' ) );
-        self::define( 'NONCE_KEY', env( 'NONCE_KEY' ) );
-        self::define( 'AUTH_SALT', env( 'AUTH_SALT' ) );
-        self::define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
-        self::define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
-        self::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
-
-        // Provides an easy way to differentiate a user from other admin users.
-        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
-
-        return $this;
-    }
-
-    /**
      * Ensure that a specific constant is defined and not empty.
      *
      * This method checks if the given constant is defined. If not, it uses the Dotenv library to ensure
@@ -530,20 +407,6 @@ class Setup implements ConfigInterface
         if ( ! \defined( $name ) ) {
             $this->dotenv->required( $name )->notEmpty();
         }
-    }
-
-    /**
-     * Display a list of constants defined by Setup.
-     *
-     * Retrieves a list of constants defined by the Setup class,
-     * but only if the WP_ENVIRONMENT_TYPE constant is set to 'development', 'debug', or 'staging'.
-     * If WP_DEBUG is not defined or is set to false, the function returns ['disabled'].
-     *
-     * @return string[] Returns an array containing a list of constants defined by Setup, or null if WP_DEBUG is not defined or set to false.
-     */
-    public function get_constant_map(): array
-    {
-        return self::encrypt_secret( $this->constant_map, self::env_secrets() );
     }
 
     /**
@@ -622,31 +485,6 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Env defaults.
-     *
-     * These are some defaults that will apply
-     * if they do not exist in .env
-     *
-     * @param string $key val to retrieve
-     *
-     * @return mixed
-     */
-    protected static function const( string $key )
-    {
-        $constant['environment'] = 'production';
-        $constant['debug']       = true;
-        $constant['db_host']     = 'localhost';
-        $constant['optimize']    = true;
-        $constant['memory']      = '256M';
-        $constant['ssl_admin']   = true;
-        $constant['ssl_login']   = true;
-        $constant['autosave']    = 180;
-        $constant['revisions']   = 10;
-
-        return $constant[ $key ] ?? null;
-    }
-
-    /**
      * Get Env value or return null.
      *
      * @param string $name the env var name.
@@ -665,38 +503,5 @@ class Setup implements ConfigInterface
     private function reset_environment( $reset ): void
     {
         $this->environment = $reset;
-    }
-
-    /**
-     * Set the constant map based on environmental conditions.
-     *
-     * This method determines the constant map based on the presence of WP_DEBUG and the environment type.
-     * If WP_DEBUG is not defined or set to false, the constant map will be set to ['disabled'].
-     * If the environment type is 'development', 'debug', or 'staging', it will use the static $constants property
-     * as the constant map if it's an array; otherwise, it will set the constant map to ['invalid_type_returned'].
-     */
-    private function set_constant_map(): void
-    {
-        if ( ! \defined( 'WP_DEBUG' ) ) {
-            $this->constant_map = [ 'disabled' ];
-
-            return;
-        }
-
-        if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
-            $this->constant_map = [ 'disabled' ];
-
-            return;
-        }
-
-        if ( \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'development', 'debug', 'staging' ], true ) ) {
-            $constant_map = static::$constants;
-
-            if ( \is_array( $constant_map ) ) {
-                $this->constant_map = $constant_map;
-            }
-
-            $this->constant_map = [ 'invalid_type_returned' ];
-        }
     }
 }
