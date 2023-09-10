@@ -7,7 +7,6 @@ use Exception;
 use Symfony\Component\ErrorHandler\Debug;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\ConstantBuilderTrait;
-use Urisoft\App\Traits\CryptTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
@@ -19,7 +18,6 @@ class Setup implements ConfigInterface
 {
     use ConfigTrait;
     use ConstantBuilderTrait;
-    use CryptTrait;
     use EnvironmentSwitch;
 
     /**

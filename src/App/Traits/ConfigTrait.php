@@ -122,7 +122,7 @@ trait ConfigTrait
         return $this;
     }
 
-	/**
+    /**
      * Env defaults.
      *
      * These are some defaults that will apply
