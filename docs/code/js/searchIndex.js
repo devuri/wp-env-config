@@ -56,11 +56,6 @@ Search.appendIndex(
             "summary": "AUTOSAVE\u0020and\u0020REVISIONS.",
             "url": "classes/Urisoft-App-ConfigInterface.html#method_autosave"
         },                {
-            "fqsen": "\\Urisoft\\App\\ConfigInterface\u003A\u003Aapply\u0028\u0029",
-            "name": "apply",
-            "summary": "Apply\u0020the\u0020setup.",
-            "url": "classes/Urisoft-App-ConfigInterface.html#method_apply"
-        },                {
             "fqsen": "\\Urisoft\\App\\Console\\BackupCommand",
             "name": "BackupCommand",
             "summary": "",
@@ -1126,34 +1121,119 @@ Search.appendIndex(
             "summary": "The\u0020Asset\u0020url.",
             "url": "classes/Urisoft-App-Http-Asset.html#method_url"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\ConstantTrait",
-            "name": "ConstantTrait",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-ConstantTrait.html"
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel",
+            "name": "BaseKernel",
+            "summary": "Setup\u0020common\u0020elements.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\ConstantTrait\u003A\u003Aconstants\u0028\u0029",
-            "name": "constants",
-            "summary": "Defines\u0020constants.",
-            "url": "classes/Urisoft-App-Http-ConstantTrait.html#method_constants"
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Setup\u0020BaseKernel.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method___construct"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\ConstantTrait\u003A\u003Aredis\u0028\u0029",
-            "name": "redis",
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_app\u0028\u0029",
+            "name": "get_app",
             "summary": "",
-            "url": "classes/Urisoft-App-Http-ConstantTrait.html#method_redis"
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_app"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\ConstantTrait\u003A\u003Asecurity\u0028\u0029",
-            "name": "security",
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_app_security\u0028\u0029",
+            "name": "get_app_security",
             "summary": "",
-            "url": "classes/Urisoft-App-Http-ConstantTrait.html#method_security"
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_app_security"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\ConstantTrait\u003A\u003A\u0024args",
-            "name": "args",
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_app_path\u0028\u0029",
+            "name": "get_app_path",
             "summary": "",
-            "url": "classes/Urisoft-App-Http-ConstantTrait.html#property_args"
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_app_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_args\u0028\u0029",
+            "name": "get_args",
+            "summary": "Get\u0020args.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_args"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_app_config\u0028\u0029",
+            "name": "get_app_config",
+            "summary": "Get\u0020app\u0020config\u0020args.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_app_config"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aoverrides\u0028\u0029",
+            "name": "overrides",
+            "summary": "Setup\u0020overrides.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_overrides"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aset_env_secret\u0028\u0029",
+            "name": "set_env_secret",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_set_env_secret"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_secret\u0028\u0029",
+            "name": "get_secret",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_secret"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Ainit\u0028\u0029",
+            "name": "init",
+            "summary": "Start\u0020the\u0020app.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_init"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_defined\u0028\u0029",
+            "name": "get_defined",
+            "summary": "Get\u0020list\u0020of\u0020defined\u0020constants.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_defined"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aenvironment_args\u0028\u0029",
+            "name": "environment_args",
+            "summary": "Set\u0020App\u0020defaults.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_environment_args"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_current_month\u0028\u0029",
+            "name": "get_current_month",
+            "summary": "Retrieve\u0020the\u0020current\u0020month.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_current_month"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_current_year\u0028\u0029",
+            "name": "get_current_year",
+            "summary": "Retrieve\u0020the\u0020current\u0020year.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_current_year"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024app_path",
+            "name": "app_path",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_app_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024log_file",
+            "name": "log_file",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_log_file"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024dir_name",
+            "name": "dir_name",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_dir_name"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024config_file",
+            "name": "config_file",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_config_file"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024env_secret",
+            "name": "env_secret",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_env_secret"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024list",
+            "name": "list",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_list"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024app_setup",
+            "name": "app_setup",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_app_setup"
         },                {
             "fqsen": "\\Urisoft\\App\\Kernel",
             "name": "Kernel",
-            "summary": "",
+            "summary": "Setup\u0020common\u0020elements.",
             "url": "classes/Urisoft-App-Kernel.html"
         },                {
             "fqsen": "\\Urisoft\\App\\Kernel\u003A\u003A__construct\u0028\u0029",
@@ -1211,45 +1291,10 @@ Search.appendIndex(
             "summary": "Debug\u0020Settings.",
             "url": "classes/Urisoft-App-Setup.html#method_debug"
         },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Asite_url\u0028\u0029",
-            "name": "site_url",
-            "summary": "Site\u0020Url\u0020Settings.",
-            "url": "classes/Urisoft-App-Setup.html#method_site_url"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aasset_url\u0028\u0029",
-            "name": "asset_url",
-            "summary": "The\u0020Site\u0020Asset\u0020Url\u0020Settings.",
-            "url": "classes/Urisoft-App-Setup.html#method_asset_url"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aoptimize\u0028\u0029",
-            "name": "optimize",
-            "summary": "Optimize.",
-            "url": "classes/Urisoft-App-Setup.html#method_optimize"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Amemory\u0028\u0029",
-            "name": "memory",
-            "summary": "Memory\u0020Settings.",
-            "url": "classes/Urisoft-App-Setup.html#method_memory"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aforce_ssl\u0028\u0029",
-            "name": "force_ssl",
-            "summary": "SSL.",
-            "url": "classes/Urisoft-App-Setup.html#method_force_ssl"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aautosave\u0028\u0029",
-            "name": "autosave",
-            "summary": "AUTOSAVE\u0020and\u0020REVISIONS.",
-            "url": "classes/Urisoft-App-Setup.html#method_autosave"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adatabase\u0028\u0029",
-            "name": "database",
-            "summary": "DB\u0020settings.",
-            "url": "classes/Urisoft-App-Setup.html#method_database"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Asalts\u0028\u0029",
-            "name": "salts",
-            "summary": "Authentication\u0020Unique\u0020Keys\u0020and\u0020Salts.",
-            "url": "classes/Urisoft-App-Setup.html#method_salts"
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Arequired\u0028\u0029",
+            "name": "required",
+            "summary": "Ensure\u0020that\u0020a\u0020specific\u0020constant\u0020is\u0020defined\u0020and\u0020not\u0020empty.",
+            "url": "classes/Urisoft-App-Setup.html#method_required"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aenvironment_switch\u0028\u0029",
             "name": "environment_switch",
@@ -1275,11 +1320,6 @@ Search.appendIndex(
             "name": "reset_environment",
             "summary": "",
             "url": "classes/Urisoft-App-Setup.html#method_reset_environment"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024config_map",
-            "name": "config_map",
-            "summary": "list\u0020of\u0020constants\u0020defined\u0020by\u0020Setup.",
-            "url": "classes/Urisoft-App-Setup.html#property_config_map"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024path",
             "name": "path",
@@ -1331,85 +1371,50 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Traits-ConfigTrait.html"
         },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Adefine\u0028\u0029",
-            "name": "define",
-            "summary": "Wrapper\u0020to\u0020define\u0020config\u0020constant\u0020items.",
-            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_define"
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Asite_url\u0028\u0029",
+            "name": "site_url",
+            "summary": "Site\u0020Url\u0020Settings.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_site_url"
         },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Arequired\u0028\u0029",
-            "name": "required",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_required"
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aasset_url\u0028\u0029",
+            "name": "asset_url",
+            "summary": "The\u0020Site\u0020Asset\u0020Url\u0020Settings.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_asset_url"
         },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aapply\u0028\u0029",
-            "name": "apply",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_apply"
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aoptimize\u0028\u0029",
+            "name": "optimize",
+            "summary": "Optimize.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_optimize"
         },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aget_config_map\u0028\u0029",
-            "name": "get_config_map",
-            "summary": "Display\u0020a\u0020list\u0020of\u0020constants\u0020defined\u0020by\u0020Setup.",
-            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_get_config_map"
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Amemory\u0028\u0029",
+            "name": "memory",
+            "summary": "Memory\u0020Settings.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_memory"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aforce_ssl\u0028\u0029",
+            "name": "force_ssl",
+            "summary": "SSL.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_force_ssl"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aautosave\u0028\u0029",
+            "name": "autosave",
+            "summary": "AUTOSAVE\u0020and\u0020REVISIONS.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_autosave"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Adatabase\u0028\u0029",
+            "name": "database",
+            "summary": "DB\u0020settings.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_database"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Asalts\u0028\u0029",
+            "name": "salts",
+            "summary": "Authentication\u0020Unique\u0020Keys\u0020and\u0020Salts.",
+            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_salts"
         },                {
             "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aconst\u0028\u0029",
             "name": "const",
             "summary": "Env\u0020defaults.",
             "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_const"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait\u003A\u003Aset_config_map\u0028\u0029",
-            "name": "set_config_map",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_set_config_map"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\CryptTrait",
-            "name": "CryptTrait",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-CryptTrait.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\CryptTrait\u003A\u003Aencrypt_secret\u0028\u0029",
-            "name": "encrypt_secret",
-            "summary": "Encrypts\u0020the\u0020values\u0020of\u0020sensitive\u0020data\u0020in\u0020the\u0020given\u0020configuration\u0020array.",
-            "url": "classes/Urisoft-App-Traits-CryptTrait.html#method_encrypt_secret"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\CryptTrait\u003A\u003Aenv_secrets\u0028\u0029",
-            "name": "env_secrets",
-            "summary": "List\u0020of\u0020secret\u0020values\u0020that\u0020should\u0020always\u0020be\u0020encrypted.",
-            "url": "classes/Urisoft-App-Traits-CryptTrait.html#method_env_secrets"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment",
-            "name": "Environment",
-            "summary": "Setup\u0020Environment.",
-            "url": "classes/Urisoft-App-Traits-Environment.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aenv_secure\u0028\u0029",
-            "name": "env_secure",
-            "summary": "Secure.",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_env_secure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aenv_production\u0028\u0029",
-            "name": "env_production",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_env_production"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aenv_staging\u0028\u0029",
-            "name": "env_staging",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_env_staging"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aenv_development\u0028\u0029",
-            "name": "env_development",
-            "summary": "",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_env_development"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aenv_debug\u0028\u0029",
-            "name": "env_debug",
-            "summary": "Debug.",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_env_debug"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Traits\\Environment\u003A\u003Aset_debug_log\u0028\u0029",
-            "name": "set_debug_log",
-            "summary": "Set\u0020debug\u0020environment.",
-            "url": "classes/Urisoft-App-Traits-Environment.html#method_set_debug_log"
         },                {
             "fqsen": "\\asset\u0028\u0029",
             "name": "asset",
@@ -1681,6 +1686,106 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Core-Elementor.html#property_license_key"
         },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface",
+            "name": "EnvInterface",
+            "summary": "Interface\u0020for\u0020managing\u0020different\u0020environment\u0020settings.",
+            "url": "classes/Urisoft-App-EnvInterface.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface\u003A\u003Aenv_secure\u0028\u0029",
+            "name": "env_secure",
+            "summary": "Configure\u0020the\u0020environment\u0020for\u0020secure\u0020production.",
+            "url": "classes/Urisoft-App-EnvInterface.html#method_env_secure"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface\u003A\u003Aenv_production\u0028\u0029",
+            "name": "env_production",
+            "summary": "Configure\u0020the\u0020environment\u0020for\u0020production.",
+            "url": "classes/Urisoft-App-EnvInterface.html#method_env_production"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface\u003A\u003Aenv_staging\u0028\u0029",
+            "name": "env_staging",
+            "summary": "Configure\u0020the\u0020environment\u0020for\u0020staging.",
+            "url": "classes/Urisoft-App-EnvInterface.html#method_env_staging"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface\u003A\u003Aenv_development\u0028\u0029",
+            "name": "env_development",
+            "summary": "Configure\u0020the\u0020environment\u0020for\u0020development.",
+            "url": "classes/Urisoft-App-EnvInterface.html#method_env_development"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvInterface\u003A\u003Aenv_debug\u0028\u0029",
+            "name": "env_debug",
+            "summary": "Configure\u0020the\u0020environment\u0020for\u0020debugging.",
+            "url": "classes/Urisoft-App-EnvInterface.html#method_env_debug"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvSwitch",
+            "name": "EnvSwitch",
+            "summary": "Class\u0020EnvSwitch.",
+            "url": "classes/Urisoft-App-EnvSwitch.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Exceptions\\ConstantAlreadyDefinedException",
+            "name": "ConstantAlreadyDefinedException",
+            "summary": "Exception\u0020thrown\u0020when\u0020attempting\u0020to\u0020define\u0028\u0029\u0020a\u0020constant\u0020that\u0020has\u0020already\u0020been\u0020defined.",
+            "url": "classes/Urisoft-App-Exceptions-ConstantAlreadyDefinedException.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConstantTrait",
+            "name": "ConstantTrait",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-ConstantTrait.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConstantTrait\u003A\u003Aset_config_constants\u0028\u0029",
+            "name": "set_config_constants",
+            "summary": "Defines\u0020constants.",
+            "url": "classes/Urisoft-App-Traits-ConstantTrait.html#method_set_config_constants"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConstantTrait\u003A\u003Aredis\u0028\u0029",
+            "name": "redis",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-ConstantTrait.html#method_redis"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConstantTrait\u003A\u003Asecurity\u0028\u0029",
+            "name": "security",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-ConstantTrait.html#method_security"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\ConstantTrait\u003A\u003A\u0024args",
+            "name": "args",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-ConstantTrait.html#property_args"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch",
+            "name": "EnvironmentSwitch",
+            "summary": "Trait\u0020EnvironmentSwitch.",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aenv_secure\u0028\u0029",
+            "name": "env_secure",
+            "summary": "Secure.",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_secure"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aenv_production\u0028\u0029",
+            "name": "env_production",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_production"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aenv_staging\u0028\u0029",
+            "name": "env_staging",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_staging"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aenv_development\u0028\u0029",
+            "name": "env_development",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_development"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aenv_debug\u0028\u0029",
+            "name": "env_debug",
+            "summary": "Debug.",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_env_debug"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\EnvironmentSwitch\u003A\u003Aset_debug_log\u0028\u0029",
+            "name": "set_debug_log",
+            "summary": "Set\u0020debug\u0020environment.",
+            "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -1715,6 +1820,11 @@ Search.appendIndex(
             "name": "Settings",
             "summary": "",
             "url": "namespaces/urisoft-app-core-settings.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Exceptions",
+            "name": "Exceptions",
+            "summary": "",
+            "url": "namespaces/urisoft-app-exceptions.html"
         },                {
             "fqsen": "\\Urisoft\\App\\Http",
             "name": "Http",
