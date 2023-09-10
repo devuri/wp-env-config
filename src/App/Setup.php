@@ -5,7 +5,7 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
-use Urisoft\App\Traits\ConstantConfigTrait;
+use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\CryptTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
@@ -16,7 +16,7 @@ use Whoops\Run;
  */
 class Setup implements ConfigInterface
 {
-    use ConstantConfigTrait;
+    use ConstantBuilderTrait;
     use CryptTrait;
     use EnvironmentSwitch;
 
@@ -260,18 +260,18 @@ class Setup implements ConfigInterface
     public function set_environment(): ConfigInterface
     {
         if ( false === $this->environment && env( 'WP_ENVIRONMENT_TYPE' ) ) {
-            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
+            $this->define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) );
 
             return $this;
         }
 
         if ( \is_null( $this->environment ) ) {
-            self::define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
+            $this->define( 'WP_ENVIRONMENT_TYPE', env( 'WP_ENVIRONMENT_TYPE' ) ?? self::const( 'environment' ) );
 
             return $this;
         }
 
-        self::define( 'WP_ENVIRONMENT_TYPE', $this->environment );
+        $this->define( 'WP_ENVIRONMENT_TYPE', $this->environment );
 
         return $this;
     }
@@ -407,8 +407,8 @@ class Setup implements ConfigInterface
      */
     public function site_url(): ConfigInterface
     {
-        self::define( 'WP_HOME', env( 'WP_HOME' ) );
-        self::define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
+        $this->define( 'WP_HOME', env( 'WP_HOME' ) );
+        $this->define( 'WP_SITEURL', env( 'WP_SITEURL' ) );
 
         return $this;
     }
@@ -420,7 +420,7 @@ class Setup implements ConfigInterface
      */
     public function asset_url(): ConfigInterface
     {
-        self::define( 'ASSET_URL', env( 'ASSET_URL' ) );
+        $this->define( 'ASSET_URL', env( 'ASSET_URL' ) );
 
         return $this;
     }
@@ -432,7 +432,7 @@ class Setup implements ConfigInterface
      */
     public function optimize(): ConfigInterface
     {
-        self::define( 'CONCATENATE_SCRIPTS', env( 'CONCATENATE_SCRIPTS' ) ?? self::const( 'optimize' ) );
+        $this->define( 'CONCATENATE_SCRIPTS', env( 'CONCATENATE_SCRIPTS' ) ?? self::const( 'optimize' ) );
 
         return $this;
     }
@@ -444,8 +444,8 @@ class Setup implements ConfigInterface
      */
     public function memory(): ConfigInterface
     {
-        self::define( 'WP_MEMORY_LIMIT', env( 'MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
-        self::define( 'WP_MAX_MEMORY_LIMIT', env( 'MAX_MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
+        $this->define( 'WP_MEMORY_LIMIT', env( 'MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
+        $this->define( 'WP_MAX_MEMORY_LIMIT', env( 'MAX_MEMORY_LIMIT' ) ?? self::const( 'memory' ) );
 
         return $this;
     }
@@ -457,8 +457,8 @@ class Setup implements ConfigInterface
      */
     public function force_ssl(): ConfigInterface
     {
-        self::define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?? self::const( 'ssl_admin' ) );
-        self::define( 'FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) ?? self::const( 'ssl_login' ) );
+        $this->define( 'FORCE_SSL_ADMIN', env( 'FORCE_SSL_ADMIN' ) ?? self::const( 'ssl_admin' ) );
+        $this->define( 'FORCE_SSL_LOGIN', env( 'FORCE_SSL_LOGIN' ) ?? self::const( 'ssl_login' ) );
 
         return $this;
     }
@@ -470,8 +470,8 @@ class Setup implements ConfigInterface
      */
     public function autosave(): ConfigInterface
     {
-        self::define( 'AUTOSAVE_INTERVAL', env( 'AUTOSAVE_INTERVAL' ) ?? self::const( 'autosave' ) );
-        self::define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?? self::const( 'revisions' ) );
+        $this->define( 'AUTOSAVE_INTERVAL', env( 'AUTOSAVE_INTERVAL' ) ?? self::const( 'autosave' ) );
+        $this->define( 'WP_POST_REVISIONS', env( 'WP_POST_REVISIONS' ) ?? self::const( 'revisions' ) );
 
         return $this;
     }
@@ -483,12 +483,12 @@ class Setup implements ConfigInterface
      */
     public function database(): ConfigInterface
     {
-        self::define( 'DB_NAME', env( 'DB_NAME' ) );
-        self::define( 'DB_USER', env( 'DB_USER' ) );
-        self::define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
-        self::define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
-        self::define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?? 'utf8mb4' );
-        self::define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?? '' );
+        $this->define( 'DB_NAME', env( 'DB_NAME' ) );
+        $this->define( 'DB_USER', env( 'DB_USER' ) );
+        $this->define( 'DB_PASSWORD', env( 'DB_PASSWORD' ) );
+        $this->define( 'DB_HOST', env( 'DB_HOST' ) ?? self::const( 'db_host' ) );
+        $this->define( 'DB_CHARSET', env( 'DB_CHARSET' ) ?? 'utf8mb4' );
+        $this->define( 'DB_COLLATE', env( 'DB_COLLATE' ) ?? '' );
 
         return $this;
     }
@@ -501,17 +501,17 @@ class Setup implements ConfigInterface
      */
     public function salts(): ConfigInterface
     {
-        self::define( 'AUTH_KEY', env( 'AUTH_KEY' ) );
-        self::define( 'SECURE_AUTH_KEY', env( 'SECURE_AUTH_KEY' ) );
-        self::define( 'LOGGED_IN_KEY', env( 'LOGGED_IN_KEY' ) );
-        self::define( 'NONCE_KEY', env( 'NONCE_KEY' ) );
-        self::define( 'AUTH_SALT', env( 'AUTH_SALT' ) );
-        self::define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
-        self::define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
-        self::define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
+        $this->define( 'AUTH_KEY', env( 'AUTH_KEY' ) );
+        $this->define( 'SECURE_AUTH_KEY', env( 'SECURE_AUTH_KEY' ) );
+        $this->define( 'LOGGED_IN_KEY', env( 'LOGGED_IN_KEY' ) );
+        $this->define( 'NONCE_KEY', env( 'NONCE_KEY' ) );
+        $this->define( 'AUTH_SALT', env( 'AUTH_SALT' ) );
+        $this->define( 'SECURE_AUTH_SALT', env( 'SECURE_AUTH_SALT' ) );
+        $this->define( 'LOGGED_IN_SALT', env( 'LOGGED_IN_SALT' ) );
+        $this->define( 'NONCE_SALT', env( 'NONCE_SALT' ) );
 
         // Provides an easy way to differentiate a user from other admin users.
-        self::define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
+        $this->define( 'DEVELOPER_ADMIN', env( 'DEVELOPER_ADMIN' ) ?? '0' );
 
         return $this;
     }

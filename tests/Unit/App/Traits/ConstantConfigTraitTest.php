@@ -4,16 +4,16 @@ namespace Tests\Unit\App\Traits;
 
 use PHPUnit\Framework\TestCase;
 use Urisoft\App\Exceptions\ConstantAlreadyDefinedException;
-use Urisoft\App\Traits\ConstantConfigTrait;
+use Urisoft\App\Traits\ConstantBuilderTrait;
 
 /**
  * @internal
  *
  * @coversNothing
  */
-class ConstantConfigTraitTest extends TestCase
+class ConstantBuilderTraitTest extends TestCase
 {
-    use ConstantConfigTrait;
+    use ConstantBuilderTrait;
 
     public function test_define_constant(): void
     {

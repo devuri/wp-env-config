@@ -5,11 +5,11 @@ namespace Urisoft\App\Traits;
 use Urisoft\App\Exceptions\ConstantAlreadyDefinedException;
 
 /**
- * Trait ConstantConfigTrait.
+ * Trait ConstantBuilderTrait.
  *
  * This trait provides methods for defining and managing constants in your application.
  */
-trait ConstantConfigTrait
+trait ConstantBuilderTrait
 {
     /**
      * List of constants defined.

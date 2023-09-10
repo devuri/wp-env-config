@@ -7,7 +7,7 @@ use function defined;
 use Exception;
 use InvalidArgumentException;
 use Urisoft\App\Setup;
-use Urisoft\App\Traits\ConstantConfigTrait;
+use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\ConstantTrait;
 
 /**
@@ -17,7 +17,7 @@ use Urisoft\App\Traits\ConstantTrait;
  */
 class BaseKernel
 {
-    use ConstantConfigTrait;
+    use ConstantBuilderTrait;
     use ConstantTrait;
 
     protected $app_path;
