@@ -72,6 +72,8 @@ class ConfigCommand extends Command
 			// Adds login secret.
 	        $this->filesystem->appendToFile( $this->root_dir_path . '/.env', self::autoLoginSecret() );
 
+			$output->writeln( "<info> A new Auto Login key has been added to your .env file</info>" );
+
 			return Command::SUCCESS;
 		}
 
