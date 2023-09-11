@@ -67,6 +67,14 @@ class ConfigCommand extends Command
             return Command::SUCCESS;
         }
 
+		// loginkey
+		if ( 'loginkey' === $config_task ) {
+			// Adds login secret.
+	        $this->filesystem->appendToFile( $this->root_dir_path . '/.env', self::autoLoginSecret() );
+
+			return Command::SUCCESS;
+		}
+
         if ( false === $config_task ) {
             $output->writeln( "<info>Config Setup for:$this->root_dir_path</info>" );
 
