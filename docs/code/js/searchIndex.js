@@ -1181,6 +1181,16 @@ Search.appendIndex(
             "summary": "Get\u0020list\u0020of\u0020defined\u0020constants.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_defined"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_server_env\u0028\u0029",
+            "name": "get_server_env",
+            "summary": "Retrieve\u0020server\u0020environment\u0020variables\u0020and\u0020obfuscate\u0020sensitive\u0020data.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_server_env"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_user_constants\u0028\u0029",
+            "name": "get_user_constants",
+            "summary": "Retrieve\u0020user\u002Ddefined\u0020constants\u0020and\u0020obfuscate\u0020sensitive\u0020data.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_user_constants"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aenvironment_args\u0028\u0029",
             "name": "environment_args",
             "summary": "Set\u0020App\u0020defaults.",
@@ -1195,6 +1205,11 @@ Search.appendIndex(
             "name": "get_current_year",
             "summary": "Retrieve\u0020the\u0020current\u0020year.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_current_year"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Ais_debug_mode\u0028\u0029",
+            "name": "is_debug_mode",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_is_debug_mode"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024app_path",
             "name": "app_path",
@@ -1785,6 +1800,51 @@ Search.appendIndex(
             "name": "set_debug_log",
             "summary": "Set\u0020debug\u0020environment.",
             "url": "classes/Urisoft-App-Traits-EnvironmentSwitch.html#method_set_debug_log"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates",
+            "name": "Updates",
+            "summary": "Retrieve\u0020information\u0020about\u0020available\u0020updates\nfor\u0020WordPress\u0020core,\u0020themes,\u0020and\u0020plugins.",
+            "url": "classes/Urisoft-App-Core-Updates.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020initializes\u0020the\u0020update\u0020data\u0020and\u0020available\u0020updates\u0020count.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_available_updates\u0028\u0029",
+            "name": "get_available_updates",
+            "summary": "Get\u0020the\u0020count\u0020of\u0020available\u0020updates.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method_get_available_updates"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_core_update\u0028\u0029",
+            "name": "get_core_update",
+            "summary": "Get\u0020the\u0020count\u0020of\u0020available\u0020core\u0020updates.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method_get_core_update"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_theme_update\u0028\u0029",
+            "name": "get_theme_update",
+            "summary": "Get\u0020the\u0020count\u0020of\u0020available\u0020theme\u0020updates.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method_get_theme_update"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_plugin_update\u0028\u0029",
+            "name": "get_plugin_update",
+            "summary": "Get\u0020the\u0020count\u0020of\u0020available\u0020plugin\u0020updates.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method_get_plugin_update"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_update\u0028\u0029",
+            "name": "get_update",
+            "summary": "Get\u0020the\u0020update\u0020count\u0020for\u0020a\u0020specific\u0020update\u0020type.",
+            "url": "classes/Urisoft-App-Core-Updates.html#method_get_update"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024update_data",
+            "name": "update_data",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Updates.html#property_update_data"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024available_updates",
+            "name": "available_updates",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Updates.html#property_available_updates"
         },                {
             "fqsen": "\\",
             "name": "\\",

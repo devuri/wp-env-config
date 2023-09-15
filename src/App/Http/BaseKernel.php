@@ -197,44 +197,44 @@ class BaseKernel
         return static::$constants;
     }
 
-	/**
-	 * Retrieve server environment variables and obfuscate sensitive data.
-	 *
-	 * This method retrieves the server environment variables (usually stored in $_ENV). If the application
-	 * is not in debug mode, it returns null. In debug mode, it collects the environment variables, obfuscates
-	 * any sensitive data within them using the 'encrypt_secret' method, and returns the resulting array.
-	 *
-	 * @return array|null An array of server environment variables with sensitive data obfuscated in debug mode,
-	 *                   or null if not in debug mode.
-	 */
-	public function get_server_env(): ?array
+    /**
+     * Retrieve server environment variables and obfuscate sensitive data.
+     *
+     * This method retrieves the server environment variables (usually stored in $_ENV). If the application
+     * is not in debug mode, it returns null. In debug mode, it collects the environment variables, obfuscates
+     * any sensitive data within them using the 'encrypt_secret' method, and returns the resulting array.
+     *
+     * @return null|array An array of server environment variables with sensitive data obfuscated in debug mode,
+     *                    or null if not in debug mode.
+     */
+    public function get_server_env(): ?array
     {
-		if ( ! self::is_debug_mode() ) {
-			return null;
-		}
+        if ( ! self::is_debug_mode() ) {
+            return null;
+        }
 
-        return self::encrypt_secret( $_ENV, self::env_secrets() );;
+        return self::encrypt_secret( $_ENV, self::env_secrets() );
     }
 
-	/**
-	 * Retrieve user-defined constants and obfuscate sensitive data.
-	 *
-	 * This method retrieves an array of user-defined constants. If the application is not in debug mode,
-	 * it returns null. In debug mode, it collects user-defined constants, obfuscates any sensitive data
-	 * within them using the 'encrypt_secret' method, and returns the resulting array.
-	 *
-	 * @return array|null An array of user-defined constants with sensitive data obfuscated in debug mode,
-	 *                   or null if not in debug mode.
-	 */
-	public function get_user_constants(): ?array
+    /**
+     * Retrieve user-defined constants and obfuscate sensitive data.
+     *
+     * This method retrieves an array of user-defined constants. If the application is not in debug mode,
+     * it returns null. In debug mode, it collects user-defined constants, obfuscates any sensitive data
+     * within them using the 'encrypt_secret' method, and returns the resulting array.
+     *
+     * @return null|array An array of user-defined constants with sensitive data obfuscated in debug mode,
+     *                    or null if not in debug mode.
+     */
+    public function get_user_constants(): ?array
     {
-		if ( ! self::is_debug_mode() ) {
-			return null;
-		}
+        if ( ! self::is_debug_mode() ) {
+            return null;
+        }
 
-		$user_constants = get_defined_constants(true)['user'];
+        $user_constants = get_defined_constants( true )['user'];
 
-        return self::encrypt_secret( $user_constants, self::env_secrets() );;
+        return self::encrypt_secret( $user_constants, self::env_secrets() );
     }
 
     /**
@@ -274,22 +274,20 @@ class BaseKernel
         return gmdate( 'Y' );
     }
 
-	private static function is_debug_mode(): bool
-	{
-		if ( ! \defined( 'WP_DEBUG' ) ) {
-			return false;
-		}
+    private static function is_debug_mode(): bool
+    {
+        if ( ! \defined( 'WP_DEBUG' ) ) {
+            return false;
+        }
 
-		if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
+        if ( \defined( 'WP_DEBUG' ) && false === WP_DEBUG ) {
+            return false;
+        }
 
-			return false;
-		}
+        if ( \defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+            return true;
+        }
 
-		if ( \defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
-
-			return true;
-		}
-
-		return false;
-	}
+        return false;
+    }
 }
