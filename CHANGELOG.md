@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.7.3](https://github.com/devuri/wp-env-config/compare/v0.7.2...v0.7.3) (2023-09-15)
+
+
+### Features
+
+* adds `get_user_constants()` and `get_server_env()` ([4d4aa8a](https://github.com/devuri/wp-env-config/commit/4d4aa8ab66b354c5c3365cd7c37472c2e13c7423))
+* adds a way to Display Updates in Secure Environment ([dc30ff8](https://github.com/devuri/wp-env-config/commit/dc30ff8d9b88468c67c17a4a08b5c0c95f06a8c1))
+* adds loginkey so we can do `nino config loginkey` ([78394c2](https://github.com/devuri/wp-env-config/commit/78394c261d890350d2c1cc14bb34b94a6367a5b0))
+
+
+### Bug Fixes
+
+* adds message saying the key wass added ([2c8642b](https://github.com/devuri/wp-env-config/commit/2c8642bb1d876f92ead4e66f99167cd0db5797d1))
+* adds some context on failed auto login ([2ceacd8](https://github.com/devuri/wp-env-config/commit/2ceacd853e26dae41ee8e5c9262f1b86f43646a7))
+* update package installer: `php nino n:i -p theme brisko` ([e48a1f5](https://github.com/devuri/wp-env-config/commit/e48a1f5852557d933ec0745ea83351fd1acac83a))
+
+
+### Miscellaneous Chores
+
+* build ([38f356c](https://github.com/devuri/wp-env-config/commit/38f356c347c519145424d135b17b1d442117fc98))
+
 ## [0.7.2](https://github.com/devuri/wp-env-config/compare/v0.7.1...v0.7.2) (2023-09-10)
 
 
