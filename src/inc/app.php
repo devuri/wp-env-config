@@ -362,11 +362,11 @@ return [
         'app-key' => env( 'WEB_APP_PUBLIC_KEY', null ),
     ],
 
-	/**
-	 * Defines the public key directory.
-	 *
-	 * This is the directory where we store out public key files.
-	 * the directory here is relative to the application root path
-	 */
-	'publickey_dir' => 'publickeys',
+    /*
+     * Defines the public key directory.
+     *
+     * This is the directory where we store out public key files.
+     * the directory here is relative to the application root path
+     */
+    'publickey_dir'    => 'publickeys',
 ];

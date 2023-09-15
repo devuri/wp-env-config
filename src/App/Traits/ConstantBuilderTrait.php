@@ -120,7 +120,7 @@ trait ConstantBuilderTrait
         }
     }
 
-	/**
+    /**
      * Encrypts the values of sensitive data in the given configuration array.
      *
      * This method iterates through the provided $config array, checking each key against the list

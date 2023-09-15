@@ -122,7 +122,8 @@ class AutoLogin
 
         // do not allow production login.
         if ( \in_array( $this->environment_type, [ 'sec', 'secure', 'prod', 'production' ], true ) ) {
-			error_log( 'auto login will not work production, change to debug or staging' );
+            error_log( 'auto login will not work production, change to debug or staging' );
+
             return;
         }
 
@@ -145,7 +146,8 @@ class AutoLogin
             $signature = base64_decode( static::get_req( 'sig' ), true );
 
             if ( \is_null( $this->login_service['username'] ) || \is_null( $signature ) ) {
-				error_log( 'auto login username invalid' );
+                error_log( 'auto login username invalid' );
+
                 return;
             }
 

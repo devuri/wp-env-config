@@ -76,19 +76,20 @@ class Plugin
                     $env_label = null;
                 }
 
-				/**
-				 * When in secure env updates are not visible.
-				 *
-				 * in that case this will give us an indication of available updates
-				 * @var Updates
-				 */
-				$wp_updates = new Updates();
+                /**
+                 * When in secure env updates are not visible.
+                 *
+                 * in that case this will give us an indication of available updates
+                 *
+                 * @var Updates
+                 */
+                $wp_updates = new Updates();
 
-				if( $wp_updates->get_available_updates() ) {
-					$wp_update_count = $wp_updates->get_available_updates();
-				} else {
-					$wp_update_count = null;
-				}
+                if ( $wp_updates->get_available_updates() ) {
+                    $wp_update_count = $wp_updates->get_available_updates();
+                } else {
+                    $wp_update_count = null;
+                }
 
                 $admin_bar->add_menu(
                     [

@@ -29,10 +29,11 @@ class Updates
     /**
      * Constructor initializes the update data and available updates count.
      */
-    public function __construct() {
+    public function __construct()
+    {
         // Initialize the update data when the class is constructed.
-        $this->update_data = wp_get_update_data();
-        $this->available_updates = count( $this->update_data );
+        $this->update_data       = wp_get_update_data();
+        $this->available_updates = \count( $this->update_data );
     }
 
     /**
@@ -52,7 +53,7 @@ class Updates
      */
     public function get_core_update(): int
     {
-        return $this->get_update('core');
+        return $this->get_update( 'core' );
     }
 
     /**
@@ -62,7 +63,7 @@ class Updates
      */
     public function get_theme_update(): int
     {
-        return $this->get_update('themes');
+        return $this->get_update( 'themes' );
     }
 
     /**
@@ -72,21 +73,21 @@ class Updates
      */
     public function get_plugin_update(): int
     {
-        return $this->get_update('plugins');
+        return $this->get_update( 'plugins' );
     }
 
     /**
      * Get the update count for a specific update type.
      *
-     * @param string|null $update_type The type of update to retrieve.
+     * @param null|string $update_type The type of update to retrieve.
      *
      * @return int The number of available updates for the specified type,
      *             or the entire update data array if $update_type is null.
      */
-    protected function get_update(?string $update_type = null)
+    protected function get_update( ?string $update_type = null )
     {
-        if ($update_type) {
-            return (int) $this->update_data[$update_type];
+        if ( $update_type ) {
+            return (int) $this->update_data[ $update_type ];
         }
 
         return $this->update_data;

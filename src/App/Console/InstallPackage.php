@@ -15,7 +15,7 @@ class InstallPackage extends Command
 
     protected function configure(): void
     {
-		// php nino n:i -p theme brisko
+        // php nino n:i -p theme brisko
         $this->setDescription( 'Add a plugin or theme via composer using slug only' );
         $this->addArgument( 'package', InputArgument::REQUIRED, 'The slug of the plugin or theme (example: brisko)' );
         $this->addOption( 'type', 'p', InputOption::VALUE_REQUIRED, 'Package type' );
@@ -29,9 +29,9 @@ class InstallPackage extends Command
     protected function execute( InputInterface $input, OutputInterface $output ): int
     {
         $package = $input->getArgument( 'package' );
-		$_type =  $input->getOption( 'type' );
+        $_type   = $input->getOption( 'type' );
 
-        if ( 'plugin' === $_type  ) {
+        if ( 'plugin' === $_type ) {
             $package_name = 'wpackagist-plugin/' . $package;
         } elseif ( 'theme' === $_type ) {
             $package_name = 'wpackagist-theme/' . $package;
