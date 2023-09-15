@@ -42,7 +42,7 @@ class BaseKernel
     {
         $this->app_path = $app_path;
 
-        $this->log_file = mb_strtolower( gmdate( 'd-m-Y' ) ) . '.log';
+        $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
 
         if ( ! \is_array( $args ) ) {
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
