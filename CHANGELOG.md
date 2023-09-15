@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.4](https://github.com/devuri/wp-env-config/compare/v0.7.3...v0.7.4) (2023-09-15)
+
+
+### Bug Fixes
+
+* debug log dates use 'm-d-Y' ([001ac17](https://github.com/devuri/wp-env-config/commit/001ac17703e62ea11d092f39962fa0b8b666ca2d))
+
 ## [0.7.3](https://github.com/devuri/wp-env-config/compare/v0.7.2...v0.7.3) (2023-09-15)
 
 
