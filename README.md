@@ -331,6 +331,23 @@ define( 'HEADLESS_MODE_CLIENT_URL', 'https://example.com' );
 ```
 https://github.com/Shelob9/headless-mode
 
+### Advacnced Users ⚠️ 
+
+#### Redis Object Cache
+
+> [!WARNING]
+>
+> Please note that configuring Redis Object Cache can be a complex process, as it relies on an external Redis server to function properly.
+> If you have little or no experience with setting up Redis servers, or configuring applications that use Redis, it is recommended that you seek assistance or consult with an expert before attempting to use this plugin.
+
+The **Redis Object Cache:** https://wordpress.org/plugins/redis-cache/ paired with https://github.com/phpredis/phpredis/blob/develop/INSTALL.md will supercharge web application.
+- We will need to install and setup the redis server, this varies widely based on your current server setup: https://redis.io/docs/getting-started/
+- Install and setup phpredis https://github.com/phpredis/phpredis/blob/develop/INSTALL.md
+- Install and configure the plugin: Installing Redis Object Cache: https://github.com/rhubarbgroup/redis-cache/blob/develop/INSTALL.md
+
+> Its best to use phpredis we have had issues in the past while testing where the cron jobs start failing, also if you decide to go for Redis Object Cache pro, phpredis is required. 
+
+
 ### Why
 
 The aim of this package is to simplify the definition of WordPress configuration constants by leveraging PHP dotenv to access environment variables stored in a .env file. By utilizing environment variables in this way, we can enhance the security of our WordPress installation by avoiding the storage of sensitive credentials in our code.
