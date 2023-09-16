@@ -331,9 +331,7 @@ define( 'HEADLESS_MODE_CLIENT_URL', 'https://example.com' );
 ```
 https://github.com/Shelob9/headless-mode
 
-### Advacnced Users ⚠️ 
-
-#### Redis Object Cache
+### Redis Object Cache
 
 > [!WARNING]
 >
