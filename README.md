@@ -351,3 +351,9 @@ The **Redis Object Cache:** https://wordpress.org/plugins/redis-cache/ paired wi
 The aim of this package is to simplify the definition of WordPress configuration constants by leveraging PHP dotenv to access environment variables stored in a .env file. By utilizing environment variables in this way, we can enhance the security of our WordPress installation by avoiding the storage of sensitive credentials in our code.
 
 This approach adheres to the **twelve-factor app methodology** for building and deploying software, specifically principle three, which emphasizes the importance of storing configuration data in the environment. By implementing this package, we can follow this best practice and ensure that our WordPress instance is both secure and maintainable.
+
+### Development and Support Status (in-Beta)
+> ⚠️ This project is currently in active development. If you're considering using it for production, please feel free to get in touch, and we'll gladly offer additional guidance and support. We also encourage and welcome any issues and pull requests related to this framework.
+> 
+> We are still in the beta testing phase. While it's actively under development, we are actively seeking user feedback and making improvements.
+> You're welcome to join our Slack community, where we have ongoing and active discussions.
