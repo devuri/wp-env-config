@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.5](https://github.com/devuri/wp-env-config/compare/v0.7.4...v0.7.5) (2023-09-23)
+
+
+### Bug Fixes
+
+* remove console split to standalone repo `devuri/wpenv-console` ([e88794d](https://github.com/devuri/wp-env-config/commit/e88794d70830f82a0d87dd2926ce548b555aef4f))
+
 ## [0.7.4](https://github.com/devuri/wp-env-config/compare/v0.7.3...v0.7.4) (2023-09-15)
 
 
