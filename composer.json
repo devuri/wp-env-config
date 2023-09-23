@@ -57,9 +57,6 @@
         "vimeo/psalm": "^4.24",
         "yoast/phpunit-polyfills": "^1.0 || ^2.0"
     },
-    "bin": [
-        "bin/nino"
-    ],
     "autoload": {
         "files": [
             "src/inc/helpers.php"
