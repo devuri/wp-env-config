@@ -28,7 +28,7 @@ class Updates
     {
         $this->update_plugins      = get_site_transient( 'update_plugins' );
         $this->update_themes       = get_site_transient( 'update_themes' );
-        $this->update_wordpress    = get_core_updates( [ 'dismissed' => false ] );
+        $this->update_wordpress    = get_site_transient( 'update_core' );
         $this->translation_updates = wp_get_translation_updates();
     }
 
@@ -55,8 +55,8 @@ class Updates
      */
     public function get_core_update(): ?int
     {
-        if ( ! empty( $this->update_wordpress )
-            && ! \in_array( $this->update_wordpress[0]->response, [ 'development', 'latest' ], true )
+        if ( ! empty( $this->update_wordpress->updates )
+            && ! \in_array( $this->update_wordpress->updates[0]->response, [ 'development', 'latest' ], true )
         ) {
             return 1;
         }
