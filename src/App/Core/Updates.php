@@ -16,24 +16,20 @@ namespace Urisoft\App\Core;
  */
 class Updates
 {
-    /**
-     * @var array Holds the update data retrieved from wp_get_update_data().
-     */
-    private $update_data;
-
-    /**
-     * @var int Holds the count of available updates.
-     */
-    private $available_updates;
+    protected $update_plugins;
+    protected $update_themes;
+    protected $update_wordpress;
+    protected $translation_updates;
 
     /**
      * Constructor initializes the update data and available updates count.
      */
     public function __construct()
     {
-        // Initialize the update data when the class is constructed.
-        $this->update_data       = wp_get_update_data();
-        $this->available_updates = \count( $this->update_data );
+        $this->update_plugins      = get_site_transient( 'update_plugins' );
+        $this->update_themes       = get_site_transient( 'update_themes' );
+        $this->update_wordpress    = get_core_updates( [ 'dismissed' => false ] );
+        $this->translation_updates = wp_get_translation_updates();
     }
 
     /**
@@ -41,9 +37,15 @@ class Updates
      *
      * @return int The number of available updates.
      */
-    public function get_available_updates(): int
+    public function get_available_updates(): ?int
     {
-        return (int) $this->available_updates;
+        $updates = [
+            'core'    => $this->get_core_update(),
+            'themes'  => $this->get_theme_update(),
+            'plugins' => $this->get_plugin_update(),
+        ];
+
+        return $updates['core'] + $updates['themes'] + $updates['plugins'];
     }
 
     /**
@@ -51,9 +53,15 @@ class Updates
      *
      * @return int The number of available core updates.
      */
-    public function get_core_update(): int
+    public function get_core_update(): ?int
     {
-        return $this->get_update( 'core' );
+        if ( ! empty( $this->update_wordpress )
+            && ! \in_array( $this->update_wordpress[0]->response, [ 'development', 'latest' ], true )
+        ) {
+            return 1;
+        }
+
+        return 0;
     }
 
     /**
@@ -63,7 +71,7 @@ class Updates
      */
     public function get_theme_update(): int
     {
-        return $this->get_update( 'themes' );
+        return \count( $this->update_themes->response );
     }
 
     /**
@@ -73,23 +81,6 @@ class Updates
      */
     public function get_plugin_update(): int
     {
-        return $this->get_update( 'plugins' );
-    }
-
-    /**
-     * Get the update count for a specific update type.
-     *
-     * @param null|string $update_type The type of update to retrieve.
-     *
-     * @return int The number of available updates for the specified type,
-     *             or the entire update data array if $update_type is null.
-     */
-    protected function get_update( ?string $update_type = null )
-    {
-        if ( $update_type ) {
-            return (int) $this->update_data[ $update_type ];
-        }
-
-        return $this->update_data;
+        return \count( $this->update_plugins->response );
     }
 }
