@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.6](https://github.com/devuri/wp-env-config/compare/v0.7.5...v0.7.6) (2023-09-24)
+
+
+### Bug Fixes
+
+* adds sub domain for Integrated Version Control label ([4d69a2d](https://github.com/devuri/wp-env-config/commit/4d69a2d9af8af5c2cb2a573e4232958705c839e8))
+* fixes count on available updates ([7f8ac5e](https://github.com/devuri/wp-env-config/commit/7f8ac5ebb92a71ee25ec9aa6a205463c03c0f70d))
+* removes `get_core_updates` use `transient( 'update_core' )` ([71af3b6](https://github.com/devuri/wp-env-config/commit/71af3b6d98af61811ae693762be16fcfd9ee6261))
+
 ## [0.7.5](https://github.com/devuri/wp-env-config/compare/v0.7.4...v0.7.5) (2023-09-23)
 
 
