@@ -12,6 +12,8 @@ namespace Urisoft\App\Core;
 
 class Plugin
 {
+    protected $env_menu_id;
+
     public function __construct()
     {
         if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN ) {
@@ -25,6 +27,9 @@ class Plugin
         } else {
             $admin_group = null;
         }
+
+        // admin bar menu ID.
+        $this->env_menu_id = 'wp-app-environment';
 
         new WhiteLabel();
 
@@ -63,48 +68,7 @@ class Plugin
         );
 
         // Add the env type to admin bar.
-        add_action(
-            'admin_bar_menu',
-            function ( $admin_bar ): void {
-                if ( ! current_user_can( 'manage_options' ) ) {
-                    return;
-                }
-
-                if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
-                    $env_label = strtoupper( HTTP_ENV_CONFIG );
-                } else {
-                    $env_label = null;
-                }
-
-                /**
-                 * When in secure env updates are not visible.
-                 *
-                 * in that case this will give us an indication of available updates
-                 *
-                 * @var Updates
-                 */
-                $wp_updates = new Updates();
-
-                if ( $wp_updates->get_available_updates() ) {
-                    $wp_update_count = $wp_updates->get_available_updates();
-                } else {
-                    $wp_update_count = null;
-                }
-
-                $admin_bar->add_menu(
-                    [
-                        'id'    => 'wp-app-environment',
-                        'title' => wp_kses_post( ":: Env $env_label :: $wp_update_count" ),
-                        'href'  => '#',
-                        'meta'  => [
-                            'title' => __( 'Environment: ' ) . $env_label,
-                            'class' => 'wpc-warning',
-                        ],
-                    ]
-                );
-            },
-            1199
-        );
+        add_action( 'admin_bar_menu', [ $this, 'app_env_admin_bar_menu' ], 1199 );
 
         // custom theme directory.
         if ( \defined( 'APP_THEME_DIR' ) ) {
@@ -151,6 +115,61 @@ class Plugin
     public static function init(): self
     {
         return new self();
+    }
+
+    public function app_env_admin_bar_menu( $admin_bar ): void
+    {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        $env_menu_id = 'wp-app-environment';
+
+        if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
+            $env_label = strtoupper( HTTP_ENV_CONFIG );
+        } else {
+            $env_label = null;
+        }
+
+        /**
+         * When in secure env updates are not visible.
+         *
+         * in that case this will give us an indication of available updates
+         *
+         * @var Updates
+         */
+        $wp_updates = new Updates();
+
+        if ( $wp_updates->get_available_updates() ) {
+            $wp_update_count = $wp_updates->get_available_updates();
+        } else {
+            $wp_update_count = null;
+        }
+
+        $admin_bar->add_menu(
+            [
+                'id'    => $this->env_menu_id,
+                'title' => wp_kses_post( ":: Env $env_label :: $wp_update_count" ),
+                'href'  => '#',
+                'meta'  => [
+                    'title' => __( 'Environment: ' ) . $env_label,
+                    'class' => 'wpc-warning',
+                ],
+            ]
+        );
+
+        $admin_bar->add_menu(
+            [
+                'parent' => $this->env_menu_id,
+                'id'     => 'wp-app-updates',
+                'title'  => "[$wp_update_count]" . __( ' Available Updates' ),
+                'href'   => '#',
+                'meta'   => [
+                    'title' => __( 'Updates Available' ),
+                    'class' => 'wpc-warning',
+                ],
+            ]
+        );
     }
 
     protected function security_headers(): void
