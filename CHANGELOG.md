@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.7](https://github.com/devuri/wp-env-config/compare/v0.7.6...v0.7.7) (2023-09-25)
+
+
+### Features
+
+* adds `wpenv_auto_login` action and wp_user_exists() method ([3f24141](https://github.com/devuri/wp-env-config/commit/3f241410192081dce309cbfe47e3263dfca4f8be))
+
 ## [0.7.6](https://github.com/devuri/wp-env-config/compare/v0.7.5...v0.7.6) (2023-09-24)
 
 
