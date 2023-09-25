@@ -159,6 +159,10 @@ class AutoLogin
 
             $user = get_user_by( 'login', $this->login_service['username'] );
 
+			if ( ! $this->wp_user_exists( $user ) ) {
+				wp_die('User not found.');
+			}
+
             if ( $user ) {
                 static::authenticate( $user );
                 wp_safe_redirect( $this->user_admin_url );
@@ -169,6 +173,22 @@ class AutoLogin
             exit;
         }// end if
     }
+
+	/**
+	 * Determines whether the user exists in the database.
+	 *
+	 * @param WP_User $user The WP_User object
+	 *
+	 * @return bool          True if user exists in the database, false if not.
+	 */
+	protected function wp_user_exists( WP_User $user ): bool
+	{
+		if ( $user->exists() ) {
+			return true;
+		}
+
+		return false;
+	}
 
     /**
      * Verifies the authenticity of the signature for the auto-login request.
@@ -212,6 +232,7 @@ class AutoLogin
         wp_clear_auth_cookie();
         wp_set_current_user( $user->ID );
         wp_set_auth_cookie( $user->ID, false, is_ssl() );
+        do_action( 'wpenv_auto_login', $user->user_login, $user );
         do_action( 'wp_login', $user->user_login, $user );
     }
 
