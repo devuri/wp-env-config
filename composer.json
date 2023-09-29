@@ -31,7 +31,6 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "aws/aws-sdk-php": "^3.275",
         "defuse/php-encryption": "^2.4",
         "devuri/cpt-meta-box": "^0.4",
         "devuri/dot-access": "^0.2.2",
