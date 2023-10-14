@@ -157,7 +157,12 @@ class AutoLogin
                 return;
             }
 
+			//  WP_User object on success, false on failure.
             $user = get_user_by( 'login', $this->login_service['username'] );
+
+			if( false === $user ) {
+				$user = null;
+			}
 
 			if ( ! $this->wp_user_exists( $user ) ) {
 				wp_die('User not found.');
@@ -177,12 +182,16 @@ class AutoLogin
 	/**
 	 * Determines whether the user exists in the database.
 	 *
-	 * @param WP_User $user The WP_User object
+	 * @param WP_User|null $user The WP_User object
 	 *
-	 * @return bool          True if user exists in the database, false if not.
+	 * @return bool|null    Null no user, True if user exists in the database, false if not.
 	 */
-	protected function wp_user_exists( WP_User $user ): bool
+	protected function wp_user_exists( ?WP_User $user ): ?bool
 	{
+		if ( is_null( $user ) ) {
+			return null;
+		}
+
 		if ( $user->exists() ) {
 			return true;
 		}
