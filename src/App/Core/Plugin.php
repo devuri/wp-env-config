@@ -13,6 +13,7 @@ namespace Urisoft\App\Core;
 class Plugin
 {
     protected $env_menu_id;
+    protected $http_env_type;
 
     public function __construct()
     {
@@ -26,6 +27,12 @@ class Plugin
             $admin_group = SUDO_ADMIN_GROUP;
         } else {
             $admin_group = null;
+        }
+
+		if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
+            $this->http_env_type = strtoupper( HTTP_ENV_CONFIG );
+        } else {
+            $this->http_env_type = null;
         }
 
         // admin bar menu ID.
@@ -124,12 +131,8 @@ class Plugin
         }
 
         $env_menu_id = 'wp-app-environment';
+        $env_label = $this->http_env_type;
 
-        if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
-            $env_label = strtoupper( HTTP_ENV_CONFIG );
-        } else {
-            $env_label = null;
-        }
 
         /**
          * When in secure env updates are not visible.
