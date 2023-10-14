@@ -157,16 +157,16 @@ class AutoLogin
                 return;
             }
 
-			//  WP_User object on success, false on failure.
+            // WP_User object on success, false on failure.
             $user = get_user_by( 'login', $this->login_service['username'] );
 
-			if( false === $user ) {
-				$user = null;
-			}
+            if ( false === $user ) {
+                $user = null;
+            }
 
-			if ( ! $this->wp_user_exists( $user ) ) {
-				wp_die('User not found.');
-			}
+            if ( ! $this->wp_user_exists( $user ) ) {
+                wp_die( 'User not found.' );
+            }
 
             if ( $user ) {
                 static::authenticate( $user );
@@ -179,25 +179,25 @@ class AutoLogin
         }// end if
     }
 
-	/**
-	 * Determines whether the user exists in the database.
-	 *
-	 * @param WP_User|null $user The WP_User object
-	 *
-	 * @return bool|null    Null no user, True if user exists in the database, false if not.
-	 */
-	protected function wp_user_exists( ?WP_User $user ): ?bool
-	{
-		if ( is_null( $user ) ) {
-			return null;
-		}
+    /**
+     * Determines whether the user exists in the database.
+     *
+     * @param null|WP_User $user The WP_User object
+     *
+     * @return null|bool Null no user, True if user exists in the database, false if not.
+     */
+    protected function wp_user_exists( ?WP_User $user ): ?bool
+    {
+        if ( \is_null( $user ) ) {
+            return null;
+        }
 
-		if ( $user->exists() ) {
-			return true;
-		}
+        if ( $user->exists() ) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
     /**
      * Verifies the authenticity of the signature for the auto-login request.

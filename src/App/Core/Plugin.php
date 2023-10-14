@@ -29,7 +29,7 @@ class Plugin
             $admin_group = null;
         }
 
-		if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
+        if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
             $this->http_env_type = strtoupper( HTTP_ENV_CONFIG );
         } else {
             $this->http_env_type = null;
@@ -131,8 +131,7 @@ class Plugin
         }
 
         $env_menu_id = 'wp-app-environment';
-        $env_label = $this->http_env_type;
-
+        $env_label   = $this->http_env_type;
 
         /**
          * When in secure env updates are not visible.
@@ -174,8 +173,8 @@ class Plugin
             ]
         );
 
-		// Integrated Version Control
-		$admin_bar->add_menu(
+        // Integrated Version Control
+        $admin_bar->add_menu(
             [
                 'parent' => $this->env_menu_id,
                 'id'     => 'wp-app-ivc',

@@ -15,7 +15,7 @@ namespace Urisoft\App\Core;
  */
 class EnvColor
 {
-    protected $env_type = null;
+    protected $env_type  = null;
     protected $env_color = [];
 
     /**
@@ -23,18 +23,18 @@ class EnvColor
      */
     public function __construct( string $env_type )
     {
-        $this->env_type = $env_type;
+        $this->env_type  = $env_type;
         $this->env_color = [
-			"secure" => null,
-			"sec" => null,
-			"production" => null,
-			"prod" => null,
-			"development" => "coffee",
-			"debug" => "coffee",
-			"dev" => "coffee",
-			"staging" => "ectoplasm",
-		];
+            'secure'      => null,
+            'sec'         => null,
+            'production'  => null,
+            'prod'        => null,
+            'development' => 'coffee',
+            'debug'       => 'coffee',
+            'dev'         => 'coffee',
+            'staging'     => 'ectoplasm',
+        ];
 
-		//add_filter('get_user_option_admin_color', [$this, 'set_env_admin_color'] );
+        // add_filter('get_user_option_admin_color', [$this, 'set_env_admin_color'] );
     }
 }
