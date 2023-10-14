@@ -23,11 +23,11 @@ class WhiteLabel
 
     public function __construct()
     {
-        $this->apt9_url   = 'https://github.com/devuri/apt9-framework';
+        $this->apt9_url   = 'https://github.com/devuri/wpenv-framework';
         $this->home_url   = home_url();
         $this->date_year  = gmdate( 'Y' );
         $this->site_name  = get_bloginfo( 'name' );
-        $this->powered_by = apply_filters( 'apt9_powered_by', 'Powered by Apt9.' );
+        $this->powered_by = apply_filters( 'wpenv_powered_by', 'Powered by Apt9.' );
 
         // add_action( 'wp_before_admin_bar_render', [ $this, 'logout_link' ] );
         add_action( 'admin_bar_menu', [ $this, 'remove_admin_wp_logo' ], 99 );
