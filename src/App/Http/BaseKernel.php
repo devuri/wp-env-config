@@ -27,6 +27,7 @@ class BaseKernel
     protected $env_secret  = [];
     protected static $list = [];
     protected $app_setup;
+    protected $tenant_id;
 
     /**
      * Setup BaseKernel.
@@ -42,7 +43,14 @@ class BaseKernel
     {
         $this->app_path = $app_path;
 
-        $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+		$this->tenant_id = $this->args['tenant_id'] ?? 0;
+
+		if( $this->args['is_multi_tenant'] ) {
+			$tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+			$this->log_file = $this->app_path . "sites/{$tenant_id}/logs/{$tenant_log_file}";
+		} else {
+			$this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+		}
 
         if ( ! \is_array( $args ) ) {
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
@@ -122,11 +130,15 @@ class BaseKernel
     /**
      * Setup overrides.
      *
+     * @param int|null $tenant_id usually stored in the .env file. 
+     *
      * @return void
      */
-    public function overrides(): void
+    public function overrides( ?int $tenant_id = 0 ): void
     {
-        if ( $this->config_file ) {
+		if( $this->args['is_multi_tenant'] ) {
+			$config_override_file = $this->app_path . "sites/{$tenant_id}/{$this->config_file}.php";
+		} elseif ( $this->config_file ) {
             $config_override_file = $this->app_path . "/{$this->config_file}.php";
         } else {
             $config_override_file = null;

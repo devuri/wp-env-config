@@ -7,6 +7,7 @@ use function define;
 trait ConstantTrait
 {
     protected $args = [
+        'is_multi_tenant'  => false,
         'web_root'         => 'public',
         'wp_dir_path'      => 'wp',
         'wordpress'        => 'wp',
@@ -38,6 +39,9 @@ trait ConstantTrait
      */
     public function set_config_constants(): void
     {
+		// define current tenant
+		$this->define( 'IS_MULTI_TENANT_APP', $this->args['is_multi_tenant'] );
+
         // define app_path.
         $this->define( 'APP_PATH', $this->get_app_path() );
 
