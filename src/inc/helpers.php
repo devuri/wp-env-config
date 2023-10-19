@@ -305,5 +305,5 @@ function is_app_https_secure(): bool
 		return filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN);
 	}
 
-	return false
+	return false;
 }
