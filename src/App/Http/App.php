@@ -22,7 +22,7 @@ class App
      *
      * @throws Exception When the options file is not found.
      */
-    public function __construct( string $app_path, string $options = 'app' )
+    public function __construct( string $app_path, string $options = 'app', ?array $tenant_ids = null )
     {
         $this->app_path = $app_path;
 
@@ -31,11 +31,12 @@ class App
          *
          * @var Setup
          */
-        $this->setup = new Setup( $this->app_path );
+        if( $tenant_ids ) {
+			$this->setup = new Setup( $this->app_path, ['tenant_ids' => $tenant_ids] );
+		} else {
+			$this->setup = new Setup( $this->app_path );
+		}
 
-		//$supported_names = [];
-		//$this->setup = new Setup( $this->app_path, $supported_names );
-		// tenant files live in app_path/sites/tenant_id/.env etc
 
         if ( ! file_exists( $this->app_path . "/{$options}.php" ) ) {
             throw new Exception( 'Options file not found.', 1 );
@@ -93,7 +94,7 @@ class App
         }
     }
 
-    /**
+	/**
      * Set the config options.
      *
      * @param string $options The configuration options filename, e.g., app.php.
@@ -105,27 +106,4 @@ class App
 
         $this->config = array_merge( $config, $tenant );
     }
-
-	/**
-	 * Get the server host/domain and prefix type (http or https).
-	 *
-	 * @return array An associative array with 'prefix' and 'domain' keys.
-	 */
-	protected function get_server_host()
-	{
-	    $host_domain = strtolower(stripslashes($_SERVER['HTTP_HOST']));
-	    $prefix = 'http';
-
-	    if (str_ends_with($host_domain, ':80')) {
-	        $host_domain = substr($host_domain, 0, -3);
-	    } elseif (str_ends_with($host_domain, ':443')) {
-	        $host_domain = substr($host_domain, 0, -4);
-	        $prefix = 'https';
-	    }
-
-	    return [
-	        'prefix' => $prefix,
-	        'domain' => $host_domain,
-	    ];
-	}
 }

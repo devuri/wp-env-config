@@ -117,10 +117,10 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      *
      * @return \Urisoft\App\Http\BaseKernel
      */
-    function wpc_app( string $app_path, string $options = 'app' ): Urisoft\App\Http\BaseKernel
+    function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
         try {
-            $app = new App( $app_path, $options );
+            $app = new App( $app_path, $options, $tenant_ids );
         } catch ( Exception $e ) {
             exit( $e->getMessage() );
         }
@@ -238,4 +238,72 @@ function evhash( $data, ?string $secretkey = null, string $algo = 'sha256' ): st
     }
 
     return hash_hmac( $algo, $data, $secretkey );
+}
+
+function get_server_host()
+{
+	$host_domain = strtolower(stripslashes($_SERVER['HTTP_HOST']));
+	$prefix = 'http';
+
+	if (str_ends_with($host_domain, ':80')) {
+		$host_domain = substr($host_domain, 0, -3);
+	} elseif (str_ends_with($host_domain, ':443')) {
+		$host_domain = substr($host_domain, 0, -4);
+		$prefix = 'https';
+	}
+
+	return [
+		'prefix' => $prefix,
+		'domain' => $host_domain,
+	];
+}
+
+function get_http_app_host(): ?string
+{
+	//$_SERVER variables can't always be completely trusted.
+    if (isset($_SERVER['HTTP_HOST'])) {
+        // Sanitize the HTTP_HOST to allow only valid characters for a host
+        $httpHost = filter_var($_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING);
+
+		$httpHost = strtolower(stripslashes($httpHost));
+
+        // Split the host into parts to handle subdomains or additional segments
+        $hostParts = explode('.', $httpHost);
+
+        // Check that the host has at least two parts (e.g., domain and TLD)
+        if (count($hostParts) >= 2) {
+            return $httpHost;
+        }
+
+		return null;
+    }
+
+    return 'default_domain.com';
+}
+
+
+function get_app_request_url(): ?string
+{
+	$isHttps = is_app_https_secure();
+
+	$app_host = strtolower(stripslashes(get_http_app_host()));
+
+	if( is_null( $app_host )){
+		return null;
+	}
+
+    $protocol = $isHttps ? 'https' : 'http';
+
+	$request_url = filter_var($protocol . '://' . $app_host, FILTER_SANITIZE_URL);
+
+    return strtolower( $request_url );
+}
+
+function is_app_https_secure(): bool
+{
+	if (isset($_SERVER['HTTPS'])) {
+		return filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN);
+	}
+
+	return false
 }
