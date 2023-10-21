@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.8.0](https://github.com/devuri/wp-env-config/compare/v0.7.7...v0.8.0) (2023-10-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Multi-Tenant Support
+
+### Features
+
+* add filter `wpenv_powered_by` ([19670d9](https://github.com/devuri/wp-env-config/commit/19670d9a4f3055aa5a02ee466d3ace6173249f49))
+* adds Color Scheme ([2f6d645](https://github.com/devuri/wp-env-config/commit/2f6d6459aae53ad3267c1fcbfb3384c140f0ac95))
+* Multi-Tenant Support ([70b4f02](https://github.com/devuri/wp-env-config/commit/70b4f02b4230fcce59ded6365a176d87e2cb6053))
+* WIP adds `multi_tenant` support ([b87c5fe](https://github.com/devuri/wp-env-config/commit/b87c5feece6b9e51fb7122739e38a67377097e11))
+
+
+### Bug Fixes
+
+* adds `$http_env_type` property ([072d023](https://github.com/devuri/wp-env-config/commit/072d02352abedb9b6173eb017707ceac0e7b6f52))
+* get_user_by can be false ([9ed3826](https://github.com/devuri/wp-env-config/commit/9ed3826c38cab42d70cc9f83031606eb1c5553c8))
+
+
+### Miscellaneous Chores
+
+* build ([7d68095](https://github.com/devuri/wp-env-config/commit/7d68095829788df53f465f0c6f2df537276a0f95))
+* build ([1face78](https://github.com/devuri/wp-env-config/commit/1face780ff4a4c5f5b8e669ab8f688130c87e8d1))
+
 ## [0.7.7](https://github.com/devuri/wp-env-config/compare/v0.7.6...v0.7.7) (2023-09-25)
 
 
