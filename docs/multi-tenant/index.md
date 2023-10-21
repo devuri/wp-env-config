@@ -1,4 +1,4 @@
-# Multi-Tenant Application Documentation
+# Multi-Tenant Applications
 
 ## Overview
 
