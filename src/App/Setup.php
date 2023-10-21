@@ -26,6 +26,11 @@ class Setup implements ConfigInterface
     protected $path;
 
     /**
+     * Setup multi tenant.
+     */
+    protected $is_multi_tenant;
+
+    /**
      *  Dotenv $dotenv.
      */
     protected $dotenv;
@@ -80,13 +85,17 @@ class Setup implements ConfigInterface
     protected $env_types = [];
 
     /**
-     * Constructor.
+     * Constructor for initializing the application environment and configuration.
      *
-     * @param string $path current Directory.
+     * @param string $path            Current directory.
+     * @param array  $supported_names An array of supported environment names and configuration.
+     * @param bool   $short_circuit   Flag to control short-circuiting file loading.
      */
-    public function __construct( string $path, ?array $supported_names = null, bool $short_circuit = true )
+    public function __construct( string $path, array $supported_names = [], bool $short_circuit = true )
     {
         $this->path = $path;
+
+        $this->is_multi_tenant = $this->is_multi_tenant_app( $supported_names );
 
         /*
          * Available env type settings.
@@ -96,10 +105,10 @@ class Setup implements ConfigInterface
         $this->env_types = [ 'secure', 'sec', 'production', 'prod', 'staging', 'development', 'dev', 'debug', 'deb', 'local' ];
 
         // use multiple filenames.
-        if ( $supported_names ) {
+        if ( $this->is_multi_tenant ) {
             $this->env_files = $supported_names;
         } else {
-            $this->env_files = [
+            $default_files = [
                 'env',
                 '.env',
                 '.env.secure',
@@ -109,12 +118,16 @@ class Setup implements ConfigInterface
                 '.env.debug',
                 '.env.local',
             ];
+
+            $this->env_files = array_merge( $default_files, $supported_names );
         }
 
-        // Verify files to avoid Dotenv warning.
-        foreach ( $this->env_files as $key => $file ) {
-            if ( ! file_exists( $this->path . '/' . $file ) ) {
-                unset( $this->env_files[ $key ] );
+        if ( ! $this->is_multi_tenant ) {
+            // Verify files to avoid Dotenv warning.
+            foreach ( $this->env_files as $key => $file ) {
+                if ( ! file_exists( $this->path . '/' . $file ) ) {
+                    unset( $this->env_files[ $key ] );
+                }
             }
         }
 
@@ -137,7 +150,42 @@ class Setup implements ConfigInterface
          *
          * @link https://github.com/vlucas/phpdotenv/pull/394
          */
-        $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
+        if ( $this->is_multi_tenant ) {
+            /**
+             * Load Tenant IDs for the Application.
+             *
+             * This loads tenant IDs from a JSON file or API response and passed from
+             * the `bootstrap.php` file for initializing tenant-specific configurations.
+             *
+             * The source of the tenant IDs. Can be a file path to a JSON file
+             *                      or an API response containing tenant IDs.
+             *
+             * @example
+             * ```php
+             * // Example JSON format: ['example.com' => 'd7874918-6e36-11ee-b962-0242ac120002']
+             *
+             * 'tenants.json'
+             * ```
+             *
+             * @throws Exception If the source is invalid or unable to be loaded or match tenant.
+             */
+            $app_http_host = get_http_app_host();
+
+            if ( $app_http_host ) {
+                $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
+            } else {
+                $tenant_id = 0;
+            }
+
+            /*
+             * Start and bootstrap the web application.
+             *
+             * so that we can $http_app = wpc_app(__DIR__, 'app', ['localhost:8019' => 'd7874918-6e36-11ee-b962-0242ac120002'] );
+             */
+            $this->dotenv = Dotenv::createImmutable( $this->path, "sites/{$tenant_id}/.env" );
+        } else {
+            $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
+        }//end if
 
         try {
             $this->dotenv->load();
@@ -147,6 +195,19 @@ class Setup implements ConfigInterface
         }
 
         $this->set_constant_map();
+    }
+
+    public function define_multi_tenant(): void
+    {
+        // set app host.
+        \define( 'APP_HTTP_HOST', get_http_app_host() );
+
+        // multi tenant support.
+        if ( $this->is_multi_tenant ) {
+            \define( 'IS_MULTI_TENANT_APP', true );
+        } else {
+            \define( 'IS_MULTI_TENANT_APP', false );
+        }
     }
 
     /**
@@ -407,6 +468,19 @@ class Setup implements ConfigInterface
         if ( ! \defined( $name ) ) {
             $this->dotenv->required( $name )->notEmpty();
         }
+    }
+
+    protected function is_multi_tenant_app( ?array $supported_names = null ): bool
+    {
+        if ( \is_null( $supported_names ) || ! \array_key_exists( 'tenant_ids', $supported_names ) ) {
+            return false;
+        }
+
+        if ( ! $supported_names['tenant_ids'] ) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

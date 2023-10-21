@@ -41,6 +41,9 @@ trait ConstantTrait
         // define app_path.
         $this->define( 'APP_PATH', $this->get_app_path() );
 
+        // set app http host.
+        $this->define( 'APP_HTTP_HOST', get_http_app_host() );
+
         // define public web root dir.
         $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . $this->args['web_root'] );
 
@@ -53,6 +56,11 @@ trait ConstantTrait
         // Directory PATH.
         $this->define( 'APP_CONTENT_DIR', '/' . $this->args['content_dir'] );
         $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
+
+        // separate uploads for multi tenant.
+        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
+            $this->define( 'UPLOADS', WP_CONTENT_DIR . '/' . env( 'APP_TENANT_ID' ) . '/uploads' );
+        }
 
         // Content Directory.
         $this->define( 'CONTENT_DIR', APP_CONTENT_DIR );

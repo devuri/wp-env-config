@@ -27,6 +27,7 @@ class BaseKernel
     protected $env_secret  = [];
     protected static $list = [];
     protected $app_setup;
+    protected $tenant_id;
 
     /**
      * Setup BaseKernel.
@@ -41,8 +42,6 @@ class BaseKernel
     public function __construct( string $app_path, array $args = [], ?Setup $setup = null )
     {
         $this->app_path = $app_path;
-
-        $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
 
         if ( ! \is_array( $args ) ) {
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
@@ -60,6 +59,15 @@ class BaseKernel
         $this->config_file = $this->args['config_file'];
 
         $this->args = array_merge( $this->args, $args );
+
+        $this->tenant_id = env( 'APP_TENANT_ID' );
+
+        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
+            $tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+            $this->log_file  = $this->app_path . "/sites/{$this->tenant_id}/logs/{$tenant_log_file}";
+        } else {
+            $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+        }
 
         /*
          * By default, Dotenv will stop looking for files as soon as it finds one.
@@ -126,7 +134,9 @@ class BaseKernel
      */
     public function overrides(): void
     {
-        if ( $this->config_file ) {
+        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
+            $config_override_file = $this->app_path . "sites/{$this->tenant_id}/{$this->config_file}.php";
+        } elseif ( $this->config_file ) {
             $config_override_file = $this->app_path . "/{$this->config_file}.php";
         } else {
             $config_override_file = null;

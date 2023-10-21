@@ -22,7 +22,7 @@ class App
      *
      * @throws Exception When the options file is not found.
      */
-    public function __construct( string $app_path, string $options = 'app' )
+    public function __construct( string $app_path, string $options = 'app', ?array $tenant_ids = null )
     {
         $this->app_path = $app_path;
 
@@ -31,7 +31,12 @@ class App
          *
          * @var Setup
          */
-        $this->setup = new Setup( $this->app_path );
+        if ( $tenant_ids ) {
+            $this->setup = new Setup( $this->app_path, [ 'tenant_ids' => $tenant_ids ] );
+            $this->setup->define_multi_tenant();
+        } else {
+            $this->setup = new Setup( $this->app_path );
+        }
 
         if ( ! file_exists( $this->app_path . "/{$options}.php" ) ) {
             throw new Exception( 'Options file not found.', 1 );
@@ -93,9 +98,12 @@ class App
      * Set the config options.
      *
      * @param string $options The configuration options filename, e.g., app.php.
+     * @param array  $tenant  The tenant data e.g., [ 'tenant_id' => 495743 ].
      */
-    protected function set_config( string $options ): void
+    protected function set_config( string $options, array $tenant = [] ): void
     {
-        $this->config = require_once $this->app_path . "/{$options}.php";
+        $config = require_once $this->app_path . "/{$options}.php";
+
+        $this->config = array_merge( $config, $tenant );
     }
 }

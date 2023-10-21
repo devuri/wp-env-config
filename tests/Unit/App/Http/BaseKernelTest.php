@@ -35,6 +35,7 @@ class BaseKernelTest extends BaseTest
 
         $const_defaults = [
             "APP_PATH" => APP_TEST_PATH,
+            "APP_HTTP_HOST" => "default_domain.com",
             "PUBLIC_WEB_DIR" => APP_TEST_PATH . "/public",
             "WP_DIR_PATH" => APP_TEST_PATH . "/public/wp",
             "APP_ASSETS_DIR" => APP_TEST_PATH . "/public/assets",
@@ -81,7 +82,7 @@ class BaseKernelTest extends BaseTest
 
         $count = \count( $this->http_app()->get_defined() );
 
-        $this->assertEquals( 39, $count );
+        $this->assertEquals( 40, $count );
 
         $this->assertEquals( $const_defaults, $this->http_app()->get_defined());
     }
