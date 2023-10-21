@@ -12,7 +12,7 @@
 - [Resources](/wp-env-config/resources/)
 - [Environment Variables](/wp-env-config/env)
 - [Release Notes](https://github.com/devuri/wp-env-config/releases/)
-- [Multi-Tenant Applications](/wp-env-config/multi-tenant)
+- [Multi-Tenant Applications](/wp-env-config/multi-tenant)(v0.8)
 
 ## Support
 
