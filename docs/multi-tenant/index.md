@@ -15,6 +15,7 @@ The application supports multiple tenants (websites) on a shared platform, allow
   > This is usually done in bootstrap.php see env app: https://github.com/devuri/wp-env-app/blob/main/bootstrap.php
 
 ```php
+// the 'app' param is required.
 $http_app = wpc_app(__DIR__, 'app', ['example.com' => '2f7c4eab-9b8c-486e-b6d3-f8be67e5bf09'] );
 ```
 
