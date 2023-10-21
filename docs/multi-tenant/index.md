@@ -9,7 +9,14 @@ The application supports multiple tenants (websites) on a shared platform, allow
 
 - Each tenant is identified by a unique Universal Unique Identifier (UUID).
 - The domain of a tenant, as extracted from the HTTP_HOST, is the key to mapping to the tenant's UUID. For example:
-  - `example.com => 48562e29-dc29-4aad-aca2-9a345ea9515c`
+
+`example.com => 48562e29-dc29-4aad-aca2-9a345ea9515c`
+
+  > This is usually done in bootstrap.php see env app: https://github.com/devuri/wp-env-app/blob/main/bootstrap.php
+
+```php
+$http_app = wpc_app(__DIR__, 'app', ['example.com' => '2f7c4eab-9b8c-486e-b6d3-f8be67e5bf09'] );
+```
 
 ## Configuration Files
 
