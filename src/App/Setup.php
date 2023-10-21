@@ -151,15 +151,31 @@ class Setup implements ConfigInterface
          * @link https://github.com/vlucas/phpdotenv/pull/394
          */
         if ( $this->is_multi_tenant ) {
-            // tenant ids is a json file (or API response) passed to bootstrap.php
-            // format ['example.com' => 'd7874918-6e36-11ee-b962-0242ac120002']
+            /**
+             * Load Tenant IDs for the Application.
+             *
+             * This loads tenant IDs from a JSON file or API response and passed from
+             * the `bootstrap.php` file for initializing tenant-specific configurations.
+             *
+             * The source of the tenant IDs. Can be a file path to a JSON file
+             *                      or an API response containing tenant IDs.
+             *
+             * @example
+             * ```php
+             * // Example JSON format: ['example.com' => 'd7874918-6e36-11ee-b962-0242ac120002']
+             *
+             * 'tenants.json'
+             * ```
+             *
+             * @throws Exception If the source is invalid or unable to be loaded or match tenant.
+             */
             $app_http_host = get_http_app_host();
 
-			if( $app_http_host ) {
-				$tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
-			} else {
-				$tenant_id = 0;
-			}
+            if ( $app_http_host ) {
+                $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
+            } else {
+                $tenant_id = 0;
+            }
 
             /*
              * Start and bootstrap the web application.
@@ -169,7 +185,7 @@ class Setup implements ConfigInterface
             $this->dotenv = Dotenv::createImmutable( $this->path, "sites/{$tenant_id}/.env" );
         } else {
             $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
-        }
+        }//end if
 
         try {
             $this->dotenv->load();

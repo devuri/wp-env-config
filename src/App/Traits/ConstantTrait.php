@@ -58,7 +58,7 @@ trait ConstantTrait
         $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
 
         // separate uploads for multi tenant.
-        if ( env('IS_MULTI_TENANT_APP') ) {
+        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
             $this->define( 'UPLOADS', WP_CONTENT_DIR . '/' . env( 'APP_TENANT_ID' ) . '/uploads' );
         }
 
