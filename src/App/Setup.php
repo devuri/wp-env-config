@@ -153,10 +153,13 @@ class Setup implements ConfigInterface
         if ( $this->is_multi_tenant ) {
             // tenant ids is a json file (or API response) passed to bootstrap.php
             // format ['example.com' => 'd7874918-6e36-11ee-b962-0242ac120002']
-            $tenant_id = $this->env_files['tenant_ids'][ APP_HTTP_HOST ];
+            $app_http_host = get_http_app_host();
 
-            // set tenant app ID.
-            \define( 'TENANT_APP_ID', $tenant_id );
+			if( $app_http_host ) {
+				$tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
+			} else {
+				$tenant_id = 0;
+			}
 
             /*
              * Start and bootstrap the web application.

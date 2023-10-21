@@ -134,7 +134,7 @@ class BaseKernel
      */
     public function overrides(): void
     {
-        if ( IS_MULTI_TENANT_APP ) {
+        if ( env('IS_MULTI_TENANT_APP') ) {
             $config_override_file = $this->app_path . "sites/{$this->tenant_id}/{$this->config_file}.php";
         } elseif ( $this->config_file ) {
             $config_override_file = $this->app_path . "/{$this->config_file}.php";
