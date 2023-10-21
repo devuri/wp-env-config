@@ -6,6 +6,8 @@ use Urisoft\App\Http\App;
 use Urisoft\App\Http\Asset;
 use Urisoft\DotAccess;
 
+// @codingStandardsIgnoreFile.
+
 if ( ! \function_exists( 'asset' ) ) {
     /**
      * The Asset url.
@@ -242,40 +244,45 @@ function evhash( $data, ?string $secretkey = null, string $algo = 'sha256' ): st
 
 function get_server_host()
 {
-	$host_domain = strtolower(stripslashes($_SERVER['HTTP_HOST']));
-	$prefix = 'http';
+    if ( isset( $_SERVER['HTTP_HOST'] )) {
+        $host_domain = strtolower( stripslashes( $_SERVER['HTTP_HOST'] ) );
+    } else {
+        $host_domain = null;
+    }
 
-	if (str_ends_with($host_domain, ':80')) {
-		$host_domain = substr($host_domain, 0, -3);
-	} elseif (str_ends_with($host_domain, ':443')) {
-		$host_domain = substr($host_domain, 0, -4);
-		$prefix = 'https';
-	}
+    $prefix  = 'http';
 
-	return [
-		'prefix' => $prefix,
-		'domain' => $host_domain,
-	];
+    if ( str_ends_with( $host_domain, ':80' ) ) {
+        $host_domain = substr( $host_domain, 0, -3 );
+    } elseif ( str_ends_with( $host_domain, ':443' ) ) {
+        $host_domain = substr( $host_domain, 0, -4 );
+        $prefix      = 'https';
+    }
+
+    return [
+        'prefix' => $prefix,
+        'domain' => $host_domain,
+    ];
 }
 
 function get_http_app_host(): ?string
 {
-	//$_SERVER variables can't always be completely trusted.
-    if (isset($_SERVER['HTTP_HOST'])) {
+    // $_SERVER variables can't always be completely trusted.
+    if ( isset( $_SERVER['HTTP_HOST'] ) ) {
         // Sanitize the HTTP_HOST to allow only valid characters for a host
-        $httpHost = filter_var($_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING);
+        $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING );
 
-		$httpHost = strtolower(stripslashes($httpHost));
+        $httpHost = strtolower( stripslashes( $httpHost ) );
 
         // Split the host into parts to handle subdomains or additional segments
-        $hostParts = explode('.', $httpHost);
+        $hostParts = explode( '.', $httpHost );
 
         // Check that the host has at least two parts (e.g., domain and TLD)
-        if (count($hostParts) >= 2) {
+        if ( \count( $hostParts ) >= 2 ) {
             return $httpHost;
         }
 
-		return null;
+        return null;
     }
 
     return 'default_domain.com';
@@ -284,26 +291,26 @@ function get_http_app_host(): ?string
 
 function get_app_request_url(): ?string
 {
-	$isHttps = is_app_https_secure();
+    $isHttps = is_app_https_secure();
 
-	$app_host = strtolower(stripslashes(get_http_app_host()));
+    $app_host = strtolower( stripslashes( get_http_app_host() ) );
 
-	if( is_null( $app_host )){
-		return null;
-	}
+    if ( \is_null( $app_host ) ) {
+        return null;
+    }
 
     $protocol = $isHttps ? 'https' : 'http';
 
-	$request_url = filter_var($protocol . '://' . $app_host, FILTER_SANITIZE_URL);
+    $request_url = filter_var( $protocol . '://' . $app_host, FILTER_SANITIZE_URL );
 
     return strtolower( $request_url );
 }
 
 function is_app_https_secure(): bool
 {
-	if (isset($_SERVER['HTTPS'])) {
-		return filter_var($_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN);
-	}
+    if ( isset( $_SERVER['HTTPS'] ) ) {
+        return filter_var( $_SERVER['HTTPS'], FILTER_VALIDATE_BOOLEAN );
+    }
 
-	return false;
+    return false;
 }

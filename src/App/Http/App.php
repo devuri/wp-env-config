@@ -31,12 +31,12 @@ class App
          *
          * @var Setup
          */
-        if( $tenant_ids ) {
-			$this->setup = new Setup( $this->app_path, ['tenant_ids' => $tenant_ids] );
-		} else {
-			$this->setup = new Setup( $this->app_path );
-		}
-
+        if ( $tenant_ids ) {
+            $this->setup = new Setup( $this->app_path, [ 'tenant_ids' => $tenant_ids ] );
+            $this->setup->define_multi_tenant();
+        } else {
+            $this->setup = new Setup( $this->app_path );
+        }
 
         if ( ! file_exists( $this->app_path . "/{$options}.php" ) ) {
             throw new Exception( 'Options file not found.', 1 );
@@ -94,11 +94,11 @@ class App
         }
     }
 
-	/**
+    /**
      * Set the config options.
      *
      * @param string $options The configuration options filename, e.g., app.php.
-     * @param string $tenant The tenant data e.g., [ 'tenant_id' => 495743 ].
+     * @param array  $tenant  The tenant data e.g., [ 'tenant_id' => 495743 ].
      */
     protected function set_config( string $options, array $tenant = [] ): void
     {

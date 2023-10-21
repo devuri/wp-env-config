@@ -3,6 +3,7 @@
 namespace Urisoft\App\Http;
 
 use function defined;
+
 use Exception;
 use InvalidArgumentException;
 use Urisoft\App\Setup;
@@ -59,14 +60,14 @@ class BaseKernel
 
         $this->args = array_merge( $this->args, $args );
 
-		$this->tenant_id = env('APP_TENANT_ID');
+        $this->tenant_id = env( 'APP_TENANT_ID' );
 
-		if( IS_MULTI_TENANT_APP ) {
-			$tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
-			$this->log_file = $this->app_path . "/sites/{$this->tenant_id}/logs/{$tenant_log_file}";
-		} else {
-			$this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
-		}
+        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
+            $tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+            $this->log_file  = $this->app_path . "/sites/{$this->tenant_id}/logs/{$tenant_log_file}";
+        } else {
+            $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
+        }
 
         /*
          * By default, Dotenv will stop looking for files as soon as it finds one.
@@ -129,15 +130,13 @@ class BaseKernel
     /**
      * Setup overrides.
      *
-     * @param string|null $tenant_id usually uuid stored in the .env file.
-     *
      * @return void
      */
     public function overrides(): void
     {
-		if( IS_MULTI_TENANT_APP ) {
-			$config_override_file = $this->app_path . "sites/{$this->tenant_id}/{$this->config_file}.php";
-		} elseif ( $this->config_file ) {
+        if ( IS_MULTI_TENANT_APP ) {
+            $config_override_file = $this->app_path . "sites/{$this->tenant_id}/{$this->config_file}.php";
+        } elseif ( $this->config_file ) {
             $config_override_file = $this->app_path . "/{$this->config_file}.php";
         } else {
             $config_override_file = null;
