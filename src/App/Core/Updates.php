@@ -71,7 +71,11 @@ class Updates
      */
     public function get_theme_update(): int
     {
-        return \count( $this->update_themes->response );
+		if ( is_object( $this->update_themes ) && property_exists( $this->update_themes, 'response' ) ) {
+			return \count( $this->update_themes->response );
+		}
+
+        return 0;
     }
 
     /**
@@ -81,6 +85,11 @@ class Updates
      */
     public function get_plugin_update(): int
     {
-        return \count( $this->update_plugins->response );
+		if ( is_object( $this->update_plugins ) && property_exists( $this->update_plugins, 'response' ) ) {
+			return \count( $this->update_plugins->response );
+		}
+
+		return 0;
+
     }
 }
