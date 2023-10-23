@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/devuri/wp-env-config/compare/v0.8.0...v0.8.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* fixes updates on bool ([cea92af](https://github.com/devuri/wp-env-config/commit/cea92af60b266a8a9a406396ce0cf1cb8c1e34a7))
+
 ## [0.8.0](https://github.com/devuri/wp-env-config/compare/v0.7.7...v0.8.0) (2023-10-21)
 
 
