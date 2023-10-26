@@ -538,6 +538,10 @@ class Setup implements ConfigInterface
             $this->required( 'WP_HOME' );
             $this->required( 'WP_SITEURL' );
 
+			// we need to establish if this is a multi tenant app
+			$this->dotenv->required( 'IS_MULTI_TENANT_APP' )->isBoolean();
+			$this->dotenv->required( 'IS_MULTI_TENANT_APP' )->allowedValues(['true', 'false']);
+
             // db vars must be defined in .env.
             $this->dotenv->required( 'DB_HOST' )->notEmpty();
             $this->dotenv->required( 'DB_NAME' )->notEmpty();

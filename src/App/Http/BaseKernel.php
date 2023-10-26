@@ -199,7 +199,6 @@ class BaseKernel
 		if ( $this->wp_is_not_installed() && \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'secure', 'sec', 'production', 'prod' ], true ) ) {
 			exit('wp is not installed change enviroment to run installer');
         }
-
     }
 
 	protected function wp_is_not_installed(): bool
