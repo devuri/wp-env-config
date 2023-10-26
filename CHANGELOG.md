@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.8.2](https://github.com/devuri/wp-env-config/compare/v0.8.1...v0.8.2) (2023-10-26)
+
+
+### Features
+
+* Adds a 'WP is not installed' message for dev environments. ([f8b5189](https://github.com/devuri/wp-env-config/commit/f8b51897a9759e9445306649c7d299a0fe39b320))
+
+
+### Bug Fixes
+
+* adds required `IS_MULTI_TENANT_APP` in .env ([d1ea36c](https://github.com/devuri/wp-env-config/commit/d1ea36c5f4253924bf18f5d9a8f4e088f40dee9c))
+
+
+### Miscellaneous Chores
+
+* build ([672f12c](https://github.com/devuri/wp-env-config/commit/672f12c7b714bc3bf3283aa00d602496af3e6abb))
+
 ## [0.8.1](https://github.com/devuri/wp-env-config/compare/v0.8.0...v0.8.1) (2023-10-23)
 
 
