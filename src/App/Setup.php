@@ -185,7 +185,7 @@ class Setup implements ConfigInterface
             $this->dotenv = Dotenv::createImmutable( $this->path, "sites/{$tenant_id}/.env" );
         } else {
             $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
-        }//end if
+        }// end if
 
         try {
             $this->dotenv->load();
@@ -537,6 +537,10 @@ class Setup implements ConfigInterface
             // site url is required but can be overridden in wp-config.php
             $this->required( 'WP_HOME' );
             $this->required( 'WP_SITEURL' );
+
+            // we need to establish if this is a multi tenant app
+            $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->isBoolean();
+            $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->allowedValues( [ 'true', 'false' ] );
 
             // db vars must be defined in .env.
             $this->dotenv->required( 'DB_HOST' )->notEmpty();
