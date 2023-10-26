@@ -196,19 +196,10 @@ class BaseKernel
             $this->set_config_constants();
         }
 
-		if ( $this->wp_is_not_installed() && \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'secure', 'sec', 'production', 'prod' ], true ) ) {
-			exit('wp is not installed change enviroment to run installer');
+        if ( $this->wp_is_not_installed() && \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'secure', 'sec', 'production', 'prod' ], true ) ) {
+            exit( 'wp is not installed change enviroment to run installer' );
         }
     }
-
-	protected function wp_is_not_installed(): bool
-	{
-		if( defined('WP_INSTALLING') && true === WP_INSTALLING ) {
-			return true;
-		}
-
-		return false;
-	}
 
     /**
      * Get list of defined constants.
@@ -258,6 +249,15 @@ class BaseKernel
         $user_constants = get_defined_constants( true )['user'];
 
         return self::encrypt_secret( $user_constants, self::env_secrets() );
+    }
+
+    protected function wp_is_not_installed(): bool
+    {
+        if ( \defined( 'WP_INSTALLING' ) && true === WP_INSTALLING ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
