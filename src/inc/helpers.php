@@ -314,3 +314,33 @@ function is_app_https_secure(): bool
 
     return false;
 }
+
+/*
+ * Generates a list of WordPress plugins in Composer format.
+ *
+ * @return array An associative array of Composer package names and their version constraints.
+ */
+if ( ! \function_exists( 'app_packagist_plugins_list' ) ) {
+    function app_packagist_plugins_list()
+    {
+        if ( ! \function_exists( 'get_plugins' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        $all_plugins = get_plugins();
+
+        $plugins_list = [];
+
+        foreach ( $all_plugins as $plugin_path => $plugin_data ) {
+            // Extract the plugin slug from the directory name.
+            $plugin_slug = sanitize_title( \dirname( $plugin_path ) );
+
+            // Format the package name with the 'wpackagist-plugin' prefix.
+            $package_name = "wpackagist-plugin/{$plugin_slug}";
+
+            $plugins_list[ $package_name ] = 'latest';
+        }
+
+        return $plugins_list;
+    }
+}
