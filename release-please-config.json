@@ -16,5 +16,5 @@
     "build": "patch",
     "refactor": "minor"
   },
-  "release-as": "1.0.3",
+  "release-as": "1.0.3"
 }
