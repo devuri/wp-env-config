@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3](https://github.com/devuri/wp-env-config/compare/v0.8.2...v1.0.3) (2023-10-27)
+
+
+### Features
+
+* adds Generates a list of WordPress plugins in Composer format ([1f45e9c](https://github.com/devuri/wp-env-config/commit/1f45e9ca951674ce1c8783004770eacbded919c6))
+
+
+### Miscellaneous Chores
+
+* build ([3badbef](https://github.com/devuri/wp-env-config/commit/3badbefc9e734e197fd43b9650ee70b6a0022625))
+
 ## [0.8.2](https://github.com/devuri/wp-env-config/compare/v0.8.1...v0.8.2) (2023-10-26)
 
 
