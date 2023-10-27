@@ -15,5 +15,6 @@
     "test": "patch",
     "build": "patch",
     "refactor": "minor"
-  }
+  },
+  "release-as": "1.0.3",
 }
