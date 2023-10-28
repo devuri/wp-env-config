@@ -78,9 +78,8 @@ class ConstantBuilderTraitTest extends TestCase
         $_ENV['WP_ENVIRONMENT_TYPE'] = 'custom_environment';
         $this->assertEquals(['disabled'], $this->get_constant_map());
 
-		$_ENV['WP_ENVIRONMENT_TYPE'] = 'debug';
+        $_ENV['WP_ENVIRONMENT_TYPE'] = 'debug';
         $this->assertEquals(['disabled'], $this->get_constant_map());
-
     }
 
     // public function test_define_constant(): void
