@@ -54,8 +54,8 @@ function env( string $name, $default = null, bool $strtolower = false )
     if ( isset( $_ENV[ $name ] ) ) {
         $env_data = $_ENV[ $name ];
     } else {
-		$env_data = $default;
-	}
+        $env_data = $default;
+    }
 
     if ( is_int_val( $env_data ) ) {
         return (int) $env_data;
@@ -84,7 +84,7 @@ if ( ! \function_exists( 'is_int_val' ) ) {
     /**
      * Check if a string is an integer value.
      *
-     * @param string|int $str The string to check.
+     * @param int|string $str The string to check.
      *
      * @return bool Returns true if the string is an integer value, and false otherwise.
      */
