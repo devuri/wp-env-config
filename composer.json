@@ -46,7 +46,6 @@
     "require-dev": {
         "10up/phpcs-composer": "dev-master",
         "brain/monkey": "^2.6",
-        "laravel/envoy": "^2.8",
         "php-stubs/wordpress-stubs": "^6.0",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-strict-rules": "^1.3",

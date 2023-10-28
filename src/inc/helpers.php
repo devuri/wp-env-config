@@ -40,53 +40,55 @@ if ( ! \function_exists( 'asset_url' ) ) {
     }
 }
 
-if ( ! \function_exists( 'env' ) ) {
-    /**
-     * Get the value of an environment variable.
-     *
-     * @param string     $name       the environment variable name.
-     * @param null|mixed $default
-     * @param bool       $strtolower
-     *
-     * @return mixed
-     */
-    function env( string $name, $default = null, bool $strtolower = false )
-    {
-        if ( ! isset( $_ENV[ $name ] ) ) {
-            return $default;
-        }
+/**
+ * Get the value of an environment variable.
+ *
+ * @param string     $name       the environment variable name.
+ * @param null|mixed $default
+ * @param bool       $strtolower
+ *
+ * @return mixed
+ */
+function env( string $name, $default = null, bool $strtolower = false )
+{
+    if ( isset( $_ENV[ $name ] ) ) {
+        $env_data = $_ENV[ $name ];
+    } else {
+		$env_data = $default;
+	}
 
-        if ( is_int_val( $_ENV[ $name ] ) ) {
-            return (int) $_ENV[ $name ];
-        }
-
-        if ( \in_array( $_ENV[ $name ], [ 'True', 'true', 'TRUE' ], true ) ) {
-            return true;
-        }
-        if ( \in_array( $_ENV[ $name ], [ 'False', 'false', 'FALSE' ], true ) ) {
-            return false;
-        }
-        if ( \in_array( $_ENV[ $name ], [ 'Null', 'null', 'NULL' ], true ) ) {
-            return '';
-        }
-
-        if ( $strtolower ) {
-            return strtolower( $_ENV[ $name ] );
-        }
-
-        return $_ENV[ $name ];
+    if ( is_int_val( $env_data ) ) {
+        return (int) $env_data;
     }
-}// end if
+
+    if ( \in_array( $env_data, [ 'True', 'true', 'TRUE' ], true ) ) {
+        return true;
+    }
+
+    if ( \in_array( $env_data, [ 'False', 'false', 'FALSE' ], true ) ) {
+        return false;
+    }
+
+    if ( \in_array( $env_data, [ 'Null', 'null', 'NULL' ], true ) ) {
+        return '';
+    }
+
+    if ( $strtolower ) {
+        return strtolower( $env_data );
+    }
+
+    return $env_data;
+}
 
 if ( ! \function_exists( 'is_int_val' ) ) {
     /**
      * Check if a string is an integer value.
      *
-     * @param string $str The string to check.
+     * @param string|int $str The string to check.
      *
      * @return bool Returns true if the string is an integer value, and false otherwise.
      */
-    function is_int_val( string $str )
+    function is_int_val( $str )
     {
         return is_numeric( $str ) && \intval( $str ) == $str;
     }
