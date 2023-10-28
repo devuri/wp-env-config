@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/devuri/wp-env-config/compare/v1.0.5...v1.1.0) (2023-10-28)
+
+
+### Features
+
+* update encryption to `0.2` ([a96eb0a](https://github.com/devuri/wp-env-config/commit/a96eb0a50c41acc8905bd5752d51e492d04034bf))
+
 ## [1.0.5](https://github.com/devuri/wp-env-config/compare/v1.0.4...v1.0.5) (2023-10-28)
 
 
