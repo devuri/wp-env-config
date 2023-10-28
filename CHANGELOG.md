@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.4](https://github.com/devuri/wp-env-config/compare/v1.0.3...v1.0.4) (2023-10-28)
+
+
+### Bug Fixes
+
+* new env function fix ([5eeef88](https://github.com/devuri/wp-env-config/commit/5eeef882535b1a463ec1debb8abe4b11c78bea9a))
+
+
+### Miscellaneous Chores
+
+* build ([b792b53](https://github.com/devuri/wp-env-config/commit/b792b53d33e3de8f48ff749ac5de52b783669ef8))
+
 ## [1.0.3](https://github.com/devuri/wp-env-config/compare/v0.8.2...v1.0.3) (2023-10-27)
 
 
