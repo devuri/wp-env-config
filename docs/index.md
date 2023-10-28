@@ -10,6 +10,7 @@
 ## Documentation
 
 - [Resources](/wp-env-config/resources/)
+- [Installation of Premium Plugins](/wp-env-config/premium-plugins)
 - [Environment Variables](/wp-env-config/env)
 - [Release Notes](https://github.com/devuri/wp-env-config/releases/)
 - [Multi-Tenant Applications](/wp-env-config/multi-tenant)
