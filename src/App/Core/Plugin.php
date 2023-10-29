@@ -51,6 +51,10 @@ class Plugin
             AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
         }
 
+		if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
+            add_filter( 'wp_is_application_passwords_available', '__return_false' );
+        }
+
         add_action(
             'send_headers',
             function(): void {
