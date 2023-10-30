@@ -517,8 +517,8 @@ class Setup implements ConfigInterface
             $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->isBoolean();
             $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->allowedValues( [ 'true', 'false' ] );
 
-			// in most cases application passwords is not needed.
-			$this->dotenv->required( 'DISABLE_WP_APPLICATION_PASSWORDS' )->allowedValues( [ 'true', 'false' ] );
+            // in most cases application passwords is not needed.
+            $this->dotenv->required( 'DISABLE_WP_APPLICATION_PASSWORDS' )->allowedValues( [ 'true', 'false' ] );
 
             // db vars must be defined in .env.
             $this->dotenv->required( 'DB_HOST' )->notEmpty();

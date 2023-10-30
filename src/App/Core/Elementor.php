@@ -97,12 +97,12 @@ class Elementor
         return false;
     }
 
-	public function get_status()
-	{
-		$status = $this->post_request( 'activate_license' );
+    public function get_status()
+    {
+        $status = $this->post_request( 'activate_license' );
 
-		return $status['license'] ?? null;
-	}
+        return $status['license'] ?? null;
+    }
 
     public function deactivate()
     {

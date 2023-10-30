@@ -44,7 +44,7 @@ if ( ! \function_exists( 'asset_url' ) ) {
 /**
  * Get the value of an environment variable.
  *
- * @param string     $name       the environment variable name.
+ * @param string     $name               the environment variable name.
  * @param null|mixed $default_or_encrypt provides a default value or bool `true` which indicates the output is encrypted
  * @param bool       $strtolower
  *
@@ -58,11 +58,12 @@ function env( string $name, $default_or_encrypt = null, bool $strtolower = false
         $env_data = $default_or_encrypt;
     }
 
-	if( is_bool( $default_or_encrypt ) && true === $default_or_encrypt ){
-		$encryption = new Encryption( APP_PATH );
-		// returns encrypted and base64 encoded.
-		return $encryption->encrypt( $env_data );
-	}
+    if ( \is_bool( $default_or_encrypt ) && true === $default_or_encrypt ) {
+        $encryption = new Encryption( APP_PATH );
+
+        // returns encrypted and base64 encoded.
+        return $encryption->encrypt( $env_data );
+    }
 
     if ( is_int_val( $env_data ) ) {
         return (int) $env_data;

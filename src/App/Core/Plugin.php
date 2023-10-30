@@ -51,7 +51,7 @@ class Plugin
             AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
         }
 
-		if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
+        if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
             add_filter( 'wp_is_application_passwords_available', '__return_false' );
         }
 
@@ -122,44 +122,23 @@ class Plugin
             4
         );
 
-		$customEvents = new ScheduledEvent('execute_env_app_events', function() {
+        $customEvents = new ScheduledEvent(
+            'execute_env_app_events',
+            function(): void {
+				$this->handle_events();
 
-			$this->handle_events();
+				do_action( 'env_app_events' );
 
-			do_action('env_app_events');
-
-		    //error_log('Custom App event executed at ' . current_time('mysql'));
-
-		}, 'hourly' );
-
+				// error_log('Custom App event executed at ' . current_time('mysql'));
+			},
+            'hourly'
+        );
     }
 
     public static function init(): self
     {
         return new self();
     }
-
-	protected function handle_events(): ?bool
-	{
-		// auto activate elementor.
-		$activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
-
-		if( $activation && true === $activation ){
-
-			$elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
-
-			$license_status = $elementor->get_status();
-
-			if( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
-				return null;
-			} else {
-				// attemp to activate it.
-				$elementor->activate();
-			}
-		}
-
-		return null;
-	}
 
     public function app_env_admin_bar_menu( $admin_bar ): void
     {
@@ -223,6 +202,28 @@ class Plugin
                 ],
             ]
         );
+    }
+
+    protected function handle_events(): ?bool
+    {
+        // auto activate elementor.
+        $activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
+
+        if ( $activation && true === $activation ) {
+            $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+
+            $license_status = $elementor->get_status();
+
+            if ( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
+                return null;
+            }
+            // attemp to activate it.
+            $elementor->activate();
+
+			return true;
+        }
+
+        return null;
     }
 
     protected function security_headers(): void
