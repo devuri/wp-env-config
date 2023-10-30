@@ -121,12 +121,45 @@ class Plugin
             10,
             4
         );
+
+		$customEvents = new ScheduledEvent('execute_env_app_events', function() {
+
+			$this->handle_events();
+
+			do_action('env_app_events');
+
+		    //error_log('Custom App event executed at ' . current_time('mysql'));
+
+		}, 'hourly' );
+
     }
 
     public static function init(): self
     {
         return new self();
     }
+
+	protected function handle_events(): ?bool
+	{
+		// auto activate elementor.
+		$activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
+
+		if( $activation && true === $activation ){
+
+			$elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+
+			$license_status = $elementor->get_status();
+
+			if( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
+				return null;
+			} else {
+				// attemp to activate it.
+				$elementor->activate();
+			}
+		}
+
+		return null;
+	}
 
     public function app_env_admin_bar_menu( $admin_bar ): void
     {
