@@ -97,6 +97,13 @@ class Elementor
         return false;
     }
 
+    public function get_status()
+    {
+        $status = $this->post_request( 'activate_license' );
+
+        return $status['license'] ?? null;
+    }
+
     public function deactivate()
     {
         delete_option( self::LICENSE_KEY_OPTION );

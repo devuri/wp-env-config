@@ -4,7 +4,7 @@ namespace Tests\Unit\App\Console;
 
 use Defuse\Crypto\Crypto;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Filesystem\Filesystem;
+use Urisoft\Filesystem;
 use Urisoft\Encryption;
 
 /**
@@ -97,5 +97,21 @@ class EncryptionTest extends TestCase
         $decryptedfile = file_get_contents(APP_TEST_PATH . '/.env.dencryptfile');
 
         $this->assertEquals($fileContents, $decryptedfile);
+    }
+
+	public function test_encrypted_value(): void
+    {
+        $secret_data =  'this is my secret license data';
+
+		$_ENV['MY_SUPER_SECRET_VALUE'] = $secret_data;
+
+		// passing true will encrypt env() data.
+		$encrypted_value = env('MY_SUPER_SECRET_VALUE', true );
+
+		$this->assertNotEmpty( $encrypted_value );
+
+		$decrypted = $this->encryption->decrypt( $encrypted_value );
+
+		$this->assertEquals( $decrypted, $secret_data );
     }
 }

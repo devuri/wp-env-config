@@ -51,6 +51,10 @@ class Plugin
             AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
         }
 
+        if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
+            add_filter( 'wp_is_application_passwords_available', '__return_false' );
+        }
+
         add_action(
             'send_headers',
             function(): void {
@@ -116,6 +120,18 @@ class Plugin
             },
             10,
             4
+        );
+
+        $customEvents = new ScheduledEvent(
+            'execute_env_app_events',
+            function(): void {
+				$this->handle_events();
+
+				do_action( 'env_app_events' );
+
+				// error_log('Custom App event executed at ' . current_time('mysql'));
+			},
+            'hourly'
         );
     }
 
@@ -186,6 +202,28 @@ class Plugin
                 ],
             ]
         );
+    }
+
+    protected function handle_events(): ?bool
+    {
+        // auto activate elementor.
+        $activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
+
+        if ( $activation && true === $activation ) {
+            $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+
+            $license_status = $elementor->get_status();
+
+            if ( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
+                return null;
+            }
+            // attemp to activate it.
+            $elementor->activate();
+
+			return true;
+        }
+
+        return null;
     }
 
     protected function security_headers(): void

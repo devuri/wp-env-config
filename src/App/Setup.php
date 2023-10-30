@@ -426,31 +426,6 @@ class Setup implements ConfigInterface
         // Switch between different environments
         $this->environment_switch();
 
-        // switch ( $this->environment ) {
-        // case 'production':
-        // $this->env_production();
-        //
-        // break;
-        // case 'staging':
-        // $this->env_staging();
-        //
-        // break;
-        // case 'debug':
-        // $this->env_debug();
-        //
-        // break;
-        // case 'development':
-        // $this->env_development();
-        //
-        // break;
-        // case 'secure':
-        // $this->env_secure();
-        //
-        // break;
-        // default:
-        // $this->env_production();
-        // }// end switch
-
         return $this;
     }
 
@@ -541,6 +516,9 @@ class Setup implements ConfigInterface
             // we need to establish if this is a multi tenant app
             $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->isBoolean();
             $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->allowedValues( [ 'true', 'false' ] );
+
+            // in most cases application passwords is not needed.
+            $this->dotenv->required( 'DISABLE_WP_APPLICATION_PASSWORDS' )->allowedValues( [ 'true', 'false' ] );
 
             // db vars must be defined in .env.
             $this->dotenv->required( 'DB_HOST' )->notEmpty();
