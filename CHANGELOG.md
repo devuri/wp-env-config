@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0](https://github.com/devuri/wp-env-config/compare/v1.1.0...v1.2.0) (2023-10-30)
+## [1.2.0](https://github.com/devuri/wp-env-config/compare/v1.1.0...v1.2.0) (2023-11-01)
 
 
 ### Features
@@ -11,6 +11,7 @@
 
 ### Bug Fixes
 
+* fixes the core app events runner ([844cf5b](https://github.com/devuri/wp-env-config/commit/844cf5b70a4b1122b2627fff658db2c3cc8e1e09))
 * use upgraded encryption 0.3 ([2d479fb](https://github.com/devuri/wp-env-config/commit/2d479fb1782b5096f3a35055195cd3ce237267a6))
 
 
