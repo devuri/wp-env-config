@@ -122,17 +122,7 @@ class Plugin
             4
         );
 
-        $customEvents = new ScheduledEvent(
-            'execute_env_app_events',
-            function(): void {
-				$this->handle_events();
-
-				do_action( 'env_app_events' );
-
-				// error_log('Custom App event executed at ' . current_time('mysql'));
-			},
-            'hourly'
-        );
+        $this->add_core_app_events();
     }
 
     public static function init(): self
@@ -204,26 +194,46 @@ class Plugin
         );
     }
 
-    protected function handle_events(): ?bool
+    protected function add_core_app_events(): void
+    {
+        $app_events = new ScheduledEvent(
+            'core_app_events',
+            function(): void {
+                $this->auto_activate_elementor();
+
+                do_action( 'env_app_events' );
+
+                // error_log('Custom App event executed at ' . current_time('mysql'));
+            },
+            'hourly'
+        );
+
+        $app_events->add_app_event();
+    }
+
+    protected function auto_activate_elementor(): ?bool
     {
         // auto activate elementor.
-        $activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
+        $auto_activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
 
-        if ( $activation && true === $activation ) {
-            $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
-
-            $license_status = $elementor->get_status();
-
-            if ( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
-                return null;
-            }
-            // attemp to activate it.
-            $elementor->activate();
-
-			return true;
+        if ( ! $auto_activation || false === $auto_activation ) {
+            return null;
         }
 
-        return null;
+        $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+
+        $license_status = $elementor->get_status();
+
+        if ( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
+            return false;
+        }
+
+        // activate it.
+        if ( $elementor->activate() ) {
+            return true;
+        }
+
+        return false;
     }
 
     protected function security_headers(): void
