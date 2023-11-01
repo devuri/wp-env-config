@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/devuri/wp-env-config/compare/v1.1.0...v1.2.0) (2023-10-30)
+
+
+### Features
+
+* add option to Auto-Activate Elementor as Hourly Cron. ([08fec09](https://github.com/devuri/wp-env-config/commit/08fec09efca45028cd5aee7de0fadec613d58663))
+* disable `application_passwords` in .env file ([c3df479](https://github.com/devuri/wp-env-config/commit/c3df479fab54612ffc03965dc7a0b5fdab83717f))
+
+
+### Bug Fixes
+
+* use upgraded encryption 0.3 ([2d479fb](https://github.com/devuri/wp-env-config/commit/2d479fb1782b5096f3a35055195cd3ce237267a6))
+
+
+### Miscellaneous Chores
+
+* build ([500918d](https://github.com/devuri/wp-env-config/commit/500918dbf94c31ff714bdafc029c2b5ddb8fb894))
+
 ## [1.1.0](https://github.com/devuri/wp-env-config/compare/v1.0.5...v1.1.0) (2023-10-28)
 
 
