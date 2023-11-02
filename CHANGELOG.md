@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/devuri/wp-env-config/compare/v1.2.0...v1.3.0) (2023-11-02)
+
+
+### Features
+
+* adds plugins list admin page ([c929c9d](https://github.com/devuri/wp-env-config/commit/c929c9d277d20664ba7874d6c2a741480b318bc8))
+
+
+### Miscellaneous Chores
+
+* **master:** release 1.2.0 ([f68727a](https://github.com/devuri/wp-env-config/commit/f68727a39260509d85be6291aad155f5476e4303))
+
 ## [1.2.0](https://github.com/devuri/wp-env-config/compare/v1.1.0...v1.2.0) (2023-11-01)
 
 
