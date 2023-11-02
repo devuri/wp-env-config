@@ -10,6 +10,8 @@
 
 namespace Urisoft\App\Core;
 
+use Urisoft\App\Core\Settings\AdminSettingsPage;
+
 class Plugin
 {
     protected $env_menu_id;
@@ -123,6 +125,20 @@ class Plugin
         );
 
         $this->add_core_app_events();
+
+        // Add some special admin pages.
+        new AdminSettingsPage(
+            'Composer plugins',
+            function (): void {
+                ?><div class="wrap">
+					<h2>Composer Plugins List</h2>
+					<?php
+					dump( app_packagist_plugins_list() );
+					?>
+				</div>
+				<?php
+            }
+        );
     }
 
     public static function init(): self
