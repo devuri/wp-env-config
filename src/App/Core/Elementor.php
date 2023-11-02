@@ -26,6 +26,7 @@ class Elementor
     // Requests lock config.
     public const REQUEST_LOCK_TTL    = MINUTE_IN_SECONDS;
     public const REQUEST_LOCK_OPTION = '_elementor_pro_api_requests_lock';
+    public const ACTIVATION_LOCK_ID  = '_elementor_pro_wpenv_activation_lock';
 
     // activate stuff needed.
     public const LICENSE_KEY_OPTION           = 'elementor_pro_license_key';
@@ -60,8 +61,21 @@ class Elementor
         $this->license_key = $license_key;
     }
 
+    public function is_activation_locked(): bool
+    {
+        if ( get_transient( self::ACTIVATION_LOCK_ID ) ) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function activate()
     {
+        if ( $this->is_activation_locked() ) {
+            return false;
+        }
+
         $activated = $this->post_request( 'activate_license' );
 
         if ( self::STATUS_EXPIRED === $activated['license'] ) {
@@ -70,26 +84,28 @@ class Elementor
             return false;
         }
         if ( self::STATUS_INACTIVE === $activated['license'] ) {
-            error_log( 'Errror: Elementor Pro license Mismatch' );
+            error_log( 'Error: Elementor Pro license Mismatch' );
 
             return false;
         }
         if ( self::STATUS_INVALID === $activated['license'] ) {
-            error_log( 'Errror: Elementor Pro license Invalid' );
+            error_log( 'Error: Elementor Pro license Invalid' );
 
             return false;
         }
         if ( self::STATUS_DISABLED === $activated['license'] ) {
-            error_log( 'Errror: Elementor Pro license Disabled' );
+            error_log( 'Error: Elementor Pro license Disabled' );
 
             return false;
         }
+
         if ( $activated ) {
             error_log( 'Elementor Pro license Active' );
             update_option( self::LICENSE_KEY_OPTION, $this->license_key );
             update_option( self::LICENSE_DATA_OPTION, $activated );
             update_option( self::LICENSE_DATA_FALLBACK_OPTION, $activated );
             update_option( '_elementor_pro_installed_time', time() );
+            self::set_transient( self::ACTIVATION_LOCK_ID, time(), DAY_IN_SECONDS );
 
             return true;
         }
@@ -109,8 +125,18 @@ class Elementor
         delete_option( self::LICENSE_KEY_OPTION );
         delete_option( self::LICENSE_DATA_OPTION );
         delete_option( self::LICENSE_DATA_FALLBACK_OPTION );
+        delete_transient( self::ACTIVATION_LOCK_ID );
 
         return $this->post_request( 'deactivate_license' );
+    }
+
+    protected static function set_transient( string $transient_name, $value, int $expiration = 0 )
+    {
+        if ( empty( $expiration ) ) {
+            $expiration = DAY_IN_SECONDS;
+        }
+
+        return set_transient( $transient_name, $value, $expiration );
     }
 
     private function post_request( string $edd_action = 'activate_license' )
