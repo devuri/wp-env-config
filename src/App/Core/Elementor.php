@@ -50,10 +50,6 @@ class Elementor
             throw new InvalidArgumentException( 'ELEMENTOR_PRO_VERSION is not defined' );
         }
 
-        if ( ! current_user_can( 'manage_options' ) ) {
-            throw new Exception( 'not valid' );
-        }
-
         if ( \defined( 'ELEMENTOR_PRO_VERSION' ) ) {
             $this->api_version = ELEMENTOR_PRO_VERSION;
         }
