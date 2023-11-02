@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/devuri/wp-env-config/compare/v1.3.1...v1.3.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* remove 'manage_options' check ([a82e43d](https://github.com/devuri/wp-env-config/commit/a82e43db6f90af29d4e91e7b252a2aec40e7d8b3))
+
 ## [1.3.1](https://github.com/devuri/wp-env-config/compare/v1.3.0...v1.3.1) (2023-11-02)
 
 
