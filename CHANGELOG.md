@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/devuri/wp-env-config/compare/v1.3.0...v1.3.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* fixes the elementor pro wpenv auto activation ([fe7cb72](https://github.com/devuri/wp-env-config/commit/fe7cb722abfdcb5232cc353995e8ecc9d38eaade))
+
 ## [1.3.0](https://github.com/devuri/wp-env-config/compare/v1.2.0...v1.3.0) (2023-11-02)
 
 
