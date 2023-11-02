@@ -133,7 +133,7 @@ class Plugin
                 ?><div class="wrap">
 					<h2>Composer Plugins List</h2>
 					<?php
-					dump( app_packagist_plugins_list() );
+                    dump( app_packagist_plugins_list() );
 					?>
 				</div>
 				<?php
@@ -236,16 +236,35 @@ class Plugin
             return null;
         }
 
-        $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+        if ( env( 'ELEMENTOR_PRO_LICENSE' ) === get_option( 'elementor_pro_license_key' ) ) {
+            // if the key is present it may already be active.
+            return null;
+        }
+
+        try {
+            $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
+        } catch ( \Exception $e ) {
+            error_log( $e->getMessage() );
+
+            return null;
+        }
+
+        if ( $elementor->is_activation_locked() ) {
+            return null;
+        }
 
         $license_status = $elementor->get_status();
 
-        if ( 'valid' === $license_status && get_option( '_elementor_pro_license_data' ) ) {
+        if ( ! 'valid' === $license_status ) {
+            error_log( 'auto activation elementor pro license failed:' . (string) $license_status );
+
             return false;
         }
 
         // activate it.
         if ( $elementor->activate() ) {
+            error_log( 'Elementor licence activated' );
+
             return true;
         }
 

@@ -8,17 +8,17 @@ namespace Urisoft\App\Core\Settings;
 class AdminSettingsPage
 {
     /**
-     * @var string $settings_page The name of the setting.
+     * @var string The name of the setting.
      */
     private $settings_page;
 
     /**
-     * @var string $content_callback The content of the settings page.
+     * @var string The content of the settings page.
      */
     private $content_callback;
 
     /**
-     * @var bool $is_submenu Whether the page should be a submenu.
+     * @var bool Whether the page should be a submenu.
      */
     private $is_submenu;
 
@@ -26,7 +26,7 @@ class AdminSettingsPage
      * AdminSettingsPage constructor.
      *
      * @param string   $settings_page         The name of the setting.
-     * @param callback $page_content_callback The content callback of the settings page.
+     * @param callable $page_content_callback The content callback of the settings page.
      * @param bool     $is_submenu            Whether the page should be a submenu.
      */
     public function __construct( string $settings_page, $page_content_callback = null, bool $is_submenu = true )
