@@ -172,6 +172,10 @@ class Setup implements ConfigInterface
              */
             $app_http_host = get_http_app_host();
 
+            if ( ! \array_key_exists( $app_http_host, $this->env_files['tenant_ids'] ) ) {
+                exit( 'The website is not defined. Please review the URL and try again.' );
+            }
+
             if ( $app_http_host ) {
                 $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
             } else {
