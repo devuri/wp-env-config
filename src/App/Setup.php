@@ -117,6 +117,7 @@ class Setup implements ConfigInterface
                 '.env.dev',
                 '.env.debug',
                 '.env.local',
+                'env.local',
             ];
 
             $this->env_files = array_merge( $default_files, $supported_names );
@@ -170,6 +171,10 @@ class Setup implements ConfigInterface
              * @throws Exception If the source is invalid or unable to be loaded or match tenant.
              */
             $app_http_host = get_http_app_host();
+
+            if ( ! \array_key_exists( $app_http_host, $this->env_files['tenant_ids'] ) ) {
+                exit( 'The website is not defined. Please review the URL and try again.' );
+            }
 
             if ( $app_http_host ) {
                 $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];

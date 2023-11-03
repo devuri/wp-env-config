@@ -282,6 +282,8 @@ function get_http_app_host(): ?string
         // Sanitize the HTTP_HOST to allow only valid characters for a host
         $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING );
 
+        $httpHost = app_sanitizer( $httpHost );
+
         $httpHost = strtolower( stripslashes( $httpHost ) );
 
         // Split the host into parts to handle subdomains or additional segments
@@ -353,4 +355,25 @@ if ( ! \function_exists( 'app_packagist_plugins_list' ) ) {
 
         return $plugins_list;
     }
+}
+
+/**
+ * Basic Sanitize and prepare for a string input for safe usage in the application.
+ *
+ * This function sanitizes the input by removing leading/trailing whitespace,
+ * stripping HTML and PHP tags, converting special characters to HTML entities,
+ * and removing potentially dangerous characters for security.
+ *
+ * @param string $input The input string to sanitize.
+ *
+ * @return string The sanitized input ready for safe usage within the application.
+ */
+function app_sanitizer( string $input ): string
+{
+    $input = trim($input);
+    $input = strip_tags($input);
+    $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+    $input = str_replace(["'", "\"", "--", ";"], "", $input);
+
+    return filter_var($input, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 }
