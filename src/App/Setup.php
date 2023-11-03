@@ -117,6 +117,7 @@ class Setup implements ConfigInterface
                 '.env.dev',
                 '.env.debug',
                 '.env.local',
+                'env.local',
             ];
 
             $this->env_files = array_merge( $default_files, $supported_names );
