@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.3](https://github.com/devuri/wp-env-config/compare/v1.3.2...v1.3.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* add `app_sanitizer()` ([bdfd3cc](https://github.com/devuri/wp-env-config/commit/bdfd3ccf85536faccac27dd36f79504247d64a70))
+* env local added todefault files ([4a563fb](https://github.com/devuri/wp-env-config/commit/4a563fbc58c5aa260830d6208301a2aa8a8ff947))
+* exit for when tenant is not defined ([bf058a7](https://github.com/devuri/wp-env-config/commit/bf058a798be90e49e6941be23ce605adfdf6930d))
+
 ## [1.3.2](https://github.com/devuri/wp-env-config/compare/v1.3.1...v1.3.2) (2023-11-02)
 
 
