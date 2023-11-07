@@ -74,13 +74,11 @@ With authentication and repositories set up, you can now install the premium plu
 
 ```shell
 composer require wpengine/advanced-custom-fields-pro
-
 ```
 and for Elementor:
 
 ```shell
 composer require elementor/elementor-pro
-
 ```
 
 ### Additional Information
