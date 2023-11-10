@@ -11,51 +11,32 @@
 namespace Urisoft\App\Core;
 
 use Urisoft\App\Core\Settings\AdminSettingsPage;
+use Urisoft\App\Core\Traits\ActivateElementorTrait;
+use Urisoft\App\Core\Traits\AdminBarMenuTrait;
 
 class Plugin
 {
+    use ActivateElementorTrait;
+    use AdminBarMenuTrait;
+    public const ADMIN_BAR_MENU_ID = 'wp-app-environment';
+
     protected $env_menu_id;
     protected $http_env_type;
+    protected $wp_sudo_admin;
+    protected $admin_group;
 
     public function __construct()
     {
-        if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN ) {
-            $wp_sudo_admin = (int) WP_SUDO_ADMIN;
-        } else {
-            $wp_sudo_admin = null;
-        }
-
-        if ( \defined( 'SUDO_ADMIN_GROUP' ) && SUDO_ADMIN_GROUP ) {
-            $admin_group = SUDO_ADMIN_GROUP;
-        } else {
-            $admin_group = null;
-        }
-
-        if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
-            $this->http_env_type = strtoupper( HTTP_ENV_CONFIG );
-        } else {
-            $this->http_env_type = null;
-        }
-
-        // admin bar menu ID.
-        $this->env_menu_id = 'wp-app-environment';
+        // define basic app settings
+        $this->define_basic_app_init();
 
         new WhiteLabel();
 
         // Custom Sucuri settings.
-        new Sucuri( $wp_sudo_admin, $admin_group );
+        new Sucuri( $this->wp_sudo_admin, $this->admin_group );
 
         // basic auth
         BasicAuth::init();
-
-        // allows auto login.
-        if ( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ) ) {
-            AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
-        }
-
-        if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
-            add_filter( 'wp_is_application_passwords_available', '__return_false' );
-        }
 
         add_action(
             'send_headers',
@@ -146,70 +127,6 @@ class Plugin
         return new self();
     }
 
-    public function app_env_admin_bar_menu( $admin_bar ): void
-    {
-        if ( ! current_user_can( 'manage_options' ) ) {
-            return;
-        }
-
-        $env_menu_id = 'wp-app-environment';
-        $env_label   = $this->http_env_type;
-
-        /**
-         * When in secure env updates are not visible.
-         *
-         * in that case this will give us an indication of available updates
-         *
-         * @var Updates
-         */
-        $wp_updates = new Updates();
-
-        if ( $wp_updates->get_available_updates() ) {
-            $wp_update_count = $wp_updates->get_available_updates();
-        } else {
-            $wp_update_count = 0;
-        }
-
-        $admin_bar->add_menu(
-            [
-                'id'    => $this->env_menu_id,
-                'title' => wp_kses_post( ":: Env $env_label :: [$wp_update_count]" ),
-                'href'  => '#',
-                'meta'  => [
-                    'title' => __( 'Environment: ' ) . $env_label,
-                    'class' => 'wpc-warning',
-                ],
-            ]
-        );
-
-        $admin_bar->add_menu(
-            [
-                'parent' => $this->env_menu_id,
-                'id'     => 'wp-app-updates',
-                'title'  => "$wp_update_count" . __( ' Available Updates' ),
-                'href'   => '#',
-                'meta'   => [
-                    'title' => __( 'Updates Available' ),
-                    'class' => 'wpc-warning',
-                ],
-            ]
-        );
-
-        // Integrated Version Control
-        $admin_bar->add_menu(
-            [
-                'parent' => $this->env_menu_id,
-                'id'     => 'wp-app-ivc',
-                'title'  => __( 'Integrated Version Control (vcs build)' ),
-                'href'   => '#',
-                'meta'   => [
-                    'title' => __( 'Built with Integrated Version Control and Deployment Pipeline (wpenv.io)' ),
-                    'class' => 'wpc-warning',
-                ],
-            ]
-        );
-    }
-
     protected function add_core_app_events(): void
     {
         $app_events = new ScheduledEvent(
@@ -225,50 +142,6 @@ class Plugin
         );
 
         $app_events->add_app_event();
-    }
-
-    protected function auto_activate_elementor(): ?bool
-    {
-        // auto activate elementor.
-        $auto_activation = env( 'ELEMENTOR_AUTO_ACTIVATION' );
-
-        if ( ! $auto_activation || false === $auto_activation ) {
-            return null;
-        }
-
-        if ( env( 'ELEMENTOR_PRO_LICENSE' ) === get_option( 'elementor_pro_license_key' ) ) {
-            // if the key is present it may already be active.
-            return null;
-        }
-
-        try {
-            $elementor = new Elementor( env( 'ELEMENTOR_PRO_LICENSE' ) );
-        } catch ( \Exception $e ) {
-            error_log( $e->getMessage() );
-
-            return null;
-        }
-
-        if ( $elementor->is_activation_locked() ) {
-            return null;
-        }
-
-        $license_status = $elementor->get_status();
-
-        if ( ! 'valid' === $license_status ) {
-            error_log( 'auto activation elementor pro license failed:' . (string) $license_status );
-
-            return false;
-        }
-
-        // activate it.
-        if ( $elementor->activate() ) {
-            error_log( 'Elementor licence activated' );
-
-            return true;
-        }
-
-        return false;
     }
 
     protected function security_headers(): void
@@ -311,5 +184,38 @@ class Plugin
         }
 
         return null;
+    }
+
+    protected function define_basic_app_init(): void
+    {
+        if ( \defined( 'WP_SUDO_ADMIN' ) && WP_SUDO_ADMIN ) {
+            $this->wp_sudo_admin = (int) WP_SUDO_ADMIN;
+        } else {
+            $this->wp_sudo_admin = null;
+        }
+
+        if ( \defined( 'SUDO_ADMIN_GROUP' ) && SUDO_ADMIN_GROUP ) {
+            $this->admin_group = SUDO_ADMIN_GROUP;
+        } else {
+            $this->admin_group = null;
+        }
+
+        if ( \defined( 'HTTP_ENV_CONFIG' ) && HTTP_ENV_CONFIG ) {
+            $this->http_env_type = strtoupper( HTTP_ENV_CONFIG );
+        } else {
+            $this->http_env_type = null;
+        }
+
+        // admin bar menu ID.
+        $this->env_menu_id = self::ADMIN_BAR_MENU_ID;
+
+        // allows auto login.
+        if ( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ) ) {
+            AutoLogin::init( env( 'WPENV_AUTO_LOGIN_SECRET_KEY' ), env( 'WP_ENVIRONMENT_TYPE' ) );
+        }
+
+        if ( env( 'DISABLE_WP_APPLICATION_PASSWORDS' ) ) {
+            add_filter( 'wp_is_application_passwords_available', '__return_false' );
+        }
     }
 }
