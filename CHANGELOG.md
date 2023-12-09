@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/devuri/wp-env-config/compare/v1.3.3...v2.0.0) (2023-12-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* re `App.php` to `Urisoft\App\Http\AppFramework`
+
+### Miscellaneous Chores
+
+* build ([10289e9](https://github.com/devuri/wp-env-config/commit/10289e9b9ff276c4c59095235e37c027c1db7f46))
+
+
+### Code Refactoring
+
+* re `App.php` to `Urisoft\App\Http\AppFramework` ([defe801](https://github.com/devuri/wp-env-config/commit/defe80168d477f4420061bbf4aacf7e9f08ada8f))
+
 ## [1.3.3](https://github.com/devuri/wp-env-config/compare/v1.3.2...v1.3.3) (2023-11-03)
 
 
