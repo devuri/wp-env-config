@@ -3,7 +3,6 @@
 namespace Tests\Unit\App\Http;
 
 use Tests\BaseTest;
-use Urisoft\App\Http\AppFramework;
 
 /**
  * Test the Kernel.
