@@ -8,7 +8,7 @@ use Urisoft\App\Setup;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
-class App
+class AppFramework
 {
     protected $app_path = null;
     protected $setup    = null;

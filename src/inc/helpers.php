@@ -2,7 +2,7 @@
 
 use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
-use Urisoft\App\Http\App;
+use Urisoft\App\Http\AppFramework;
 use Urisoft\App\Http\Asset;
 use Urisoft\DotAccess;
 use Urisoft\Encryption;
@@ -132,7 +132,7 @@ if ( ! \function_exists( 'wpc_app' ) ) {
     function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
         try {
-            $app = new App( $app_path, $options, $tenant_ids );
+            $app = new AppFramework( $app_path, $options, $tenant_ids );
         } catch ( Exception $e ) {
             exit( $e->getMessage() );
         }
