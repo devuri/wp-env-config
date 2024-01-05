@@ -32,29 +32,31 @@ class PublicKey
     /**
      * PublicKey constructor.
      *
-     * @param string $option_name The name of the option used to store the public key.
      * @param string $app_path    The path to the application directory.
+     * @param string $option_name The name of the option used to store the public key.
      */
-    public function __construct( $option_name, $app_path )
+    public function __construct( $app_path, string $option_name = 'wp_env_pubkey' )
     {
+		$this->app_path    = $app_path;
         $this->option_name = $option_name;
-        $this->app_path    = $app_path;
     }
 
     /**
      * Saves the public key as an option in the WordPress options table.
      *
-     * @param string $uuid_filename  The UUID public key filename.
-     * @param string $publickeys_dir The directory where the public keys are stored (default: 'publickeys').
+     * @param string $key_filename  The public key filename.
+     * @param string $publickeys_dir The directory where the public keys are stored (default: 'pubkey').
      */
-    public function save_public_key( $uuid_filename, $publickeys_dir = 'publickeys' ): void
+    public function save_public_key( $key_filename, $publickeys_dir = 'pubkey' ): bool
     {
-        $public_key_path = $this->app_path . '/' . $publickeys_dir . '/' . $uuid_filename;
+        $public_key_path = $this->app_path . '/' . $publickeys_dir . '/' . $key_filename;
 
         if ( file_exists( $public_key_path ) ) {
             $public_key = file_get_contents( $public_key_path );
-            update_option( $this->option_name, base64_encode( $public_key ) );
+            return update_option( $this->option_name, base64_encode( $public_key ) );
         }
+
+		return false;
     }
 
     /**
