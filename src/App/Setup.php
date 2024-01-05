@@ -190,43 +190,6 @@ class Setup implements ConfigInterface
         $this->set_constant_map();
     }
 
-	/**
-	 * Retrieves the default file names for environment configuration.
-	 *
-	 * This protected method is designed to return an array of default file names
-	 * used for environment configuration in a WordPress environment.
-	 * These file names include various formats and stages of environment setup,
-	 * such as production, staging, development, and local environments.
-	 *
-	 * @since [version number]
-	 *
-	 * @return array An array of default file names for environment configurations.
-	 *               The array includes the following file names:
-	 *               - 'env'
-	 *               - '.env'
-	 *               - '.env.secure'
-	 *               - '.env.prod'
-	 *               - '.env.staging'
-	 *               - '.env.dev'
-	 *               - '.env.debug'
-	 *               - '.env.local'
-	 *               - 'env.local'
-	 */
-	protected function get_default_file_names(): array
-	{
-	    return [
-	        'env',
-	        '.env',
-	        '.env.secure',
-	        '.env.prod',
-	        '.env.staging',
-	        '.env.dev',
-	        '.env.debug',
-	        '.env.local',
-	        'env.local',
-	    ];
-	}
-
     public function define_multi_tenant(): void
     {
         // set app host.
@@ -473,6 +436,43 @@ class Setup implements ConfigInterface
         if ( ! \defined( $name ) ) {
             $this->dotenv->required( $name )->notEmpty();
         }
+    }
+
+    /**
+     * Retrieves the default file names for environment configuration.
+     *
+     * This protected method is designed to return an array of default file names
+     * used for environment configuration in a WordPress environment.
+     * These file names include various formats and stages of environment setup,
+     * such as production, staging, development, and local environments.
+     *
+     * @since [version number]
+     *
+     * @return array An array of default file names for environment configurations.
+     *               The array includes the following file names:
+     *               - 'env'
+     *               - '.env'
+     *               - '.env.secure'
+     *               - '.env.prod'
+     *               - '.env.staging'
+     *               - '.env.dev'
+     *               - '.env.debug'
+     *               - '.env.local'
+     *               - 'env.local'
+     */
+    protected function get_default_file_names(): array
+    {
+        return [
+            'env',
+            '.env',
+            '.env.secure',
+            '.env.prod',
+            '.env.staging',
+            '.env.dev',
+            '.env.debug',
+            '.env.local',
+            'env.local',
+        ];
     }
 
     protected function is_multi_tenant_app( ?array $supported_names = null ): bool

@@ -37,14 +37,14 @@ class PublicKey
      */
     public function __construct( $app_path, string $option_name = 'wp_env_pubkey' )
     {
-		$this->app_path    = $app_path;
+        $this->app_path    = $app_path;
         $this->option_name = $option_name;
     }
 
     /**
      * Saves the public key as an option in the WordPress options table.
      *
-     * @param string $key_filename  The public key filename.
+     * @param string $key_filename   The public key filename.
      * @param string $publickeys_dir The directory where the public keys are stored (default: 'pubkey').
      */
     public function save_public_key( $key_filename, $publickeys_dir = 'pubkey' ): bool
@@ -53,10 +53,11 @@ class PublicKey
 
         if ( file_exists( $public_key_path ) ) {
             $public_key = file_get_contents( $public_key_path );
+
             return update_option( $this->option_name, base64_encode( $public_key ) );
         }
 
-		return false;
+        return false;
     }
 
     /**

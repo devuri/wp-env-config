@@ -6,7 +6,6 @@ use Urisoft\App\Http\AppFramework;
 use Urisoft\App\Http\Asset;
 use Urisoft\DotAccess;
 use Urisoft\Encryption;
-use InvalidArgumentException;
 
 // @codingStandardsIgnoreFile.
 
@@ -49,8 +48,9 @@ if ( ! \function_exists( 'asset_url' ) ) {
  * @param null|mixed $default_or_encrypt provides a default value or bool `true` which indicates the output should be encrypted
  * @param bool       $strtolower
  *
+ * @throws InvalidArgumentException
+ *
  * @return mixed
- *  @throws InvalidArgumentException
  */
 function env( string $name, $default_or_encrypt = null, bool $strtolower = false )
 {
@@ -61,15 +61,14 @@ function env( string $name, $default_or_encrypt = null, bool $strtolower = false
     }
 
     if ( \is_bool( $default_or_encrypt ) && true === $default_or_encrypt ) {
+        if ( ! \defined('APP_PATH') ) {
+            throw new InvalidArgumentException( 'Error: APP_PATH is not defined', 1 );
+        }
 
-		if( ! defined('APP_PATH') ){
-			throw new InvalidArgumentException( 'Error: APP_PATH is not defined', 1 );
-		}
+        $encryption = new Encryption( APP_PATH );
 
-		$encryption = new Encryption( APP_PATH );
-
-		// returns encrypted and base64 encoded.
-		return $encryption->encrypt( $env_data );
+        // returns encrypted and base64 encoded.
+        return $encryption->encrypt( $env_data );
     }
 
     if ( is_int_val( $env_data ) ) {
@@ -134,7 +133,7 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      * @param string $app_path The base app path. like __DIR__
      * @param string $options  The options filename, default 'app'
      *
-     * @return \Urisoft\App\Http\BaseKernel
+     * @return Urisoft\App\Http\BaseKernel
      */
     function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
@@ -181,9 +180,8 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
         foreach ( $plugins as $key => $plugin ) {
             $slug = explode( '/', $key );
 
-			// Add the slug to the array
+            // Add the slug to the array
             $plugin_slugs[] = '"wpackagist-plugin/' . $slug[0] . '": "*",';
-
         }
 
         return $plugin_slugs;
