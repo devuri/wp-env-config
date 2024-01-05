@@ -45,8 +45,10 @@ if ( ! \function_exists( 'asset_url' ) ) {
  * Get the value of an environment variable.
  *
  * @param string     $name               the environment variable name.
- * @param null|mixed $default_or_encrypt provides a default value or bool `true` which indicates the output is encrypted
+ * @param null|mixed $default_or_encrypt provides a default value or bool `true` which indicates the output should be encrypted
  * @param bool       $strtolower
+ *
+ * @throws InvalidArgumentException
  *
  * @return mixed
  */
@@ -59,6 +61,10 @@ function env( string $name, $default_or_encrypt = null, bool $strtolower = false
     }
 
     if ( \is_bool( $default_or_encrypt ) && true === $default_or_encrypt ) {
+        if ( ! \defined('APP_PATH') ) {
+            throw new InvalidArgumentException( 'Error: APP_PATH is not defined', 1 );
+        }
+
         $encryption = new Encryption( APP_PATH );
 
         // returns encrypted and base64 encoded.
@@ -122,12 +128,12 @@ if ( ! \function_exists( 'get_http_env' ) ) {
 
 if ( ! \function_exists( 'wpc_app' ) ) {
     /**
-     * Start up and set the Kernel.
+     * Start up and set the AppFramework Kernel.
      *
      * @param string $app_path The base app path. like __DIR__
      * @param string $options  The options filename, default 'app'
      *
-     * @return \Urisoft\App\Http\BaseKernel
+     * @return Urisoft\App\Http\BaseKernel
      */
     function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
@@ -159,7 +165,7 @@ if ( ! \function_exists( 'wpc_app_config_core' ) ) {
 
 if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
     /**
-     * Start and load core plugin.
+     * Get installed plugins.
      *
      * @return string[]
      *
@@ -174,8 +180,8 @@ if ( ! \function_exists( 'wpc_installed_plugins' ) ) {
         foreach ( $plugins as $key => $plugin ) {
             $slug = explode( '/', $key );
 
-            $plugin_slugs[] = '"wpackagist-plugin/' . $slug[0] . '": "*",';
             // Add the slug to the array
+            $plugin_slugs[] = '"wpackagist-plugin/' . $slug[0] . '": "*",';
         }
 
         return $plugin_slugs;
