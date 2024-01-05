@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.1.0](https://github.com/devuri/wp-env-config/compare/v2.0.0...v2.1.0) (2024-01-05)
+
+
+### Features
+
+* add `get_default_file_names()` to retrieves the default file names ([e705f0e](https://github.com/devuri/wp-env-config/commit/e705f0eaa7bc78df1a667b6e30fe3282406ef8df))
+
+
+### Bug Fixes
+
+* update public key handler ([85713aa](https://github.com/devuri/wp-env-config/commit/85713aa115410a1636211d109206d129317083c2))
+
+
+### Miscellaneous Chores
+
+* build ([56bca88](https://github.com/devuri/wp-env-config/commit/56bca88224b605498d93be611cca5760a12f6847))
+
 ## [2.0.0](https://github.com/devuri/wp-env-config/compare/v1.3.3...v2.0.0) (2023-12-09)
 
 
