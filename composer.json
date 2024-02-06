@@ -39,7 +39,7 @@
         "devuri/uuid-generator": "^0.0.1",
         "filp/whoops": "2.14.3",
         "johnpbloch/wordpress": "^6.2",
-        "symfony/error-handler": "^5.4",
+        "symfony/error-handler": "^5.0",
         "symfony/var-dumper": "^5.4",
         "vlucas/phpdotenv": "^5.2",
         "psr/log": "^1.1"
