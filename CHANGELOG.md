@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.1](https://github.com/devuri/wp-env-config/compare/v2.1.0...v2.1.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* include psr/log version to fix php7.4 errors ([e9b038d](https://github.com/devuri/wp-env-config/commit/e9b038d07d502830077c842217c92b8f1f4c525f))
+* psr fix ([d78fecf](https://github.com/devuri/wp-env-config/commit/d78fecff3b2c915c36010be5fa59c583514b4cda))
+* Update symfony/error-handler ([4222d9a](https://github.com/devuri/wp-env-config/commit/4222d9a9a266fde3021d7dbecd897e053b0b7181))
+
 ## [2.1.0](https://github.com/devuri/wp-env-config/compare/v2.0.0...v2.1.0) (2024-01-05)
 
 
