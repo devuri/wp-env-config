@@ -88,6 +88,6 @@ class WhiteLabel
      */
     public function change_footer_text(): string
     {
-        return wp_kses_post( '&copy; ' . $this->date_year . ' <a href="' . $this->home_url . '" target="_blank">' . $this->site_name . '</a> All Rights Reserved. ' . $this->powered_by );
+        return wp_kses_post( "&copy; $this->date_year <a href=\"$this->home_url\" target=\"_blank\">$this->site_name</a> All Rights Reserved. $this->powered_by" );
     }
 }
