@@ -45,7 +45,7 @@ class Updates
             'plugins' => $this->get_plugin_update(),
         ];
 
-        return $updates['core'] + $updates['themes'] + $updates['plugins'];
+        return (int) $updates['core'] + $updates['themes'] + $updates['plugins'];
     }
 
     /**
