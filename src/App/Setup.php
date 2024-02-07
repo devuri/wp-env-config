@@ -197,6 +197,9 @@ class Setup implements ConfigInterface
 
         // multi tenant support.
         if ( $this->is_multi_tenant ) {
+			if (! env('APP_TENANT_ID') ) {
+				exit("no tenant_id defined");
+			}
             \define( 'IS_MULTI_TENANT_APP', true );
         } else {
             \define( 'IS_MULTI_TENANT_APP', false );

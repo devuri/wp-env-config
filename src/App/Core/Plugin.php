@@ -135,6 +135,10 @@ class Plugin
 
 	public function set_upload_directory($dir)
 	{
+		if ( ! env('APP_TENANT_ID') ) {
+			wp_die("no tenant_id defined for uploads directory" );
+		}
+
 		$custom_dir = "/" .env( 'APP_TENANT_ID' ) . '/uploads';
 		$dir['basedir'] = WP_CONTENT_DIR . $custom_dir;
 		$dir['baseurl'] = content_url() . $custom_dir;
