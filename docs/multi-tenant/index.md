@@ -18,6 +18,14 @@ The application supports multiple tenants (websites) on a shared platform, allow
 // the 'app' param is required.
 $http_app = wpc_app(__DIR__, 'app', ['example.com' => '2f7c4eab-9b8c-486e-b6d3-f8be67e5bf09'] );
 ```
+## Install
+After that you need to prepare your .env file and include the required `APP_TENANT_ID=48562e29-dc29-4aad-aca2-9a345ea9515c` and set `IS_MULTI_TENANT_APP=true` 
+DO NOT skip this step as both are required.
+
+> you will need to do the same for each env file.
+> Note: your content directory will be updated to: `WP_CONTENT_DIR =>	/public/48562e29-dc29-4aad-aca2-9a345ea9515c/app`
+> Ensure you move or copy your themes etc to the new directory.
+> Notice that the tenant_id is used for storing your files separately. But you can now specify completely separate database.
 
 ## Configuration Files
 
