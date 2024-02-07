@@ -286,7 +286,7 @@ function get_http_app_host(): ?string
     // $_SERVER variables can't always be completely trusted.
     if ( isset( $_SERVER['HTTP_HOST'] ) ) {
         // Sanitize the HTTP_HOST to allow only valid characters for a host
-        $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING );
+        $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_UNSAFE_RAW );
 
         $httpHost = app_sanitizer( $httpHost );
 
@@ -381,5 +381,5 @@ function app_sanitizer( string $input ): string
     $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
     $input = str_replace(["'", "\"", "--", ";"], "", $input);
 
-    return filter_var($input, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    return filter_var($input, FILTER_UNSAFE_RAW, FILTER_FLAG_NO_ENCODE_QUOTES);
 }
