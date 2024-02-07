@@ -53,10 +53,11 @@ DO NOT skip this step as both are required.
 - Uploads are located in the equivalent of `wp-content/tenant_id/uploads` (this directory may be diffrerent based on framework configuration the default is app/tenant_id/uploads), where `tenant_id` corresponds to the UUID of the tenant.
 - To enhance security, it's advisable to encode the tenant UUID, as it might be visible in URLs for uploaded files. This can be done using the `APP_TENANT_SECRET` or by encoding it as a base64-encoded string.
 
-## Shared Plugins and Themes
+## Shared Plugins SEPARATE Themes
 
-- Plugins and themes are shared across tenants for simplicity and resource optimization.
-- The location of shared plugins and themes is defined in the `app.php` and the framework's `composer.json` file.
+- Plugins are shared across tenants for simplicity and resource optimization.
+- Themes are not shared across tenants
+- The location of shared plugins is defined in the `app.php` and the framework's `composer.json` file.
 
 ## Managing Plugin and Theme Availability
 
