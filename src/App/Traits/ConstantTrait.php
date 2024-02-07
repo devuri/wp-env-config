@@ -56,15 +56,7 @@ trait ConstantTrait
         // Directory PATH.
         $this->define( 'APP_CONTENT_DIR', '/' . $this->args['content_dir'] );
         $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
-
-        // separate uploads for multi tenant.
-        if ( env( 'IS_MULTI_TENANT_APP' ) ) {
-            $this->define( 'UPLOADS', WP_CONTENT_DIR . '/' . env( 'APP_TENANT_ID' ) . '/uploads' );
-        }
-
-        // Content Directory.
-        $this->define( 'CONTENT_DIR', APP_CONTENT_DIR );
-        $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . CONTENT_DIR );
+		$this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . APP_CONTENT_DIR );
 
         /*
          * Themes, prefer '/templates'

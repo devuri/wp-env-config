@@ -61,6 +61,11 @@ class Plugin
             }
         );
 
+		// separate uploads for multi tenant.
+		if ( env( 'IS_MULTI_TENANT_APP' ) ) {
+			add_filter('upload_dir', [$this, 'set_upload_directory']);
+		}
+
         // Add the env type to admin bar.
         add_action( 'admin_bar_menu', [ $this, 'app_env_admin_bar_menu' ], 1199 );
 
@@ -126,6 +131,17 @@ class Plugin
     {
         return new self();
     }
+
+
+	public function set_upload_directory($dir)
+	{
+		$custom_dir = "/" .env( 'APP_TENANT_ID' ) . '/uploads';
+		$dir['basedir'] = WP_CONTENT_DIR . $custom_dir;
+		$dir['baseurl'] = content_url() . $custom_dir;
+		$dir['path'] = $dir['basedir'] . $dir['subdir'];
+		$dir['url'] = $dir['baseurl'] . $dir['subdir'];
+		return $dir;
+	}
 
     protected function add_core_app_events(): void
     {
