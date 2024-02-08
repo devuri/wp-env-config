@@ -92,11 +92,12 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft.html">Urisoft</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app.html">App</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app-core.html">Core</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app-core-settings.html">Settings</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    PublicKey
+    AdminSettingsPage
 
     
             <div class="phpdocumentor-element__package">
@@ -110,13 +111,13 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Represents a public key used for encryption or verification purposes.</p>
+            <p class="phpdocumentor-summary">Custom Admin Page class for WordPress.</p>
 
 
 
@@ -133,39 +134,39 @@
 
 <dl class="phpdocumentor-table-of-contents">
                     <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#property_app_path">$app_path</a>
+    <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_content_callback">$content_callback</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd>The path to the application directory.</dd>
+<dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#property_option_name">$option_name</a>
+    <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_is_submenu">$is_submenu</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_settings_page">$settings_page</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
-<dd>The name of the option used to store the public key.</dd>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method___construct">__construct()</a>
+    <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>PublicKey constructor.</dd>
+<dd>AdminSettingsPage constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method_get_public_key">get_public_key()</a>
+    <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method_register_settings_page">register_settings_page()</a>
     <span>
-                                &nbsp;: null|string    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Retrieves the stored public key from the WordPress options table.</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method_save_public_key">save_public_key()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd>Saves the public key as an option in the WordPress options table.</dd>
+<dd>Registers the custom settings page in the WordPress admin menu.</dd>
 
         </dl>
 
@@ -177,7 +178,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Urisoft-App-Core-PublicKey.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
@@ -186,29 +187,30 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_app_path">
-        $app_path
-        <a href="classes/Urisoft-App-Core-PublicKey.html#property_app_path" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_content_callback">
+        $content_callback
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_content_callback" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The path to the application directory.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$app_path</span>
+    <span class="phpdocumentor-signature__name">$content_callback</span>
     </code>
 
     
-    
+        <section class="phpdocumentor-description"><p>The content of the settings page.</p>
+</section>
+
     
 
 </article>
@@ -219,29 +221,64 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_option_name">
-        $option_name
-        <a href="classes/Urisoft-App-Core-PublicKey.html#property_option_name" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_is_submenu">
+        $is_submenu
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_is_submenu" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The name of the option used to store the public key.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$option_name</span>
+        <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$is_submenu</span>
     </code>
 
     
+        <section class="phpdocumentor-description"><p>Whether the page should be a submenu.</p>
+</section>
+
     
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_settings_page">
+        $settings_page
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_settings_page" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$settings_page</span>
+    </code>
+
+    
+        <section class="phpdocumentor-description"><p>The name of the setting.</p>
+</section>
+
     
 
 </article>
@@ -250,7 +287,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Urisoft-App-Core-PublicKey.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -260,39 +297,48 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">PublicKey constructor.</p>
+        <p class="phpdocumentor-summary">AdminSettingsPage constructor.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$app_path</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$option_name</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;wp_env_pubkey&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$settings_page</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">callable&nbsp;</span><span class="phpdocumentor-signature__argument__name">$page_content_callback</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$is_submenu</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">true</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$app_path</span>
+                <span class="phpdocumentor-signature__argument__name">$settings_page</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The path to the application directory.</p>
+                    <section class="phpdocumentor-description"><p>The name of the setting.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$option_name</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;wp_env_pubkey&#039;</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$page_content_callback</span>
+                : <span class="phpdocumentor-signature__argument__return-type">callable</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The name of the option used to store the public key.</p>
+                    <section class="phpdocumentor-description"><p>The content callback of the settings page.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$is_submenu</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">true</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether the page should be a submenu.</p>
 </section>
 
             </dd>
@@ -312,85 +358,29 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get_public_key">
-        get_public_key()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method_get_public_key" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_register_settings_page">
+        register_settings_page()
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method_register_settings_page" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Settings/AdminSettingsPage.php"><a href="files/src-app-core-settings-adminsettingspage.html"><abbr title="src/App/Core/Settings/AdminSettingsPage.php">AdminSettingsPage.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Retrieves the stored public key from the WordPress options table.</p>
+        <p class="phpdocumentor-summary">Registers the custom settings page in the WordPress admin menu.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_public_key</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null|string</span></code>
+                    <span class="phpdocumentor-signature__name">register_settings_page</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null|string</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The retrieved public key, or null if not found.</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_save_public_key">
-        save_public_key()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method_save_public_key" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">50</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Saves the public key as an option in the WordPress options table.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">save_public_key</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key_filename</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$publickeys_dir</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;pubkey&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key_filename</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The public key filename.</p>
-</section>
-
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$publickeys_dir</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;pubkey&#039;</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The directory where the public keys are stored (default: 'pubkey').</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -473,7 +463,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Urisoft-App-Core-PublicKey.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

@@ -91,12 +91,12 @@
                     <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft.html">Urisoft</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app.html">App</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app-core.html">Core</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/urisoft-app-http.html">Http</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    PublicKey
+    AppFramework
 
     
             <div class="phpdocumentor-element__package">
@@ -110,14 +110,14 @@
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Represents a public key used for encryption or verification purposes.</p>
-
+        
+    <section class="phpdocumentor-description"></section>
 
 
 
@@ -132,40 +132,54 @@
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#property_app_path">$app_path</a>
+                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Http-AppFramework.html#property_app_path">$app_path</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd>The path to the application directory.</dd>
+<dd></dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#property_option_name">$option_name</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Http-AppFramework.html#property_config">$config</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: mixed            </span>
 </dt>
-<dd>The name of the option used to store the public key.</dd>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Http-AppFramework.html#property_setup">$setup</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
 
                 <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method___construct">__construct()</a>
+    <a href="classes/Urisoft-App-Http-AppFramework.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
-<dd>PublicKey constructor.</dd>
+<dd>Setup App.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method_get_public_key">get_public_key()</a>
+    <a href="classes/Urisoft-App-Http-AppFramework.html#method_kernel">kernel()</a>
     <span>
-                                &nbsp;: null|string    </span>
+                                &nbsp;: <a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a>    </span>
 </dt>
-<dd>Retrieves the stored public key from the WordPress options table.</dd>
+<dd>Get the kernel instance.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a href="classes/Urisoft-App-Core-PublicKey.html#method_save_public_key">save_public_key()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Urisoft-App-Http-AppFramework.html#method_set_app_errors">set_app_errors()</a>
     <span>
-                                &nbsp;: bool    </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Saves the public key as an option in the WordPress options table.</dd>
+<dd>Set up the application error handling based on environment settings.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Urisoft-App-Http-AppFramework.html#method_set_config">set_config()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Set the config options.</dd>
 
         </dl>
 
@@ -177,38 +191,39 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Urisoft-App-Core-PublicKey.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Urisoft-App-Http-AppFramework.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="
             phpdocumentor-element
             -property
-            -private
+            -protected
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="property_app_path">
         $app_path
-        <a href="classes/Urisoft-App-Core-PublicKey.html#property_app_path" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Http-AppFramework.html#property_app_path" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The path to the application directory.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">$app_path</span>
-    </code>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
-    
-    
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
     
 
 </article>
@@ -216,32 +231,67 @@
         class="
             phpdocumentor-element
             -property
-            -private
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_option_name">
-        $option_name
-        <a href="classes/Urisoft-App-Core-PublicKey.html#property_option_name" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_config">
+        $config
+        <a href="classes/Urisoft-App-Http-AppFramework.html#property_config" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">The name of the option used to store the public key.</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$option_name</span>
-    </code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$config</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
 
     
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_setup">
+        $setup
+        <a href="classes/Urisoft-App-Http-AppFramework.html#property_setup" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">14</span>
+
+    </aside>
+
     
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$setup</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
     
 
 </article>
@@ -250,7 +300,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Urisoft-App-Core-PublicKey.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Urisoft-App-Http-AppFramework.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article
         class="phpdocumentor-element
@@ -260,20 +310,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Http-AppFramework.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">38</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">PublicKey constructor.</p>
+        <p class="phpdocumentor-summary">Setup App.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$app_path</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$option_name</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;wp_env_pubkey&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$app_path</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;app&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tenant_ids</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -283,22 +333,46 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The path to the application directory.</p>
+                    <section class="phpdocumentor-description"><p>The base app path, e.g., <strong>DIR</strong>.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$option_name</span>
+                <span class="phpdocumentor-signature__argument__name">$options</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;wp_env_pubkey&#039;</span>            </dt>
+                 = <span class="phpdocumentor-signature__argument__default-value">&#039;app&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The name of the option used to store the public key.</p>
+                    <section class="phpdocumentor-description"><p>The configuration options filename, e.g., app.php.</p>
 </section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$tenant_ids</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"></section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>When the options file is not found.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">mixed</span>
@@ -312,31 +386,31 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get_public_key">
-        get_public_key()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method_get_public_key" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_kernel">
+        kernel()
+        <a href="classes/Urisoft-App-Http-AppFramework.html#method_kernel" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">68</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Retrieves the stored public key from the WordPress options table.</p>
+        <p class="phpdocumentor-summary">Get the kernel instance.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get_public_key</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null|string</span></code>
+                    <span class="phpdocumentor-signature__name">kernel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a></span></code>
 
     
     
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">null|string</span>
+    <span class="phpdocumentor-signature__response_type"><a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a></span>
             &mdash;
-            <section class="phpdocumentor-description"><p>The retrieved public key, or null if not found.</p>
+            <section class="phpdocumentor-description"><p>The kernel instance.</p>
 </section>
 
     
@@ -344,44 +418,77 @@
                     <article
         class="phpdocumentor-element
             -method
-            -public
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_save_public_key">
-        save_public_key()
-        <a href="classes/Urisoft-App-Core-PublicKey.html#method_save_public_key" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_set_app_errors">
+        set_app_errors()
+        <a href="classes/Urisoft-App-Http-AppFramework.html#method_set_app_errors" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/PublicKey.php"><a href="files/src-app-core-publickey.html"><abbr title="src/App/Core/PublicKey.php">PublicKey.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Saves the public key as an option in the WordPress options table.</p>
+        <p class="phpdocumentor-summary">Set up the application error handling based on environment settings.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">save_public_key</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key_filename</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$publickeys_dir</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;pubkey&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">set_app_errors</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">void</span>
+            &mdash;
+        
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_set_config">
+        set_config()
+        <a href="classes/Urisoft-App-Http-AppFramework.html#method_set_config" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/AppFramework.php"><a href="files/src-app-http-appframework.html"><abbr title="src/App/Http/AppFramework.php">AppFramework.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">103</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Set the config options.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">set_config</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tenant</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$key_filename</span>
+                <span class="phpdocumentor-signature__argument__name">$options</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The public key filename.</p>
+                    <section class="phpdocumentor-description"><p>The configuration options filename, e.g., app.php.</p>
 </section>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$publickeys_dir</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;pubkey&#039;</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$tenant</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The directory where the public keys are stored (default: 'pubkey').</p>
+                    <section class="phpdocumentor-description"><p>The tenant data e.g., [ 'tenant_id' =&gt; 495743 ].</p>
 </section>
 
             </dd>
@@ -390,7 +497,7 @@
     
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
+    <span class="phpdocumentor-signature__response_type">void</span>
             &mdash;
         
     
@@ -473,7 +580,7 @@
 </section>
             </div>
         </div>
-        <a href="classes/Urisoft-App-Core-PublicKey.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Urisoft-App-Http-AppFramework.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

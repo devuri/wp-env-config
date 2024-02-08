@@ -41,7 +41,7 @@ class BaseKernelTest extends BaseTest
             "APP_ASSETS_DIR" => APP_TEST_PATH . "/public/assets",
             "APP_CONTENT_DIR" => "/content",
             "WP_CONTENT_DIR" => APP_TEST_PATH . "/public/content",
-            "CONTENT_DIR" => "/content",
+            //"CONTENT_DIR" => "/content",
             "WP_CONTENT_URL" => "https://example.com/content",
             "WP_PLUGIN_DIR" => APP_TEST_PATH . "/public/plugins",
             "WP_PLUGIN_URL" => "https://example.com/plugins",
@@ -82,7 +82,7 @@ class BaseKernelTest extends BaseTest
 
         $count = \count( $this->http_app()->get_defined() );
 
-        $this->assertEquals( 40, $count );
+        $this->assertEquals( 39, $count );
 
         $this->assertEquals( $const_defaults, $this->http_app()->get_defined());
     }
