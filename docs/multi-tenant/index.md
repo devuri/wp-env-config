@@ -3,7 +3,7 @@
 ### Step 1: Backup Your Site
 Before making any changes, ensure you have a full backup of your WordPress files and database.
 
-### Step 2: Enable Multisite in `wp-config.php`
+### Step 2: Enable Multi-Tenant in `wp-config.php`
 - Locate your `wp-config.php` file in the directory of your WordPress installation.
 - Update the following line setting `ALLOW_MULTITENANT` as `true`: [WordPress config file](https://github.com/devuri/wp-env-app/blob/main/public/wp-config.php#L11)
   ```php
