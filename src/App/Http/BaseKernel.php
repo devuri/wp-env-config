@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use Urisoft\App\Setup;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\ConstantTrait;
+use Urisoft\App\EnvTypes;
 
 /**
  * Setup common elements.
@@ -142,7 +143,7 @@ class BaseKernel
 
         // Check if multi-tenant mode is enabled and a tenant ID is set
         if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
-            $tenant_config_file = $this->app_path . "site/{$this->tenant_id}/{$this->config_file}.php";
+            $tenant_config_file = $this->app_path . "/site/{$this->tenant_id}/{$this->config_file}.php";
 
             // Check if the tenant-specific config file exists
             if ( file_exists( $tenant_config_file ) ) {
@@ -189,6 +190,10 @@ class BaseKernel
      */
     public function init( $env_type = null, bool $constants = true ): void
     {
+        if ( \defined( 'WP_ENVIRONMENT_TYPE' ) && EnvTypes::is_valid( (string) WP_ENVIRONMENT_TYPE ) ) {
+            $env_type = [ 'environment' => WP_ENVIRONMENT_TYPE ];
+        }
+
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(
                 array_merge( $this->environment_args(), $env_type )
