@@ -100,7 +100,7 @@ class BasicAuth
             if ( ! $authenticated ) {
                 header( 'HTTP/1.1 401 Authorization Required' );
                 header( "WWW-Authenticate: Basic realm=\"$this->web_app development site login\"" );
-                exit( "<h2>Wrong Credentials: $this->web_app Requires login </h2>" );
+                wp_terminate( "<h2>Wrong Credentials: $this->web_app Requires login </h2>" );
             }
         }
     }
