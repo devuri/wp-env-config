@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use Urisoft\App\Setup;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\ConstantTrait;
+use Urisoft\App\EnvTypes;
 
 /**
  * Setup common elements.
@@ -189,9 +190,9 @@ class BaseKernel
      */
     public function init( $env_type = null, bool $constants = true ): void
     {
-		if( defined('WP_ENVIRONMENT_TYPE') && EnvTypes::is_valid( (string) WP_ENVIRONMENT_TYPE ) ) {
-			$env_type = ['environment' => WP_ENVIRONMENT_TYPE];
-		}
+        if ( \defined( 'WP_ENVIRONMENT_TYPE' ) && EnvTypes::is_valid( (string) WP_ENVIRONMENT_TYPE ) ) {
+            $env_type = [ 'environment' => WP_ENVIRONMENT_TYPE ];
+        }
 
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(

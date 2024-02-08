@@ -1386,6 +1386,26 @@ Search.appendIndex(
             "summary": "Creates\u0020and\u0020returns\u0020an\u0020instance\u0020of\u0020AppHostManager.",
             "url": "classes/Urisoft-App-Http-HttpFactory.html#method_init"
         },                {
+            "fqsen": "\\Urisoft\\App\\EnvTypes",
+            "name": "EnvTypes",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvTypes.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvTypes\u003A\u003Ais_valid\u0028\u0029",
+            "name": "is_valid",
+            "summary": "Checks\u0020if\u0020the\u0020given\u0020type\u0020is\u0020a\u0020valid\u0020environment\u0020type.",
+            "url": "classes/Urisoft-App-EnvTypes.html#method_is_valid"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvTypes\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "Get\u0020all\u0020environment\u0020types.",
+            "url": "classes/Urisoft-App-EnvTypes.html#method_get"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvTypes\u003A\u003A\u0024env_types",
+            "name": "env_types",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvTypes.html#property_env_types"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",

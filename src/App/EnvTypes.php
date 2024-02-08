@@ -10,11 +10,12 @@ class EnvTypes
      * Checks if the given type is a valid environment type.
      *
      * @param string $type The environment type to check.
+     *
      * @return bool True if valid, false otherwise.
      */
-    public static function is_valid(string $type): bool
+    public static function is_valid( string $type ): bool
     {
-        return in_array($type, self::$env_types, true);
+        return \in_array( $type, self::$env_types, true );
     }
 
     /**
