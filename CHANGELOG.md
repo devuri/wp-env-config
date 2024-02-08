@@ -1,5 +1,31 @@
 # Changelog
 
+## [2.2.0](https://github.com/devuri/wp-env-config/compare/v2.1.1...v2.2.0) (2024-02-08)
+
+
+### Features
+
+* add `AppHostManager` to streamline how we handle http, replaces http functions ([a7d10d1](https://github.com/devuri/wp-env-config/commit/a7d10d1712886664c6140ea490d34489e85accb8))
+* adds new `wp_terminate()` function  ([116af93](https://github.com/devuri/wp-env-config/commit/116af930cc2a9b12e0d0801326e32cbd044d2bf5))
+* Improvements for multi-tenant applications ([e32166c](https://github.com/devuri/wp-env-config/commit/e32166cb86a8f62a11468d15affd1c15cab27f9c))
+
+
+### Bug Fixes
+
+* ensure we have tenant ID ([b3e392c](https://github.com/devuri/wp-env-config/commit/b3e392c33a137171776a908a930bab15bc453f4c))
+* fix FILTER_UNSAFE_RAW ([2b4c2df](https://github.com/devuri/wp-env-config/commit/2b4c2df8fef01cd355e55767418686f202209ae2))
+* Loads tenant-specific  `config.php` or default `config.php` ([b31d7bb](https://github.com/devuri/wp-env-config/commit/b31d7bb094db6fdf96ad7d542271791598fe3884))
+* separate uploads for multi tenant. ([9c8d82c](https://github.com/devuri/wp-env-config/commit/9c8d82c1a5382ac01769ccc2213b4accbe589a4a))
+* user needs 'manage_tenant' or Remove delete action link for plugins ([f3df3ec](https://github.com/devuri/wp-env-config/commit/f3df3ecd762c9713f58c3512c449a11850bcbbf2))
+
+
+### Miscellaneous Chores
+
+* build ([a061004](https://github.com/devuri/wp-env-config/commit/a061004669cec856e49009e7fec03d03d7af576b))
+* build ([d81320c](https://github.com/devuri/wp-env-config/commit/d81320c3af6033d6a65a76aee343a91ac4db857b))
+* codefix ([6cfc2e3](https://github.com/devuri/wp-env-config/commit/6cfc2e366daac12a78a154bbd85128506e9d03d2))
+* update tests ([afa5b5f](https://github.com/devuri/wp-env-config/commit/afa5b5fa57e5c374cb7792a026da7c118dcbee4e))
+
 ## [2.1.1](https://github.com/devuri/wp-env-config/compare/v2.1.0...v2.1.1) (2024-02-06)
 
 
