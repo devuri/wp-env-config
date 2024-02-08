@@ -111,7 +111,7 @@ class Setup implements ConfigInterface
          *
          * If we cant find a supported env type we will set to production.
          */
-        $this->env_types = [ 'secure', 'sec', 'production', 'prod', 'staging', 'development', 'dev', 'debug', 'deb', 'local' ];
+        $this->env_types = EnvTypes::get();
 
         // use multiple filenames.
         if ( $this->is_multi_tenant ) {
@@ -424,7 +424,7 @@ class Setup implements ConfigInterface
             $this->reset_environment( env( 'WP_ENVIRONMENT_TYPE' ) );
         }
 
-        if ( ! \in_array( $this->environment, $this->env_types, true ) ) {
+        if ( ! EnvTypes::is_valid( $this->environment ) ) {
             $this->env_production();
 
             return $this;
