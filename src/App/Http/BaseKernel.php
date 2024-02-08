@@ -189,6 +189,10 @@ class BaseKernel
      */
     public function init( $env_type = null, bool $constants = true ): void
     {
+		if( defined('WP_ENVIRONMENT_TYPE') && EnvTypes::is_valid( (string) WP_ENVIRONMENT_TYPE ) ) {
+			$env_type = ['environment' => WP_ENVIRONMENT_TYPE];
+		}
+
         if ( \is_array( $env_type ) ) {
             $this->app_setup->config(
                 array_merge( $this->environment_args(), $env_type )
