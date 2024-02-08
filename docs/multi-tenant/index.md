@@ -1,99 +1,92 @@
-# Multi-Tenant Applications
+# Multi-Tenant Application
+
+### Step 1: Backup Your Site
+Before making any changes, ensure you have a full backup of your WordPress files and database.
+
+### Step 2: Enable Multisite in `wp-config.php`
+- Locate your `wp-config.php` file in the directory of your WordPress installation.
+- Update the following line setting `ALLOW_MULTITENANT` as `true`: [WordPress config file](https://github.com/devuri/wp-env-app/blob/main/public/wp-config.php#L11)
+  ```php
+  define('ALLOW_MULTITENANT', true);
+  ```
 
 ## Overview
 
-This documentation explains the architecture and flow of our Multi-Tenant application ( Introduced v0.8.0 ). 
-The application supports multiple tenants (websites) on a shared platform, allowing each tenant to have its own configuration and customization.
+This document provides a comprehensive guide to the architecture and operational flow of our Multi-Tenant Application, introduced in version 0.8.0. The platform is designed to support multiple tenants (websites), each with its unique configuration and customization capabilities, on a shared infrastructure.
 
-## Domain to Tenant Mapping
+## Domain and Tenant Mapping
 
-- Each tenant is identified by a unique Universal Unique Identifier (UUID).
-- The domain of a tenant, as extracted from the HTTP_HOST, is the key to mapping to the tenant's UUID. For example:
+- Tenants are uniquely identified by a Universal Unique Identifier (UUID).
+- The mapping between a tenant's domain (derived from HTTP_HOST) and its UUID is crucial. For instance:
 
-`example.com => 48562e29-dc29-4aad-aca2-9a345ea9515c`
+`example.com => a345ea9515c`
 
-  > This is usually done in bootstrap.php see env app: https://github.com/devuri/wp-env-app/blob/main/bootstrap.php
+  > This mapping is typically configured in `bootstrap.php`. Refer to the env app for more details: [Env App Bootstrap](https://github.com/devuri/wp-env-app/blob/main/bootstrap.php)
 
 ```php
-// the 'app' param is required.
-$http_app = wpc_app(__DIR__, 'app', ['example.com' => '2f7c4eab-9b8c-486e-b6d3-f8be67e5bf09'] );
+// 'app' parameter is mandatory for configuration.
+$http_app = wpc_app(__DIR__, 'app', ['example.com' => 'a345ea9515c']);
 ```
-## Install
-After that you need to prepare your .env file and include the required `APP_TENANT_ID=48562e29-dc29-4aad-aca2-9a345ea9515c` and set `IS_MULTI_TENANT_APP=true` 
-DO NOT skip this step as both are required.
 
-> you will need to do the same for each env file.
-> Note: your content directory will be updated to: `WP_CONTENT_DIR =>	/public/48562e29-dc29-4aad-aca2-9a345ea9515c/app`
-> Ensure you move or copy your themes etc to the new directory.
-> Notice that the tenant_id is used for storing your files separately. But you can now specify completely separate database.
+## Installation Steps
 
-## Configuration Files
+1. Prepare the `.env` file for each tenant, including essential variables like `APP_TENANT_ID=a345ea9515c` and `IS_MULTITENANT=true`.
 
-- The UUID is used as the primary indicator to locate the configuration files specific to each tenant.
-- The configuration files are located in the following directory structure:
-  - `.env` file: `"path/sites/48562e29-dc29-4aad-aca2-9a345ea9515c/.env"`
-  - `config.php` file: `"path/sites/48562e29-dc29-4aad-aca2-9a345ea9515c/config.php"`
-  
-## Tenant-Specific Environment Variables
+   > Ensure each tenant's `.env` file is configured accordingly.
 
-- The `.env` file for each tenant includes tenant-specific environment variables.
-- Examples of environment variables included:
-  - `APP_TENANT_ID=48562e29-dc29-4aad-aca2-9a345ea9515c`
-  - `IS_MULTI_TENANT_APP=true`
-  - Optionally, `APP_TENANT_SECRET`
+   > **Note**: The uploads directory will be set to `/public/app/tenant/a345ea9515c/uploads`. Make sure to transfer or replicate your site files to this new directory. This setup uses the `tenant_id` for isolated file storage per tenant.
 
-## Handling Tenant-Specific Configuration
+## Configuration and Environment Files
 
-- Developers can use the `env('APP_TENANT_ID')` function to easily access tenant-specific configuration throughout the application.
-- This allows for easier configuration adjustments based on the specific tenant.
+- Tenant-specific configuration files are located as follows:
+  - `.env`: `"path/sites/a345ea9515c/.env"`
+  - `config.php`: `"path/sites/a345ea9515c/config.php"`
 
-## Separate Uploads Directory
+## Tenant-Specific Variables
 
-- Each tenant has a separate uploads directory for media files.
-- Uploads are located in the equivalent of `wp-content/tenant_id/uploads` (this directory may be diffrerent based on framework configuration the default is app/tenant_id/uploads), where `tenant_id` corresponds to the UUID of the tenant.
-- To enhance security, it's advisable to encode the tenant UUID, as it might be visible in URLs for uploaded files. This can be done using the `APP_TENANT_SECRET` or by encoding it as a base64-encoded string.
+- Each tenant's `.env` file contains specific environment variables, such as:
+  - `APP_TENANT_ID=a345ea9515c`
+  - `IS_MULTITENANT=true`
+  - Optionally, `APP_TENANT_SECRET` for additional security.
 
-## Shared Plugins SEPARATE Themes
+## Customizing Tenant Configurations
 
-- Plugins are shared across tenants for simplicity and resource optimization.
-- Themes are not shared across tenants
-- The location of shared plugins is defined in the `app.php` and the framework's `composer.json` file.
+- Utilize `env('APP_TENANT_ID')` within the application to access and modify configurations dynamically for each tenant.
 
-## Managing Plugin and Theme Availability
+## Isolated Uploads Directory
 
-- An MU (Must Use) plugin is utilized to manage the availability of plugins and themes for each tenant.
-- Availability can be easily managed based on the site/tenant ID.
-- The `IS_MULTI_TENANT_APP` environment variable can be used to determine how plugins and themes are made available.
-- This feature is particularly useful for migrations when exporting a tenant as a stand-alone installation.
+- Media files for each tenant are stored in a separate directory, typically structured as `wp-content/tenant/{tenant_id}/uploads`. Depending on the framework's setup, the default path might vary, but it generally follows the format `app/tenant/{tenant_id}/uploads`.
+- It's recommended to encode the tenant UUID in file URLs to enhance security.
 
-This architecture for the multi-tenant application enables efficient management and customization for each tenant while maintaining security and resource sharing. 
-Developers can easily work with tenant-specific configurations and achieve robust control over tenant-specific files and settings.
+## Shared Resources
 
-## Multi-Tenant Suitability
+- Plugins and Themes are shared across tenants, optimizing resources and simplifying management.
+- The shared resources' paths are defined in the `app.php` file and the framework's `composer.json`.
 
-A  Multi-Tenant application is designed to provide a shared platform for multiple tenants, allowing them to manage and customize their websites efficiently. However, it's important to note that a multi-tenant architecture may not be the best fit for every use case.
+## Plugin and Theme Management
+
+- An MU (Must-Use) plugin controls the availability of specific plugins and themes for each tenant.
+- The `IS_MULTITENANT` variable aids in configuring resource availability and is particularly useful during tenant migrations or when converting a tenant to a standalone installation.
+
+## Suitability for Multi-Tenant Architecture
+
+While the Multi-Tenant Application offers efficient resource sharing and management, it's crucial to assess its suitability based on your specific needs:
 
 ### Considerations
 
-- **Isolation Needs**: If your application requires strict isolation between tenants, such as separate files or complete independence, a multi-tenant architecture may not be the ideal choice.
+- **Isolation**: Full isolation might require alternative solutions if stringent separation is needed.
+- **Performance**: High-demand applications may benefit from dedicated resources.
+- **Security**: Additional measures might be necessary to meet specific security standards.
+- **Customization**: Extensive per-tenant customizations could complicate the multi-tenant model.
 
-- **Performance Demands**: Highly resource-intensive or performance-critical applications might benefit from a dedicated hosting environment.
+### Evaluation
 
-- **Security Requirements**: Depending on the nature of your application and regulatory requirements, you may need additional security measures that a multi-tenant setup might not fully address.
+> [!CAUTION]
+>
+> Thoroughly evaluate your use case before adopting a multi-tenant architecture. For certain scenarios, a single-tenant or dedicated solution might be more appropriate.
 
-- **Customization Complexity**: Extensive customizations for individual tenants may introduce complexities that are best handled through a dedicated environment.
+The Multi-Tenant Application excels in scenarios prioritizing efficient management and shared infrastructure. It's an ideal choice if these factors align with your project goals.
 
-### Use Case Evaluation
+> Every project is unique, so it's important to choose an architecture that fits your specific requirements and constraints.
 
-> [!WARNING]
-> 
-> Before adopting a multi-tenant architecture, carefully evaluate your specific use case and requirements. In some cases, a dedicated or single-tenant solution might be a more suitable option.
-
-A Multi-Tenant application is best suited for scenarios where resource optimization, easy management, and shared infrastructure are paramount.
-If your use case aligns with these characteristics, this solution can provide an efficient and cost-effective platform for your tenants.
-
-> Remember that each project has unique needs, and we encourage you to select the architecture that best aligns with your objectives and constraints.
-
-
-**Please Note: This documentation is a work in progress, and we welcome contributions and improvements. If you have suggestions or identify areas that need clarification, feel free to submit pull requests or reach out to our development team. 
-Your feedback is valuable in enhancing the quality of this documentation.**
+**Note: This documentation is continually evolving, and we welcome community contributions and feedback. If you have suggestions or notice areas needing improvement, please contribute via pull requests or contact our development team. Your input is invaluable in refining this guide.**
