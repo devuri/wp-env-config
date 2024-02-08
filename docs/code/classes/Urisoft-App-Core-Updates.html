@@ -133,17 +133,31 @@ for WordPress core, themes, and plugins.</p>
 </h3>
 
 <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-Updates.html#property_available_updates">$available_updates</a>
+                    <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Core-Updates.html#property_translation_updates">$translation_updates</a>
     <span>
-                        &nbsp;: int            </span>
+                        &nbsp;: mixed            </span>
 </dt>
 <dd></dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a href="classes/Urisoft-App-Core-Updates.html#property_update_data">$update_data</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Core-Updates.html#property_update_plugins">$update_plugins</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+                        &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Core-Updates.html#property_update_themes">$update_themes</a>
+    <span>
+                        &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/Urisoft-App-Core-Updates.html#property_update_wordpress">$update_wordpress</a>
+    <span>
+                        &nbsp;: mixed            </span>
 </dt>
 <dd></dd>
 
@@ -182,13 +196,6 @@ for WordPress core, themes, and plugins.</p>
 </dt>
 <dd>Get the count of available theme updates.</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Core-Updates.html#method_get_update">get_update()</a>
-    <span>
-                                &nbsp;: int    </span>
-</dt>
-<dd>Get the update count for a specific update type.</dd>
-
         </dl>
 
 
@@ -205,46 +212,12 @@ for WordPress core, themes, and plugins.</p>
         class="
             phpdocumentor-element
             -property
-            -private
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_available_updates">
-        $available_updates
-        <a href="classes/Urisoft-App-Core-Updates.html#property_available_updates" class="headerlink"><i class="fas fa-link"></i></a>
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">27</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">int</span>
-    <span class="phpdocumentor-signature__name">$available_updates</span>
-    </code>
-
-    
-        <section class="phpdocumentor-description"><p>Holds the count of available updates.</p>
-</section>
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_update_data">
-        $update_data
-        <a href="classes/Urisoft-App-Core-Updates.html#property_update_data" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_translation_updates">
+        $translation_updates
+        <a href="classes/Urisoft-App-Core-Updates.html#property_translation_updates" class="headerlink"><i class="fas fa-link"></i></a>
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
@@ -257,14 +230,116 @@ for WordPress core, themes, and plugins.</p>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$update_data</span>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$translation_updates</span>
     </code>
 
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
     
-        <section class="phpdocumentor-description"><p>Holds the update data retrieved from wp_get_update_data().</p>
-</section>
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_update_plugins">
+        $update_plugins
+        <a href="classes/Urisoft-App-Core-Updates.html#property_update_plugins" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$update_plugins</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_update_themes">
+        $update_themes
+        <a href="classes/Urisoft-App-Core-Updates.html#property_update_themes" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">20</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$update_themes</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_update_wordpress">
+        $update_wordpress
+        <a href="classes/Urisoft-App-Core-Updates.html#property_update_wordpress" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$update_wordpress</span>
+    </code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
 
     
 
@@ -289,7 +364,7 @@ for WordPress core, themes, and plugins.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -322,7 +397,7 @@ for WordPress core, themes, and plugins.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
@@ -357,7 +432,7 @@ for WordPress core, themes, and plugins.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -392,7 +467,7 @@ for WordPress core, themes, and plugins.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -427,7 +502,7 @@ for WordPress core, themes, and plugins.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
@@ -445,54 +520,6 @@ for WordPress core, themes, and plugins.</p>
     <span class="phpdocumentor-signature__response_type">int</span>
             &mdash;
             <section class="phpdocumentor-description"><p>The number of available theme updates.</p>
-</section>
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_get_update">
-        get_update()
-        <a href="classes/Urisoft-App-Core-Updates.html#method_get_update" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/Updates.php"><a href="files/src-app-core-updates.html"><abbr title="src/App/Core/Updates.php">Updates.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">87</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Get the update count for a specific update type.</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">get_update</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">null|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$update_type</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
-
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$update_type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">null|string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The type of update to retrieve.</p>
-</section>
-
-            </dd>
-            </dl>
-
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">int</span>
-            &mdash;
-            <section class="phpdocumentor-description"><p>The number of available updates for the specified type,
-or the entire update data array if $update_type is null.</p>
 </section>
 
     

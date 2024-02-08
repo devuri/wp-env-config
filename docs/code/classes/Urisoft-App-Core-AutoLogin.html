@@ -218,6 +218,13 @@
 </dt>
 <dd>Verifies the authenticity of the signature for the auto-login request.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a href="classes/Urisoft-App-Core-AutoLogin.html#method_wp_user_exists">wp_user_exists()</a>
+    <span>
+                                &nbsp;: null|bool    </span>
+</dt>
+<dd>Determines whether the user exists in the database.</dd>
+
         </dl>
 
 
@@ -611,7 +618,7 @@ and depends on the presence of a secret key for added security.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/AutoLogin.php"><a href="files/src-app-core-autologin.html"><abbr title="src/App/Core/AutoLogin.php">AutoLogin.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">206</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
@@ -664,7 +671,7 @@ is empty, it redirects the user back to the home URL.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/AutoLogin.php"><a href="files/src-app-core-autologin.html"><abbr title="src/App/Core/AutoLogin.php">AutoLogin.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">229</span>
+    <span class="phpdocumentor-element-found-in__line">259</span>
 
     </aside>
 
@@ -715,7 +722,7 @@ functions to sanitize the input and remove any harmful data.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/AutoLogin.php"><a href="files/src-app-core-autologin.html"><abbr title="src/App/Core/AutoLogin.php">AutoLogin.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">184</span>
+    <span class="phpdocumentor-element-found-in__line">213</span>
 
     </aside>
 
@@ -749,6 +756,53 @@ signature and then compares it with the provided signature using the hash_equals
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
             <section class="phpdocumentor-description"><p>Returns true if the provided signature matches the expected signature, false otherwise.</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_wp_user_exists">
+        wp_user_exists()
+        <a href="classes/Urisoft-App-Core-AutoLogin.html#method_wp_user_exists" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Core/AutoLogin.php"><a href="files/src-app-core-autologin.html"><abbr title="src/App/Core/AutoLogin.php">AutoLogin.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">189</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determines whether the user exists in the database.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">wp_user_exists</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">null|<abbr title="\WP_User">WP_User</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null|bool</span></code>
+
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$user</span>
+                : <span class="phpdocumentor-signature__argument__return-type">null|<abbr title="\WP_User">WP_User</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The WP_User object</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">null|bool</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>Null no user, True if user exists in the database, false if not.</p>
 </section>
 
     

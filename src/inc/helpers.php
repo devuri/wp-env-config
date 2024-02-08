@@ -140,9 +140,10 @@ if ( ! \function_exists( 'wpc_app' ) ) {
         try {
             $app = new AppFramework( $app_path, $options, $tenant_ids );
         } catch ( Exception $e ) {
-            exit( $e->getMessage() );
+            wp_terminate( $e->getMessage() );
         }
 
+        // @phpstan-ignore-next-line
         return $app->kernel();
     }
 }
@@ -286,7 +287,7 @@ function get_http_app_host(): ?string
     // $_SERVER variables can't always be completely trusted.
     if ( isset( $_SERVER['HTTP_HOST'] ) ) {
         // Sanitize the HTTP_HOST to allow only valid characters for a host
-        $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_SANITIZE_STRING );
+        $httpHost = filter_var( $_SERVER['HTTP_HOST'], FILTER_UNSAFE_RAW );
 
         $httpHost = app_sanitizer( $httpHost );
 
@@ -381,5 +382,84 @@ function app_sanitizer( string $input ): string
     $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
     $input = str_replace(["'", "\"", "--", ";"], "", $input);
 
-    return filter_var($input, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+    return filter_var($input, FILTER_UNSAFE_RAW, FILTER_FLAG_NO_ENCODE_QUOTES);
+}
+
+/**
+ * Custom function to terminate script execution, display a message, and set an HTTP status code.
+ *
+ * @param string $message     The message to display.
+ * @param int    $status_code The HTTP status code to send.
+ */
+function wp_terminate($message, int $status_code = 500): void
+{
+    http_response_code($status_code);
+    ?><!DOCTYPE html><html lang='en'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
+		<meta name="viewport" content="width=device-width">
+		<title>Application Failed</title>
+		<style type="text/css">
+			html {
+				background: #f1f1f1;
+			}
+			body {
+				color: #444;
+				max-width: 700px;
+				margin: 2em auto;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+			}
+			h1 {
+				border-bottom: 1px solid #dadada;
+				clear: both;
+				color: #666;
+				font-size: 24px;
+				margin: 30px 0 0 0;
+				padding: 0;
+				padding-bottom: 7px;
+			}
+			footer {
+			    clear: both;
+			    color: #cdcdcd;
+			    margin: 30px 0 0 0;
+			    padding: 0;
+			    padding-bottom: 7px;
+				font-size: small;
+				text-transform: uppercase;
+			}
+			#error-page {
+				background: #fff;
+				margin-top: 50px;
+				-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+				box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+				padding: 1em 2em;
+			}
+			#error-page p,
+			#error-page .die-message {
+				font-size: 14px;
+				line-height: 1.5;
+				margin: 25px 0 20px;
+			}
+			#error-page code {
+				font-family: Consolas, Monaco, monospace;
+			}
+			ul li {
+				margin-bottom: 10px;
+				font-size: 14px ;
+			}
+			a {
+				color: #0073aa;
+			}
+		</style>
+	</head>
+	<body id="page">
+		<div id="error-page" class="">
+			<?php echo $message; ?>
+		</div>
+		<footer align="center">
+			Status Code:<span style="color:#afafaf"><?php echo $status_code; ?></span>
+		</footer>
+	</body>
+	</html><?php
+    exit;
 }

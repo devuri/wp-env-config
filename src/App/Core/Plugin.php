@@ -13,6 +13,7 @@ namespace Urisoft\App\Core;
 use Urisoft\App\Core\Settings\AdminSettingsPage;
 use Urisoft\App\Core\Traits\ActivateElementorTrait;
 use Urisoft\App\Core\Traits\AdminBarMenuTrait;
+use WP_User;
 
 class Plugin
 {
@@ -53,13 +54,54 @@ class Plugin
             }
         );
 
-        // Remove wp version.
+        // @phpstan-ignore-next-line
         add_filter(
             'the_generator',
             function() {
+                // Remove wp version.
                 return null;
             }
         );
+
+        // separate uploads for multi tenant.
+        if ( env( 'IS_MULTITENANT' ) ) {
+            add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
+
+            // Remove the delete action link for plugins.
+            add_filter(
+                'plugin_action_links',
+                function ( $actions, $plugin_file, $plugin_data, $context ) {
+					if ( \array_key_exists( 'delete', $actions ) ) {
+						unset( $actions['delete'] );
+					}
+
+					return $actions;
+				},
+                999,
+                4
+            );
+
+            // Allow if user has 'manage_tenant'.
+            add_filter( 'user_has_cap', [ $this, 'manage_tenant_install_plugins' ], 999, 4 );
+
+            add_filter(
+                'all_plugins',
+                function( $all_plugins ) {
+					$allowed_plugins = [
+						'tenant-manager/tenant-manager.php',
+					];
+
+					// Iterate over all plugins and unset those not in the allowed list
+					foreach ( $all_plugins as $plugin_path => $plugin_info ) {
+						if ( \in_array( $plugin_path, $allowed_plugins, true ) ) {
+							unset( $all_plugins[ $plugin_path ] );
+						}
+					}
+
+					return $all_plugins;
+				}
+            );
+        }//end if
 
         // Add the env type to admin bar.
         add_action( 'admin_bar_menu', [ $this, 'app_env_admin_bar_menu' ], 1199 );
@@ -125,6 +167,45 @@ class Plugin
     public static function init(): self
     {
         return new self();
+    }
+
+
+    public function set_upload_directory( $dir )
+    {
+        if ( ! env( 'APP_TENANT_ID' ) ) {
+            wp_die( 'no tenant_id defined for uploads directory' );
+        }
+
+        $custom_dir     = '/tenant/' . env( 'APP_TENANT_ID' ) . '/uploads';
+        $dir['basedir'] = WP_CONTENT_DIR . $custom_dir;
+        $dir['baseurl'] = content_url() . $custom_dir;
+        $dir['path']    = $dir['basedir'] . $dir['subdir'];
+        $dir['url']     = $dir['baseurl'] . $dir['subdir'];
+
+        return $dir;
+    }
+
+    /**
+     * Modifies user capabilities to allow users with 'manage_tenant' capability to install plugins.
+     *
+     * This function checks if the user's requested capabilities include 'install_plugins' and
+     * then checks if the user has the 'manage_tenant' capability. If they do, the function
+     * allows them to install plugins by modifying the `$allcaps` array.
+     *
+     * @param array   $allcaps An associative array of all the user's capabilities.
+     * @param array   $caps    Actual capabilities being checked.
+     * @param array   $args    Adds context to the capabilities being checked, typically starting with the capability name.
+     * @param WP_User $user    The user object.
+     *
+     * @return array Modified array of user capabilities.
+     */
+    public function manage_tenant_install_plugins( $allcaps, $caps, $args, $user )
+    {
+        if ( isset( $args[0] ) && 'install_plugins' === $args[0] ) {
+            $allcaps['install_plugins'] = ! empty( $allcaps['manage_tenant'] );
+        }
+
+        return $allcaps;
     }
 
     protected function add_core_app_events(): void

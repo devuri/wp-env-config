@@ -56,746 +56,6 @@ Search.appendIndex(
             "summary": "AUTOSAVE\u0020and\u0020REVISIONS.",
             "url": "classes/Urisoft-App-ConfigInterface.html#method_autosave"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand",
-            "name": "BackupCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "BackupCommand\u0020constructor.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Asave_snap_info\u0028\u0029",
-            "name": "save_snap_info",
-            "summary": "Saves\u0020an\u0020array\u0020to\u0020the\u0020\u0027snap.json\u0027\u0020file\u0020using\u0020the\u0020Symfony\u0020Filesystem\u0020component.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_save_snap_info"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Acreate_backup_dir\u0028\u0029",
-            "name": "create_backup_dir",
-            "summary": "Handles\u0020directory\u0020setups.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_create_backup_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003As3_upload_backup\u0028\u0029",
-            "name": "s3_upload_backup",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_s3_upload_backup"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Awpbucket_dir\u0028\u0029",
-            "name": "wpbucket_dir",
-            "summary": "The\u0020backup\u0020directory\u0020in\u0020s3\u0020bucket.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_wpbucket_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Aload_dotenv\u0028\u0029",
-            "name": "load_dotenv",
-            "summary": "Load\u0020the\u0020\u0024_ENV.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_load_dotenv"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Aadd_directory_zip\u0028\u0029",
-            "name": "add_directory_zip",
-            "summary": "Add\u0020directory\u0020and\u0020its\u0020files\u0020to\u0020a\u0020ZIP\u0020archive.",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_add_directory_zip"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003Acreate_sql_dump\u0028\u0029",
-            "name": "create_sql_dump",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#method_create_sql_dump"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024snapshot_dir",
-            "name": "snapshot_dir",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_snapshot_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024backup_file",
-            "name": "backup_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_backup_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024backup_time",
-            "name": "backup_time",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_backup_time"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024backup_dir",
-            "name": "backup_dir",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_backup_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024backup_zip",
-            "name": "backup_zip",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_backup_zip"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024s3wp_dir",
-            "name": "s3wp_dir",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_s3wp_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024encrypter",
-            "name": "encrypter",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_encrypter"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024encrypted_backup",
-            "name": "encrypted_backup",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_encrypted_backup"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\BackupCommand\u003A\u003A\u0024s3uploader",
-            "name": "s3uploader",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-BackupCommand.html#property_s3uploader"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CertCommand",
-            "name": "CertCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CertCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CertCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CertCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CertCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "SSL\u0020certificates\u0020by\u0020Certbot.",
-            "url": "classes/Urisoft-App-Console-CertCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CertCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CertCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand",
-            "name": "ConfigCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Acreate_htpasswd_file\u0028\u0029",
-            "name": "create_htpasswd_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_create_htpasswd_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aset_maintenance_mode\u0028\u0029",
-            "name": "set_maintenance_mode",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_set_maintenance_mode"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003Aload_dotenv\u0028\u0029",
-            "name": "load_dotenv",
-            "summary": "Load\u0020the\u0020\u0024_ENV.",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#method_load_dotenv"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ConfigCommand\u003A\u003A\u0024encryption",
-            "name": "encryption",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ConfigCommand.html#property_encryption"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console",
-            "name": "Console",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Console.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Console.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Console.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Console.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console\u003A\u003Agenerate_password\u0028\u0029",
-            "name": "generate_password",
-            "summary": "Generate\u0020a\u0020random\u0020alphanumeric\u0020password\u0020of\u0020a\u0020specified\u0020length,\u0020starting\u0020with\u0020a\u0020letter.",
-            "url": "classes/Urisoft-App-Console-Console.html#method_generate_password"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Console\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Console.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd",
-            "name": "CreateHtpasswd",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\CreateHtpasswd\u003A\u003A\u0024htpasswd_file",
-            "name": "htpasswd_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-CreateHtpasswd.html#property_htpasswd_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup",
-            "name": "DatabaseBackup",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "BackupCommand\u0020constructor.",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\DatabaseBackup\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-DatabaseBackup.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer",
-            "name": "GenerateComposer",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003Acomposer_json\u0028\u0029",
-            "name": "composer_json",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#method_composer_json"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\GenerateComposer\u003A\u003A\u0024composer_file",
-            "name": "composer_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-GenerateComposer.html#property_composer_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer",
-            "name": "Installer",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003Awp_installer\u0028\u0029",
-            "name": "wp_installer",
-            "summary": "Run\u0020the\u0020WordPress\u0020Quick\u0020Installer.",
-            "url": "classes/Urisoft-App-Console-Installer.html#method_wp_installer"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Installer\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Installer.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\InstallPackage",
-            "name": "InstallPackage",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-InstallPackage.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\InstallPackage\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-InstallPackage.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\InstallPackage\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-InstallPackage.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\InstallPackage\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-InstallPackage.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand",
-            "name": "MakeCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "Create\u0020the\u0020dbadmin\u0020dir.",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\MakeCommand\u003A\u003A\u0024env_file",
-            "name": "env_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-MakeCommand.html#property_env_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino",
-            "name": "Nino",
-            "summary": "Nino.",
-            "url": "classes/Urisoft-App-Console-Nino.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "New\u0020Application\u0020command.",
-            "url": "classes/Urisoft-App-Console-Nino.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino\u003A\u003Aload\u0028\u0029",
-            "name": "load",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Nino.html#method_load"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino\u003A\u003Aadd_command\u0028\u0029",
-            "name": "add_command",
-            "summary": "Add\u0020new\u0020Application\u0020command.",
-            "url": "classes/Urisoft-App-Console-Nino.html#method_add_command"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino\u003A\u003A\u0024root_dir",
-            "name": "root_dir",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Nino.html#property_root_dir"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Nino\u003A\u003A\u0024nino",
-            "name": "nino",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Nino.html#property_nino"
-        },                {
-            "fqsen": "\\WP_INSTALLING",
-            "name": "WP_INSTALLING",
-            "summary": "",
-            "url": "namespaces/default.html#constant_WP_INSTALLING"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller",
-            "name": "QuickInstaller",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Setup\u0020Installer.",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003Aget_params\u0028\u0029",
-            "name": "get_params",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#method_get_params"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003Ainstall\u0028\u0029",
-            "name": "install",
-            "summary": "Installs\u0020WordPress\u0020and\u0020checks\u0020for\u0020the\u0020existence\u0020of\u0020default\u0020tables.",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#method_install"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003Atables_exist\u0028\u0029",
-            "name": "tables_exist",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#method_tables_exist"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003A\u0024wp_dir_path",
-            "name": "wp_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#property_wp_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\QuickInstaller\u003A\u003A\u0024params",
-            "name": "params",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-QuickInstaller.html#property_params"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader",
-            "name": "S3Uploader",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader\u003A\u003AcreateBucketIfNotExists\u0028\u0029",
-            "name": "createBucketIfNotExists",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html#method_createBucketIfNotExists"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader\u003A\u003AuploadFile\u0028\u0029",
-            "name": "uploadFile",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html#method_uploadFile"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader\u003A\u003A\u0024s3Client",
-            "name": "s3Client",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html#property_s3Client"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\S3Uploader\u003A\u003A\u0024bucketName",
-            "name": "bucketName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-S3Uploader.html#property_bucketName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand",
-            "name": "ServeCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003Ais_valid_env_port\u0028\u0029",
-            "name": "is_valid_env_port",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#method_is_valid_env_port"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\ServeCommand\u003A\u003A\u0024app_env",
-            "name": "app_env",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-ServeCommand.html#property_app_env"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand",
-            "name": "SetupCommand",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#method_configure"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#method_execute"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#property_defaultName"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#property_filesystem"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\SetupCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-SetupCommand.html#property_root_dir_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\AwsS3",
-            "name": "AwsS3",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-AwsS3.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\AwsS3\u003A\u003AgetAwsClient\u0028\u0029",
-            "name": "getAwsClient",
-            "summary": "Get\u0020the\u0020S3\u0020client.",
-            "url": "classes/Urisoft-App-Console-Traits-AwsS3.html#method_getAwsClient"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\AwsS3\u003A\u003Acreate_s3Client\u0028\u0029",
-            "name": "create_s3Client",
-            "summary": "Create\u0020the\u0020s3Client.",
-            "url": "classes/Urisoft-App-Console-Traits-AwsS3.html#method_create_s3Client"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\AwsS3\u003A\u003A\u0024s3Client",
-            "name": "s3Client",
-            "summary": "The\u0020AWS\u0020S3\u0020client.",
-            "url": "classes/Urisoft-App-Console-Traits-AwsS3.html#property_s3Client"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env",
-            "name": "Env",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003Aget_env_array\u0028\u0029",
-            "name": "get_env_array",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_get_env_array"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003Aget_env\u0028\u0029",
-            "name": "get_env",
-            "summary": "Filter\u0020config\u0020output.",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_get_env"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003Aenv_secret\u0028\u0029",
-            "name": "env_secret",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_env_secret"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003AsaltToArray\u0028\u0029",
-            "name": "saltToArray",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_saltToArray"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003AsaltContent\u0028\u0029",
-            "name": "saltContent",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_saltContent"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Env\u003A\u003AautoLoginSecret\u0028\u0029",
-            "name": "autoLoginSecret",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Env.html#method_autoLoginSecret"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate",
-            "name": "Generate",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Auuid\u0028\u0029",
-            "name": "uuid",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_uuid"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Afour_letter_word\u0028\u0029",
-            "name": "four_letter_word",
-            "summary": "Generate\u0020a\u0020random\u0020four\u002Dletter\u0020word.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_four_letter_word"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Acreate_uuid_key_file\u0028\u0029",
-            "name": "create_uuid_key_file",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_create_uuid_key_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Aunique_filename\u0028\u0029",
-            "name": "unique_filename",
-            "summary": "Generates\u0020a\u0020unique\u0020filename\u0020with\u0020optional\u0020prefix\u0020and\u0020hashing.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_unique_filename"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Arandom_id\u0028\u0029",
-            "name": "random_id",
-            "summary": "Generates\u0020a\u0020unique\u0020identifier\u0020within\u0020a\u0020given\u0020range\u0020of\u0020values\u0020using\nPHP\u0027s\u0020built\u002Din\u0020random_int\u0020function.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_random_id"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Asecure_token\u0028\u0029",
-            "name": "secure_token",
-            "summary": "Generates\u0020a\u0020secure\u0020token\u0020of\u0020the\u0020specified\u0020length.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_secure_token"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Arand_str\u0028\u0029",
-            "name": "rand_str",
-            "summary": "Generate\u0020a\u0020random\u0020alphanumeric\u0020alphanum_str\u0020of\u0020a\u0020specified\u0020length,\u0020starting\u0020with\u0020a\u0020letter.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_rand_str"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Ahtpasswd\u0028\u0029",
-            "name": "htpasswd",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_htpasswd"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Abcr_htpasswd\u0028\u0029",
-            "name": "bcr_htpasswd",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_bcr_htpasswd"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Aget_domain\u0028\u0029",
-            "name": "get_domain",
-            "summary": "Get\u0020the\u0020website\u0020name\u0020from\u0020a\u0020domain.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_get_domain"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Agetdate\u0028\u0029",
-            "name": "getdate",
-            "summary": "Get\u0020the\u0020date.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_getdate"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Aget_consonants\u0028\u0029",
-            "name": "get_consonants",
-            "summary": "Get\u0020the\u0020consonants\u0020array.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_get_consonants"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits\\Generate\u003A\u003Aget_vowels\u0028\u0029",
-            "name": "get_vowels",
-            "summary": "Get\u0020the\u0020vowels\u0020array.",
-            "url": "classes/Urisoft-App-Console-Traits-Generate.html#method_get_vowels"
-        },                {
             "fqsen": "\\Urisoft\\App\\Core\\ActivityLog",
             "name": "ActivityLog",
             "summary": "TODO\u0020Setup\u0020Activity\u0020Logs.",
@@ -881,6 +141,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Core-Plugin.html#method_init"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003Aset_upload_directory\u0028\u0029",
+            "name": "set_upload_directory",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#method_set_upload_directory"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003Amanage_tenant_install_plugins\u0028\u0029",
+            "name": "manage_tenant_install_plugins",
+            "summary": "Modifies\u0020user\u0020capabilities\u0020to\u0020allow\u0020users\u0020with\u0020\u0027manage_tenant\u0027\u0020capability\u0020to\u0020install\u0020plugins.",
+            "url": "classes/Urisoft-App-Core-Plugin.html#method_manage_tenant_install_plugins"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003Aadd_core_app_events\u0028\u0029",
+            "name": "add_core_app_events",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#method_add_core_app_events"
+        },                {
             "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003Asecurity_headers\u0028\u0029",
             "name": "security_headers",
             "summary": "",
@@ -890,6 +165,36 @@ Search.appendIndex(
             "name": "extract_domain",
             "summary": "Extracts\u0020the\u0020domain\u0020from\u0020a\u0020URL.",
             "url": "classes/Urisoft-App-Core-Plugin.html#method_extract_domain"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003Adefine_basic_app_init\u0028\u0029",
+            "name": "define_basic_app_init",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#method_define_basic_app_init"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003AADMIN_BAR_MENU_ID",
+            "name": "ADMIN_BAR_MENU_ID",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#constant_ADMIN_BAR_MENU_ID"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003A\u0024env_menu_id",
+            "name": "env_menu_id",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#property_env_menu_id"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003A\u0024http_env_type",
+            "name": "http_env_type",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#property_http_env_type"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003A\u0024wp_sudo_admin",
+            "name": "wp_sudo_admin",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#property_wp_sudo_admin"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003A\u0024admin_group",
+            "name": "admin_group",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#property_admin_group"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\PublicKey",
             "name": "PublicKey",
@@ -1071,46 +376,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Core-WhiteLabel.html#property_powered_by"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App",
-            "name": "App",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-App.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Setup\u0020App.",
-            "url": "classes/Urisoft-App-Http-App.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003Akernel\u0028\u0029",
-            "name": "kernel",
-            "summary": "Get\u0020the\u0020kernel\u0020instance.",
-            "url": "classes/Urisoft-App-Http-App.html#method_kernel"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003Aset_app_errors\u0028\u0029",
-            "name": "set_app_errors",
-            "summary": "Set\u0020up\u0020the\u0020application\u0020error\u0020handling\u0020based\u0020on\u0020environment\u0020settings.",
-            "url": "classes/Urisoft-App-Http-App.html#method_set_app_errors"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003Aset_config\u0028\u0029",
-            "name": "set_config",
-            "summary": "Set\u0020the\u0020config\u0020options.",
-            "url": "classes/Urisoft-App-Http-App.html#method_set_config"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003A\u0024app_path",
-            "name": "app_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-App.html#property_app_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003A\u0024setup",
-            "name": "setup",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-App.html#property_setup"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\App\u003A\u003A\u0024config",
-            "name": "config",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-App.html#property_config"
-        },                {
             "fqsen": "\\Urisoft\\App\\Http\\Asset",
             "name": "Asset",
             "summary": "",
@@ -1158,7 +423,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aoverrides\u0028\u0029",
             "name": "overrides",
-            "summary": "Setup\u0020overrides.",
+            "summary": "Loads\u0020tenant\u002Dspecific\u0020or\u0020default\u0020configuration\u0020based\u0020on\u0020the\u0020application\u0027s\u0020multi\u002Dtenant\u0020status.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_overrides"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aset_env_secret\u0028\u0029",
@@ -1190,6 +455,11 @@ Search.appendIndex(
             "name": "get_user_constants",
             "summary": "Retrieve\u0020user\u002Ddefined\u0020constants\u0020and\u0020obfuscate\u0020sensitive\u0020data.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_user_constants"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Awp_is_not_installed\u0028\u0029",
+            "name": "wp_is_not_installed",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_wp_is_not_installed"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aenvironment_args\u0028\u0029",
             "name": "environment_args",
@@ -1246,6 +516,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#property_app_setup"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024tenant_id",
+            "name": "tenant_id",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_tenant_id"
+        },                {
             "fqsen": "\\Urisoft\\App\\Kernel",
             "name": "Kernel",
             "summary": "Setup\u0020common\u0020elements.",
@@ -1256,6 +531,16 @@ Search.appendIndex(
             "summary": "Setup\u0020Kernel.",
             "url": "classes/Urisoft-App-Kernel.html#method___construct"
         },                {
+            "fqsen": "\\APP_HTTP_HOST",
+            "name": "APP_HTTP_HOST",
+            "summary": "",
+            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
+        },                {
+            "fqsen": "\\IS_MULTITENANT",
+            "name": "IS_MULTITENANT",
+            "summary": "",
+            "url": "namespaces/default.html#constant_IS_MULTITENANT"
+        },                {
             "fqsen": "\\Urisoft\\App\\Setup",
             "name": "Setup",
             "summary": "Setup\u0020WP\u0020Config.",
@@ -1263,8 +548,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "Constructor.",
+            "summary": "Constructor\u0020for\u0020initializing\u0020the\u0020application\u0020environment\u0020and\u0020configuration.",
             "url": "classes/Urisoft-App-Setup.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adefine_multi_tenant\u0028\u0029",
+            "name": "define_multi_tenant",
+            "summary": "",
+            "url": "classes/Urisoft-App-Setup.html#method_define_multi_tenant"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ainit\u0028\u0029",
             "name": "init",
@@ -1311,6 +601,16 @@ Search.appendIndex(
             "summary": "Ensure\u0020that\u0020a\u0020specific\u0020constant\u0020is\u0020defined\u0020and\u0020not\u0020empty.",
             "url": "classes/Urisoft-App-Setup.html#method_required"
         },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aget_default_file_names\u0028\u0029",
+            "name": "get_default_file_names",
+            "summary": "Retrieves\u0020the\u0020default\u0020file\u0020names\u0020for\u0020environment\u0020configuration.",
+            "url": "classes/Urisoft-App-Setup.html#method_get_default_file_names"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ais_multitenant_app\u0028\u0029",
+            "name": "is_multitenant_app",
+            "summary": "",
+            "url": "classes/Urisoft-App-Setup.html#method_is_multitenant_app"
+        },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aenvironment_switch\u0028\u0029",
             "name": "environment_switch",
             "summary": "Switches\u0020between\u0020different\u0020environments\u0020based\u0020on\u0020the\u0020value\u0020of\u0020\u0024this\u002D\u003Eenvironment.",
@@ -1340,6 +640,11 @@ Search.appendIndex(
             "name": "path",
             "summary": "Directory\u0020\u0024path.",
             "url": "classes/Urisoft-App-Setup.html#property_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024is_multi_tenant",
+            "name": "is_multi_tenant",
+            "summary": "Setup\u0020multi\u0020tenant.",
+            "url": "classes/Urisoft-App-Setup.html#property_is_multi_tenant"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024dotenv",
             "name": "dotenv",
@@ -1458,7 +763,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\wpc_app\u0028\u0029",
             "name": "wpc_app",
-            "summary": "Start\u0020up\u0020and\u0020set\u0020the\u0020Kernel.",
+            "summary": "Start\u0020up\u0020and\u0020set\u0020the\u0020AppFramework\u0020Kernel.",
             "url": "namespaces/default.html#function_wpc_app"
         },                {
             "fqsen": "\\wpc_app_config_core\u0028\u0029",
@@ -1468,7 +773,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\wpc_installed_plugins\u0028\u0029",
             "name": "wpc_installed_plugins",
-            "summary": "Start\u0020and\u0020load\u0020core\u0020plugin.",
+            "summary": "Get\u0020installed\u0020plugins.",
             "url": "namespaces/default.html#function_wpc_installed_plugins"
         },                {
             "fqsen": "\\app_config_default\u0028\u0029",
@@ -1486,50 +791,40 @@ Search.appendIndex(
             "summary": "Gets\u0020hash\u0020of\u0020given\u0020string.",
             "url": "namespaces/default.html#function_evhash"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand",
-            "name": "LoginCommand",
+            "fqsen": "\\get_server_host\u0028\u0029",
+            "name": "get_server_host",
             "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html"
+            "url": "namespaces/default.html#function_get_server_host"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
+            "fqsen": "\\get_http_app_host\u0028\u0029",
+            "name": "get_http_app_host",
             "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#method___construct"
+            "url": "namespaces/default.html#function_get_http_app_host"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aconfigure\u0028\u0029",
-            "name": "configure",
+            "fqsen": "\\get_app_request_url\u0028\u0029",
+            "name": "get_app_request_url",
             "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_configure"
+            "url": "namespaces/default.html#function_get_app_request_url"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aexecute\u0028\u0029",
-            "name": "execute",
+            "fqsen": "\\is_app_https_secure\u0028\u0029",
+            "name": "is_app_https_secure",
             "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_execute"
+            "url": "namespaces/default.html#function_is_app_https_secure"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Alogin\u0028\u0029",
-            "name": "login",
-            "summary": "WordPress\u0020Quick\u0020Login.",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_login"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003Aload_dotenv\u0028\u0029",
-            "name": "load_dotenv",
-            "summary": "Load\u0020the\u0020\u0024_ENV.",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#method_load_dotenv"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024defaultName",
-            "name": "defaultName",
+            "fqsen": "\\app_packagist_plugins_list\u0028\u0029",
+            "name": "app_packagist_plugins_list",
             "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_defaultName"
+            "url": "namespaces/default.html#function_app_packagist_plugins_list"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024root_dir_path",
-            "name": "root_dir_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_root_dir_path"
+            "fqsen": "\\app_sanitizer\u0028\u0029",
+            "name": "app_sanitizer",
+            "summary": "Basic\u0020Sanitize\u0020and\u0020prepare\u0020for\u0020a\u0020string\u0020input\u0020for\u0020safe\u0020usage\u0020in\u0020the\u0020application.",
+            "url": "namespaces/default.html#function_app_sanitizer"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console\\LoginCommand\u003A\u003A\u0024filesystem",
-            "name": "filesystem",
-            "summary": "",
-            "url": "classes/Urisoft-App-Console-LoginCommand.html#property_filesystem"
+            "fqsen": "\\wp_terminate\u0028\u0029",
+            "name": "wp_terminate",
+            "summary": "Custom\u0020function\u0020to\u0020terminate\u0020script\u0020execution,\u0020display\u0020a\u0020message,\u0020and\u0020set\u0020an\u0020HTTP\u0020status\u0020code.",
+            "url": "namespaces/default.html#function_wp_terminate"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\AutoLogin",
             "name": "AutoLogin",
@@ -1555,6 +850,11 @@ Search.appendIndex(
             "name": "handle_auto_login",
             "summary": "Handles\u0020the\u0020automatic\u0020login\u0020process\u0020based\u0020on\u0020the\u0020provided\u0020query\u0020parameters.",
             "url": "classes/Urisoft-App-Core-AutoLogin.html#method_handle_auto_login"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Awp_user_exists\u0028\u0029",
+            "name": "wp_user_exists",
+            "summary": "Determines\u0020whether\u0020the\u0020user\u0020exists\u0020in\u0020the\u0020database.",
+            "url": "classes/Urisoft-App-Core-AutoLogin.html#method_wp_user_exists"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\AutoLogin\u003A\u003Averify_signature\u0028\u0029",
             "name": "verify_signature",
@@ -1606,15 +906,30 @@ Search.appendIndex(
             "summary": "Initializes\u0020the\u0020Elementor\u0020pro\u0020class.",
             "url": "classes/Urisoft-App-Core-Elementor.html#method___construct"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Ais_activation_locked\u0028\u0029",
+            "name": "is_activation_locked",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_is_activation_locked"
+        },                {
             "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Aactivate\u0028\u0029",
             "name": "activate",
             "summary": "",
             "url": "classes/Urisoft-App-Core-Elementor.html#method_activate"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Aget_status\u0028\u0029",
+            "name": "get_status",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_get_status"
+        },                {
             "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Adeactivate\u0028\u0029",
             "name": "deactivate",
             "summary": "",
             "url": "classes/Urisoft-App-Core-Elementor.html#method_deactivate"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Aset_transient\u0028\u0029",
+            "name": "set_transient",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#method_set_transient"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003Apost_request\u0028\u0029",
             "name": "post_request",
@@ -1675,6 +990,11 @@ Search.appendIndex(
             "name": "REQUEST_LOCK_OPTION",
             "summary": "",
             "url": "classes/Urisoft-App-Core-Elementor.html#constant_REQUEST_LOCK_OPTION"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003AACTIVATION_LOCK_ID",
+            "name": "ACTIVATION_LOCK_ID",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Elementor.html#constant_ACTIVATION_LOCK_ID"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\Elementor\u003A\u003ALICENSE_KEY_OPTION",
             "name": "LICENSE_KEY_OPTION",
@@ -1831,20 +1151,180 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020count\u0020of\u0020available\u0020plugin\u0020updates.",
             "url": "classes/Urisoft-App-Core-Updates.html#method_get_plugin_update"
         },                {
-            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003Aget_update\u0028\u0029",
-            "name": "get_update",
-            "summary": "Get\u0020the\u0020update\u0020count\u0020for\u0020a\u0020specific\u0020update\u0020type.",
-            "url": "classes/Urisoft-App-Core-Updates.html#method_get_update"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024update_data",
-            "name": "update_data",
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024update_plugins",
+            "name": "update_plugins",
             "summary": "",
-            "url": "classes/Urisoft-App-Core-Updates.html#property_update_data"
+            "url": "classes/Urisoft-App-Core-Updates.html#property_update_plugins"
         },                {
-            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024available_updates",
-            "name": "available_updates",
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024update_themes",
+            "name": "update_themes",
             "summary": "",
-            "url": "classes/Urisoft-App-Core-Updates.html#property_available_updates"
+            "url": "classes/Urisoft-App-Core-Updates.html#property_update_themes"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024update_wordpress",
+            "name": "update_wordpress",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Updates.html#property_update_wordpress"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Updates\u003A\u003A\u0024translation_updates",
+            "name": "translation_updates",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Updates.html#property_translation_updates"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\EnvColor",
+            "name": "EnvColor",
+            "summary": "Change\u0020The\u0020Color\u0020Scheme\u0020of\u0020wp\u002Dadmin\u0020based\u0020on\u0020env\u0020type\u0020like\u0020staging\u0020production\u0020secure\u0020etc.",
+            "url": "classes/Urisoft-App-Core-EnvColor.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\EnvColor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020initialize.",
+            "url": "classes/Urisoft-App-Core-EnvColor.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\EnvColor\u003A\u003A\u0024env_type",
+            "name": "env_type",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-EnvColor.html#property_env_type"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\EnvColor\u003A\u003A\u0024env_color",
+            "name": "env_color",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-EnvColor.html#property_env_color"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent",
+            "name": "ScheduledEvent",
+            "summary": "Class\u0020ScheduledEvent.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Constructor\u0020for\u0020the\u0020ScheduledEvent\u0020class.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003Aadd_app_event\u0028\u0029",
+            "name": "add_app_event",
+            "summary": "Adds\u0020an\u0020action\u0020hook\u0020to\u0020schedule\u0020the\u0020event\u0020on\u0020WordPress\u0020initialization.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#method_add_app_event"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003Aschedule_app_event\u0028\u0029",
+            "name": "schedule_app_event",
+            "summary": "Schedules\u0020the\u0020custom\u0020event\u0020if\u0020it\u0027s\u0020not\u0020already\u0020scheduled.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#method_schedule_app_event"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003Aevent_callback\u0028\u0029",
+            "name": "event_callback",
+            "summary": "Executes\u0020the\u0020specified\u0020callback\u0020function\u0020when\u0020the\u0020event\u0020is\u0020triggered.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#method_event_callback"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003Aavailable_recurrences\u0028\u0029",
+            "name": "available_recurrences",
+            "summary": "Get\u0020an\u0020array\u0020of\u0020available\u0020recurrence\u0020options\u0020for\u0020scheduling\u0020events.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#method_available_recurrences"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003A\u0024event_name",
+            "name": "event_name",
+            "summary": "Event\u0020name\u0020to\u0020identify\u0020the\u0020scheduled\u0020event.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#property_event_name"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003A\u0024callback",
+            "name": "callback",
+            "summary": "The\u0020callback\u0020function\u0020to\u0020execute\u0020when\u0020the\u0020event\u0020is\u0020triggered.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#property_callback"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\ScheduledEvent\u003A\u003A\u0024recurrence",
+            "name": "recurrence",
+            "summary": "The\u0020recurrence\u0020interval\u0020for\u0020the\u0020event\u0020\u0028default\u0020is\u0020\u0027twicedaily\u0027\u0029.",
+            "url": "classes/Urisoft-App-Core-ScheduledEvent.html#property_recurrence"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage",
+            "name": "AdminSettingsPage",
+            "summary": "Custom\u0020Admin\u0020Page\u0020class\u0020for\u0020WordPress.",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "AdminSettingsPage\u0020constructor.",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage\u003A\u003Aregister_settings_page\u0028\u0029",
+            "name": "register_settings_page",
+            "summary": "Registers\u0020the\u0020custom\u0020settings\u0020page\u0020in\u0020the\u0020WordPress\u0020admin\u0020menu.",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#method_register_settings_page"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage\u003A\u003A\u0024settings_page",
+            "name": "settings_page",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_settings_page"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage\u003A\u003A\u0024content_callback",
+            "name": "content_callback",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_content_callback"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Settings\\AdminSettingsPage\u003A\u003A\u0024is_submenu",
+            "name": "is_submenu",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Settings-AdminSettingsPage.html#property_is_submenu"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Traits\\ActivateElementorTrait",
+            "name": "ActivateElementorTrait",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Traits-ActivateElementorTrait.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Traits\\ActivateElementorTrait\u003A\u003Aauto_activate_elementor\u0028\u0029",
+            "name": "auto_activate_elementor",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Traits-ActivateElementorTrait.html#method_auto_activate_elementor"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Traits\\AdminBarMenuTrait",
+            "name": "AdminBarMenuTrait",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Traits-AdminBarMenuTrait.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Traits\\AdminBarMenuTrait\u003A\u003Aapp_env_admin_bar_menu\u0028\u0029",
+            "name": "app_env_admin_bar_menu",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Traits-AdminBarMenuTrait.html#method_app_env_admin_bar_menu"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework",
+            "name": "AppFramework",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Setup\u0020App.",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Akernel\u0028\u0029",
+            "name": "kernel",
+            "summary": "Get\u0020the\u0020kernel\u0020instance.",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method_kernel"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Aset_app_errors\u0028\u0029",
+            "name": "set_app_errors",
+            "summary": "Set\u0020up\u0020the\u0020application\u0020error\u0020handling\u0020based\u0020on\u0020environment\u0020settings.",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method_set_app_errors"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Aset_config\u0028\u0029",
+            "name": "set_config",
+            "summary": "Set\u0020the\u0020config\u0020options.",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method_set_config"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024app_path",
+            "name": "app_path",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#property_app_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024setup",
+            "name": "setup",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#property_setup"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024config",
+            "name": "config",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#property_config"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -1861,16 +1341,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/urisoft.html"
         },                {
-            "fqsen": "\\Urisoft\\App\\Console",
-            "name": "Console",
-            "summary": "",
-            "url": "namespaces/urisoft-app-console.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Console\\Traits",
-            "name": "Traits",
-            "summary": "",
-            "url": "namespaces/urisoft-app-console-traits.html"
-        },                {
             "fqsen": "\\Urisoft\\App\\Core",
             "name": "Core",
             "summary": "",
@@ -1880,6 +1350,11 @@ Search.appendIndex(
             "name": "Settings",
             "summary": "",
             "url": "namespaces/urisoft-app-core-settings.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Traits",
+            "name": "Traits",
+            "summary": "",
+            "url": "namespaces/urisoft-app-core-traits.html"
         },                {
             "fqsen": "\\Urisoft\\App\\Exceptions",
             "name": "Exceptions",

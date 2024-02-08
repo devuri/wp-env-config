@@ -1,7 +1,7 @@
 <?php
 
 define( 'APP_HTTP_HOST', 'default_domain.com' );
-define( 'IS_MULTI_TENANT_APP', false );
+define( 'IS_MULTITENANT', false );
 define( 'WP_HOME', 'https://example.com');
 define( 'ASSET_URL', 'https://example.com/assets');
 define( 'APP_PATH', '/srv/users/dev/apps/example');
