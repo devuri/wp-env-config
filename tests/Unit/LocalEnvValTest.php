@@ -47,7 +47,7 @@ class LocalEnvValTest extends TestCase
     public function test_is_multi_tenant_app(): void
     {
         $expectedValue = false;
-        $actualValue = env('IS_MULTI_TENANT_APP');
+        $actualValue = env('IS_MULTITENANT');
 
         $this->assertEquals($expectedValue, $actualValue);
     }
