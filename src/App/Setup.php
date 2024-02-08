@@ -10,6 +10,8 @@ use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
+use Urisoft\App\Http\HttpFactory;
+use Urisoft\App\Http\AppHostManager;
 
 /**
  * Setup WP Config.
@@ -83,6 +85,13 @@ class Setup implements ConfigInterface
      * @var array
      */
     protected $env_types = [];
+
+	/**
+	 * Set the http host.
+	 *
+	 * @var string
+	 */
+	protected $app_http_host;
 
     /**
      * Constructor for initializing the application environment and configuration.
@@ -158,14 +167,14 @@ class Setup implements ConfigInterface
              *
              * @throws Exception If the source is invalid or unable to be loaded or match tenant.
              */
-            $app_http_host = get_http_app_host();
+            $this->app_http_host = self::http()->get_http_host();
 
-            if ( ! \array_key_exists( $app_http_host, $this->env_files['tenant_ids'] ) ) {
+            if ( ! \array_key_exists( $this->app_http_host, $this->env_files['tenant_ids'] ) ) {
                 wp_terminate( 'The website is not defined. Please review the URL and try again.' );
             }
 
-            if ( $app_http_host ) {
-                $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
+            if ( $this->app_http_host ) {
+                $tenant_id = $this->env_files['tenant_ids'][ $this->app_http_host ];
             } else {
                 $tenant_id = 0;
             }
@@ -195,7 +204,7 @@ class Setup implements ConfigInterface
     public function define_multi_tenant(): void
     {
         // set app host.
-        \define( 'APP_HTTP_HOST', get_http_app_host() );
+        \define( 'APP_HTTP_HOST', $this->app_http_host );
 
         // multi tenant support.
         if ( $this->is_multi_tenant ) {
@@ -591,4 +600,9 @@ class Setup implements ConfigInterface
     {
         $this->environment = $reset;
     }
+
+	protected static function http(): AppHostManager
+	{
+		return HttpFactory::init();
+	}
 }

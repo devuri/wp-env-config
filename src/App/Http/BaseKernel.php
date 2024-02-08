@@ -330,4 +330,9 @@ class BaseKernel
 
         return false;
     }
+
+	protected static function http(): AppHostManager
+	{
+		return HttpFactory::init();
+	}
 }
