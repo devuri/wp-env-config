@@ -88,14 +88,14 @@ class Setup implements ConfigInterface
      * Constructor for initializing the application environment and configuration.
      *
      * @param string $path            Current directory.
-     * @param array  $supported_names An array of supported environment names and configuration.
+     * @param array  $supported_names_or_tenants An array of supported environment names and configuration.
      * @param bool   $short_circuit   Flag to control short-circuiting file loading.
      */
-    public function __construct( string $path, array $supported_names = [], bool $short_circuit = true )
+    public function __construct( string $path, array $supported_names_or_tenants = [], bool $short_circuit = true )
     {
         $this->path = $path;
 
-        $this->is_multi_tenant = $this->is_multi_tenant_app( $supported_names );
+        $this->is_multi_tenant = $this->is_multitenant_app( $supported_names_or_tenants );
 
         /*
          * Available env type settings.
@@ -106,9 +106,9 @@ class Setup implements ConfigInterface
 
         // use multiple filenames.
         if ( $this->is_multi_tenant ) {
-            $this->env_files = $supported_names;
+            $this->env_files = $supported_names_or_tenants;
         } else {
-            $this->env_files = array_merge( $this->get_default_file_names(), $supported_names );
+            $this->env_files = array_merge( $this->get_default_file_names(), $supported_names_or_tenants );
         }
 
         if ( ! $this->is_multi_tenant ) {
@@ -161,7 +161,7 @@ class Setup implements ConfigInterface
             $app_http_host = get_http_app_host();
 
             if ( ! \array_key_exists( $app_http_host, $this->env_files['tenant_ids'] ) ) {
-                exit( 'The website is not defined. Please review the URL and try again.' );
+                wp_terminate( 'The website is not defined. Please review the URL and try again.' );
             }
 
             if ( $app_http_host ) {
@@ -170,12 +170,14 @@ class Setup implements ConfigInterface
                 $tenant_id = 0;
             }
 
+			// TODO use main env as tenant env
+
             /*
              * Start and bootstrap the web application.
              *
              * so that we can $http_app = wpc_app(__DIR__, 'app', ['localhost:8019' => 'd7874918-6e36-11ee-b962-0242ac120002'] );
              */
-            $this->dotenv = Dotenv::createImmutable( $this->path, "sites/{$tenant_id}/.env" );
+            $this->dotenv = Dotenv::createImmutable( $this->path, "site/{$tenant_id}/.env" );
         } else {
             $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
         }// end if
@@ -183,7 +185,7 @@ class Setup implements ConfigInterface
         try {
             $this->dotenv->load();
         } catch ( Exception $e ) {
-            dump( $e->getMessage() );
+            wp_terminate( $e->getMessage() );
             exit;
         }
 
@@ -198,11 +200,11 @@ class Setup implements ConfigInterface
         // multi tenant support.
         if ( $this->is_multi_tenant ) {
 			if (! env('APP_TENANT_ID') ) {
-				exit("no tenant_id defined");
+				wp_terminate("no tenant_id defined", 503);
 			}
-            \define( 'IS_MULTI_TENANT_APP', true );
+            \define( 'IS_MULTITENANT', true );
         } else {
-            \define( 'IS_MULTI_TENANT_APP', false );
+            \define( 'IS_MULTITENANT', false );
         }
     }
 
@@ -478,17 +480,13 @@ class Setup implements ConfigInterface
         ];
     }
 
-    protected function is_multi_tenant_app( ?array $supported_names = null ): bool
+    protected function is_multitenant_app(): bool
     {
-        if ( \is_null( $supported_names ) || ! \array_key_exists( 'tenant_ids', $supported_names ) ) {
-            return false;
-        }
+		if ( defined('ALLOW_MULTITENANT') && true === ALLOW_MULTITENANT ) {
+			return true;
+		}
 
-        if ( ! $supported_names['tenant_ids'] ) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     /**
@@ -547,8 +545,8 @@ class Setup implements ConfigInterface
             $this->required( 'WP_SITEURL' );
 
             // we need to establish if this is a multi tenant app
-            $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->isBoolean();
-            $this->dotenv->required( 'IS_MULTI_TENANT_APP' )->allowedValues( [ 'true', 'false' ] );
+            $this->dotenv->required( 'IS_MULTITENANT' )->isBoolean();
+            $this->dotenv->required( 'IS_MULTITENANT' )->allowedValues( [ 'true', 'false' ] );
 
             // in most cases application passwords is not needed.
             $this->dotenv->required( 'DISABLE_WP_APPLICATION_PASSWORDS' )->allowedValues( [ 'true', 'false' ] );
@@ -569,7 +567,7 @@ class Setup implements ConfigInterface
             $this->dotenv->required( 'LOGGED_IN_SALT' )->notEmpty();
             $this->dotenv->required( 'NONCE_SALT' )->notEmpty();
         } catch ( Exception $e ) {
-            exit( $e->getMessage() );
+            wp_terminate( $e->getMessage() );
         }// end try
     }
 
