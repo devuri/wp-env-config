@@ -142,7 +142,7 @@ class BaseKernel
 
         // Check if multi-tenant mode is enabled and a tenant ID is set
         if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
-            $tenant_config_file = $this->app_path . "site/{$this->tenant_id}/{$this->config_file}.php";
+            $tenant_config_file = $this->app_path . "/site/{$this->tenant_id}/{$this->config_file}.php";
 
             // Check if the tenant-specific config file exists
             if ( file_exists( $tenant_config_file ) ) {
