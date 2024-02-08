@@ -87,15 +87,15 @@ class Setup implements ConfigInterface
     /**
      * Constructor for initializing the application environment and configuration.
      *
-     * @param string $path            Current directory.
+     * @param string $path                       Current directory.
      * @param array  $supported_names_or_tenants An array of supported environment names and configuration.
-     * @param bool   $short_circuit   Flag to control short-circuiting file loading.
+     * @param bool   $short_circuit              Flag to control short-circuiting file loading.
      */
     public function __construct( string $path, array $supported_names_or_tenants = [], bool $short_circuit = true )
     {
         $this->path = $path;
 
-        $this->is_multi_tenant = $this->is_multitenant_app( $supported_names_or_tenants );
+        $this->is_multi_tenant = $this->is_multitenant_app();
 
         /*
          * Available env type settings.
@@ -170,7 +170,7 @@ class Setup implements ConfigInterface
                 $tenant_id = 0;
             }
 
-			// TODO use main env as tenant env
+            // TODO use main env as tenant env
 
             /*
              * Start and bootstrap the web application.
@@ -199,9 +199,9 @@ class Setup implements ConfigInterface
 
         // multi tenant support.
         if ( $this->is_multi_tenant ) {
-			if (! env('APP_TENANT_ID') ) {
-				wp_terminate("no tenant_id defined", 503);
-			}
+            if ( ! env( 'APP_TENANT_ID' ) ) {
+                wp_terminate( 'no tenant_id defined', 503 );
+            }
             \define( 'IS_MULTITENANT', true );
         } else {
             \define( 'IS_MULTITENANT', false );
@@ -482,9 +482,9 @@ class Setup implements ConfigInterface
 
     protected function is_multitenant_app(): bool
     {
-		if ( defined('ALLOW_MULTITENANT') && true === ALLOW_MULTITENANT ) {
-			return true;
-		}
+        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT ) {
+            return true;
+        }
 
         return false;
     }

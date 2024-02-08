@@ -31,7 +31,7 @@ class AppFramework
          *
          * @var Setup
          */
-        if ( defined('ALLOW_MULTITENANT') && true === ALLOW_MULTITENANT && $tenant_ids  ) {
+        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && $tenant_ids ) {
             $this->setup = new Setup( $this->app_path, [ 'tenant_ids' => $tenant_ids ] );
             $this->setup->define_multi_tenant();
         } else {
@@ -102,7 +102,7 @@ class AppFramework
      */
     protected function set_config( string $options, array $tenant = [] ): void
     {
-        $config = require_once $this->app_path . "/{$options}.php";
+        $config       = require_once $this->app_path . "/{$options}.php";
         $this->config = array_merge( $config, $tenant );
     }
 }

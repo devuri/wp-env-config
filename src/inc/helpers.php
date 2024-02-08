@@ -143,6 +143,7 @@ if ( ! \function_exists( 'wpc_app' ) ) {
             wp_terminate( $e->getMessage() );
         }
 
+        // @phpstan-ignore-next-line
         return $app->kernel();
     }
 }
@@ -387,13 +388,13 @@ function app_sanitizer( string $input ): string
 /**
  * Custom function to terminate script execution, display a message, and set an HTTP status code.
  *
- * @param string $message The message to display.
+ * @param string $message     The message to display.
  * @param int    $status_code The HTTP status code to send.
  */
-function wp_terminate($message, int $status_code = 500)
+function wp_terminate($message, int $status_code = 500): void
 {
     http_response_code($status_code);
-	?><!DOCTYPE html><html lang='en'>
+    ?><!DOCTYPE html><html lang='en'>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
 		<meta name="viewport" content="width=device-width">

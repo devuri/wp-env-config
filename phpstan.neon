@@ -6,10 +6,6 @@ parameters:
         - tests/stubs.php
     tmpDir: tmp
     level: 2
-    ignoreErrors:
-        - "#Access to an undefined property#"
-        - "#Property [^:]+::\\$[^ ]+ has no type specified.#"
-        - "#Parameter \\#[0-9]+ ...\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given.#"
     inferPrivatePropertyTypeFromConstructor: true
     treatPhpDocTypesAsCertain: false
     checkMissingIterableValueType: false

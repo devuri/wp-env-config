@@ -127,42 +127,42 @@ class BaseKernel
         return $this->get_args();
     }
 
-	/**
-	 * Loads tenant-specific or default configuration based on the application's multi-tenant status.
-	 *
-	 * This function first checks for a tenant-specific configuration file in multi-tenant mode. If not found,
-	 * or if not in multi-tenant mode, it falls back to the default configuration file. The configuration is applied
-	 * by requiring the respective file, if it exists.
-	 *
-	 * @return void
-	 */
-	public function overrides(): void
-	{
-	    $config_override_file = null;
+    /**
+     * Loads tenant-specific or default configuration based on the application's multi-tenant status.
+     *
+     * This function first checks for a tenant-specific configuration file in multi-tenant mode. If not found,
+     * or if not in multi-tenant mode, it falls back to the default configuration file. The configuration is applied
+     * by requiring the respective file, if it exists.
+     *
+     * @return void
+     */
+    public function overrides(): void
+    {
+        $config_override_file = null;
 
-	    // Check if multi-tenant mode is enabled and a tenant ID is set
-	    if (env('IS_MULTITENANT') && !empty($this->tenant_id)) {
-	        $tenant_config_file = $this->app_path . "site/{$this->tenant_id}/{$this->config_file}.php";
+        // Check if multi-tenant mode is enabled and a tenant ID is set
+        if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
+            $tenant_config_file = $this->app_path . "site/{$this->tenant_id}/{$this->config_file}.php";
 
-	        // Check if the tenant-specific config file exists
-	        if (file_exists($tenant_config_file)) {
-	            $config_override_file = $tenant_config_file;
-	        }
-	    }
+            // Check if the tenant-specific config file exists
+            if ( file_exists( $tenant_config_file ) ) {
+                $config_override_file = $tenant_config_file;
+            }
+        }
 
-	    // If no tenant-specific file found, use the default config file
-	    if (empty($config_override_file)) {
-	        $default_config_file = $this->app_path . "/{$this->config_file}.php";
-	        if (file_exists($default_config_file)) {
-	            $config_override_file = $default_config_file;
-	        }
-	    }
+        // If no tenant-specific file found, use the default config file
+        if ( empty( $config_override_file ) ) {
+            $default_config_file = $this->app_path . "/{$this->config_file}.php";
+            if ( file_exists( $default_config_file ) ) {
+                $config_override_file = $default_config_file;
+            }
+        }
 
-	    // If a valid config override file is found, require it
-	    if (!empty($config_override_file)) {
-	        require_once $config_override_file;
-	    }
-	}
+        // If a valid config override file is found, require it
+        if ( ! empty( $config_override_file ) ) {
+            require_once $config_override_file;
+        }
+    }
 
     public function set_env_secret( string $key ): void
     {
