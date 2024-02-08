@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.2.1](https://github.com/devuri/wp-env-config/compare/v2.2.0...v2.2.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* adds `EnvTypes` class ([721bcec](https://github.com/devuri/wp-env-config/commit/721bcec9900d1ff60766ccbfa5917dd98ebf3819))
+* fix config location ([05a53d9](https://github.com/devuri/wp-env-config/commit/05a53d9c4a26fe7bfb233128c4539e3b23ae2838))
+* if use `WP_ENVIRONMENT_TYPE` if defined in `config` will override  .env ([dfcc1ea](https://github.com/devuri/wp-env-config/commit/dfcc1ea792df59e2f3a638224f9f045513df94ce))
+
+
+### Miscellaneous Chores
+
+* build ([8e37399](https://github.com/devuri/wp-env-config/commit/8e37399c2aaf07578e700973d292b32b0a089950))
+
 ## [2.2.0](https://github.com/devuri/wp-env-config/compare/v2.1.1...v2.2.0) (2024-02-08)
 
 
