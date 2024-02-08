@@ -120,7 +120,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_APP_HTTP_HOST">APP_HTTP_HOST</a>
     <span>
-        &nbsp;= get_http_app_host()                            </span>
+        &nbsp;= $this-&gt;app_http_host                            </span>
 </dt>
 <dd></dd>
 
@@ -209,34 +209,6 @@
 <dd>Gets hash of given string.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_get_server_host">get_server_host()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_get_http_app_host">get_http_app_host()</a>
-    <span>
-                                &nbsp;: string|null    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_get_app_request_url">get_app_request_url()</a>
-    <span>
-                                &nbsp;: string|null    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
-    <a href="namespaces/default.html#function_is_app_https_secure">is_app_https_secure()</a>
-    <span>
-                                &nbsp;: bool    </span>
-</dt>
-<dd></dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_app_packagist_plugins_list">app_packagist_plugins_list()</a>
     <span>
                                 &nbsp;: mixed    </span>
@@ -274,7 +246,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">198</span>
+    <span class="phpdocumentor-element-found-in__line">207</span>
 
     </aside>
 
@@ -283,7 +255,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">APP_HTTP_HOST</span>
-    = <span class="phpdocumentor-signature__default-value">get_http_app_host()</span>
+    = <span class="phpdocumentor-signature__default-value">$this-&gt;app_http_host</span>
 </code>
 
 
@@ -303,7 +275,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">207</span>
+    <span class="phpdocumentor-element-found-in__line">216</span>
 
     </aside>
 
@@ -890,118 +862,6 @@ returned.</p>
     
 </article>
                     <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_get_server_host">
-        get_server_host()
-        <a href="namespaces/default.html#function_get_server_host" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">262</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">get_server_host</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">mixed</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_get_http_app_host">
-        get_http_app_host()
-        <a href="namespaces/default.html#function_get_http_app_host" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">285</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">get_http_app_host</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|null</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_get_app_request_url">
-        get_app_request_url()
-        <a href="namespaces/default.html#function_get_app_request_url" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">311</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">get_app_request_url</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">string|null</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
-    <h4 class="phpdocumentor-element__name" id="function_is_app_https_secure">
-        is_app_https_secure()
-        <a href="namespaces/default.html#function_is_app_https_secure" class="headerlink"><i class="fas fa-link"></i></a>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">328</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility"></span>
-                    <span class="phpdocumentor-signature__name">is_app_https_secure</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
-
-        <section class="phpdocumentor-description"></section>
-
-    
-    
-
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-    <span class="phpdocumentor-signature__response_type">bool</span>
-            &mdash;
-        
-    
-</article>
-                    <article class="phpdocumentor-element -function - ">
     <h4 class="phpdocumentor-element__name" id="function_app_packagist_plugins_list">
         app_packagist_plugins_list()
         <a href="namespaces/default.html#function_app_packagist_plugins_list" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1009,7 +869,7 @@ returned.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">343</span>
+    <span class="phpdocumentor-element-found-in__line">268</span>
 
     </aside>
 
@@ -1037,7 +897,7 @@ returned.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">378</span>
+    <span class="phpdocumentor-element-found-in__line">303</span>
 
     </aside>
 
@@ -1083,7 +943,7 @@ and removing potentially dangerous characters for security.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">394</span>
+    <span class="phpdocumentor-element-found-in__line">319</span>
 
     </aside>
 

@@ -294,6 +294,11 @@ class BaseKernel
         ];
     }
 
+    protected static function http(): AppHostManager
+    {
+        return HttpFactory::init();
+    }
+
     /**
      * Retrieve the current month.
      *

@@ -5,6 +5,8 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
+use Urisoft\App\Http\AppHostManager;
+use Urisoft\App\Http\HttpFactory;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
@@ -85,6 +87,13 @@ class Setup implements ConfigInterface
     protected $env_types = [];
 
     /**
+     * Set the http host.
+     *
+     * @var string
+     */
+    protected $app_http_host;
+
+    /**
      * Constructor for initializing the application environment and configuration.
      *
      * @param string $path                       Current directory.
@@ -140,7 +149,7 @@ class Setup implements ConfigInterface
          * @link https://github.com/vlucas/phpdotenv/pull/394
          */
         if ( $this->is_multi_tenant ) {
-            /**
+            /*
              * Load Tenant IDs for the Application.
              *
              * This loads tenant IDs from a JSON file or API response and passed from
@@ -158,14 +167,14 @@ class Setup implements ConfigInterface
              *
              * @throws Exception If the source is invalid or unable to be loaded or match tenant.
              */
-            $app_http_host = get_http_app_host();
+            $this->app_http_host = self::http()->get_http_host();
 
-            if ( ! \array_key_exists( $app_http_host, $this->env_files['tenant_ids'] ) ) {
+            if ( ! \array_key_exists( $this->app_http_host, $this->env_files['tenant_ids'] ) ) {
                 wp_terminate( 'The website is not defined. Please review the URL and try again.' );
             }
 
-            if ( $app_http_host ) {
-                $tenant_id = $this->env_files['tenant_ids'][ $app_http_host ];
+            if ( $this->app_http_host ) {
+                $tenant_id = $this->env_files['tenant_ids'][ $this->app_http_host ];
             } else {
                 $tenant_id = 0;
             }
@@ -195,7 +204,7 @@ class Setup implements ConfigInterface
     public function define_multi_tenant(): void
     {
         // set app host.
-        \define( 'APP_HTTP_HOST', get_http_app_host() );
+        \define( 'APP_HTTP_HOST', $this->app_http_host );
 
         // multi tenant support.
         if ( $this->is_multi_tenant ) {
@@ -569,6 +578,11 @@ class Setup implements ConfigInterface
         } catch ( Exception $e ) {
             wp_terminate( $e->getMessage() );
         }// end try
+    }
+
+    protected static function http(): AppHostManager
+    {
+        return HttpFactory::init();
     }
 
     /**

@@ -42,7 +42,7 @@ trait ConstantTrait
         $this->define( 'APP_PATH', $this->get_app_path() );
 
         // set app http host.
-        $this->define( 'APP_HTTP_HOST', get_http_app_host() );
+        $this->define( 'APP_HTTP_HOST', self::http()->get_http_host() );
 
         // define public web root dir.
         $this->define( 'PUBLIC_WEB_DIR', APP_PATH . '/' . $this->args['web_root'] );
