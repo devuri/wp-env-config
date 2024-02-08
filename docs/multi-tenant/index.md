@@ -39,8 +39,8 @@ $http_app = wpc_app(__DIR__, 'app', ['example.com' => 'a345ea9515c']);
 ## Configuration and Environment Files
 
 - Tenant-specific configuration files are located as follows:
-  - `.env`: `"path/sites/a345ea9515c/.env"`
-  - `config.php`: `"path/sites/a345ea9515c/config.php"`
+  - `.env`: `"path/site/a345ea9515c/.env"`
+  - `config.php`: `"path/site/a345ea9515c/config.php"`
 
 ## Tenant-Specific Variables
 
