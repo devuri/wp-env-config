@@ -5,13 +5,13 @@ namespace Urisoft\App;
 use Dotenv\Dotenv;
 use Exception;
 use Symfony\Component\ErrorHandler\Debug;
+use Urisoft\App\Http\AppHostManager;
+use Urisoft\App\Http\HttpFactory;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
-use Urisoft\App\Http\HttpFactory;
-use Urisoft\App\Http\AppHostManager;
 
 /**
  * Setup WP Config.
@@ -86,12 +86,12 @@ class Setup implements ConfigInterface
      */
     protected $env_types = [];
 
-	/**
-	 * Set the http host.
-	 *
-	 * @var string
-	 */
-	protected $app_http_host;
+    /**
+     * Set the http host.
+     *
+     * @var string
+     */
+    protected $app_http_host;
 
     /**
      * Constructor for initializing the application environment and configuration.
@@ -149,7 +149,7 @@ class Setup implements ConfigInterface
          * @link https://github.com/vlucas/phpdotenv/pull/394
          */
         if ( $this->is_multi_tenant ) {
-            /**
+            /*
              * Load Tenant IDs for the Application.
              *
              * This loads tenant IDs from a JSON file or API response and passed from
@@ -580,6 +580,11 @@ class Setup implements ConfigInterface
         }// end try
     }
 
+    protected static function http(): AppHostManager
+    {
+        return HttpFactory::init();
+    }
+
     /**
      * Get Env value or return null.
      *
@@ -600,9 +605,4 @@ class Setup implements ConfigInterface
     {
         $this->environment = $reset;
     }
-
-	protected static function http(): AppHostManager
-	{
-		return HttpFactory::init();
-	}
 }

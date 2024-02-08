@@ -466,6 +466,11 @@ Search.appendIndex(
             "summary": "Set\u0020App\u0020defaults.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_environment_args"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Ahttp\u0028\u0029",
+            "name": "http",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_http"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_current_month\u0028\u0029",
             "name": "get_current_month",
             "summary": "Retrieve\u0020the\u0020current\u0020month.",
@@ -626,6 +631,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Setup.html#method_is_required"
         },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ahttp\u0028\u0029",
+            "name": "http",
+            "summary": "",
+            "url": "classes/Urisoft-App-Setup.html#method_http"
+        },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aget_env\u0028\u0029",
             "name": "get_env",
             "summary": "Get\u0020Env\u0020value\u0020or\u0020return\u0020null.",
@@ -685,6 +695,11 @@ Search.appendIndex(
             "name": "env_types",
             "summary": "Set\u0020supported\u0020env\u0020types.",
             "url": "classes/Urisoft-App-Setup.html#property_env_types"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024app_http_host",
+            "name": "app_http_host",
+            "summary": "Set\u0020the\u0020http\u0020host.",
+            "url": "classes/Urisoft-App-Setup.html#property_app_http_host"
         },                {
             "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait",
             "name": "ConfigTrait",
@@ -790,26 +805,6 @@ Search.appendIndex(
             "name": "evhash",
             "summary": "Gets\u0020hash\u0020of\u0020given\u0020string.",
             "url": "namespaces/default.html#function_evhash"
-        },                {
-            "fqsen": "\\get_server_host\u0028\u0029",
-            "name": "get_server_host",
-            "summary": "",
-            "url": "namespaces/default.html#function_get_server_host"
-        },                {
-            "fqsen": "\\get_http_app_host\u0028\u0029",
-            "name": "get_http_app_host",
-            "summary": "",
-            "url": "namespaces/default.html#function_get_http_app_host"
-        },                {
-            "fqsen": "\\get_app_request_url\u0028\u0029",
-            "name": "get_app_request_url",
-            "summary": "",
-            "url": "namespaces/default.html#function_get_app_request_url"
-        },                {
-            "fqsen": "\\is_app_https_secure\u0028\u0029",
-            "name": "is_app_https_secure",
-            "summary": "",
-            "url": "namespaces/default.html#function_is_app_https_secure"
         },                {
             "fqsen": "\\app_packagist_plugins_list\u0028\u0029",
             "name": "app_packagist_plugins_list",
@@ -1325,6 +1320,71 @@ Search.appendIndex(
             "name": "config",
             "summary": "",
             "url": "classes/Urisoft-App-Http-AppFramework.html#property_config"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager",
+            "name": "AppHostManager",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager\u003A\u003Ais_https_secure\u0028\u0029",
+            "name": "is_https_secure",
+            "summary": "Determines\u0020if\u0020the\u0020current\u0020request\u0020is\u0020made\u0020over\u0020HTTPS.",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html#method_is_https_secure"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager\u003A\u003Aget_http_host\u0028\u0029",
+            "name": "get_http_host",
+            "summary": "Retrieves\u0020the\u0020sanitized\u0020HTTP\u0020host\u0020if\u0020available,\u0020otherwise\u0020a\u0020default\u0020value.",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html#method_get_http_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager\u003A\u003Aget_server_host\u0028\u0029",
+            "name": "get_server_host",
+            "summary": "Extracts\u0020the\u0020host\u0020domain\u0020and\u0020determines\u0020the\u0020protocol\u0020prefix.",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html#method_get_server_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager\u003A\u003Aget_request_url\u0028\u0029",
+            "name": "get_request_url",
+            "summary": "Constructs\u0020the\u0020full\u0020request\u0020URL\u0020based\u0020on\u0020the\u0020current\u0020protocol\u0020and\u0020app\u0020host.",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html#method_get_request_url"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppHostManager\u003A\u003A_sanitize_http_host\u0028\u0029",
+            "name": "_sanitize_http_host",
+            "summary": "Sanitizes\u0020the\u0020HTTP\u0020host.",
+            "url": "classes/Urisoft-App-Http-AppHostManager.html#method__sanitize_http_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HostInterface",
+            "name": "HostInterface",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-HostInterface.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HostInterface\u003A\u003Ais_https_secure\u0028\u0029",
+            "name": "is_https_secure",
+            "summary": "Determines\u0020if\u0020the\u0020current\u0020request\u0020is\u0020made\u0020over\u0020HTTPS.",
+            "url": "classes/Urisoft-App-Http-HostInterface.html#method_is_https_secure"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HostInterface\u003A\u003Aget_http_host\u0028\u0029",
+            "name": "get_http_host",
+            "summary": "Retrieves\u0020the\u0020sanitized\u0020HTTP\u0020host\u0020if\u0020available,\u0020otherwise\u0020a\u0020default\u0020value.",
+            "url": "classes/Urisoft-App-Http-HostInterface.html#method_get_http_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HostInterface\u003A\u003Aget_server_host\u0028\u0029",
+            "name": "get_server_host",
+            "summary": "Extracts\u0020the\u0020host\u0020domain\u0020and\u0020determines\u0020the\u0020protocol\u0020prefix.",
+            "url": "classes/Urisoft-App-Http-HostInterface.html#method_get_server_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HostInterface\u003A\u003Aget_request_url\u0028\u0029",
+            "name": "get_request_url",
+            "summary": "Constructs\u0020the\u0020full\u0020request\u0020URL\u0020based\u0020on\u0020the\u0020current\u0020protocol\u0020and\u0020app\u0020host.",
+            "url": "classes/Urisoft-App-Http-HostInterface.html#method_get_request_url"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HttpFactory",
+            "name": "HttpFactory",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-HttpFactory.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\HttpFactory\u003A\u003Ainit\u0028\u0029",
+            "name": "init",
+            "summary": "Creates\u0020and\u0020returns\u0020an\u0020instance\u0020of\u0020AppHostManager.",
+            "url": "classes/Urisoft-App-Http-HttpFactory.html#method_init"
         },                {
             "fqsen": "\\",
             "name": "\\",

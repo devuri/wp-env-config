@@ -71,12 +71,12 @@ class Plugin
             add_filter(
                 'plugin_action_links',
                 function ( $actions, $plugin_file, $plugin_data, $context ) {
-					if ( \array_key_exists( 'delete', $actions ) ) {
-						unset( $actions['delete'] );
-					}
+                    if ( \array_key_exists( 'delete', $actions ) ) {
+                        unset( $actions['delete'] );
+                    }
 
-					return $actions;
-				},
+                    return $actions;
+                },
                 999,
                 4
             );
@@ -87,21 +87,21 @@ class Plugin
             add_filter(
                 'all_plugins',
                 function( $all_plugins ) {
-					$allowed_plugins = [
-						'tenant-manager/tenant-manager.php',
-					];
+                    $allowed_plugins = [
+                        'tenant-manager/tenant-manager.php',
+                    ];
 
-					// Iterate over all plugins and unset those not in the allowed list
-					foreach ( $all_plugins as $plugin_path => $plugin_info ) {
-						if ( \in_array( $plugin_path, $allowed_plugins, true ) ) {
-							unset( $all_plugins[ $plugin_path ] );
-						}
-					}
+                    // Iterate over all plugins and unset those not in the allowed list
+                    foreach ( $all_plugins as $plugin_path => $plugin_info ) {
+                        if ( \in_array( $plugin_path, $allowed_plugins, true ) ) {
+                            unset( $all_plugins[ $plugin_path ] );
+                        }
+                    }
 
-					return $all_plugins;
-				}
+                    return $all_plugins;
+                }
             );
-        }//end if
+        }// end if
 
         // Add the env type to admin bar.
         add_action( 'admin_bar_menu', [ $this, 'app_env_admin_bar_menu' ], 1199 );

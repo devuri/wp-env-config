@@ -41,7 +41,7 @@ class BaseKernelTest extends BaseTest
             "APP_ASSETS_DIR" => APP_TEST_PATH . "/public/assets",
             "APP_CONTENT_DIR" => "/content",
             "WP_CONTENT_DIR" => APP_TEST_PATH . "/public/content",
-            //"CONTENT_DIR" => "/content",
+            // "CONTENT_DIR" => "/content",
             "WP_CONTENT_URL" => "https://example.com/content",
             "WP_PLUGIN_DIR" => APP_TEST_PATH . "/public/plugins",
             "WP_PLUGIN_URL" => "https://example.com/plugins",

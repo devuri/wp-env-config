@@ -28,7 +28,7 @@ interface HostInterface
     /**
      * Constructs the full request URL based on the current protocol and app host.
      *
-     * @return string|null The full request URL or null if the app host is not available.
+     * @return null|string The full request URL or null if the app host is not available.
      */
     public function get_request_url(): ?string;
 }
