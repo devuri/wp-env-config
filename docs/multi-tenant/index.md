@@ -42,6 +42,27 @@ $http_app = wpc_app(__DIR__, 'app', ['example.com' => 'a345ea9515c']);
   - `.env`: `"path/site/a345ea9515c/.env"`
   - `config.php`: `"path/site/a345ea9515c/config.php"`
 
+The framework supports distinct configurations for each tenant, enabling customized settings per site within a multi-tenant environment:
+
+#### Locations
+
+- **Environment File**: Located at `path/site/{tenant_id}/.env`, it stores environment-specific variables.
+- **PHP Configuration**: Found at `path/site/{tenant_id}/config.php`, this file contains PHP configuration file overrides.
+
+#### Loading Mechanism
+
+1. **Tenant-Specific**: The framework first attempts to load configurations from the tenant's directory.
+2. **Fallback**: In the absence of tenant-specific files, it defaults to the global `config.php`.
+3. **Overrides**: Global settings in the default config can be overridden by tenant-specific files for flexibility.
+
+#### Benefits
+
+- Enables per-tenant customizations.
+- Provides a fallback to ensure system stability.
+- Allows global settings to be overridden at the tenant level.
+
+This approach ensures a balance between customization for individual tenants and consistency across the framework.
+
 ## Tenant-Specific Variables
 
 - Each tenant's `.env` file contains specific environment variables, such as:
