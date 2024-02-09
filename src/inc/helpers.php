@@ -137,6 +137,22 @@ if ( ! \function_exists( 'wpc_app' ) ) {
      */
     function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
+		if( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && is_null( $tenant_ids ) ) {
+
+			$_dotenv = Dotenv\Dotenv::createImmutable( $app_path );
+
+			try {
+				$_dotenv->load();
+			} catch ( Exception $e ) {
+				wp_terminate( $e->getMessage() );
+				exit;
+			}
+
+			$landlord = new DB( 'tenants', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ) );
+
+			$tenant_ids = $landlord->all();
+		}
+
         try {
             $app = new AppFramework( $app_path, $options, $tenant_ids );
         } catch ( Exception $e ) {

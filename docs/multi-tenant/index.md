@@ -1,14 +1,37 @@
 # Multi-Tenant Application
 
 ### Step 1: Backup Your Site
+
 Before making any changes, ensure you have a full backup of your WordPress files and database.
 
+Install and activate the [Tenancy plugin](#), this will create the required tables on the main site ( referred to as the Landlord site ).
+
 ### Step 2: Enable Multi-Tenant in `wp-config.php`
+
 - Locate your `wp-config.php` file in the directory of your WordPress installation.
 - Update the following line setting `ALLOW_MULTITENANT` as `true`: [WordPress config file](https://github.com/devuri/wp-env-app/blob/main/public/wp-config.php#L11)
   ```php
   define('ALLOW_MULTITENANT', true);
   ```
+
+### Step 3: Configuring Landlord Environment Settings
+
+To properly set up the Landlord environment for your multi-tenant application installation, follow these steps to ensure a proper database connection:
+
+1. **Backup Your Existing Environment File**: Before making any changes, it's crucial to back up your current `.env` file.
+
+2. **Create a New `.env` File**: In the root directory of application installation, create a new `.env` file. This file will store the environment-specific configurations for the Landlord database.
+
+3. **Configure Landlord Database Settings**: Inside the newly created `.env` file, input the following configuration settings. These settings should match those of the main site (also referred to as the Landlord site) where the Tenancy plugin is installed. Adjust the values to reflect your specific Landlord database credentials:
+
+   ```php
+   # Landlord Database Configuration
+   LANDLORD_DB_NAME=      # The name of your Landlord database
+   LANDLORD_DB_USER=      # The username for your Landlord database access
+   LANDLORD_DB_PASSWORD=  # The password for your Landlord database access
+   LANDLORD_DB_HOST=localhost  # The hostname for your Landlord database server, typically 'localhost'
+   LANDLORD_DB_PREFIX=wp_lo6j2n6v_  # The prefix for your Landlord database tables, adjust as needed
+   ```
 
 ## Overview
 

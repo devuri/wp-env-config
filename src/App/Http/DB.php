@@ -2,6 +2,9 @@
 
 namespace Urisoft\App\Http;
 
+use PDOException;
+use PDO;
+
 class DB
 {
     private $host;
@@ -11,13 +14,15 @@ class DB
     private $conn;
     private $table;
 
-    public function __construct($table_name_no_prefix)
+    public function __construct( string $table_name_no_prefix, string $host, string $dbName, string $username, string $password )
 	{
-		$this->host = env( 'DB_HOST' );
-		$this->dbName = env( 'DB_NAME' );
-		$this->username = env( 'DB_USER' );
-		$this->password = env( 'DB_PASSWORD' );
-        $this->table = env('DB_PREFIX') . $table_name_no_prefix;
+		$this->host = $host;
+		$this->dbName = $dbName;
+		$this->username = $username;
+		$this->password = $password;
+
+		// set table_name.
+        $this->table = env('LANDLORD_DB_PREFIX') . $table_name_no_prefix;
     }
 
     private function connect() {
@@ -40,7 +45,7 @@ class DB
 
         try {
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         } catch(PDOException $e) {
             wp_terminate("Read error: " . $e->getMessage());
         }
