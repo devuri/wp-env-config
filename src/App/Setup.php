@@ -170,7 +170,7 @@ class Setup implements ConfigInterface
             $this->app_http_host = self::http()->get_http_host();
 
             if ( ! \array_key_exists( $this->app_http_host, $this->env_files['tenant_ids'] ) ) {
-                wp_terminate( 'The website is not defined. Please review the URL and try again.' );
+                wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
             }
 
             if ( $this->app_http_host ) {
