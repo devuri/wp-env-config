@@ -31,7 +31,7 @@ class AppFramework
          *
          * @var Setup
          */
-        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && $tenant_ids ) {
+        if ( self::_is_multitenant() && $tenant_ids ) {
             $this->setup = new Setup( $this->app_path, [ 'tenant_ids' => $tenant_ids ] );
             $this->setup->define_multi_tenant();
         } else {
@@ -47,6 +47,11 @@ class AppFramework
         // handle errors early.
         $this->set_app_errors();
     }
+
+	private static function _is_multitenant()
+	{
+		return \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT );
+	}
 
     /**
      * Get the kernel instance.
