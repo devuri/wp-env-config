@@ -778,7 +778,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\wpc_app\u0028\u0029",
             "name": "wpc_app",
-            "summary": "Start\u0020up\u0020and\u0020set\u0020the\u0020AppFramework\u0020Kernel.",
+            "summary": "Initializes\u0020and\u0020sets\u0020up\u0020the\u0020AppFramework\u0020Kernel.",
             "url": "namespaces/default.html#function_wpc_app"
         },                {
             "fqsen": "\\wpc_app_config_core\u0028\u0029",
@@ -1306,6 +1306,11 @@ Search.appendIndex(
             "summary": "Set\u0020the\u0020config\u0020options.",
             "url": "classes/Urisoft-App-Http-AppFramework.html#method_set_config"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A_is_multitenant\u0028\u0029",
+            "name": "_is_multitenant",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method__is_multitenant"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024app_path",
             "name": "app_path",
             "summary": "",
@@ -1405,6 +1410,66 @@ Search.appendIndex(
             "name": "env_types",
             "summary": "",
             "url": "classes/Urisoft-App-EnvTypes.html#property_env_types"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB",
+            "name": "DB",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Aall\u0028\u0029",
+            "name": "all",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_all"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_find"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Awhere\u0028\u0029",
+            "name": "where",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_where"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Aconnect\u0028\u0029",
+            "name": "connect",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_connect"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024host",
+            "name": "host",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024dbName",
+            "name": "dbName",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_dbName"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024username",
+            "name": "username",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_username"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024password",
+            "name": "password",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_password"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024conn",
+            "name": "conn",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_conn"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024table",
+            "name": "table",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_table"
         },                {
             "fqsen": "\\",
             "name": "\\",
