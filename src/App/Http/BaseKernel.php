@@ -6,10 +6,10 @@ use function defined;
 
 use Exception;
 use InvalidArgumentException;
+use Urisoft\App\EnvTypes;
 use Urisoft\App\Setup;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\ConstantTrait;
-use Urisoft\App\EnvTypes;
 
 /**
  * Setup common elements.

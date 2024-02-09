@@ -48,11 +48,6 @@ class AppFramework
         $this->set_app_errors();
     }
 
-	private static function _is_multitenant()
-	{
-		return \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT );
-	}
-
     /**
      * Get the kernel instance.
      *
@@ -109,5 +104,10 @@ class AppFramework
     {
         $config       = require_once $this->app_path . "/{$options}.php";
         $this->config = array_merge( $config, $tenant );
+    }
+
+    private static function _is_multitenant()
+    {
+        return \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT;
     }
 }

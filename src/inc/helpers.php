@@ -4,6 +4,7 @@ use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\AppFramework;
 use Urisoft\App\Http\Asset;
+use Urisoft\App\Http\DB;
 use Urisoft\DotAccess;
 use Urisoft\Encryption;
 
@@ -128,35 +129,42 @@ if ( ! \function_exists( 'get_http_env' ) ) {
 
 if ( ! \function_exists( 'wpc_app' ) ) {
     /**
-     * Start up and set the AppFramework Kernel.
+     * Initializes and sets up the AppFramework Kernel.
+     * Optionally supports a multi-tenant configuration based on environment variables.
      *
-     * @param string $app_path The base app path. like __DIR__
-     * @param string $options  The options filename, default 'app'
+     * @param string     $app_path   The base application directory path (e.g., __DIR__).
+     * @param string     $options    The configuration filename, defaults to 'app'.
+     * @param null|array $tenant_ids Optional array of tenant IDs for multi-tenant support.
      *
-     * @return Urisoft\App\Http\BaseKernel
+     * @return Urisoft\App\Http\BaseKernel The initialized application kernel.
      */
     function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
     {
-		if( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && is_null( $tenant_ids ) ) {
+        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && \is_null( $tenant_ids ) ) {
+            $_dotenv = Dotenv\Dotenv::createImmutable( $app_path );
 
-			$_dotenv = Dotenv\Dotenv::createImmutable( $app_path );
+            try {
+                $_dotenv->load();
+                $_dotenv->required('LANDLORD_DB_HOST')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_NAME')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_USER')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_PASSWORD')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_PREFIX')->notEmpty();
+            } catch ( Exception $e ) {
+                wp_terminate('Required for multi-tenant: ' . $e->getMessage(), 403);
+            }
 
-			try {
-				$_dotenv->load();
-			} catch ( Exception $e ) {
-				wp_terminate( $e->getMessage() );
-				exit;
-			}
+            $tenant = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ) );
 
-			$landlord = new DB( 'tenants', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ) );
+            $tenant_ids = $tenant->all();
+        }
 
-			$tenant_ids = $landlord->all();
-		}
+        $_dotenv = null;
 
         try {
             $app = new AppFramework( $app_path, $options, $tenant_ids );
         } catch ( Exception $e ) {
-            wp_terminate( $e->getMessage() );
+            wp_terminate($e->getMessage(), 'Framework Initialization Error');
         }
 
         // @phpstan-ignore-next-line
