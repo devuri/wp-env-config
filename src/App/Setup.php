@@ -87,61 +87,22 @@ class Setup implements ConfigInterface
     /**
      * Constructor for initializing the application environment and configuration.
      *
-     * @param string $path            Current directory.
-     * @param array  $supported_names An array of supported environment names and configuration.
-     * @param bool   $short_circuit   Flag to control short-circuiting file loading.
+     * Sets up the application path, initializes environment configuration loading with Dotenv,
+     * and handles multi-tenancy. It also sets up default environment types and constants.
+     *
+     * @param string $path           The base directory path for the application.
+     * @param array  $env_file_names Optional. Additional environment file names to support.
+     * @param bool   $short_circuit  Optional. Whether to stop loading files after the first found. Defaults to true.
      */
-    public function __construct( string $path, array $supported_names = [], bool $short_circuit = true )
+    public function __construct( string $path, array $env_file_names = [], bool $short_circuit = true )
     {
-        $this->path = $path;
-
-        // Check if running multi-tenant mode
-        $this->is_multi_tenant = $this->is_multitenant_app();
-
-        /*
-         * By default, we'll stop looking for files as soon as we find one.
-         *
-         * To disable this behaviour, and load all files in order,
-         * we can disable the file loading with a new parameter.
-         *
-         * @link https://github.com/vlucas/phpdotenv/pull/394
-         */
+        $this->path          = $this->determine_path( $path );
         $this->short_circuit = $short_circuit;
+        $this->env_files     = array_merge( $this->get_default_file_names(), $env_file_names );
 
-        /*
-         * Available env type settings.
-         *
-         * If we cant find a supported env type we will set to production.
-         */
+        $this->filter_existing_env_files();
         $this->env_types = EnvTypes::get();
-
-        // use multiple filenames.
-        if ( $this->is_multi_tenant && \defined( 'APP_TENANT_ID' ) ) {
-            $tenant_id = APP_TENANT_ID;
-            // Start Dotenv bootstrap the web application.
-            $this->dotenv = Dotenv::createImmutable( $this->path, "site/{$tenant_id}/.env" );
-        } else {
-            $tenant_id = null;
-
-            $this->env_files = array_merge( $this->get_default_file_names(), $supported_names );
-
-            // Verify files to avoid Dotenv warning.
-            foreach ( $this->env_files as $key => $file ) {
-                if ( ! file_exists( $this->path . '/' . $file ) ) {
-                    unset( $this->env_files[ $key ] );
-                }
-            }
-
-            // Start Dotenv bootstrap the web application.
-            $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $short_circuit );
-        }// end if
-
-        try {
-            $this->dotenv->load();
-        } catch ( Exception $e ) {
-            wp_terminate( $e->getMessage() );
-            exit;
-        }
+        $this->initialize_dotenv();
 
         $this->set_constant_map();
     }
@@ -161,49 +122,17 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Runs config setup with default setting.
+     * Configures application settings.
      *
-     * @param null|string[] $environment .
-     * @param bool          $setup       .
+     * @param null|array|string $environment Configuration settings or environment name.
+     * @param null|bool         $setup       Controls the setup process. If null, setup is bypassed.
      *
-     * @return static
+     * @return self
      */
     public function config( $environment = null, bool $setup = true ): ConfigInterface
     {
         // check required vars.
         $this->is_required();
-
-        // self::init( __DIR__ )->config('production')
-        if ( ! \is_array( $environment ) ) {
-            $environment = [ 'environment' => $environment ];
-        }
-
-        // default setup.
-        $environment = array_merge(
-            [
-                'environment' => null,
-                'error_log'   => null,
-                'debug'       => false,
-                // set error handler framework 'symfony' or 'oops'
-                'errors'      => false,
-            ],
-            $environment
-        );
-
-        // set error logs dir.
-        $this->error_log_dir = $environment['error_log'] ?? false;
-
-        // symfony error handler.
-        $this->error_handler = $environment['errors'];
-
-        // environment.
-        if ( \is_bool( $environment['environment'] ) ) {
-            $this->environment = $environment['environment'];
-        } elseif ( \is_string( $environment['environment'] ) ) {
-            $this->environment = trim( (string) $environment['environment'] );
-        } else {
-            $this->environment = $environment['environment'];
-        }
 
         // set $setup to null allows us to short-circuit and bypass setup for more granular control.
         // Setup::init(__DIR__)->config( 'development', false )->set_environment()>database()->salts()->apply();
@@ -212,6 +141,12 @@ class Setup implements ConfigInterface
 
             return $this;
         }
+
+        // self::init( __DIR__ )->config('production')
+        $environment         = $this->normalize_environment( $environment );
+        $this->error_log_dir = $environment['error_log'] ?? false;
+        $this->error_handler = $environment['errors'] ?? null;
+        $this->environment   = $this->determine_environment( $environment['environment'] );
 
         // $setup = false allows for bypass of default setup.
         if ( false === $setup ) {
@@ -225,7 +160,7 @@ class Setup implements ConfigInterface
         }
 
         // do default setup.
-        if ( $setup ) {
+        if ( true === $setup ) {
             $this->set_environment()
                 ->debug( $this->error_log_dir )
                 ->set_error_handler()
@@ -378,6 +313,91 @@ class Setup implements ConfigInterface
     {
         if ( ! \defined( $name ) ) {
             $this->dotenv->required( $name )->notEmpty();
+        }
+    }
+
+    /**
+     * Normalizes the environment configuration.
+     *
+     * @param mixed $environment The provided environment configuration.
+     *
+     * @return array The normalized configuration array.
+     */
+    protected function normalize_environment( $environment ): array
+    {
+        if ( ! \is_array( $environment ) ) {
+            $environment = [ 'environment' => $environment ];
+        }
+
+        return array_merge(
+            [
+				'environment' => null,
+				'error_log'   => null,
+				'debug'       => false,
+				'errors'      => false,
+			],
+            $environment
+        );
+    }
+
+    /**
+     * Determines the appropriate environment setting.
+     *
+     * @param mixed $environment The environment setting from the configuration.
+     *
+     * @return mixed The determined environment value.
+     */
+    protected function determine_environment( $environment )
+    {
+        if ( \is_bool( $environment ) || \is_string( $environment ) ) {
+            return $environment;
+        }
+
+        return trim( (string) $environment );
+
+        return $environment;
+    }
+
+    /**
+     * Determines the application path, accounting for multi-tenancy.
+     *
+     * @param string $base_path The base application directory path.
+     *
+     * @return string The determined application path.
+     */
+    protected function determine_path( $base_path ): string
+    {
+        if ( $this->is_multitenant_app() && \defined( 'APP_TENANT_ID' ) ) {
+            return "{$base_path}/site/" . APP_TENANT_ID;
+        }
+
+        return $base_path;
+    }
+
+    /**
+     * Filters out environment files that do not exist to avoid warnings.
+     */
+    protected function filter_existing_env_files(): void
+    {
+        foreach ( $this->env_files as $key => $file ) {
+            if ( ! file_exists( $this->path . '/' . $file ) ) {
+                unset( $this->env_files[ $key ] );
+            }
+        }
+    }
+
+    /**
+     * Initializes Dotenv with the set path and environment files.
+     * Handles exceptions by using the`wp_terminate` function to exit.
+     */
+    protected function initialize_dotenv(): void
+    {
+        $this->dotenv = Dotenv::createImmutable( $this->path, $this->env_files, $this->short_circuit );
+
+        try {
+            $this->dotenv->load();
+        } catch ( Exception $e ) {
+            wp_terminate( $e->getMessage() );
         }
     }
 
