@@ -536,16 +536,6 @@ Search.appendIndex(
             "summary": "Setup\u0020Kernel.",
             "url": "classes/Urisoft-App-Kernel.html#method___construct"
         },                {
-            "fqsen": "\\APP_HTTP_HOST",
-            "name": "APP_HTTP_HOST",
-            "summary": "",
-            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
-        },                {
-            "fqsen": "\\IS_MULTITENANT",
-            "name": "IS_MULTITENANT",
-            "summary": "",
-            "url": "namespaces/default.html#constant_IS_MULTITENANT"
-        },                {
             "fqsen": "\\Urisoft\\App\\Setup",
             "name": "Setup",
             "summary": "Setup\u0020WP\u0020Config.",
@@ -555,11 +545,6 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructor\u0020for\u0020initializing\u0020the\u0020application\u0020environment\u0020and\u0020configuration.",
             "url": "classes/Urisoft-App-Setup.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adefine_multi_tenant\u0028\u0029",
-            "name": "define_multi_tenant",
-            "summary": "",
-            "url": "classes/Urisoft-App-Setup.html#method_define_multi_tenant"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ainit\u0028\u0029",
             "name": "init",
@@ -631,11 +616,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Setup.html#method_is_required"
         },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ahttp\u0028\u0029",
-            "name": "http",
-            "summary": "",
-            "url": "classes/Urisoft-App-Setup.html#method_http"
-        },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aget_env\u0028\u0029",
             "name": "get_env",
             "summary": "Get\u0020Env\u0020value\u0020or\u0020return\u0020null.",
@@ -696,11 +676,6 @@ Search.appendIndex(
             "summary": "Set\u0020supported\u0020env\u0020types.",
             "url": "classes/Urisoft-App-Setup.html#property_env_types"
         },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003A\u0024app_http_host",
-            "name": "app_http_host",
-            "summary": "Set\u0020the\u0020http\u0020host.",
-            "url": "classes/Urisoft-App-Setup.html#property_app_http_host"
-        },                {
             "fqsen": "\\Urisoft\\App\\Traits\\ConfigTrait",
             "name": "ConfigTrait",
             "summary": "",
@@ -751,6 +726,21 @@ Search.appendIndex(
             "summary": "Env\u0020defaults.",
             "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_const"
         },                {
+            "fqsen": "\\APP_HTTP_HOST",
+            "name": "APP_HTTP_HOST",
+            "summary": "",
+            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
+        },                {
+            "fqsen": "\\APP_TENANT_ID",
+            "name": "APP_TENANT_ID",
+            "summary": "",
+            "url": "namespaces/default.html#constant_APP_TENANT_ID"
+        },                {
+            "fqsen": "\\IS_MULTITENANT",
+            "name": "IS_MULTITENANT",
+            "summary": "",
+            "url": "namespaces/default.html#constant_IS_MULTITENANT"
+        },                {
             "fqsen": "\\asset\u0028\u0029",
             "name": "asset",
             "summary": "The\u0020Asset\u0020url.",
@@ -778,7 +768,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\wpc_app\u0028\u0029",
             "name": "wpc_app",
-            "summary": "Start\u0020up\u0020and\u0020set\u0020the\u0020AppFramework\u0020Kernel.",
+            "summary": "Initializes\u0020and\u0020sets\u0020up\u0020the\u0020AppFramework\u0020Kernel.",
             "url": "namespaces/default.html#function_wpc_app"
         },                {
             "fqsen": "\\wpc_app_config_core\u0028\u0029",
@@ -816,10 +806,20 @@ Search.appendIndex(
             "summary": "Basic\u0020Sanitize\u0020and\u0020prepare\u0020for\u0020a\u0020string\u0020input\u0020for\u0020safe\u0020usage\u0020in\u0020the\u0020application.",
             "url": "namespaces/default.html#function_app_sanitizer"
         },                {
+            "fqsen": "\\env_tenant_id\u0028\u0029",
+            "name": "env_tenant_id",
+            "summary": "",
+            "url": "namespaces/default.html#function_env_tenant_id"
+        },                {
             "fqsen": "\\wp_terminate\u0028\u0029",
             "name": "wp_terminate",
             "summary": "Custom\u0020function\u0020to\u0020terminate\u0020script\u0020execution,\u0020display\u0020a\u0020message,\u0020and\u0020set\u0020an\u0020HTTP\u0020status\u0020code.",
             "url": "namespaces/default.html#function_wp_terminate"
+        },                {
+            "fqsen": "\\sclean_sensitive_env\u0028\u0029",
+            "name": "sclean_sensitive_env",
+            "summary": "Cleans\u0020up\u0020sensitive\u0020environment\u0020variables.",
+            "url": "namespaces/default.html#function_sclean_sensitive_env"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\AutoLogin",
             "name": "AutoLogin",
@@ -1405,6 +1405,71 @@ Search.appendIndex(
             "name": "env_types",
             "summary": "",
             "url": "classes/Urisoft-App-EnvTypes.html#property_env_types"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB",
+            "name": "DB",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Aall\u0028\u0029",
+            "name": "all",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_all"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Afind\u0028\u0029",
+            "name": "find",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_find"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Awhere\u0028\u0029",
+            "name": "where",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_where"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003Aconnect\u0028\u0029",
+            "name": "connect",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#method_connect"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024host",
+            "name": "host",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_host"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024dbName",
+            "name": "dbName",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_dbName"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024username",
+            "name": "username",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_username"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024password",
+            "name": "password",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_password"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024conn",
+            "name": "conn",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_conn"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024table",
+            "name": "table",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_table"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\DB\u003A\u003A\u0024prefix",
+            "name": "prefix",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-DB.html#property_prefix"
         },                {
             "fqsen": "\\",
             "name": "\\",

@@ -22,7 +22,7 @@ class AppFramework
      *
      * @throws Exception When the options file is not found.
      */
-    public function __construct( string $app_path, string $options = 'app', ?array $tenant_ids = null )
+    public function __construct( string $app_path, string $options = 'app' )
     {
         $this->app_path = $app_path;
 
@@ -31,12 +31,7 @@ class AppFramework
          *
          * @var Setup
          */
-        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT && $tenant_ids ) {
-            $this->setup = new Setup( $this->app_path, [ 'tenant_ids' => $tenant_ids ] );
-            $this->setup->define_multi_tenant();
-        } else {
-            $this->setup = new Setup( $this->app_path );
-        }
+        $this->setup = new Setup( $this->app_path );
 
         if ( ! file_exists( $this->app_path . "/{$options}.php" ) ) {
             throw new Exception( 'Options file not found.', 1 );

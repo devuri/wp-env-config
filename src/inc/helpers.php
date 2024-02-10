@@ -4,6 +4,8 @@ use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\AppFramework;
 use Urisoft\App\Http\Asset;
+use Urisoft\App\Http\DB;
+use Urisoft\App\Http\HttpFactory;
 use Urisoft\DotAccess;
 use Urisoft\Encryption;
 
@@ -128,19 +130,57 @@ if ( ! \function_exists( 'get_http_env' ) ) {
 
 if ( ! \function_exists( 'wpc_app' ) ) {
     /**
-     * Start up and set the AppFramework Kernel.
+     * Initializes and sets up the AppFramework Kernel.
+     * Optionally supports a multi-tenant configuration based on environment variables.
      *
-     * @param string $app_path The base app path. like __DIR__
-     * @param string $options  The options filename, default 'app'
+     * @param string $app_path The base application directory path (e.g., __DIR__).
+     * @param string $options  The configuration filename, defaults to 'app'.
      *
-     * @return Urisoft\App\Http\BaseKernel
+     * @return Urisoft\App\Http\BaseKernel The initialized application kernel.
      */
-    function wpc_app( string $app_path, string $options = 'app', ?array $tenant_ids = null ): Urisoft\App\Http\BaseKernel
+    function wpc_app( string $app_path, string $options = 'app' ): Urisoft\App\Http\BaseKernel
     {
+        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT ) {
+            $_app_http_host = HttpFactory::init()->get_http_host();
+
+            $_dotenv = Dotenv\Dotenv::createImmutable( $app_path );
+
+            try {
+                $_dotenv->load();
+                $_dotenv->required('LANDLORD_DB_HOST')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_NAME')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_USER')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_PASSWORD')->notEmpty();
+                $_dotenv->required('LANDLORD_DB_PREFIX')->notEmpty();
+            } catch ( Exception $e ) {
+                wp_terminate('Required for multi-tenant: ' . $e->getMessage(), 403);
+            }
+
+            $tenant = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
+
+            $hostd = $tenant->where( 'domain', $_app_http_host );
+
+            if ( ! $hostd ) {
+                wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
+            } else {
+                // set app host.
+                \define( 'APP_HTTP_HOST', $hostd[0]->domain );
+                \define( 'APP_TENANT_ID', $hostd[0]->uuid );
+                \define( 'IS_MULTITENANT', true );
+            }
+
+            $hostd = null;
+
+            // remove these we no longer need them.
+            sclean_sensitive_env(['LANDLORD_DB_HOST', 'LANDLORD_DB_NAME', 'LANDLORD_DB_USER', 'LANDLORD_DB_PASSWORD', 'LANDLORD_DB_PREFIX']);
+        }
+
+        unset( $_dotenv );
+
         try {
-            $app = new AppFramework( $app_path, $options, $tenant_ids );
+            $app = new AppFramework( $app_path, $options );
         } catch ( Exception $e ) {
-            wp_terminate( $e->getMessage() );
+            wp_terminate($e->getMessage(), 'Framework Initialization Error');
         }
 
         // @phpstan-ignore-next-line
@@ -310,6 +350,18 @@ function app_sanitizer( string $input ): string
     return filter_var($input, FILTER_UNSAFE_RAW, FILTER_FLAG_NO_ENCODE_QUOTES);
 }
 
+function env_tenant_id(): ?string
+{
+    if ( \defined( 'APP_TENANT_ID' ) ) {
+        return APP_TENANT_ID;
+    }
+    if ( env( 'APP_TENANT_ID' ) ) {
+        return env( 'APP_TENANT_ID' );
+    }
+
+    return null;
+}
+
 /**
  * Custom function to terminate script execution, display a message, and set an HTTP status code.
  *
@@ -387,4 +439,20 @@ function wp_terminate($message, int $status_code = 500): void
 	</body>
 	</html><?php
     exit;
+}
+
+/**
+ * Cleans up sensitive environment variables.
+ *
+ * This function removes specified environment variables from the $_ENV superglobal
+ * and the environment to help secure sensitive information.
+ *
+ * @param array $sensitives An array of environment variable names to be cleaned up.
+ */
+function sclean_sensitive_env(array $sensitives): void
+{
+    foreach ($sensitives as $var) {
+        unset($_ENV[$var]);
+        putenv($var . '='); // Ensure to concatenate '=' to effectively unset it
+    }
 }
