@@ -129,7 +129,7 @@ class Setup implements ConfigInterface
      *
      * @return self
      */
-    public function config( $environment = null, bool $setup = true ): ConfigInterface
+    public function config( $environment = null, ?bool $setup = true ): ConfigInterface
     {
         // check required vars.
         $this->is_required();

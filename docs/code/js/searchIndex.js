@@ -553,7 +553,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aconfig\u0028\u0029",
             "name": "config",
-            "summary": "Runs\u0020config\u0020setup\u0020with\u0020default\u0020setting.",
+            "summary": "Configures\u0020application\u0020settings.",
             "url": "classes/Urisoft-App-Setup.html#method_config"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aset_environment\u0028\u0029",
@@ -590,6 +590,31 @@ Search.appendIndex(
             "name": "required",
             "summary": "Ensure\u0020that\u0020a\u0020specific\u0020constant\u0020is\u0020defined\u0020and\u0020not\u0020empty.",
             "url": "classes/Urisoft-App-Setup.html#method_required"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Anormalize_environment\u0028\u0029",
+            "name": "normalize_environment",
+            "summary": "Normalizes\u0020the\u0020environment\u0020configuration.",
+            "url": "classes/Urisoft-App-Setup.html#method_normalize_environment"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adetermine_environment\u0028\u0029",
+            "name": "determine_environment",
+            "summary": "Determines\u0020the\u0020appropriate\u0020environment\u0020setting.",
+            "url": "classes/Urisoft-App-Setup.html#method_determine_environment"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adetermine_path\u0028\u0029",
+            "name": "determine_path",
+            "summary": "Determines\u0020the\u0020application\u0020path,\u0020accounting\u0020for\u0020multi\u002Dtenancy.",
+            "url": "classes/Urisoft-App-Setup.html#method_determine_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Afilter_existing_env_files\u0028\u0029",
+            "name": "filter_existing_env_files",
+            "summary": "Filters\u0020out\u0020environment\u0020files\u0020that\u0020do\u0020not\u0020exist\u0020to\u0020avoid\u0020warnings.",
+            "url": "classes/Urisoft-App-Setup.html#method_filter_existing_env_files"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ainitialize_dotenv\u0028\u0029",
+            "name": "initialize_dotenv",
+            "summary": "Initializes\u0020Dotenv\u0020with\u0020the\u0020set\u0020path\u0020and\u0020environment\u0020files.",
+            "url": "classes/Urisoft-App-Setup.html#method_initialize_dotenv"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aget_default_file_names\u0028\u0029",
             "name": "get_default_file_names",
