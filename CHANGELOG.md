@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.0.0](https://github.com/devuri/wp-env-config/compare/v2.2.1...v3.0.0) (2024-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* get tenants from database table `tenants` requires plugin `Tenancy`
+
+### Features
+
+* get tenant from DB for multi-tenant support ([6854fdf](https://github.com/devuri/wp-env-config/commit/6854fdf0248fa6811eebe3578066eff3eceb23e6))
+* get tenants from database table `tenants` requires plugin `Tenancy` ([363d2c0](https://github.com/devuri/wp-env-config/commit/363d2c00e2e08c0ecaa68cb405f9cb03e4484836))
+* simplify multi-tenant switching using defined database tables ([63936ce](https://github.com/devuri/wp-env-config/commit/63936cefc87a39016247bf5dc48d2ce0835bc192))
+
+
+### Bug Fixes
+
+* add _is_multitenant() ([a528712](https://github.com/devuri/wp-env-config/commit/a5287126aeb052375529f1d2f04e34ef7e6ae32a))
+
+
+### Miscellaneous Chores
+
+* add const stubs in test mode ([1727b34](https://github.com/devuri/wp-env-config/commit/1727b34af2f035f04d240346801f578c2a0a652f))
+* build ([1c9b299](https://github.com/devuri/wp-env-config/commit/1c9b29986b094229678b2d309bb4795c41834101))
+* build ([1a82379](https://github.com/devuri/wp-env-config/commit/1a82379a2a08d3218f124e0c086b3952786c3254))
+
 ## [2.2.1](https://github.com/devuri/wp-env-config/compare/v2.2.0...v2.2.1) (2024-02-08)
 
 
