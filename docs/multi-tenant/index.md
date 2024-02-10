@@ -4,7 +4,7 @@
 
 Before making any changes, ensure you have a full backup of your WordPress files and database.
 
-Install and activate the [Tenancy plugin](#), this will create the required tables on the main site ( referred to as the Landlord site ).
+Install and activate the [Tenancy plugin](#), this will create the required database tables and admin area on the main site ( referred to as the Landlord site ).
 
 ### Step 2: Enable Multi-Tenant in `wp-config.php`
 
@@ -20,7 +20,7 @@ To properly set up the Landlord environment for your multi-tenant application in
 
 1. **Backup Your Existing Environment File**: Before making any changes, it's crucial to back up your current `.env` file.
 
-2. **Create a New `.env` File**: In the root directory of application installation, create a new `.env` file. This file will store the environment-specific configurations for the Landlord database.
+2. **Create a New `.env` File**: In the root directory of application installation, create a new `.env` file. This file will store the environment-specific configurations for the Landlord database (settings in this env file are discarded after initial setup of the Landlord).
 
 3. **Configure Landlord Database Settings**: Inside the newly created `.env` file, input the following configuration settings. These settings should match those of the main site (also referred to as the Landlord site) where the Tenancy plugin is installed. Adjust the values to reflect your specific Landlord database credentials:
 
@@ -40,22 +40,9 @@ This document provides a comprehensive guide to the architecture and operational
 ## Domain and Tenant Mapping
 
 - Tenants are uniquely identified by a Universal Unique Identifier (UUID).
-- The mapping between a tenant's domain (derived from HTTP_HOST) and its UUID is crucial. For instance:
-
-`example.com => a345ea9515c`
-
-  > This mapping is typically configured in `bootstrap.php`. Refer to the env app for more details: [Env App Bootstrap](https://github.com/devuri/wp-env-app/blob/main/bootstrap.php)
-
-```php
-// 'app' parameter is mandatory for configuration.
-$http_app = wpc_app(__DIR__, 'app', ['example.com' => 'a345ea9515c']);
-```
+- The mapping between a tenant's domain (derived from HTTP_HOST) and its UUID is crucial.
 
 ## Installation Steps
-
-1. Prepare the `.env` file for each tenant, including essential variables like `APP_TENANT_ID=a345ea9515c` and `IS_MULTITENANT=true`.
-
-   > Ensure each tenant's `.env` file is configured accordingly.
 
    > **Note**: The uploads directory will be set to `/public/app/tenant/a345ea9515c/uploads`. Make sure to transfer or replicate your site files to this new directory. This setup uses the `tenant_id` for isolated file storage per tenant.
 
@@ -88,14 +75,13 @@ This approach ensures a balance between customization for individual tenants and
 
 ## Tenant-Specific Variables
 
-- Each tenant's `.env` file contains specific environment variables, such as:
+- Each tenant's `.env` file can contain specific environment variables, such as:
   - `APP_TENANT_ID=a345ea9515c`
-  - `IS_MULTITENANT=true`
   - Optionally, `APP_TENANT_SECRET` for additional security.
 
 ## Customizing Tenant Configurations
 
-- Utilize `env('APP_TENANT_ID')` within the application to access and modify configurations dynamically for each tenant.
+- Utilize `env('APP_TENANT_ID')` within the application to access and modify configurations dynamically for each tenant. It is also set as `APP_TENANT_ID` constant during initialization steps.
 
 ## Isolated Uploads Directory
 
@@ -110,7 +96,7 @@ This approach ensures a balance between customization for individual tenants and
 ## Plugin and Theme Management
 
 - An MU (Must-Use) plugin controls the availability of specific plugins and themes for each tenant.
-- The `IS_MULTITENANT` variable aids in configuring resource availability and is particularly useful during tenant migrations or when converting a tenant to a standalone installation.
+- The `IS_MULTITENANT` constant aids in configuring resource availability and is particularly useful during tenant migrations or when converting a tenant to a standalone installation.
 
 ## Suitability for Multi-Tenant Architecture
 
