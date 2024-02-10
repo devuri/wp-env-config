@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/devuri/wp-env-config/compare/v3.0.0...v3.0.1) (2024-02-10)
+
+
+### Miscellaneous Chores
+
+* refactor ([95dbd68](https://github.com/devuri/wp-env-config/commit/95dbd68018e23ac33887e62d98f2e44b946e6f72))
+
 ## [3.0.0](https://github.com/devuri/wp-env-config/compare/v2.2.1...v3.0.0) (2024-02-10)
 
 
