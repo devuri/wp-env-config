@@ -61,7 +61,7 @@ class BaseKernel
 
         $this->args = array_merge( $this->args, $args );
 
-        $this->tenant_id = env( 'APP_TENANT_ID' );
+        $this->tenant_id = env_tenant_id();
 
         if ( env( 'IS_MULTITENANT' ) ) {
             $tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';

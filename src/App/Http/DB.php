@@ -13,16 +13,18 @@ class DB
     private $password;
     private $conn;
     private $table;
+    private $prefix;
 
-    public function __construct( string $table_name_no_prefix, string $host, string $dbName, string $username, string $password )
+    public function __construct( string $table_name_no_prefix, string $host, string $dbName, string $username, string $password, string $prefix )
     {
         $this->host     = $host;
         $this->dbName   = $dbName;
         $this->username = $username;
         $this->password = $password;
+        $this->prefix   = $prefix;
 
         // set table_name.
-        $this->table = env( 'LANDLORD_DB_PREFIX' ) . $table_name_no_prefix;
+        $this->table = $this->prefix . $table_name_no_prefix;
     }
 
     // Fetch all records from the table
@@ -66,7 +68,7 @@ class DB
         try {
             $stmt->execute();
 
-            return $stmt->fetchAll( PDO::FETCH_ASSOC );
+            return $stmt->fetchAll( PDO::FETCH_OBJ );
         } catch ( PDOException $e ) {
             wp_terminate( 'Query error: ' . $e->getMessage() );
         }
