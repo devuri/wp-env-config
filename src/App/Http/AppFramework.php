@@ -13,18 +13,21 @@ class AppFramework
     protected $app_path = null;
     protected $setup    = null;
     protected $config   = null;
+    protected $config_dir;
 
     /**
      * Setup App.
      *
-     * @param string $app_path The base app path, e.g., __DIR__.
-     * @param string $options  The configuration options filename, e.g., app.php.
+     * @param string $app_path    The base app path, e.g., __DIR__.
+     * @param string $site_config The config directory location.
+     * @param string $options     The configuration options filename, e.g., app.php.
      *
      * @throws Exception When the options file is not found.
      */
-    public function __construct( string $app_path, string $options = 'app' )
+    public function __construct( string $app_path, string $site_config, string $options = 'app' )
     {
-        $this->app_path = $app_path;
+        $this->app_path   = $app_path;
+        $this->config_dir = $site_config;
 
         /*
          * We need setup to get access to our env values.
@@ -33,11 +36,17 @@ class AppFramework
          */
         $this->setup = new Setup( $this->app_path );
 
-        if ( ! file_exists( $this->app_path . "/{$options}.php" ) ) {
+        /**
+         * setup params.
+         *
+         * @var string
+         */
+        $params_file = "{$this->app_path}/{$this->config_dir}/{$options}.php";
+        if ( file_exists( $params_file ) ) {
+            $this->config = require_once $params_file;
+        } else {
             throw new Exception( 'Options file not found.', 1 );
         }
-
-        $this->set_config( $options );
 
         // handle errors early.
         $this->set_app_errors();
@@ -87,17 +96,5 @@ class AppFramework
             $whoops->pushHandler( new PrettyPageHandler() );
             $whoops->register();
         }
-    }
-
-    /**
-     * Set the config options.
-     *
-     * @param string $options The configuration options filename, e.g., app.php.
-     * @param array  $tenant  The tenant data e.g., [ 'tenant_id' => 495743 ].
-     */
-    protected function set_config( string $options, array $tenant = [] ): void
-    {
-        $config       = require_once $this->app_path . "/{$options}.php";
-        $this->config = array_merge( $config, $tenant );
     }
 }

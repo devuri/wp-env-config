@@ -4,8 +4,7 @@ use Defuse\Crypto\Key;
 use Urisoft\App\Core\Plugin;
 use Urisoft\App\Http\AppFramework;
 use Urisoft\App\Http\Asset;
-use Urisoft\App\Http\DB;
-use Urisoft\App\Http\HttpFactory;
+use Urisoft\App\Http\Tenancy;
 use Urisoft\DotAccess;
 use Urisoft\Encryption;
 
@@ -130,57 +129,41 @@ if ( ! \function_exists( 'get_http_env' ) ) {
 
 if ( ! \function_exists( 'wpc_app' ) ) {
     /**
-     * Initializes and sets up the AppFramework Kernel.
-     * Optionally supports a multi-tenant configuration based on environment variables.
+     * Initializes the AppFramework Kernel with optional multi-tenant support.
      *
-     * @param string $app_path The base application directory path (e.g., __DIR__).
-     * @param string $options  The configuration filename, defaults to 'app'.
+     * Sets up the application kernel based on the provided application directory path.
+     * In multi-tenant configurations, it dynamically adjusts the environment based on
+     * the current HTTP host and tenant-specific settings. It ensures all required
+     * environment variables for the landlord (main tenant) are set and terminates
+     * execution with an error message if critical configurations are missing or if
+     * the tenant's domain is not recognized.
+     *
+     * @param string $app_path The base directory path of the application (e.g., __DIR__).
+     * @param string $options  Optional. The configuration filename, defaults to 'app'.
+     *
+     * @throws Exception If there are issues loading environment variables or initializing the AppFramework.
+     * @throws Exception If required multi-tenant environment variables are missing or if the tenant's domain is not recognized.
      *
      * @return Urisoft\App\Http\BaseKernel The initialized application kernel.
      */
     function wpc_app( string $app_path, string $options = 'app' ): Urisoft\App\Http\BaseKernel
     {
-        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT ) {
-            $_app_http_host = HttpFactory::init()->get_http_host();
-
-            $_dotenv = Dotenv\Dotenv::createImmutable( $app_path );
-
-            try {
-                $_dotenv->load();
-                $_dotenv->required('LANDLORD_DB_HOST')->notEmpty();
-                $_dotenv->required('LANDLORD_DB_NAME')->notEmpty();
-                $_dotenv->required('LANDLORD_DB_USER')->notEmpty();
-                $_dotenv->required('LANDLORD_DB_PASSWORD')->notEmpty();
-                $_dotenv->required('LANDLORD_DB_PREFIX')->notEmpty();
-            } catch ( Exception $e ) {
-                wp_terminate('Required for multi-tenant: ' . $e->getMessage(), 403);
-            }
-
-            $tenant = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
-
-            $hostd = $tenant->where( 'domain', $_app_http_host );
-
-            if ( ! $hostd ) {
-                wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
-            } else {
-                // set app host.
-                \define( 'APP_HTTP_HOST', $hostd[0]->domain );
-                \define( 'APP_TENANT_ID', $hostd[0]->uuid );
-                \define( 'IS_MULTITENANT', true );
-            }
-
-            $hostd = null;
-
-            // remove these we no longer need them.
-            sclean_sensitive_env(['LANDLORD_DB_HOST', 'LANDLORD_DB_NAME', 'LANDLORD_DB_USER', 'LANDLORD_DB_PASSWORD', 'LANDLORD_DB_PREFIX']);
+        if ( ! \defined('SITE_CONFIG_DIR') ) {
+            \define( 'SITE_CONFIG_DIR', 'config');
         }
 
-        unset( $_dotenv );
+        /**
+         * Handle multi-tenant setups.
+         *
+         * @var Tenancy
+         */
+        $tenancy = new Tenancy( $app_path, SITE_CONFIG_DIR );
+        $tenancy->initialize();
 
         try {
-            $app = new AppFramework( $app_path, $options );
+            $app = new AppFramework( $app_path, SITE_CONFIG_DIR, $options );
         } catch ( Exception $e ) {
-            wp_terminate($e->getMessage(), 'Framework Initialization Error');
+            wp_terminate('Framework Initialization Error: '.$e->getMessage() );
         }
 
         // @phpstan-ignore-next-line
@@ -239,7 +222,7 @@ if ( ! \function_exists( 'app_config_default' ) ) {
      */
     function app_config_default(): array
     {
-        return require_once __DIR__ . '/app.php';
+        return require_once __DIR__ . 'config/app.php';
     }
 }
 
@@ -267,7 +250,7 @@ function config( ?string $key = null, $default = null, $data_access = false )
     if ( $data_access ) {
         $dotdata = $data_access;
     } else {
-        $dotdata = new DotAccess( APP_PATH . '/app.php' );
+        $dotdata = new DotAccess( APP_PATH . SITE_CONFIG_DIR . '/app.php' );
     }
 
     if ( \is_null( $key ) ) {
