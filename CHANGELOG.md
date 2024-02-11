@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/devuri/wp-env-config/compare/v3.1.0...v3.1.1) (2024-02-11)
+
+
+### Bug Fixes
+
+* do not show message it may contain dir info and full serv path ([d2acbc0](https://github.com/devuri/wp-env-config/commit/d2acbc0a7f62a06810bec4c42a8a027805e926a6))
+
 ## [3.1.0](https://github.com/devuri/wp-env-config/compare/v3.0.1...v3.1.0) (2024-02-11)
 
 
