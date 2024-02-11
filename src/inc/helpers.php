@@ -163,7 +163,7 @@ if ( ! \function_exists( 'wpc_app' ) ) {
         try {
             $app = new AppFramework( $app_path, SITE_CONFIG_DIR, $options );
         } catch ( Exception $e ) {
-            wp_terminate('Framework Initialization Error: ' . $e->getMessage() );
+            wp_terminate('Framework Initialization Error: ' );
         }
 
         // @phpstan-ignore-next-line
