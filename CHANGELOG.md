@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/devuri/wp-env-config/compare/v3.0.1...v3.1.0) (2024-02-11)
+
+
+### Features
+
+* auto generate env file if it does not exist ([58e8214](https://github.com/devuri/wp-env-config/commit/58e821446c35a8835876d9c2e901bd8761aab553))
+
+
+### Miscellaneous Chores
+
+* build ([48020ac](https://github.com/devuri/wp-env-config/commit/48020ac7c07da4d445075368f84176a9a537152c))
+
 ## [3.0.1](https://github.com/devuri/wp-env-config/compare/v3.0.0...v3.0.1) (2024-02-10)
 
 

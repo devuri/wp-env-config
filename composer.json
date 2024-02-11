@@ -40,7 +40,7 @@
         "filp/whoops": "^2.15",
         "johnpbloch/wordpress": "^6.2",
         "symfony/error-handler": "^5.0",
-		"symfony/filesystem": "^5.4",
+        "symfony/filesystem": "^5.4",
         "symfony/var-dumper": "^5.4",
         "vlucas/phpdotenv": "^5.2",
         "psr/log": "^1.1"
