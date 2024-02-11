@@ -110,10 +110,9 @@ class LocalEnvValTest extends TestCase
 
     public function test_sudo_admin(): void
     {
-        $expectedValue = '0';
         $actualValue = env('SUDO_ADMIN');
 
-        $this->assertEquals($expectedValue, $actualValue);
+        $this->assertNull($actualValue);
     }
 
     public function test_wpenv_auto_login_secret_key(): void

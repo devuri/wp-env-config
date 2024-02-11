@@ -6,13 +6,28 @@ Before making any changes, ensure you have a full backup of your WordPress files
 
 Install and activate the [Tenancy plugin](#), this will create the required database tables and admin area on the main site ( referred to as the Landlord site ).
 
-### Step 2: Enable Multi-Tenant in `wp-config.php`
+### Enabling Multi-Tenancy in Your Configuration
 
-- Locate your `wp-config.php` file in the directory of your WordPress installation.
-- Update the following line setting `ALLOW_MULTITENANT` as `true`: [WordPress config file](https://github.com/devuri/wp-env-app/blob/main/public/wp-config.php#L11)
-  ```php
-  define('ALLOW_MULTITENANT', true);
-  ```
+To activate the multi-tenant functionality within your setup, follow these steps:
+
+1. **Access Configuration Files:**
+   - Navigate to the `config` directory within your application's installation.
+
+2. **Modify Tenancy Configuration:**
+   - Open the `tenancy.php` file located in this directory to adjust your tenancy settings.
+
+3. **Activate Multi-Tenant Mode:**
+   - Find and update the relevant line of code to turn on the multi-tenant feature by setting `ALLOW_MULTITENANT` to `true`:
+    ```php
+    define('ALLOW_MULTITENANT', true);
+    ```
+
+4. **Set the Landlord UUID:**
+   - Additionally, you'll need to specify the UUID for the landlord (main tenant). This unique identifier is typically provided at the bottom of the plugin's main page after you've enabled the Tenancy Manager Plugin. If you have this information, update the following line accordingly:
+    ```php
+    define('LANDLORD_UUID', 'your-landlord-uuid-here');
+    ```
+    Replace `'your-landlord-uuid-here'` with your actual landlord UUID.
 
 ### Step 3: Configuring Landlord Environment Settings
 

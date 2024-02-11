@@ -29,6 +29,7 @@ class BaseKernel
     protected static $list = [];
     protected $app_setup;
     protected $tenant_id;
+    protected $config_dir;
 
     /**
      * Setup BaseKernel.
@@ -42,7 +43,8 @@ class BaseKernel
      */
     public function __construct( string $app_path, array $args = [], ?Setup $setup = null )
     {
-        $this->app_path = $app_path;
+        $this->app_path   = $app_path;
+        $this->config_dir = SITE_CONFIG_DIR;
 
         if ( ! \is_array( $args ) ) {
             throw new InvalidArgumentException( 'Error: args must be of type array', 1 );
@@ -65,7 +67,7 @@ class BaseKernel
 
         if ( env( 'IS_MULTITENANT' ) ) {
             $tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
-            $this->log_file  = $this->app_path . "/site/{$this->tenant_id}/logs/{$tenant_log_file}";
+            $this->log_file  = $this->app_path . "/{$this->config_dir}/{$this->tenant_id}/logs/{$tenant_log_file}";
         } else {
             $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
         }
@@ -143,7 +145,7 @@ class BaseKernel
 
         // Check if multi-tenant mode is enabled and a tenant ID is set
         if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
-            $tenant_config_file = $this->app_path . "/site/{$this->tenant_id}/{$this->config_file}.php";
+            $tenant_config_file = $this->app_path . "/{$this->config_dir}/{$this->tenant_id}/{$this->config_file}.php";
 
             // Check if the tenant-specific config file exists
             if ( file_exists( $tenant_config_file ) ) {

@@ -331,11 +331,11 @@ class Setup implements ConfigInterface
 
         return array_merge(
             [
-				'environment' => null,
-				'error_log'   => null,
-				'debug'       => false,
-				'errors'      => false,
-			],
+                'environment' => null,
+                'error_log'   => null,
+                'debug'       => false,
+                'errors'      => false,
+            ],
             $environment
         );
     }
@@ -368,7 +368,9 @@ class Setup implements ConfigInterface
     protected function determine_path( $base_path ): string
     {
         if ( $this->is_multitenant_app() && \defined( 'APP_TENANT_ID' ) ) {
-            return "{$base_path}/site/" . APP_TENANT_ID;
+            $config_dir = SITE_CONFIG_DIR;
+
+            return "{$base_path}/{$config_dir}/" . APP_TENANT_ID;
         }
 
         return $base_path;

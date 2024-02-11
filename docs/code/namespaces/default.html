@@ -113,16 +113,23 @@
 
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/default.html#constant_ALLOW_MULTITENANT">ALLOW_MULTITENANT</a>
+    <span>
+        &nbsp;= \false                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_APP_HTTP_HOST">APP_HTTP_HOST</a>
     <span>
-        &nbsp;= $hostd[0]-&gt;domain                            </span>
+        &nbsp;= $tenant-&gt;domain                            </span>
 </dt>
 <dd></dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a href="namespaces/default.html#constant_APP_TENANT_ID">APP_TENANT_ID</a>
     <span>
-        &nbsp;= $hostd[0]-&gt;uuid                            </span>
+        &nbsp;= $tenant-&gt;uuid                            </span>
 </dt>
 <dd></dd>
 
@@ -130,6 +137,20 @@
     <a href="namespaces/default.html#constant_IS_MULTITENANT">IS_MULTITENANT</a>
     <span>
         &nbsp;= true                            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/default.html#constant_LANDLORD_UUID">LANDLORD_UUID</a>
+    <span>
+        &nbsp;= \null                            </span>
+</dt>
+<dd>Specifies the UUID of the main site (also known as the landlord) in a multi-tenant setups.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
+    <a href="namespaces/default.html#constant_SITE_CONFIG_DIR">SITE_CONFIG_DIR</a>
+    <span>
+        &nbsp;= &#039;config&#039;                            </span>
 </dt>
 <dd></dd>
 
@@ -173,7 +194,7 @@
     <span>
                                 &nbsp;: <a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a>    </span>
 </dt>
-<dd>Initializes and sets up the AppFramework Kernel.</dd>
+<dd>Initializes the AppFramework Kernel with optional multi-tenant support.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -function -">
     <a href="namespaces/default.html#function_wpc_app_config_core">wpc_app_config_core()</a>
@@ -254,15 +275,44 @@
             <a href="namespaces/default.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
         </h3>
                     <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_ALLOW_MULTITENANT">
+        ALLOW_MULTITENANT
+        <a href="namespaces/default.html#constant_ALLOW_MULTITENANT" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/config/tenancy.php"><a href="files/src-inc-config-tenancy.html"><abbr title="src/inc/config/tenancy.php">tenancy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">ALLOW_MULTITENANT</span>
+    = <span class="phpdocumentor-signature__default-value">\false</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
     <h4 class="phpdocumentor-element__name" id="constant_APP_HTTP_HOST">
         APP_HTTP_HOST
         <a href="namespaces/default.html#constant_APP_HTTP_HOST" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/Tenancy.php"><a href="files/src-app-http-tenancy.html"><abbr title="src/App/Http/Tenancy.php">Tenancy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">167</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
@@ -271,7 +321,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">APP_HTTP_HOST</span>
-    = <span class="phpdocumentor-signature__default-value">$hostd[0]-&gt;domain</span>
+    = <span class="phpdocumentor-signature__default-value">$tenant-&gt;domain</span>
 </code>
 
 
@@ -289,9 +339,9 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/Tenancy.php"><a href="files/src-app-http-tenancy.html"><abbr title="src/App/Http/Tenancy.php">Tenancy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">168</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -300,7 +350,7 @@
     <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">APP_TENANT_ID</span>
-    = <span class="phpdocumentor-signature__default-value">$hostd[0]-&gt;uuid</span>
+    = <span class="phpdocumentor-signature__default-value">$tenant-&gt;uuid</span>
 </code>
 
 
@@ -318,9 +368,9 @@
     </h4>
 
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Http/Tenancy.php"><a href="files/src-app-http-tenancy.html"><abbr title="src/App/Http/Tenancy.php">Tenancy.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">169</span>
+    <span class="phpdocumentor-element-found-in__line">90</span>
 
     </aside>
 
@@ -330,6 +380,67 @@
         <span class="phpdocumentor-signature__type">mixed</span>
     <span class="phpdocumentor-signature__name">IS_MULTITENANT</span>
     = <span class="phpdocumentor-signature__default-value">true</span>
+</code>
+
+
+        <section class="phpdocumentor-description"></section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_LANDLORD_UUID">
+        LANDLORD_UUID
+        <a href="namespaces/default.html#constant_LANDLORD_UUID" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/config/tenancy.php"><a href="files/src-inc-config-tenancy.html"><abbr title="src/inc/config/tenancy.php">tenancy.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Specifies the UUID of the main site (also known as the landlord) in a multi-tenant setups.</p>
+
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">LANDLORD_UUID</span>
+    = <span class="phpdocumentor-signature__default-value">\null</span>
+</code>
+
+
+        <section class="phpdocumentor-description"><p>This constant should be assigned the UUID value of the primary tenant that acts as the landlord.
+Setting this value is crucial for identifying the main tenant in a multi-tenant configuration.</p>
+</section>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+                    <article class="phpdocumentor-element -constant -public ">
+    <h4 class="phpdocumentor-element__name" id="constant_SITE_CONFIG_DIR">
+        SITE_CONFIG_DIR
+        <a href="namespaces/default.html#constant_SITE_CONFIG_DIR" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">152</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">SITE_CONFIG_DIR</span>
+    = <span class="phpdocumentor-signature__default-value">&#039;config&#039;</span>
 </code>
 
 
@@ -355,7 +466,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -405,7 +516,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -443,7 +554,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -513,7 +624,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">107</span>
+    <span class="phpdocumentor-element-found-in__line">106</span>
 
     </aside>
 
@@ -555,7 +666,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">120</span>
 
     </aside>
 
@@ -587,17 +698,22 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">141</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Initializes and sets up the AppFramework Kernel.</p>
+        <p class="phpdocumentor-summary">Initializes the AppFramework Kernel with optional multi-tenant support.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility"></span>
                     <span class="phpdocumentor-signature__name">wpc_app</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$app_path</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$options</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;app&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a></span></code>
 
-        <section class="phpdocumentor-description"><p>Optionally supports a multi-tenant configuration based on environment variables.</p>
+        <section class="phpdocumentor-description"><p>Sets up the application kernel based on the provided application directory path.
+In multi-tenant configurations, it dynamically adjusts the environment based on
+the current HTTP host and tenant-specific settings. It ensures all required
+environment variables for the landlord (main tenant) are set and terminates
+execution with an error message if critical configurations are missing or if
+the tenant's domain is not recognized.</p>
 </section>
 
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -607,7 +723,7 @@ Or optionally in the main config file.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The base application directory path (e.g., <strong>DIR</strong>).</p>
+                    <section class="phpdocumentor-description"><p>The base directory path of the application (e.g., <strong>DIR</strong>).</p>
 </section>
 
             </dd>
@@ -616,13 +732,39 @@ Or optionally in the main config file.</p>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                  = <span class="phpdocumentor-signature__argument__default-value">&#039;app&#039;</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The configuration filename, defaults to 'app'.</p>
+                    <section class="phpdocumentor-description"><p>Optional. The configuration filename, defaults to 'app'.</p>
 </section>
 
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="#tags" class="headerlink"><i class="fas fa-link"></i></a>
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If there are issues loading environment variables or initializing the AppFramework.</p>
+</section>
+
+                                    </dd>
+                            <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\Exception">Exception</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If required multi-tenant environment variables are missing or if the tenant's domain is not recognized.</p>
+</section>
+
+                                    </dd>
+                        </dl>
 
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type"><a href="classes/Urisoft-App-Http-BaseKernel.html"><abbr title="\Urisoft\App\Http\BaseKernel">BaseKernel</abbr></a></span>
@@ -640,7 +782,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">197</span>
+    <span class="phpdocumentor-element-found-in__line">180</span>
 
     </aside>
 
@@ -668,7 +810,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">215</span>
+    <span class="phpdocumentor-element-found-in__line">198</span>
 
     </aside>
 
@@ -711,7 +853,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">240</span>
+    <span class="phpdocumentor-element-found-in__line">223</span>
 
     </aside>
 
@@ -754,7 +896,7 @@ Or optionally in the main config file.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">263</span>
+    <span class="phpdocumentor-element-found-in__line">246</span>
 
     </aside>
 
@@ -834,7 +976,7 @@ returned.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">276</span>
 
     </aside>
 
@@ -910,7 +1052,7 @@ returned.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">308</span>
+    <span class="phpdocumentor-element-found-in__line">291</span>
 
     </aside>
 
@@ -938,7 +1080,7 @@ returned.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">343</span>
+    <span class="phpdocumentor-element-found-in__line">326</span>
 
     </aside>
 
@@ -984,7 +1126,7 @@ and removing potentially dangerous characters for security.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">353</span>
+    <span class="phpdocumentor-element-found-in__line">336</span>
 
     </aside>
 
@@ -1012,7 +1154,7 @@ and removing potentially dangerous characters for security.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">371</span>
+    <span class="phpdocumentor-element-found-in__line">354</span>
 
     </aside>
 
@@ -1061,7 +1203,7 @@ and removing potentially dangerous characters for security.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/inc/helpers.php"><a href="files/src-inc-helpers.html"><abbr title="src/inc/helpers.php">helpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">452</span>
+    <span class="phpdocumentor-element-found-in__line">435</span>
 
     </aside>
 
