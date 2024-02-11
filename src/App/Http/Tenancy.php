@@ -59,7 +59,7 @@ class Tenancy
             $_dotenv->required( 'LANDLORD_DB_PASSWORD' )->notEmpty();
             $_dotenv->required( 'LANDLORD_DB_PREFIX' )->notEmpty();
         } catch ( Exception $e ) {
-            wp_terminate( 'Required for multi-tenant: ' . $e->getMessage(), 403 );
+            wp_terminate( 'Landlord info is required for multi-tenant', 403 );
         }
 
         $tenant = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
