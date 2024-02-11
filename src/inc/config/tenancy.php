@@ -18,4 +18,4 @@
  * For comprehensive guidance on configuring a multi-tenant environment, refer to the official documentation:
  * @link https://devuri.github.io/wp-env-config/multi-tenant/
  */
-\define( 'ALLOW_MULTITENANT', true );
+\define( 'ALLOW_MULTITENANT', false );

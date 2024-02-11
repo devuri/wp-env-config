@@ -526,6 +526,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#property_tenant_id"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003A\u0024config_dir",
+            "name": "config_dir",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#property_config_dir"
+        },                {
             "fqsen": "\\Urisoft\\App\\Kernel",
             "name": "Kernel",
             "summary": "Setup\u0020common\u0020elements.",
@@ -751,20 +756,10 @@ Search.appendIndex(
             "summary": "Env\u0020defaults.",
             "url": "classes/Urisoft-App-Traits-ConfigTrait.html#method_const"
         },                {
-            "fqsen": "\\APP_HTTP_HOST",
-            "name": "APP_HTTP_HOST",
+            "fqsen": "\\SITE_CONFIG_DIR",
+            "name": "SITE_CONFIG_DIR",
             "summary": "",
-            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
-        },                {
-            "fqsen": "\\APP_TENANT_ID",
-            "name": "APP_TENANT_ID",
-            "summary": "",
-            "url": "namespaces/default.html#constant_APP_TENANT_ID"
-        },                {
-            "fqsen": "\\IS_MULTITENANT",
-            "name": "IS_MULTITENANT",
-            "summary": "",
-            "url": "namespaces/default.html#constant_IS_MULTITENANT"
+            "url": "namespaces/default.html#constant_SITE_CONFIG_DIR"
         },                {
             "fqsen": "\\asset\u0028\u0029",
             "name": "asset",
@@ -793,7 +788,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\wpc_app\u0028\u0029",
             "name": "wpc_app",
-            "summary": "Initializes\u0020and\u0020sets\u0020up\u0020the\u0020AppFramework\u0020Kernel.",
+            "summary": "Initializes\u0020the\u0020AppFramework\u0020Kernel\u0020with\u0020optional\u0020multi\u002Dtenant\u0020support.",
             "url": "namespaces/default.html#function_wpc_app"
         },                {
             "fqsen": "\\wpc_app_config_core\u0028\u0029",
@@ -1326,11 +1321,6 @@ Search.appendIndex(
             "summary": "Set\u0020up\u0020the\u0020application\u0020error\u0020handling\u0020based\u0020on\u0020environment\u0020settings.",
             "url": "classes/Urisoft-App-Http-AppFramework.html#method_set_app_errors"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Aset_config\u0028\u0029",
-            "name": "set_config",
-            "summary": "Set\u0020the\u0020config\u0020options.",
-            "url": "classes/Urisoft-App-Http-AppFramework.html#method_set_config"
-        },                {
             "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024app_path",
             "name": "app_path",
             "summary": "",
@@ -1345,6 +1335,11 @@ Search.appendIndex(
             "name": "config",
             "summary": "",
             "url": "classes/Urisoft-App-Http-AppFramework.html#property_config"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003A\u0024config_dir",
+            "name": "config_dir",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#property_config_dir"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\AppHostManager",
             "name": "AppHostManager",
@@ -1495,6 +1490,111 @@ Search.appendIndex(
             "name": "prefix",
             "summary": "",
             "url": "classes/Urisoft-App-Http-DB.html#property_prefix"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator",
+            "name": "EnvGenerator",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html#method_create"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003Arand_str\u0028\u0029",
+            "name": "rand_str",
+            "summary": "Generate\u0020a\u0020cryptographically\u0020secure\u0020password.",
+            "url": "classes/Urisoft-App-EnvGenerator.html#method_rand_str"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003Aenv_file_content\u0028\u0029",
+            "name": "env_file_content",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html#method_env_file_content"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003Awpsalts\u0028\u0029",
+            "name": "wpsalts",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html#method_wpsalts"
+        },                {
+            "fqsen": "\\Urisoft\\App\\EnvGenerator\u003A\u003A\u0024filesystem",
+            "name": "filesystem",
+            "summary": "",
+            "url": "classes/Urisoft-App-EnvGenerator.html#property_filesystem"
+        },                {
+            "fqsen": "\\APP_HTTP_HOST",
+            "name": "APP_HTTP_HOST",
+            "summary": "",
+            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
+        },                {
+            "fqsen": "\\APP_TENANT_ID",
+            "name": "APP_TENANT_ID",
+            "summary": "",
+            "url": "namespaces/default.html#constant_APP_TENANT_ID"
+        },                {
+            "fqsen": "\\IS_MULTITENANT",
+            "name": "IS_MULTITENANT",
+            "summary": "",
+            "url": "namespaces/default.html#constant_IS_MULTITENANT"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy",
+            "name": "Tenancy",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-Tenancy.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Tenancy\u0020constructor.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Ainitialize\u0028\u0029",
+            "name": "initialize",
+            "summary": "Initializes\u0020the\u0020AppFramework\u0020Kernel\u0020with\u0020optional\u0020multi\u002Dtenant\u0020support.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method_initialize"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Asetup_multi_tenant\u0028\u0029",
+            "name": "setup_multi_tenant",
+            "summary": "Sets\u0020up\u0020the\u0020environment\u0020for\u0020a\u0020multi\u002Dtenant\u0020configuration.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method_setup_multi_tenant"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Adefine_tenant_constants\u0028\u0029",
+            "name": "define_tenant_constants",
+            "summary": "Defines\u0020constants\u0020based\u0020on\u0020the\u0020tenant\u0027s\u0020information.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method_define_tenant_constants"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Amaybe_regenerate_env_file\u0028\u0029",
+            "name": "maybe_regenerate_env_file",
+            "summary": "Regenerates\u0020the\u0020tenant\u002Dspecific\u0020.env\u0020file\u0020if\u0020it\u0020doesn\u0027t\u0020exist.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method_maybe_regenerate_env_file"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Aget_db_prefix\u0028\u0029",
+            "name": "get_db_prefix",
+            "summary": "Determines\u0020the\u0020database\u0020prefix\u0020for\u0020the\u0020tenant.",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#method_get_db_prefix"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A\u0024app_path",
+            "name": "app_path",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#property_app_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A\u0024config_dir",
+            "name": "config_dir",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-Tenancy.html#property_config_dir"
+        },                {
+            "fqsen": "\\LANDLORD_UUID",
+            "name": "LANDLORD_UUID",
+            "summary": "Specifies\u0020the\u0020UUID\u0020of\u0020the\u0020main\u0020site\u0020\u0028also\u0020known\u0020as\u0020the\u0020landlord\u0029\u0020in\u0020a\u0020multi\u002Dtenant\u0020setups.",
+            "url": "namespaces/default.html#constant_LANDLORD_UUID"
+        },                {
+            "fqsen": "\\ALLOW_MULTITENANT",
+            "name": "ALLOW_MULTITENANT",
+            "summary": "",
+            "url": "namespaces/default.html#constant_ALLOW_MULTITENANT"
         },                {
             "fqsen": "\\",
             "name": "\\",
