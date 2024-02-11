@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/devuri/wp-env-config/compare/v3.1.1...v3.1.2) (2024-02-11)
+
+
+### Bug Fixes
+
+* better message for missing landlord data ([73447a1](https://github.com/devuri/wp-env-config/commit/73447a1fc415c4c953694364a55963657b49e0b9))
+
 ## [3.1.1](https://github.com/devuri/wp-env-config/compare/v3.1.0...v3.1.1) (2024-02-11)
 
 
