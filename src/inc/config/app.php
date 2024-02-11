@@ -368,5 +368,5 @@ return [
      * This is the directory where we store out public key files.
      * the directory here is relative to the application root path
      */
-    'publickey_dir'    => 'publickeys',
+    'publickey_dir'    => 'pubkeys',
 ];

@@ -13,7 +13,7 @@ class EnvGenerator
     {
         $this->filesystem = $filesystem;
 
-		// TODO create database over API and pass in credentials.
+        // TODO create database over API and pass in credentials.
     }
 
     public function create( string $file_path, string $domain, ?string $prefix = null ): void
