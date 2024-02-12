@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.2.0](https://github.com/devuri/wp-env-config/compare/v3.1.2...v3.2.0) (2024-02-12)
+
+
+### Features
+
+* add `REQUIRE_TENANT_CONFIG` enforces a strict requirement ([60fe441](https://github.com/devuri/wp-env-config/commit/60fe4411f61d963129de089b01433092b22de951))
+* enable Tenant-Specific Configuration with app.php ([b5b9c23](https://github.com/devuri/wp-env-config/commit/b5b9c23047dcfbc10f486b65aef99c1845067632))
+
+
+### Miscellaneous Chores
+
+* build ([351a624](https://github.com/devuri/wp-env-config/commit/351a6249c8404be8a8352867e1b9ca2488fb7637))
+* build ([d74a24e](https://github.com/devuri/wp-env-config/commit/d74a24ea780a99ea7e69b934035a1d36967c6c11))
+* fix file path ([d441619](https://github.com/devuri/wp-env-config/commit/d441619de1c7856128ee90c7bc077554e4680c55))
+
 ## [3.1.2](https://github.com/devuri/wp-env-config/compare/v3.1.1...v3.1.2) (2024-02-11)
 
 
