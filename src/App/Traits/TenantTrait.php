@@ -26,14 +26,14 @@ trait TenantTrait
             return null;
         }
 
-
         // Construct the path for the tenant-specific file
         $tenant_file_path = "{$this->path}/{$file}.php";
 
         // Check for the tenant file's existence
         if ( file_exists( $tenant_file_path ) ) {
             return $tenant_file_path;
-        } elseif ( $find_or_fail ) {
+        }
+        if ( $find_or_fail ) {
             return null;
         }
 

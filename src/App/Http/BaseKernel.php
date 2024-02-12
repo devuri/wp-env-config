@@ -141,7 +141,7 @@ class BaseKernel
      */
     public function overrides(): void
     {
-		$config_override_file = null;
+        $config_override_file = null;
 
         // Check if multi-tenant mode is enabled and a tenant ID is set
         if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
