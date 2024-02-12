@@ -606,11 +606,6 @@ Search.appendIndex(
             "summary": "Determines\u0020the\u0020appropriate\u0020environment\u0020setting.",
             "url": "classes/Urisoft-App-Setup.html#method_determine_environment"
         },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Adetermine_path\u0028\u0029",
-            "name": "determine_path",
-            "summary": "Determines\u0020the\u0020application\u0020path,\u0020accounting\u0020for\u0020multi\u002Dtenancy.",
-            "url": "classes/Urisoft-App-Setup.html#method_determine_path"
-        },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Afilter_existing_env_files\u0028\u0029",
             "name": "filter_existing_env_files",
             "summary": "Filters\u0020out\u0020environment\u0020files\u0020that\u0020do\u0020not\u0020exist\u0020to\u0020avoid\u0020warnings.",
@@ -625,11 +620,6 @@ Search.appendIndex(
             "name": "get_default_file_names",
             "summary": "Retrieves\u0020the\u0020default\u0020file\u0020names\u0020for\u0020environment\u0020configuration.",
             "url": "classes/Urisoft-App-Setup.html#method_get_default_file_names"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ais_multitenant_app\u0028\u0029",
-            "name": "is_multitenant_app",
-            "summary": "",
-            "url": "classes/Urisoft-App-Setup.html#method_is_multitenant_app"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aenvironment_switch\u0028\u0029",
             "name": "environment_switch",
@@ -1313,8 +1303,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Akernel\u0028\u0029",
             "name": "kernel",
-            "summary": "Get\u0020the\u0020kernel\u0020instance.",
+            "summary": "Initializes\u0020and\u0020returns\u0020a\u0020BaseKernel\u0020object\u0020with\u0020the\u0020application\u0027s\u0020configuration.",
             "url": "classes/Urisoft-App-Http-AppFramework.html#method_kernel"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Adefine_setup\u0028\u0029",
+            "name": "define_setup",
+            "summary": "Factory\u0020method\u0020for\u0020creating\u0020a\u0020Setup\u0020object\u0020with\u0020the\u0020specified\u0020application\u0020path.",
+            "url": "classes/Urisoft-App-Http-AppFramework.html#method_define_setup"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\AppFramework\u003A\u003Aset_app_errors\u0028\u0029",
             "name": "set_app_errors",
@@ -1541,6 +1536,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/default.html#constant_IS_MULTITENANT"
         },                {
+            "fqsen": "\\REQUIRE_TENANT_CONFIG",
+            "name": "REQUIRE_TENANT_CONFIG",
+            "summary": "",
+            "url": "namespaces/default.html#constant_REQUIRE_TENANT_CONFIG"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\Tenancy",
             "name": "Tenancy",
             "summary": "",
@@ -1595,6 +1595,26 @@ Search.appendIndex(
             "name": "ALLOW_MULTITENANT",
             "summary": "",
             "url": "namespaces/default.html#constant_ALLOW_MULTITENANT"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\TenantTrait",
+            "name": "TenantTrait",
+            "summary": "",
+            "url": "classes/Urisoft-App-Traits-TenantTrait.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\TenantTrait\u003A\u003Aget_tenant_file_path\u0028\u0029",
+            "name": "get_tenant_file_path",
+            "summary": "Retrieves\u0020the\u0020path\u0020for\u0020a\u0020tenant\u002Dspecific\u0020file,\u0020with\u0020an\u0020option\u0020to\u0020enforce\u0020strict\u0020finding.",
+            "url": "classes/Urisoft-App-Traits-TenantTrait.html#method_get_tenant_file_path"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\TenantTrait\u003A\u003Adetermine_envpath\u0028\u0029",
+            "name": "determine_envpath",
+            "summary": "Determines\u0020the\u0020env\u0020file\u0020application\u0020path,\u0020accounting\u0020for\u0020multi\u002Dtenancy.",
+            "url": "classes/Urisoft-App-Traits-TenantTrait.html#method_determine_envpath"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Traits\\TenantTrait\u003A\u003Ais_multitenant_app\u0028\u0029",
+            "name": "is_multitenant_app",
+            "summary": "Determines\u0020if\u0020the\u0020application\u0020is\u0020configured\u0020to\u0020operate\u0020in\u0020multi\u002Dtenant\u0020mode.",
+            "url": "classes/Urisoft-App-Traits-TenantTrait.html#method_is_multitenant_app"
         },                {
             "fqsen": "\\",
             "name": "\\",

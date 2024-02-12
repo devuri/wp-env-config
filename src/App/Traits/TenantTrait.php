@@ -27,7 +27,7 @@ trait TenantTrait
         }
 
         // Construct the path for the tenant-specific file
-        $tenant_file_path = "{$this->app_path}/{$dir}/{$tenant_id}/{$file}.php";
+        $tenant_file_path = "{$this->path}/{$dir}/{$tenant_id}/{$file}.php";
 
         // Check for the tenant file's existence
         if ( file_exists( $tenant_file_path ) ) {
@@ -38,7 +38,7 @@ trait TenantTrait
         }
 
         // Construct the path for the fallback/default file
-        $fallback_file_path = "{$this->app_path}/{$dir}/{$file}.php";
+        $fallback_file_path = "{$this->path}/{$dir}/{$file}.php";
 
         // Return the fallback file path if it exists
         return file_exists( $fallback_file_path ) ? $fallback_file_path : null;
