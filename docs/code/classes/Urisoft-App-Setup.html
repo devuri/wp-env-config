@@ -111,13 +111,13 @@
     
             <span class="phpdocumentor-element__extends">
             Uses
-                            <a href="classes/Urisoft-App-Traits-ConfigTrait.html"><abbr title="\Urisoft\App\Traits\ConfigTrait">ConfigTrait</abbr></a>,                             <abbr title="\Urisoft\App\Traits\ConstantBuilderTrait">ConstantBuilderTrait</abbr>,                             <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html"><abbr title="\Urisoft\App\Traits\EnvironmentSwitch">EnvironmentSwitch</abbr></a>                    </span>
+                            <a href="classes/Urisoft-App-Traits-ConfigTrait.html"><abbr title="\Urisoft\App\Traits\ConfigTrait">ConfigTrait</abbr></a>,                             <abbr title="\Urisoft\App\Traits\ConstantBuilderTrait">ConstantBuilderTrait</abbr>,                             <a href="classes/Urisoft-App-Traits-EnvironmentSwitch.html"><abbr title="\Urisoft\App\Traits\EnvironmentSwitch">EnvironmentSwitch</abbr></a>,                             <a href="classes/Urisoft-App-Traits-TenantTrait.html"><abbr title="\Urisoft\App\Traits\TenantTrait">TenantTrait</abbr></a>                    </span>
     </h2>
 
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -325,6 +325,13 @@
 <dd>Get the short_circuit loaded.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_get_tenant_file_path">get_tenant_file_path()</a>
+    <span>
+                                &nbsp;: null|string    </span>
+</dt>
+<dd>Retrieves the path for a tenant-specific file, with an option to enforce strict finding.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/Urisoft-App-Setup.html#method_init">init()</a>
     <span>
                                 &nbsp;: self    </span>
@@ -395,11 +402,11 @@
 <dd>Determines the appropriate environment setting.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Setup.html#method_determine_path">determine_path()</a>
+    <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_determine_envpath">determine_envpath()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Determines the application path, accounting for multi-tenancy.</dd>
+<dd>Determines the env file application path, accounting for multi-tenancy.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Urisoft-App-Setup.html#method_enable_error_handler">enable_error_handler()</a>
@@ -437,11 +444,11 @@
 <dd>Initializes Dotenv with the set path and environment files.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a href="classes/Urisoft-App-Setup.html#method_is_multitenant_app">is_multitenant_app()</a>
+    <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_is_multitenant_app">is_multitenant_app()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
-<dd></dd>
+<dd>Determines if the application is configured to operate in multi-tenant mode.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
     <a href="classes/Urisoft-App-Setup.html#method_is_required">is_required()</a>
@@ -506,7 +513,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -540,7 +547,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">71</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -573,7 +580,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">87</span>
 
     </aside>
 
@@ -606,7 +613,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">52</span>
 
     </aside>
 
@@ -639,7 +646,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">59</span>
 
     </aside>
 
@@ -672,7 +679,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -705,7 +712,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
@@ -738,7 +745,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
@@ -772,7 +779,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">26</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
@@ -806,7 +813,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
@@ -843,7 +850,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -975,7 +982,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">132</span>
+    <span class="phpdocumentor-element-found-in__line">134</span>
 
     </aside>
 
@@ -1062,7 +1069,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">281</span>
+    <span class="phpdocumentor-element-found-in__line">283</span>
 
     </aside>
 
@@ -1303,7 +1310,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">223</span>
+    <span class="phpdocumentor-element-found-in__line">225</span>
 
     </aside>
 
@@ -1351,7 +1358,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">233</span>
+    <span class="phpdocumentor-element-found-in__line">235</span>
 
     </aside>
 
@@ -1384,7 +1391,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">213</span>
 
     </aside>
 
@@ -1423,6 +1430,76 @@ and handles multi-tenancy. It also sets up default environment types and constan
         class="phpdocumentor-element
             -method
             -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_get_tenant_file_path">
+        get_tenant_file_path()
+        <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_get_tenant_file_path" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/TenantTrait.php"><a href="files/src-app-traits-tenanttrait.html"><abbr title="src/App/Traits/TenantTrait.php">TenantTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Retrieves the path for a tenant-specific file, with an option to enforce strict finding.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">get_tenant_file_path</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$file</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dir</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$find_or_fail</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">false</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">null|string</span></code>
+
+        <section class="phpdocumentor-description"><p>In a multi-tenant application, this function attempts to find a file specific to the current tenant.
+If the file is not found and 'find_or_fail' is set to true, the function will return null.
+If the tenant-specific file does not exist (and 'find_or_fail' is false), it falls back to a default file path.
+If neither file is found, or the application is not in multi-tenant mode, null is returned.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$file</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The name of the file (without the .php extension).</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$dir</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The directory within the app path where the file should be located.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$find_or_fail</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">false</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Whether to fail if the tenant-specific file is not found.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">null|string</span>
+            &mdash;
+            <section class="phpdocumentor-description"><p>The path to the file if found, or null otherwise.</p>
+</section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
                                     -static                    "
 >
     <h4 class="phpdocumentor-element__name" id="method_init">
@@ -1432,7 +1509,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">115</span>
+    <span class="phpdocumentor-element-found-in__line">117</span>
 
     </aside>
 
@@ -1541,7 +1618,7 @@ and handles multi-tenancy. It also sets up default environment types and constan
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">312</span>
+    <span class="phpdocumentor-element-found-in__line">314</span>
 
     </aside>
 
@@ -1623,7 +1700,7 @@ or empty, it will throw an exception.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">185</span>
+    <span class="phpdocumentor-element-found-in__line">187</span>
 
     </aside>
 
@@ -1656,7 +1733,7 @@ or empty, it will throw an exception.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">245</span>
+    <span class="phpdocumentor-element-found-in__line">247</span>
 
     </aside>
 
@@ -1782,7 +1859,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">350</span>
+    <span class="phpdocumentor-element-found-in__line">352</span>
 
     </aside>
 
@@ -1822,22 +1899,22 @@ if they do not exist in .env</p>
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_determine_path">
-        determine_path()
-        <a href="classes/Urisoft-App-Setup.html#method_determine_path" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_determine_envpath">
+        determine_envpath()
+        <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_determine_envpath" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/TenantTrait.php"><a href="files/src-app-traits-tenanttrait.html"><abbr title="src/App/Traits/TenantTrait.php">TenantTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">368</span>
+    <span class="phpdocumentor-element-found-in__line">54</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Determines the application path, accounting for multi-tenancy.</p>
+        <p class="phpdocumentor-summary">Determines the env file application path, accounting for multi-tenancy.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">determine_path</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$base_path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">determine_envpath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$base_path</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
@@ -1876,7 +1953,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">490</span>
+    <span class="phpdocumentor-element-found-in__line">465</span>
 
     </aside>
 
@@ -1909,7 +1986,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">457</span>
+    <span class="phpdocumentor-element-found-in__line">432</span>
 
     </aside>
 
@@ -1942,7 +2019,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">382</span>
+    <span class="phpdocumentor-element-found-in__line">366</span>
 
     </aside>
 
@@ -1975,7 +2052,7 @@ if they do not exist in .env</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">428</span>
+    <span class="phpdocumentor-element-found-in__line">412</span>
 
     </aside>
 
@@ -2042,7 +2119,7 @@ The array includes the following file names:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">395</span>
+    <span class="phpdocumentor-element-found-in__line">379</span>
 
     </aside>
 
@@ -2072,21 +2149,25 @@ The array includes the following file names:</p>
 >
     <h4 class="phpdocumentor-element__name" id="method_is_multitenant_app">
         is_multitenant_app()
-        <a href="classes/Urisoft-App-Setup.html#method_is_multitenant_app" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Urisoft-App-Traits-TenantTrait.html#method_is_multitenant_app" class="headerlink"><i class="fas fa-link"></i></a>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/App/Traits/TenantTrait.php"><a href="files/src-app-traits-tenanttrait.html"><abbr title="src/App/Traits/TenantTrait.php">TenantTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">443</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Determines if the application is configured to operate in multi-tenant mode.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
                     <span class="phpdocumentor-signature__name">is_multitenant_app</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
-        <section class="phpdocumentor-description"></section>
+        <section class="phpdocumentor-description"><p>This is based on the presence and value of the <code class="prettyprint">ALLOW_MULTITENANT</code> constant.
+If <code class="prettyprint">ALLOW_MULTITENANT</code> is defined and set to <code class="prettyprint">true</code>, the application is
+considered to be in multi-tenant mode.</p>
+</section>
 
     
     
@@ -2094,7 +2175,9 @@ The array includes the following file names:</p>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
     <span class="phpdocumentor-signature__response_type">bool</span>
             &mdash;
-        
+            <section class="phpdocumentor-description"><p>Returns <code class="prettyprint">true</code> if the application is in multi-tenant mode, otherwise <code class="prettyprint">false</code>.</p>
+</section>
+
     
 </article>
                     <article
@@ -2110,7 +2193,7 @@ The array includes the following file names:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">500</span>
+    <span class="phpdocumentor-element-found-in__line">475</span>
 
     </aside>
 
@@ -2143,7 +2226,7 @@ The array includes the following file names:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">326</span>
+    <span class="phpdocumentor-element-found-in__line">328</span>
 
     </aside>
 
@@ -2223,7 +2306,7 @@ The array includes the following file names:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">537</span>
+    <span class="phpdocumentor-element-found-in__line">512</span>
 
     </aside>
 
@@ -2268,7 +2351,7 @@ The array includes the following file names:</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/App/Setup.php"><a href="files/src-app-setup.html"><abbr title="src/App/Setup.php">Setup.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">546</span>
+    <span class="phpdocumentor-element-found-in__line">521</span>
 
     </aside>
 

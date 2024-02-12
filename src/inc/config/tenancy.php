@@ -19,3 +19,17 @@
  * @link https://devuri.github.io/wp-env-config/multi-tenant/
  */
 \define( 'ALLOW_MULTITENANT', false );
+
+/*
+ * Determines the handling of tenant-specific configurations in a multi-tenant application.
+ *
+ * When set to `true`, the application enforces a strict requirement where each tenant must
+ * have their own `config/{tenant_id}/app.php` file. If a tenant-specific configuration file
+ * is not found, the application will throw an exception, indicating the necessity for tenant
+ * specific configurations.
+ *
+ * This ensures that each tenant has explicitly defined settings and
+ * does not fall back to using a shared or default configuration, enhancing security and
+ * customization for each tenant.
+ */
+\define( 'REQUIRE_TENANT_CONFIG', false );

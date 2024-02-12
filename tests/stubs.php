@@ -72,6 +72,10 @@ if (!defined('SITE_CONFIG_DIR')) {
     define('SITE_CONFIG_DIR', APP_TEST_PATH . '/inc');
 }
 
+if (!defined('REQUIRE_TENANT_CONFIG')) {
+    define('REQUIRE_TENANT_CONFIG', false );
+}
+
 // WordPress specific constants
 if (!defined('ABSPATH')) {
     define('ABSPATH', APP_TEST_PATH . '/wp');
