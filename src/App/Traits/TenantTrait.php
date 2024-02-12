@@ -26,19 +26,19 @@ trait TenantTrait
             return null;
         }
 
+
         // Construct the path for the tenant-specific file
-        $tenant_file_path = "{$this->path}/{$dir}/{$tenant_id}/{$file}.php";
+        $tenant_file_path = "{$this->path}/{$file}.php";
 
         // Check for the tenant file's existence
         if ( file_exists( $tenant_file_path ) ) {
             return $tenant_file_path;
-        }
-        if ( $find_or_fail ) {
+        } elseif ( $find_or_fail ) {
             return null;
         }
 
         // Construct the path for the fallback/default file
-        $fallback_file_path = "{$this->path}/{$dir}/{$file}.php";
+        $fallback_file_path = "{$dir}/config/{$file}.php";
 
         // Return the fallback file path if it exists
         return file_exists( $fallback_file_path ) ? $fallback_file_path : null;

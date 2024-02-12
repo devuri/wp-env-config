@@ -41,7 +41,7 @@ class AppFramework
          *
          * @var string
          */
-        $params_file = $this->setup->get_tenant_file_path( $options, $this->config_dir, (bool) REQUIRE_TENANT_CONFIG );
+        $params_file = $this->setup->get_tenant_file_path( $options, $this->app_path, (bool) REQUIRE_TENANT_CONFIG );
 
         if ( ! empty( $params_file ) ) {
             $this->config = require_once $params_file;
