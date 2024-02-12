@@ -8,6 +8,7 @@ use Symfony\Component\ErrorHandler\Debug;
 use Urisoft\App\Traits\ConfigTrait;
 use Urisoft\App\Traits\ConstantBuilderTrait;
 use Urisoft\App\Traits\EnvironmentSwitch;
+use Urisoft\App\Traits\TenantTrait;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
@@ -19,6 +20,7 @@ class Setup implements ConfigInterface
     use ConfigTrait;
     use ConstantBuilderTrait;
     use EnvironmentSwitch;
+    use TenantTrait;
 
     /**
      *  Directory $path.
@@ -96,7 +98,7 @@ class Setup implements ConfigInterface
      */
     public function __construct( string $path, array $env_file_names = [], bool $short_circuit = true )
     {
-        $this->path          = $this->determine_path( $path );
+        $this->path          = $this->determine_envpath( $path );
         $this->short_circuit = $short_circuit;
         $this->env_files     = array_merge( $this->get_default_file_names(), $env_file_names );
 
@@ -359,24 +361,6 @@ class Setup implements ConfigInterface
     }
 
     /**
-     * Determines the application path, accounting for multi-tenancy.
-     *
-     * @param string $base_path The base application directory path.
-     *
-     * @return string The determined application path.
-     */
-    protected function determine_path( $base_path ): string
-    {
-        if ( $this->is_multitenant_app() && \defined( 'APP_TENANT_ID' ) ) {
-            $config_dir = SITE_CONFIG_DIR;
-
-            return "{$base_path}/{$config_dir}/" . APP_TENANT_ID;
-        }
-
-        return $base_path;
-    }
-
-    /**
      * Filters out environment files that do not exist to avoid warnings.
      */
     protected function filter_existing_env_files(): void
@@ -438,15 +422,6 @@ class Setup implements ConfigInterface
             '.env.local',
             'env.local',
         ];
-    }
-
-    protected function is_multitenant_app(): bool
-    {
-        if ( \defined( 'ALLOW_MULTITENANT' ) && true === ALLOW_MULTITENANT ) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

@@ -34,18 +34,23 @@ class AppFramework
          *
          * @var Setup
          */
-        $this->setup = new Setup( $this->app_path );
+        $this->setup = self::define_setup( $this->app_path );
 
         /**
          * setup params.
          *
          * @var string
          */
-        $params_file = "{$this->app_path}/{$this->config_dir}/{$options}.php";
-        if ( file_exists( $params_file ) ) {
+        $params_file = $this->setup->get_tenant_file_path( $options, $this->config_dir, (bool) REQUIRE_TENANT_CONFIG );
+
+        if ( ! empty( $params_file ) ) {
             $this->config = require_once $params_file;
         } else {
             throw new Exception( 'Options file not found.', 1 );
+        }
+
+        if ( ! \is_array( $this->config ) ) {
+            throw new Exception( 'Options array is undefined, not array.', 2 );
         }
 
         // handle errors early.
@@ -53,17 +58,38 @@ class AppFramework
     }
 
     /**
-     * Get the kernel instance.
+     * Initializes and returns a BaseKernel object with the application's configuration.
      *
-     * @return BaseKernel The kernel instance.
+     * This method ensures the configuration (`$this->config`) is an array before
+     * passing it to the BaseKernel constructor. If `$this->config` is not an array,
+     * the application is terminated with an error message to prevent type errors.
+     *
+     * @return BaseKernel Returns an instance of BaseKernel initialized with the
+     *                    application path, configuration array, and setup object.
      */
     public function kernel(): BaseKernel
     {
         if ( ! \is_array( $this->config ) ) {
-            wp_terminate( 'Uncaught TypeError BaseKernel($args) must be of type array' );
+            wp_terminate( 'Uncaught TypeError: BaseKernel($args) must be of type array' );
         }
 
         return new BaseKernel( $this->app_path, $this->config, $this->setup );
+    }
+
+    /**
+     * Factory method for creating a Setup object with the specified application path.
+     *
+     * This method abstracts the instantiation of a Setup object, allowing for
+     * centralized management of Setup object creation. It's particularly useful
+     * for encapsulating any future changes in the Setup class instantiation process.
+     *
+     * @param string $app_path The application path to be used in the Setup object.
+     *
+     * @return Setup Returns a new Setup object configured with the provided application path.
+     */
+    protected static function define_setup( string $app_path ): Setup
+    {
+        return new Setup( $app_path );
     }
 
     /**

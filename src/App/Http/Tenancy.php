@@ -88,6 +88,10 @@ class Tenancy
         \define( 'APP_HTTP_HOST', $tenant->domain );
         \define( 'APP_TENANT_ID', $tenant->uuid );
         \define( 'IS_MULTITENANT', true );
+
+        if ( ! \defined( 'REQUIRE_TENANT_CONFIG' ) ) {
+            \define( 'REQUIRE_TENANT_CONFIG', false );
+        }
     }
 
     /**
