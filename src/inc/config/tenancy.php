@@ -1,13 +1,4 @@
 <?php
-
-/**
- * Specifies the UUID of the main site (also known as the landlord) in a multi-tenant setups.
- *
- * This constant should be assigned the UUID value of the primary tenant that acts as the landlord.
- * Setting this value is crucial for identifying the main tenant in a multi-tenant configuration.
- */
-\define( 'LANDLORD_UUID', null );
-
 /*
  * Controls the activation of multi-tenant capabilities within the WordPress environment.
  *
@@ -19,6 +10,14 @@
  * @link https://devuri.github.io/wp-env-config/multi-tenant/
  */
 \define( 'ALLOW_MULTITENANT', false );
+
+/*
+ * Specifies the UUID of the main site (also known as the landlord) in a multi-tenant setups.
+ *
+ * This constant should be assigned the UUID value of the primary tenant that acts as the landlord.
+ * Setting this value is crucial for identifying the main tenant in a multi-tenant configuration.
+ */
+\define( 'LANDLORD_UUID', null );
 
 /*
  * Determines the handling of tenant-specific configurations in a multi-tenant application.
@@ -33,3 +32,12 @@
  * customization for each tenant.
  */
 \define( 'REQUIRE_TENANT_CONFIG', false );
+
+/*
+ * Defines the web root directory in multi-tenant mode.
+ *
+ * This constant is used to override the default web root directory to support
+ * multi-tenancy in the application. Ensure that the specified directory exists
+ * and is correctly configured to serve web assets.
+ */
+\define( 'TENANCY_WEB_ROOT', 'public' );
