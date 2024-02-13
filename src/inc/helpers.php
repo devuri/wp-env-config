@@ -358,7 +358,7 @@ function wp_terminate($message, int $status_code = 500): void
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset='UTF-8'" />
 		<meta name="viewport" content="width=device-width">
-		<title>Application Failed</title>
+		<title>Unavailable</title>
 		<style type="text/css">
 			html {
 				background: #f1f1f1;

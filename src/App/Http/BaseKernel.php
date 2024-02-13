@@ -220,10 +220,23 @@ class BaseKernel
             $this->set_config_constants();
         }
 
+		if ( file_exists( PUBLIC_WEB_DIR . '/.maintenance' ) ) {
+			wp_terminate( self::get_maintenance_message(),  503 );
+		}
+
+		if ( file_exists( $this->app_setup->get_current_path() . '/.maintenance' ) ) {
+			wp_terminate( self::get_maintenance_message(),  503 );
+		}
+
         if ( $this->wp_is_not_installed() && \in_array( env( 'WP_ENVIRONMENT_TYPE' ), [ 'secure', 'sec', 'production', 'prod' ], true ) ) {
             wp_terminate( 'wp is not installed change enviroment to run installer' );
         }
     }
+
+	private static function get_maintenance_message(): string
+	{
+		return 'Service Unavailable: <br>The server is currently unable to handle the request due to temporary maintenance of the server.';
+	}
 
     /**
      * Get list of defined constants.
