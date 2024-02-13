@@ -11,7 +11,7 @@
  */
 \define( 'ALLOW_MULTITENANT', false );
 
-/**
+/*
  * Specifies the UUID of the main site (also known as the landlord) in a multi-tenant setups.
  *
  * This constant should be assigned the UUID value of the primary tenant that acts as the landlord.
@@ -33,7 +33,7 @@
  */
 \define( 'REQUIRE_TENANT_CONFIG', false );
 
-/**
+/*
  * Defines the web root directory in multi-tenant mode.
  *
  * This constant is used to override the default web root directory to support

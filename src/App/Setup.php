@@ -109,10 +109,10 @@ class Setup implements ConfigInterface
         $this->set_constant_map();
     }
 
-	public function get_current_path(): string
-	{
-		return $this->path;
-	}
+    public function get_current_path(): string
+    {
+        return $this->path;
+    }
 
     /**
      * Singleton.
