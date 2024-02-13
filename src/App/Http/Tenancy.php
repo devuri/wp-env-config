@@ -12,6 +12,13 @@ class Tenancy
     private $app_path;
     private $config_dir;
 
+	/**
+     * List of constants defined.
+     *
+     * @var array
+     */
+    protected static $constants = [];
+
     /**
      * Tenancy constructor.
      *
@@ -22,6 +29,36 @@ class Tenancy
     {
         $this->app_path   = $app_path;
         $this->config_dir = $site_config;
+    }
+
+	/**
+     * Define a constant with a value.
+     *
+     * @param string $const The name of the constant to define.
+     * @param mixed  $value The value to assign to the constant.
+     *
+     */
+    protected static function define( string $const, $value ): void
+    {
+        if ( self::is_defined( $const ) ) {
+            return;
+        }
+
+        \define( $const, $value );
+
+        static::$constants[ $const ] = $value;
+    }
+
+	/**
+     * Check if a constant is defined.
+     *
+     * @param string $const The name of the constant to check.
+     *
+     * @return bool True if the constant is defined, false otherwise.
+     */
+    private static function is_defined( string $const ): bool
+    {
+        return \defined( $const );
     }
 
     /**
@@ -45,7 +82,7 @@ class Tenancy
     /**
      * Sets up the environment for a multi-tenant configuration.
      */
-    private function setup_multi_tenant(): void
+    protected function setup_multi_tenant(): void
     {
         $_app_http_host = HttpFactory::init()->get_http_host();
 
@@ -89,9 +126,11 @@ class Tenancy
         \define( 'APP_TENANT_ID', $tenant->uuid );
         \define( 'IS_MULTITENANT', true );
 
-        if ( ! \defined( 'REQUIRE_TENANT_CONFIG' ) ) {
-            \define( 'REQUIRE_TENANT_CONFIG', false );
-        }
+		// allow overrides.
+        self::define( 'REQUIRE_TENANT_CONFIG', false );
+		self::define( 'TENANCY_WEB_ROOT', 'public' );
+		self::define( 'PUBLIC_WEB_DIR', $this->app_path . '/' . TENANCY_WEB_ROOT );
+		self::define( 'APP_CONTENT_DIR',  'app' );
     }
 
     /**
