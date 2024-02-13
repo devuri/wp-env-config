@@ -471,6 +471,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_http"
         },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_maintenance_message\u0028\u0029",
+            "name": "get_maintenance_message",
+            "summary": "",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_maintenance_message"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_current_month\u0028\u0029",
             "name": "get_current_month",
             "summary": "Retrieve\u0020the\u0020current\u0020month.",
@@ -550,6 +555,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "Constructor\u0020for\u0020initializing\u0020the\u0020application\u0020environment\u0020and\u0020configuration.",
             "url": "classes/Urisoft-App-Setup.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Aget_current_path\u0028\u0029",
+            "name": "get_current_path",
+            "summary": "",
+            "url": "classes/Urisoft-App-Setup.html#method_get_current_path"
         },                {
             "fqsen": "\\Urisoft\\App\\Setup\u003A\u003Ainit\u0028\u0029",
             "name": "init",
@@ -1521,80 +1531,25 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-EnvGenerator.html#property_filesystem"
         },                {
-            "fqsen": "\\APP_HTTP_HOST",
-            "name": "APP_HTTP_HOST",
+            "fqsen": "\\ALLOW_MULTITENANT",
+            "name": "ALLOW_MULTITENANT",
             "summary": "",
-            "url": "namespaces/default.html#constant_APP_HTTP_HOST"
+            "url": "namespaces/default.html#constant_ALLOW_MULTITENANT"
         },                {
-            "fqsen": "\\APP_TENANT_ID",
-            "name": "APP_TENANT_ID",
+            "fqsen": "\\LANDLORD_UUID",
+            "name": "LANDLORD_UUID",
             "summary": "",
-            "url": "namespaces/default.html#constant_APP_TENANT_ID"
-        },                {
-            "fqsen": "\\IS_MULTITENANT",
-            "name": "IS_MULTITENANT",
-            "summary": "",
-            "url": "namespaces/default.html#constant_IS_MULTITENANT"
+            "url": "namespaces/default.html#constant_LANDLORD_UUID"
         },                {
             "fqsen": "\\REQUIRE_TENANT_CONFIG",
             "name": "REQUIRE_TENANT_CONFIG",
             "summary": "",
             "url": "namespaces/default.html#constant_REQUIRE_TENANT_CONFIG"
         },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy",
-            "name": "Tenancy",
+            "fqsen": "\\TENANCY_WEB_ROOT",
+            "name": "TENANCY_WEB_ROOT",
             "summary": "",
-            "url": "classes/Urisoft-App-Http-Tenancy.html"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Tenancy\u0020constructor.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method___construct"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Ainitialize\u0028\u0029",
-            "name": "initialize",
-            "summary": "Initializes\u0020the\u0020AppFramework\u0020Kernel\u0020with\u0020optional\u0020multi\u002Dtenant\u0020support.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method_initialize"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Asetup_multi_tenant\u0028\u0029",
-            "name": "setup_multi_tenant",
-            "summary": "Sets\u0020up\u0020the\u0020environment\u0020for\u0020a\u0020multi\u002Dtenant\u0020configuration.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method_setup_multi_tenant"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Adefine_tenant_constants\u0028\u0029",
-            "name": "define_tenant_constants",
-            "summary": "Defines\u0020constants\u0020based\u0020on\u0020the\u0020tenant\u0027s\u0020information.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method_define_tenant_constants"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Amaybe_regenerate_env_file\u0028\u0029",
-            "name": "maybe_regenerate_env_file",
-            "summary": "Regenerates\u0020the\u0020tenant\u002Dspecific\u0020.env\u0020file\u0020if\u0020it\u0020doesn\u0027t\u0020exist.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method_maybe_regenerate_env_file"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003Aget_db_prefix\u0028\u0029",
-            "name": "get_db_prefix",
-            "summary": "Determines\u0020the\u0020database\u0020prefix\u0020for\u0020the\u0020tenant.",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#method_get_db_prefix"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A\u0024app_path",
-            "name": "app_path",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#property_app_path"
-        },                {
-            "fqsen": "\\Urisoft\\App\\Http\\Tenancy\u003A\u003A\u0024config_dir",
-            "name": "config_dir",
-            "summary": "",
-            "url": "classes/Urisoft-App-Http-Tenancy.html#property_config_dir"
-        },                {
-            "fqsen": "\\LANDLORD_UUID",
-            "name": "LANDLORD_UUID",
-            "summary": "Specifies\u0020the\u0020UUID\u0020of\u0020the\u0020main\u0020site\u0020\u0028also\u0020known\u0020as\u0020the\u0020landlord\u0029\u0020in\u0020a\u0020multi\u002Dtenant\u0020setups.",
-            "url": "namespaces/default.html#constant_LANDLORD_UUID"
-        },                {
-            "fqsen": "\\ALLOW_MULTITENANT",
-            "name": "ALLOW_MULTITENANT",
-            "summary": "",
-            "url": "namespaces/default.html#constant_ALLOW_MULTITENANT"
+            "url": "namespaces/default.html#constant_TENANCY_WEB_ROOT"
         },                {
             "fqsen": "\\Urisoft\\App\\Traits\\TenantTrait",
             "name": "TenantTrait",
@@ -1616,6 +1571,31 @@ Search.appendIndex(
             "summary": "Determines\u0020if\u0020the\u0020application\u0020is\u0020configured\u0020to\u0020operate\u0020in\u0020multi\u002Dtenant\u0020mode.",
             "url": "classes/Urisoft-App-Traits-TenantTrait.html#method_is_multitenant_app"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins\\Loader",
+            "name": "Loader",
+            "summary": "Typically\u0020used\u0020in\u0020mu\u0020context\u0020to\u0020load\u0020plugins.",
+            "url": "classes/Urisoft-App-Core-Plugins-Loader.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins\\Loader\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugins-Loader.html#method___construct"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins\\Loader\u003A\u003Aadd_plugin\u0028\u0029",
+            "name": "add_plugin",
+            "summary": "Adds\u0020a\u0020plugin\u0020to\u0020the\u0020list\u0020of\u0020plugins\u0020that\u0020should\u0020be\u0020loaded.",
+            "url": "classes/Urisoft-App-Core-Plugins-Loader.html#method_add_plugin"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins\\Loader\u003A\u003Aload_plugins\u0028\u0029",
+            "name": "load_plugins",
+            "summary": "Filters\u0020the\u0020list\u0020of\u0020active\u0020plugins\u0020to\u0020include\u0020the\u0020plugins\u0020added\u0020via\u0020add_plugin.",
+            "url": "classes/Urisoft-App-Core-Plugins-Loader.html#method_load_plugins"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins\\Loader\u003A\u003A\u0024plugins",
+            "name": "plugins",
+            "summary": "Array\u0020to\u0020hold\u0020the\u0020plugins\u0020that\u0020should\u0020be\u0020loaded.",
+            "url": "classes/Urisoft-App-Core-Plugins-Loader.html#property_plugins"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -1635,6 +1615,11 @@ Search.appendIndex(
             "name": "Core",
             "summary": "",
             "url": "namespaces/urisoft-app-core.html"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugins",
+            "name": "Plugins",
+            "summary": "",
+            "url": "namespaces/urisoft-app-core-plugins.html"
         },                {
             "fqsen": "\\Urisoft\\App\\Core\\Settings",
             "name": "Settings",

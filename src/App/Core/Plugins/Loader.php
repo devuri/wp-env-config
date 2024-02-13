@@ -24,7 +24,7 @@ class Loader
      */
     public function add_plugin( $plugin_name_or_slug ): void
     {
-        if ( ! \in_array( $plugin_name_or_slug, $this->plugins_to_load, true ) ) {
+        if ( ! \in_array( $plugin_name_or_slug, $this->plugins, true ) ) {
             $this->plugins[] = $plugin_name_or_slug;
         }
     }
