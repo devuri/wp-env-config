@@ -54,9 +54,9 @@ trait ConstantTrait
         $this->define( 'APP_ASSETS_DIR', PUBLIC_WEB_DIR . '/' . $this->args['asset_dir'] );
 
         // Directory PATH.
-        $this->define( 'APP_CONTENT_DIR', '/' . $this->args['content_dir'] );
-        $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . APP_CONTENT_DIR );
-        $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . APP_CONTENT_DIR );
+        $this->define( 'APP_CONTENT_DIR', $this->args['content_dir'] );
+        $this->define( 'WP_CONTENT_DIR', PUBLIC_WEB_DIR . '/' . APP_CONTENT_DIR );
+        $this->define( 'WP_CONTENT_URL', env( 'WP_HOME' ) . '/' . APP_CONTENT_DIR );
 
         /*
          * Themes, prefer '/templates'
