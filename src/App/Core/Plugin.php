@@ -31,8 +31,16 @@ class Plugin
         // define basic app settings
         $this->define_basic_app_init();
 
-		// set a tenant ID.
-		$this->tenant_id = env_tenant_id() ?? md5(APP_HTTP_HOST);
+		/**
+		 * The tenant ID for the application.
+		 *
+		 * This sets the tenant ID based on the environment configuration. The `APP_TENANT_ID`
+		 * can be configured in the `.env` file. Setting `APP_TENANT_ID` to false will disable the
+		 * custom uploads directory behavior that is typically used in a multi-tenant setup. In a
+		 * multi-tenant environment, `APP_TENANT_ID` is required and must always be set. The method
+		 * uses `env_tenant_id()` function to retrieve the tenant ID from the environment settings.
+		 */
+		$this->tenant_id = env_tenant_id();
 
         new WhiteLabel();
 
@@ -67,7 +75,9 @@ class Plugin
         );
 
 		// separate uploads for multi tenant.
-		add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
+		if( ! is_null( $this->tenant_id ) || false !== $this->tenant_id ) {
+			add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
+		}
 
 		// multi tenant setup for plugins.
         if ( defined( 'ALLOW_MULTITENANT' ) && ALLOW_MULTITENANT === true ) {
