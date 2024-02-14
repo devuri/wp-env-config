@@ -27,7 +27,8 @@ class WhiteLabel
         $this->home_url   = home_url();
         $this->date_year  = gmdate( 'Y' );
         $this->site_name  = get_bloginfo( 'name' );
-        $this->powered_by = apply_filters( 'wpenv_powered_by', 'Powered by Apt9.' );
+        $this->tenant_id  = env_tenant_id();
+        $this->powered_by = apply_filters( 'wpenv_powered_by', 'Powered by WPTenancy.' );
 
         // add_action( 'wp_before_admin_bar_render', [ $this, 'logout_link' ] );
         add_action( 'admin_bar_menu', [ $this, 'remove_admin_wp_logo' ], 99 );
@@ -88,6 +89,6 @@ class WhiteLabel
      */
     public function change_footer_text(): string
     {
-        return wp_kses_post( "&copy; $this->date_year <a href=\"$this->home_url\" target=\"_blank\">$this->site_name</a> All Rights Reserved. $this->powered_by" );
+        return wp_kses_post( "&copy; $this->date_year <a href=\"$this->home_url\" target=\"_blank\">$this->site_name</a> All Rights Reserved. $this->powered_by $this->tenant_id" );
     }
 }
