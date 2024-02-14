@@ -1,5 +1,31 @@
 # Changelog
 
+## [3.3.0](https://github.com/devuri/wp-env-config/compare/v3.2.0...v3.3.0) (2024-02-14)
+
+
+### Features
+
+* adds md5 hash for `APP_TENANT_ID` ([775b00b](https://github.com/devuri/wp-env-config/commit/775b00ba920b363ae0cf07922d401e3ea792cf8a))
+* in `tenancy.php` we can override `PUBLIC_WEB_DIR` and `APP_CONTENT_DIR` ([74b6524](https://github.com/devuri/wp-env-config/commit/74b6524c8b0ddf816335eadb6f11d99097bd133d))
+* tenant ID is always set even in non multi-tenat ([6d1fdae](https://github.com/devuri/wp-env-config/commit/6d1fdaed789aad40df2e51d835bda7fa0f88a603))
+* use `wp_terminate` for `maintenance` which now can be per tenant ([baba0c9](https://github.com/devuri/wp-env-config/commit/baba0c97d5254500fc603802744e741cc08b3bec))
+
+
+### Bug Fixes
+
+* add tenat_id in admin footer ([a474e79](https://github.com/devuri/wp-env-config/commit/a474e790f65db2a035f21265eea1ce844968b1e8))
+* adds plugin loader to load plugins via `option_active_plugins` filter ([9f453dd](https://github.com/devuri/wp-env-config/commit/9f453ddf9dcab26e7ed538631fb9d9fa0fdfb7c9))
+* APP_TENANT_ID can be set to false in the .env to short-cercuit the custom uploads directory behavior. ([66763cc](https://github.com/devuri/wp-env-config/commit/66763cc0a3e4d96e77055bd99540042af78fa4bc))
+* is `env( 'IS_MULTITENANT' )` ([290089a](https://github.com/devuri/wp-env-config/commit/290089ab5a7e719c0fc6a5d888afc504db242929))
+* update `APP_CONTENT_DIR` so it does not require `/` ([24069bf](https://github.com/devuri/wp-env-config/commit/24069bf608bd0e722f37d88f813caaa990a43625))
+
+
+### Miscellaneous Chores
+
+* build ([c341a83](https://github.com/devuri/wp-env-config/commit/c341a835ac71683855951678f346ed29e3dfd3b4))
+* build ([7062cba](https://github.com/devuri/wp-env-config/commit/7062cba6c555f615e994229903bb8c2836cc2b01))
+* codefix ([e8ed662](https://github.com/devuri/wp-env-config/commit/e8ed6625ae8fcda5ccb1ccf7f0a37553ae309da8))
+
 ## [3.2.0](https://github.com/devuri/wp-env-config/compare/v3.1.2...v3.2.0) (2024-02-12)
 
 
