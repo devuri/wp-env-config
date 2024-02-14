@@ -87,7 +87,7 @@ class Tenancy
         }
 
         $landlord = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
-        $hostd  = $landlord->where( 'domain', $_app_http_host );
+        $hostd    = $landlord->where( 'domain', $_app_http_host );
 
         if ( ! $hostd ) {
             wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
@@ -121,7 +121,7 @@ class Tenancy
     private function define_tenant_constants(): void
     {
         \define( 'APP_HTTP_HOST', $this->tenant->domain );
-        \define( 'APP_TENANT_ID', md5($this->tenant->uuid) );
+        \define( 'APP_TENANT_ID', md5( $this->tenant->uuid ) );
         \define( 'IS_MULTITENANT', true );
 
         // allow overrides.
@@ -156,7 +156,7 @@ class Tenancy
      */
     private function get_db_prefix( string $tenant_id ): ?string
     {
-        if ( \defined( 'LANDLORD_UUID' ) && md5(LANDLORD_UUID) === $tenant_id ) {
+        if ( \defined( 'LANDLORD_UUID' ) && md5( LANDLORD_UUID ) === $tenant_id ) {
             return env( 'LANDLORD_DB_PREFIX' );
         }
 

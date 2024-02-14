@@ -297,11 +297,11 @@ class BaseKernel
      */
     protected function environment_args(): array
     {
-        $this->log_file = mb_strtolower(gmdate('m-d-Y')) . '.log';
+        $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
 
         // Determine the error logs directory path based on tenant ID presence.
         $error_logs_dir_suffix = $this->tenant_id ? "/{$this->tenant_id}/" : '/';
-        $error_logs_dir = $this->app_path . "/storage/logs/wp-errors" . $error_logs_dir_suffix . "debug-{$this->log_file}";
+        $error_logs_dir        = $this->app_path . '/storage/logs/wp-errors' . $error_logs_dir_suffix . "debug-{$this->log_file}";
 
         return [
             'environment' => null,

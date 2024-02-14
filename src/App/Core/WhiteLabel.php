@@ -20,6 +20,7 @@ class WhiteLabel
     protected $date_year;
     protected $site_name;
     protected $powered_by;
+    protected $tenant_id;
 
     public function __construct()
     {
