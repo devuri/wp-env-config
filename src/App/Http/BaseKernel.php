@@ -65,13 +65,6 @@ class BaseKernel
 
         $this->tenant_id = env_tenant_id();
 
-        if ( env( 'IS_MULTITENANT' ) ) {
-            $tenant_log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
-            $this->log_file  = $this->app_path . "/{$this->config_dir}/{$this->tenant_id}/logs/{$tenant_log_file}";
-        } else {
-            $this->log_file = mb_strtolower( gmdate( 'm-d-Y' ) ) . '.log';
-        }
-
         /*
          * By default, Dotenv will stop looking for files as soon as it finds one.
          *
@@ -144,7 +137,7 @@ class BaseKernel
         $config_override_file = null;
 
         // Check if multi-tenant mode is enabled and a tenant ID is set
-        if ( env( 'IS_MULTITENANT' ) && ! empty( $this->tenant_id ) ) {
+        if ( $this->is_multitenant_app() && ! empty( $this->tenant_id ) ) {
             $tenant_config_file = $this->app_path . "/{$this->config_dir}/{$this->tenant_id}/{$this->config_file}.php";
 
             // Check if the tenant-specific config file exists
@@ -293,27 +286,67 @@ class BaseKernel
     }
 
     /**
-     * Set App defaults.
+     * Generate environment-specific arguments, including customized error log paths.
      *
-     * @return (null|false|string)[]
+     * This method constructs the arguments needed for the environment setup,
+     * particularly focusing on the error logging mechanism. It differentiates
+     * the error log directory based on the presence of a tenant ID, allowing
+     * for tenant-specific error logging.
      *
-     * @psalm-return array{environment: null, error_log: string, debug: false, errors: 'symfony'}
+     * @return array The array of environment-specific arguments.
      */
     protected function environment_args(): array
     {
+        $this->log_file = mb_strtolower(gmdate('m-d-Y')) . '.log';
+
+        // Determine the error logs directory path based on tenant ID presence.
+        $error_logs_dir_suffix = $this->tenant_id ? "/{$this->tenant_id}/" : '/';
+        $error_logs_dir = $this->app_path . "/storage/logs/wp-errors" . $error_logs_dir_suffix . "debug-{$this->log_file}";
+
         return [
             'environment' => null,
-            'error_log'   => $this->app_path . "/storage/logs/wp-errors/debug-$this->log_file",
+            'error_log'   => $error_logs_dir,
             'debug'       => false,
             'errors'      => $this->args['error_handler'],
         ];
     }
 
+    /**
+     * Initialize the HTTP client.
+     *
+     * This method leverages the HttpFactory to create and return an instance
+     * of the AppHostManager, which is used to manage HTTP requests and responses.
+     *
+     * @return AppHostManager An instance of AppHostManager for HTTP operations.
+     */
     protected static function http(): AppHostManager
     {
         return HttpFactory::init();
     }
 
+    /**
+     * Determines if the application is configured to operate in multi-tenant mode.
+     *
+     * This is based on the presence and value of the `ALLOW_MULTITENANT` constant.
+     * If `ALLOW_MULTITENANT` is defined and set to `true`, the application is
+     * considered to be in multi-tenant mode.
+     *
+     * @return bool Returns `true` if the application is in multi-tenant mode, otherwise `false`.
+     */
+    private function is_multitenant_app(): bool
+    {
+        return \defined( 'ALLOW_MULTITENANT' ) && ALLOW_MULTITENANT === true;
+    }
+
+    /**
+     * Get the maintenance message.
+     *
+     * This method returns a predefined maintenance message indicating that
+     * the server is temporarily unavailable due to maintenance. It's used to
+     * inform users about the temporary unavailability of the service.
+     *
+     * @return string The maintenance message to be displayed to users.
+     */
     private static function get_maintenance_message(): string
     {
         return 'Service Unavailable: <br>The server is currently unable to handle the request due to temporary maintenance of the server.';
