@@ -76,6 +76,10 @@ if (!defined('REQUIRE_TENANT_CONFIG')) {
     define('REQUIRE_TENANT_CONFIG', false );
 }
 
+if (!defined('APP_TENANT_ID')) {
+    define('APP_TENANT_ID', false );
+}
+
 // WordPress specific constants
 if (!defined('ABSPATH')) {
     define('ABSPATH', APP_TEST_PATH . '/wp');

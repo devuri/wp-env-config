@@ -25,11 +25,23 @@ class Plugin
     protected $http_env_type;
     protected $wp_sudo_admin;
     protected $admin_group;
+    protected $tenant_id;
 
     public function __construct()
     {
         // define basic app settings
         $this->define_basic_app_init();
+
+        /*
+         * The tenant ID for the application.
+         *
+         * This sets the tenant ID based on the environment configuration. The `APP_TENANT_ID`
+         * can be configured in the `.env` file. Setting `APP_TENANT_ID` to false will disable the
+         * custom uploads directory behavior that is typically used in a multi-tenant setup. In a
+         * multi-tenant environment, `APP_TENANT_ID` is required and must always be set. The method
+         * uses `env_tenant_id()` function to retrieve the tenant ID from the environment settings.
+         */
+        $this->tenant_id = env_tenant_id();
 
         new WhiteLabel();
 
@@ -64,9 +76,12 @@ class Plugin
         );
 
         // separate uploads for multi tenant.
-        if ( env( 'IS_MULTITENANT' ) ) {
+        if ( ! \is_null( $this->tenant_id ) || false !== $this->tenant_id ) {
             add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
+        }
 
+        // multi tenant setup for plugins.
+        if ( \defined( 'ALLOW_MULTITENANT' ) && ALLOW_MULTITENANT === true ) {
             // Remove the delete action link for plugins.
             add_filter(
                 'plugin_action_links',
@@ -169,10 +184,9 @@ class Plugin
         return new self();
     }
 
-
     public function set_upload_directory( $dir )
     {
-        $custom_dir     = '/tenant/' . env_tenant_id() . '/uploads';
+        $custom_dir     = '/tenant/' . $this->tenant_id . '/uploads';
         $dir['basedir'] = WP_CONTENT_DIR . $custom_dir;
         $dir['baseurl'] = content_url() . $custom_dir;
         $dir['path']    = $dir['basedir'] . $dir['subdir'];

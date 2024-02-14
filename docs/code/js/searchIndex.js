@@ -196,6 +196,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Core-Plugin.html#property_admin_group"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\Plugin\u003A\u003A\u0024tenant_id",
+            "name": "tenant_id",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-Plugin.html#property_tenant_id"
+        },                {
             "fqsen": "\\Urisoft\\App\\Core\\PublicKey",
             "name": "PublicKey",
             "summary": "Represents\u0020a\u0020public\u0020key\u0020used\u0020for\u0020encryption\u0020or\u0020verification\u0020purposes.",
@@ -376,6 +381,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Urisoft-App-Core-WhiteLabel.html#property_powered_by"
         },                {
+            "fqsen": "\\Urisoft\\App\\Core\\WhiteLabel\u003A\u003A\u0024tenant_id",
+            "name": "tenant_id",
+            "summary": "",
+            "url": "classes/Urisoft-App-Core-WhiteLabel.html#property_tenant_id"
+        },                {
             "fqsen": "\\Urisoft\\App\\Http\\Asset",
             "name": "Asset",
             "summary": "",
@@ -463,17 +473,22 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aenvironment_args\u0028\u0029",
             "name": "environment_args",
-            "summary": "Set\u0020App\u0020defaults.",
+            "summary": "Generate\u0020environment\u002Dspecific\u0020arguments,\u0020including\u0020customized\u0020error\u0020log\u0020paths.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_environment_args"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Ahttp\u0028\u0029",
             "name": "http",
-            "summary": "",
+            "summary": "Initialize\u0020the\u0020HTTP\u0020client.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_http"
+        },                {
+            "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Ais_multitenant_app\u0028\u0029",
+            "name": "is_multitenant_app",
+            "summary": "Determines\u0020if\u0020the\u0020application\u0020is\u0020configured\u0020to\u0020operate\u0020in\u0020multi\u002Dtenant\u0020mode.",
+            "url": "classes/Urisoft-App-Http-BaseKernel.html#method_is_multitenant_app"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_maintenance_message\u0028\u0029",
             "name": "get_maintenance_message",
-            "summary": "",
+            "summary": "Get\u0020the\u0020maintenance\u0020message.",
             "url": "classes/Urisoft-App-Http-BaseKernel.html#method_get_maintenance_message"
         },                {
             "fqsen": "\\Urisoft\\App\\Http\\BaseKernel\u003A\u003Aget_current_month\u0028\u0029",
