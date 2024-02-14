@@ -17,6 +17,7 @@ class Tenancy
     protected static $constants = [];
     private $app_path;
     private $config_dir;
+    private $tenant;
 
     /**
      * Tenancy constructor.
@@ -81,47 +82,46 @@ class Tenancy
             $_dotenv->required( 'LANDLORD_DB_USER' )->notEmpty();
             $_dotenv->required( 'LANDLORD_DB_PASSWORD' )->notEmpty();
             $_dotenv->required( 'LANDLORD_DB_PREFIX' )->notEmpty();
-		} catch ( Exception $e ) {
-			wp_terminate( 'Landlord info is required for multi-tenant', 403 );
-		}
+        } catch ( Exception $e ) {
+            wp_terminate( 'Landlord info is required for multi-tenant', 403 );
+        }
 
-            $tenant = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
-            $hostd  = $tenant->where( 'domain', $_app_http_host );
+        $landlord = new DB( 'tenant', env( 'LANDLORD_DB_HOST' ), env( 'LANDLORD_DB_NAME' ), env( 'LANDLORD_DB_USER' ), env( 'LANDLORD_DB_PASSWORD' ), env( 'LANDLORD_DB_PREFIX' ) );
+        $hostd  = $landlord->where( 'domain', $_app_http_host );
 
-		if ( ! $hostd ) {
-			wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
-		} else {
-			$this->define_tenant_constants( $hostd[0] );
-			$this->maybe_regenerate_env_file( $hostd[0]->uuid );
-		}
+        if ( ! $hostd ) {
+            wp_terminate( 'The website is not defined. Please review the URL and try again.', 403 );
+        } else {
+            $this->tenant = $hostd[0];
+            $this->define_tenant_constants();
+            $this->maybe_regenerate_env_file( APP_TENANT_ID );
+        }
 
-            // Clean up sensitive environment variables
-            sclean_sensitive_env( [ 'LANDLORD_DB_HOST', 'LANDLORD_DB_NAME', 'LANDLORD_DB_USER', 'LANDLORD_DB_PASSWORD', 'LANDLORD_DB_PREFIX' ] );
+        // Clean up sensitive environment variables
+        sclean_sensitive_env( [ 'LANDLORD_DB_HOST', 'LANDLORD_DB_NAME', 'LANDLORD_DB_USER', 'LANDLORD_DB_PASSWORD', 'LANDLORD_DB_PREFIX' ] );
 
-            unset( $_dotenv );
-	}
+        unset( $_dotenv );
+    }
 
-            /**
-             * Check if a constant is defined.
-             *
-             * @param string $const The name of the constant to check.
-             *
-             * @return bool True if the constant is defined, false otherwise.
-             */
-	private static function is_defined( string $const ): bool
-            {
-		return \defined( $const );
-	}
+    /**
+     * Check if a constant is defined.
+     *
+     * @param string $const The name of the constant to check.
+     *
+     * @return bool True if the constant is defined, false otherwise.
+     */
+    private static function is_defined( string $const ): bool
+    {
+        return \defined( $const );
+    }
 
     /**
      * Defines constants based on the tenant's information.
-     *
-     * @param object $tenant Tenant object with domain and uuid.
      */
-    private function define_tenant_constants( $tenant ): void
+    private function define_tenant_constants(): void
     {
-        \define( 'APP_HTTP_HOST', $tenant->domain );
-        \define( 'APP_TENANT_ID', $tenant->uuid );
+        \define( 'APP_HTTP_HOST', $this->tenant->domain );
+        \define( 'APP_TENANT_ID', md5($this->tenant->uuid) );
         \define( 'IS_MULTITENANT', true );
 
         // allow overrides.
@@ -156,7 +156,7 @@ class Tenancy
      */
     private function get_db_prefix( string $tenant_id ): ?string
     {
-        if ( \defined( 'LANDLORD_UUID' ) && LANDLORD_UUID === $tenant_id ) {
+        if ( \defined( 'LANDLORD_UUID' ) && md5(LANDLORD_UUID) === $tenant_id ) {
             return env( 'LANDLORD_DB_PREFIX' );
         }
 
