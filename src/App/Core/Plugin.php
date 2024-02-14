@@ -31,6 +31,9 @@ class Plugin
         // define basic app settings
         $this->define_basic_app_init();
 
+		// set a tenant ID.
+		$this->tenant_id = env_tenant_id() ?? md5(APP_HTTP_HOST);
+
         new WhiteLabel();
 
         // Custom Sucuri settings.
@@ -63,10 +66,11 @@ class Plugin
             }
         );
 
-        // separate uploads for multi tenant.
-        if ( env( 'IS_MULTITENANT' ) ) {
-            add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
+		// separate uploads for multi tenant.
+		add_filter( 'upload_dir', [ $this, 'set_upload_directory' ] );
 
+		// multi tenant setup for plugins.
+        if ( defined( 'ALLOW_MULTITENANT' ) && ALLOW_MULTITENANT === true ) {
             // Remove the delete action link for plugins.
             add_filter(
                 'plugin_action_links',
@@ -157,7 +161,7 @@ class Plugin
 					<h2>Composer Plugins List</h2>
 					<?php
                     dump( app_packagist_plugins_list() );
-					?>
+                ?>
 				</div>
 				<?php
             }
@@ -169,10 +173,9 @@ class Plugin
         return new self();
     }
 
-
     public function set_upload_directory( $dir )
     {
-        $custom_dir     = '/tenant/' . env_tenant_id() . '/uploads';
+        $custom_dir     = '/tenant/' . $this->tenant_id . '/uploads';
         $dir['basedir'] = WP_CONTENT_DIR . $custom_dir;
         $dir['baseurl'] = content_url() . $custom_dir;
         $dir['path']    = $dir['basedir'] . $dir['subdir'];
